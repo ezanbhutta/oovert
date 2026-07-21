@@ -150,7 +150,9 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
-  padding: var(--space-6) var(--margin) 0;
+  /* Sit the supporting paragraph in the band between the two statements,
+     with real air above it, rather than crowding the heading. */
+  padding: var(--space-section) var(--margin) 0;
 }
 
 .premise__body p {
