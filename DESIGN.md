@@ -81,6 +81,10 @@ Labels: 12px caps, +18% tracking. Body measure ≤ 34em.
 - **Chapter head**: hairline + number (accent) + small-caps label. Repeats as
   the page's pagination.
 - **Chapter rail**: fixed right, active state via IntersectionObserver.
+- **Capabilities marquee**: a slow full-bleed horizontal seam between the
+  Premise and the Work, perpetual motion against the vertical scroll. Pure
+  CSS (duplicated track, `translateX(-50%)`), pauses on hover and for reduced
+  motion; decorative, so the practice list carries the semantics.
 - **Logo**: the OOVERT mark (a doubled O, each ring built from two mirrored
   spiral halves, set next to "vert" in Gellix). Inlined as `currentColor` SVG
   so the difference-blend header and the paper-coloured footer both drive it
