@@ -5,6 +5,7 @@ import { initCounters } from './modules/counters.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initManifesto } from './modules/manifesto.js';
 import { initBackdrop } from './modules/backdrop.js';
+import { initHeroField } from './modules/herofield.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -14,6 +15,7 @@ initNav();
 initCounters({ reducedMotion });
 initManifesto({ reducedMotion });
 initBackdrop({ reducedMotion });
+initHeroField({ reducedMotion });
 
 if (!reducedMotion) {
   initParallax();
