@@ -1,6 +1,7 @@
-# OVERT, Design System
+# OOVERT, Design System
 
-The brand idea is the word itself: *overt*, done or shown openly.
+The brand idea is the word *overt* (done or shown openly), doubled into the
+name and the mark: *oovert*.
 Everything on the page argues one thesis: **visibility is economics**.
 The design proves the thesis by being what it sells, typography loud enough
 to need no photography, restraint sharp enough to read as confidence.
@@ -40,7 +41,7 @@ Two families, four voices:
 
 - **Archivo Variable**, the workhorse. Width axis 62-125% is the identity trick:
   three of the four client wordmarks (Fathom condensed 62, Caldera expanded 125,
-  Halden hairline weight-275) plus OVERT's own mark (wdth 116-118) all come from
+  Halden hairline weight-275) plus OOVERT's own mark (wdth 116-118) all come from
   the one font file. Loam is the deliberate exception, set in the serif.
 - **Instrument Serif**, the editorial voice. Reserved for the words doing
   persuasion (*prey*, *the opposite*, *out loud*, pull quotes) and for the one
@@ -80,7 +81,7 @@ Labels: 12px caps, +18% tracking. Body measure ≤ 34em.
 - **Chapter head**: hairline + number (accent) + small-caps label. Repeats as
   the page's pagination.
 - **Chapter rail**: fixed right, active state via IntersectionObserver.
-- **Logo**: the OVERT mark (a stylised O built from two mirrored halves,
-  set next to "VERT" in Gellix). Inlined as `currentColor` SVG so the
-  difference-blend header and the paper-coloured footer both drive it from
-  one file. The O-mark alone becomes the favicon.
+- **Logo**: the OOVERT mark (a doubled O, each ring built from two mirrored
+  spiral halves, set next to "vert" in Gellix). Inlined as `currentColor` SVG
+  so the difference-blend header and the paper-coloured footer both drive it
+  from one file. The OO-mark alone becomes the favicon.
