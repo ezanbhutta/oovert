@@ -34,10 +34,12 @@ Rule: one signal color per surface. The accent appears as punctuation
 Two families, four voices:
 
 - **Archivo Variable** — the workhorse. Width axis 62–125% is the identity trick:
-  the four fictional client wordmarks (Fathom condensed 62, Caldera expanded 125,
-  Halden hairline 275-weight, OVERT itself at 112–118) are all one font file.
-- **Instrument Serif (italic)** — the editorial voice. Reserved for the words
-  doing persuasion: *prey*, *the opposite*, *out loud*, pull quotes.
+  three of the four client wordmarks (Fathom condensed 62, Caldera expanded 125,
+  Halden hairline weight-275) plus OVERT's own mark (wdth 116–118) all come from
+  the one font file. Loam is the deliberate exception — set in the serif.
+- **Instrument Serif** — the editorial voice. Reserved for the words doing
+  persuasion (*prey*, *the opposite*, *out loud*, pull quotes) and for the one
+  case identity, Loam, that wanted warmth over engineering.
 
 Scale: fluid clamp() steps with editorial jumps (`--text-2xl` ≈ 11.5rem max,
 next step down is less than half). Display leading 0.92–0.96, tracking −2.5%.

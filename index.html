@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OVERT® — Brand Strategy &amp; Identity Studio</title>
-  <meta name="description" content="OVERT is a brand strategy and identity studio in New York and Copenhagen. We build unmistakable brands for companies that intend to be seen — naming, identity, and the systems that keep them sharp.">
+  <meta name="description" content="OVERT is a brand strategy and identity studio in New York and Copenhagen, building unmistakable brands for companies that intend to be seen.">
   <link rel="canonical" href="https://overt.agency/">
   <meta name="theme-color" content="#16140F">
 
@@ -23,6 +23,10 @@
   <meta name="twitter:image" content="https://overt.agency/assets/og.png">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
 
   <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,7 +35,13 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
 
-  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <link rel="modulepreload" href="js/modules/reveal.js">
+  <link rel="modulepreload" href="js/modules/nav.js">
+  <link rel="modulepreload" href="js/modules/cursor.js">
+  <link rel="modulepreload" href="js/modules/magnetic.js">
+  <link rel="modulepreload" href="js/modules/parallax.js">
+  <link rel="modulepreload" href="js/modules/counters.js">
+  <link rel="modulepreload" href="js/modules/smooth-scroll.js">
 
   <script type="application/ld+json">
   {
@@ -43,6 +53,13 @@
     "email": "new@overt.agency",
     "foundingDate": "2016",
     "description": "Brand strategy and identity studio. Naming, identity systems, and brand governance for companies that intend to be seen.",
+    "logo": "https://overt.agency/favicon.svg",
+    "image": "https://overt.agency/assets/og.png",
+    "sameAs": [
+      "https://www.instagram.com/overt.agency/",
+      "https://www.linkedin.com/company/overt-agency/",
+      "https://www.are.na/overt"
+    ],
     "address": [
       { "@type": "PostalAddress", "addressLocality": "New York", "addressCountry": "US" },
       { "@type": "PostalAddress", "addressLocality": "Copenhagen", "addressCountry": "DK" }
@@ -69,16 +86,16 @@
     </button>
   </header>
 
-  <div class="menu-overlay" id="menu-overlay" hidden>
+  <div class="menu-overlay" id="menu-overlay" role="dialog" aria-modal="true" aria-label="Menu" hidden>
     <nav class="menu-overlay__nav" aria-label="Menu">
       <a href="#premise"><span class="menu-overlay__num">01</span>Premise</a>
       <a href="#work"><span class="menu-overlay__num">02</span>Work</a>
       <a href="#practice"><span class="menu-overlay__num">03</span>Practice</a>
       <a href="#evidence"><span class="menu-overlay__num">04</span>Evidence</a>
       <a href="#studio"><span class="menu-overlay__num">05</span>Studio</a>
-      <a href="#contact"><span class="menu-overlay__num">06</span>Contact</a>
+      <a href="#contact"><span class="menu-overlay__num">06</span>Invitation</a>
     </nav>
-    <p class="menu-overlay__meta">New York — Copenhagen<br>new@overt.agency</p>
+    <p class="menu-overlay__meta">New York / Copenhagen<br>new@overt.agency</p>
   </div>
 
   <nav class="chapter-rail" aria-label="Chapters">
@@ -87,7 +104,7 @@
     <a href="#practice" aria-label="Chapter 03, Practice"><span>03</span></a>
     <a href="#evidence" aria-label="Chapter 04, Evidence"><span>04</span></a>
     <a href="#studio" aria-label="Chapter 05, Studio"><span>05</span></a>
-    <a href="#contact" aria-label="Chapter 06, Contact"><span>06</span></a>
+    <a href="#contact" aria-label="Chapter 06, Invitation"><span>06</span></a>
   </nav>
 
   <main id="main">
@@ -149,7 +166,7 @@
       </p>
 
       <aside class="dict" data-reveal aria-label="Dictionary definition of overt">
-        <p class="dict__word">o&middot;vert <span class="dict__ipa">/ o&#650;&#712;v&#603;&#720;t /</span> <span class="dict__pos">adjective</span></p>
+        <p class="dict__word">o&middot;vert <span class="dict__ipa">/ &#601;&#650;&#712;v&#604;&#720;t /</span> <span class="dict__pos">adjective</span></p>
         <ol class="dict__defs">
           <li>Done or shown openly.</li>
           <li>Plainly apparent; not secret.</li>
@@ -418,13 +435,15 @@
         <a href="#premise" data-hover>Premise</a>
         <a href="#work" data-hover>Work</a>
         <a href="#practice" data-hover>Practice</a>
+        <a href="#evidence" data-hover>Evidence</a>
         <a href="#studio" data-hover>Studio</a>
+        <a href="#contact" data-hover>Invitation</a>
       </nav>
       <div class="site-foot__col">
         <h2 class="site-foot__label">Elsewhere</h2>
-        <a href="https://www.instagram.com/" rel="noopener" data-hover>Instagram</a>
-        <a href="https://www.linkedin.com/" rel="noopener" data-hover>LinkedIn</a>
-        <a href="https://www.are.na/" rel="noopener" data-hover>Are.na</a>
+        <a href="https://www.instagram.com/overt.agency/" rel="noopener" data-hover>Instagram</a>
+        <a href="https://www.linkedin.com/company/overt-agency/" rel="noopener" data-hover>LinkedIn</a>
+        <a href="https://www.are.na/overt" rel="noopener" data-hover>Are.na</a>
       </div>
       <div class="site-foot__col site-foot__col--colophon">
         <h2 class="site-foot__label">Colophon</h2>
