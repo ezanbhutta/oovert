@@ -4,7 +4,7 @@
    ========================================================================== */
 
 :root {
-  --accent-invert: #FF6A3D; /* signal color tuned for dark grounds */
+  --accent-invert: #9B7BFF; /* brand violet, brightened for dark grounds (AA ≥ 5.6:1) */
 }
 
 /* ---- Hero -------------------------------------------------------------- */
@@ -360,7 +360,7 @@
 }
 
 /* Fields */
-.case--fathom  { background: var(--field-cobalt); color: var(--paper); }
+.case--fathom  { background: var(--field-violet); color: var(--paper); }
 .case--loam    { background: var(--field-ochre);  color: var(--ink);   }
 .case--caldera { background: var(--field-char);   color: var(--paper); }
 .case--halden  { background: var(--paper-dim);    color: var(--ink);   }
@@ -566,7 +566,7 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-size: var(--text-base);
-  color: var(--accent);
+  color: var(--accent-deep);
 }
 
 .principles__item p {

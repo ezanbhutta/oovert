@@ -22,12 +22,17 @@ to need no photography, restraint sharp enough to read as confidence.
 | `--ink` | `#16140F` | Figure. Warm near-black, used as ground in dark chapters. |
 | `--ink-soft` | `#55503F` | Secondary text on paper (≥ 7:1). |
 | `--ink-invert-soft` | `#A9A294` | Secondary text on ink (≥ 6.5:1). |
-| `--accent` | `#C63A12` | Signal. Vermilion, AA on paper (4.6:1). Used in drops, never floods. |
-| `--accent-invert` | `#FF6A3D` | Signal for dark grounds (6:1 on ink). |
-| `--field-cobalt / ochre / char` | case fields | One color per case study — portfolio art direction, not palette noise. |
+| `--accent` | `#815EFA` | Brand violet. The signal. Large display + UI on light grounds. |
+| `--accent-deep` | `#6039CE` | Violet for small text on light grounds (AA, 5.6:1+). |
+| `--accent-invert` | `#9B7BFF` | Violet brightened for dark grounds (AA, 5.6:1+). |
+| `--secondary` | `#C99A2C` | Warm gold. The violet's counterpoint (the Loam identity). |
+| `--field-violet / ochre / char` | case fields | One color per case study, portfolio art direction. Fathom rides the brand violet at full bleed. |
 
-Rule: one signal color per surface. The accent appears as punctuation
+Rule: one signal color per surface. Violet appears as punctuation
 (chapter numbers, an underline, one italic word), never as decoration.
+Because violet is bright, small text uses the AA-safe `--accent-deep` on
+light and `--accent-invert` on dark; only large display type uses the pure
+brand `--accent`.
 
 ## Typography
 
@@ -76,5 +81,7 @@ Labels: 12px caps, +18% tracking. Body measure ≤ 34em.
   the page's pagination.
 - **Dictionary card**: the concept set piece — bordered, recessed, serif.
 - **Chapter rail**: fixed right, active state via IntersectionObserver.
-- **Cursor**: accent dot trailing the native cursor (never replacing it),
-  expands to a ring over interactive elements.
+- **Logo**: the OVERT mark (a stylised O built from two mirrored halves,
+  set next to "VERT" in Gellix). Inlined as `currentColor` SVG so the
+  difference-blend header and the paper-coloured footer both drive it from
+  one file. The O-mark alone becomes the favicon.

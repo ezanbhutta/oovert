@@ -60,11 +60,12 @@
   --ink-invert-soft: #A9A294;
   --line:       rgba(22, 20, 15, 0.16);
   --line-invert: rgba(243, 240, 233, 0.18);
-  --accent:     #C63A12;
-  --accent-deep: #B5330D; /* accent tuned for light recessed grounds (AA on paper-dim) */
+  --accent:     #815EFA; /* brand violet — signal color */
+  --accent-deep: #6039CE; /* violet for small text on light grounds (AA ≥ 5.6:1) */
+  --secondary:  #C99A2C; /* warm gold — the violet's counterpoint */
 
   /* Case fields */
-  --field-cobalt: #1C3FAE;
+  --field-violet: #3A1E8C; /* deep brand violet, full-bleed identity moment */
   --field-ochre:  #C99A2C;
   --field-char:   #191410;
   --field-ember:  #FF6A3D;
@@ -267,7 +268,7 @@ sup {
 }
 
 .chapter-head__num {
-  color: var(--accent);
+  color: var(--accent-deep); /* small (12px) — needs the AA-safe violet on light grounds */
 }
 
 .chapter-head__note {

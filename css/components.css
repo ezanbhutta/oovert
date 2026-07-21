@@ -25,10 +25,13 @@
 }
 
 .site-head__mark {
-  font-weight: 800;
-  font-size: 1.125rem;
-  letter-spacing: 0.06em;
-  font-variation-settings: 'wdth' 118;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-head__mark svg {
+  height: 1.5rem;
+  width: auto;
 }
 
 .site-head__nav {
@@ -174,56 +177,6 @@ body.menu-open {
   text-underline-offset: 0.35em;
 }
 
-/* ---- Cursor ------------------------------------------------------------ */
-
-.cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-cursor);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  pointer-events: none;
-  opacity: 0;
-  display: grid;
-  place-items: center;
-  transition:
-    width var(--dur-fast) var(--ease-out),
-    height var(--dur-fast) var(--ease-out),
-    opacity var(--dur-fast) ease-out;
-}
-
-.cursor.is-on {
-  opacity: 1;
-}
-
-.cursor.is-hover {
-  width: 56px;
-  height: 56px;
-  background: transparent;
-  border: 1px solid var(--accent);
-}
-
-.cursor__label {
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  opacity: 0;
-  transition: opacity var(--dur-fast) ease-out;
-}
-
-.cursor.is-hover .cursor__label:not(:empty) {
-  opacity: 1;
-}
-
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .cursor { display: none; }
-}
-
 /* ---- Buttons & links ---------------------------------------------------- */
 
 .btn {
@@ -242,7 +195,7 @@ body.menu-open {
 }
 
 .btn:hover {
-  background: var(--accent);
+  background: var(--accent-deep); /* deep violet keeps paper label at AA */
   color: var(--paper);
 }
 
@@ -361,16 +314,16 @@ body.menu-open {
   text-transform: uppercase;
 }
 
-/* Giant clipped wordmark — the sign-off */
+/* Oversized logo — the sign-off */
 .site-foot__mark {
   display: block;
-  margin-bottom: -0.24em;
-  font-size: min(17.5vw, 16.5rem);
-  font-weight: 800;
-  line-height: 0.86;
-  letter-spacing: -0.015em;
-  text-align: center;
-  font-variation-settings: 'wdth' 116;
+  width: min(88%, 58rem);
+  margin: var(--space-8) auto var(--space-6);
   color: var(--paper);
   user-select: none;
+}
+
+.site-foot__mark svg {
+  width: 100%;
+  height: auto;
 }

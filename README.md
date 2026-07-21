@@ -31,7 +31,7 @@ No install, no build.
 
 - Fully keyboard-navigable: skip link, focus-visible rings, focus-managed menu overlay.
 - `prefers-reduced-motion` disables every animation, the wheel inertia, the parallax,
-  the counters, and the custom cursor. Content never depends on motion.
+  and the counters. Content never depends on motion.
 - All copy is server-rendered in the markup; stat counters ship with their final values.
 - No external requests of any kind: fonts, styles, and scripts are all first-party.
 - Contrast: every text/background pair meets WCAG AA (checked per surface,
