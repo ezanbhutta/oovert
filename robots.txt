@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://oovert.com/sitemap.xml
+Sitemap: https://oovert-agency.vercel.app/sitemap.xml
