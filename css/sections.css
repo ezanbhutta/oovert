@@ -211,6 +211,87 @@
   text-wrap: pretty;
 }
 
+/* ---- Manifesto (living band) --------------------------------------------- */
+/* A dark, full-bleed reading moment: a slow violet/ink flow field behind copy
+   that lights word by word as you scroll it into the reading band. */
+
+.manifesto {
+  position: relative;
+  overflow: clip;
+  background: var(--ink);
+  padding: clamp(7rem, 5rem + 12vw, 13rem) var(--margin);
+  --mf-dim: rgba(233, 229, 218, 0.20);
+}
+
+.manifesto__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(22px) saturate(1.05);
+  transform: scale(1.1); /* let the blur bleed past the edges */
+  /* CSS fallback if the canvas never paints */
+  background:
+    radial-gradient(70% 60% at 22% 18%, rgba(129, 94, 250, 0.55), transparent 62%),
+    radial-gradient(62% 58% at 82% 88%, rgba(58, 30, 140, 0.6), transparent 60%),
+    var(--ink);
+}
+
+/* A whisper of scrim so the type always clears AA over the brightest flow. */
+.manifesto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(22, 20, 15, 0.26);
+  pointer-events: none;
+}
+
+.manifesto__text {
+  position: relative;
+  z-index: 1;
+  max-width: 20ch;
+  margin: 0 auto;
+  font-size: clamp(1.6rem, 0.85rem + 3.5vw, 3.5rem);
+  line-height: 1.16;
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 108;
+  color: var(--paper);
+  text-wrap: balance;
+}
+
+.manifesto__text em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--accent-invert);
+}
+
+/* No-JS / keyword baseline */
+.manifesto__text .mf-key { color: var(--accent-invert); }
+
+/* JS reading reveal, scrubbed per word via --lit (0 dim -> 1 lit) */
+.js .manifesto__text .mf-word {
+  --lit: 0;
+  color: color-mix(in oklab, var(--paper) calc(var(--lit) * 100%), var(--mf-dim));
+}
+
+.js .manifesto__text .mf-word.mf-key,
+.js .manifesto__text em.mf-word {
+  color: color-mix(in oklab, var(--accent-invert) calc(var(--lit) * 100%), var(--mf-dim));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .manifesto__text .mf-word { color: var(--paper); }
+  .js .manifesto__text .mf-word.mf-key,
+  .js .manifesto__text em.mf-word { color: var(--accent-invert); }
+}
+
 /* ---- Work deck ------------------------------------------------------------ */
 
 .chapter-head--work {
