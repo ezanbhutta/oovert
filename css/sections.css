@@ -212,15 +212,36 @@
 }
 
 /* ---- Manifesto (living band) --------------------------------------------- */
-/* A dark, full-bleed reading moment: a slow violet/ink flow field behind copy
-   that lights word by word as you scroll it into the reading band. */
+/* A dark reading moment that pins while you scroll it: the connective copy
+   dissolves and the capability keywords gather into a centered list, over a
+   slow violet/ink flow field. Falls back to a short, legible paragraph with
+   no JS or under reduced motion. */
 
 .manifesto {
   position: relative;
-  overflow: clip;
   background: var(--ink);
-  padding: clamp(7rem, 5rem + 12vw, 13rem) var(--margin);
   --mf-dim: rgba(233, 229, 218, 0.20);
+}
+
+.manifesto--pin {
+  height: 260vh;
+}
+
+.manifesto__stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 78vh;
+  padding: clamp(6rem, 4rem + 10vw, 11rem) var(--margin);
+  overflow: clip;
+}
+
+.manifesto--pin .manifesto__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 0;
+  padding: 0 var(--margin);
 }
 
 .manifesto__bg {
@@ -230,7 +251,7 @@
   width: 100%;
   height: 100%;
   filter: blur(22px) saturate(1.05);
-  transform: scale(1.1); /* let the blur bleed past the edges */
+  transform: scale(1.1);
   /* CSS fallback if the canvas never paints */
   background:
     radial-gradient(70% 60% at 22% 18%, rgba(129, 94, 250, 0.55), transparent 62%),
@@ -239,7 +260,7 @@
 }
 
 /* A whisper of scrim so the type always clears AA over the brightest flow. */
-.manifesto::after {
+.manifesto__stage::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -251,16 +272,25 @@
 .manifesto__text {
   position: relative;
   z-index: 1;
-  max-width: 20ch;
+  width: 100%;
+  max-width: 32ch;
   margin: 0 auto;
-  font-size: clamp(1.6rem, 0.85rem + 3.5vw, 3.5rem);
-  line-height: 1.16;
+  font-size: clamp(1.4rem, 0.9rem + 2.1vw, 2.6rem);
+  line-height: 1.2;
   font-weight: 640;
   letter-spacing: -0.015em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 108;
   color: var(--paper);
-  text-wrap: balance;
+}
+
+.manifesto__text .mf-word {
+  display: inline-block;
+  will-change: opacity, transform;
+}
+
+.manifesto__text .mf-key {
+  color: var(--accent-invert);
 }
 
 .manifesto__text em {
@@ -269,27 +299,6 @@
   font-weight: 400;
   text-transform: none;
   letter-spacing: -0.01em;
-  color: var(--accent-invert);
-}
-
-/* No-JS / keyword baseline */
-.manifesto__text .mf-key { color: var(--accent-invert); }
-
-/* JS reading reveal, scrubbed per word via --lit (0 dim -> 1 lit) */
-.js .manifesto__text .mf-word {
-  --lit: 0;
-  color: color-mix(in oklab, var(--paper) calc(var(--lit) * 100%), var(--mf-dim));
-}
-
-.js .manifesto__text .mf-word.mf-key,
-.js .manifesto__text em.mf-word {
-  color: color-mix(in oklab, var(--accent-invert) calc(var(--lit) * 100%), var(--mf-dim));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .js .manifesto__text .mf-word { color: var(--paper); }
-  .js .manifesto__text .mf-word.mf-key,
-  .js .manifesto__text em.mf-word { color: var(--accent-invert); }
 }
 
 /* ---- Work deck ------------------------------------------------------------ */
