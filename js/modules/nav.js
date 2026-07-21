@@ -13,11 +13,17 @@ function initMenuOverlay() {
 
   const label = button.querySelector('.site-head__menu-label');
   const links = overlay.querySelectorAll('a');
+  // Header stays interactive (it holds the Close button); everything else
+  // behind the dialog goes inert.
+  const background = document.querySelectorAll('main, footer, .chapter-rail, .skip-link');
 
   const setOpen = (open) => {
     overlay.hidden = !open;
     button.setAttribute('aria-expanded', String(open));
     document.body.classList.toggle('menu-open', open);
+    background.forEach((el) =>
+      open ? el.setAttribute('inert', '') : el.removeAttribute('inert')
+    );
     if (label) label.textContent = open ? 'Close' : 'Menu';
     if (open) links[0]?.focus();
   };
@@ -39,11 +45,13 @@ function initMenuOverlay() {
     if (e.key === 'Tab') {
       const cycle = [button, ...links];
       const index = cycle.indexOf(document.activeElement);
-      if (index === -1) return;
       e.preventDefault();
-      const next = e.shiftKey
-        ? cycle[(index - 1 + cycle.length) % cycle.length]
-        : cycle[(index + 1) % cycle.length];
+      const next =
+        index === -1
+          ? (e.shiftKey ? cycle[cycle.length - 1] : cycle[0])
+          : e.shiftKey
+            ? cycle[(index - 1 + cycle.length) % cycle.length]
+            : cycle[(index + 1) % cycle.length];
       next.focus();
     }
   });
