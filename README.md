@@ -1,8 +1,8 @@
-# OVERT®
+# OOVERT®
 
 **Camouflage is for prey.**
 
-Marketing site for OVERT, a brand strategy & identity studio.
+Marketing site for OOVERT, a brand strategy & identity studio.
 A single-page editorial experience, hand-built, zero dependencies, zero build step.
 
 ## Stack
