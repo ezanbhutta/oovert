@@ -18,7 +18,7 @@ to need no photography, restraint sharp enough to read as confidence.
 | Token | Value | Role |
 |---|---|---|
 | `--paper` | `#F3F0E9` | Ground. Warm ivory, not white. |
-| `--paper-dim` | `#E9E5DA` | Recessed surfaces (dictionary card, Halden field). |
+| `--paper-dim` | `#E9E5DA` | Recessed surfaces (Halden field). |
 | `--ink` | `#16140F` | Figure. Warm near-black, used as ground in dark chapters. |
 | `--ink-soft` | `#55503F` | Secondary text on paper (≥ 7:1). |
 | `--ink-invert-soft` | `#A9A294` | Secondary text on ink (≥ 6.5:1). |
@@ -79,7 +79,6 @@ Labels: 12px caps, +18% tracking. Body measure ≤ 34em.
   without a background bar.
 - **Chapter head**: hairline + number (accent) + small-caps label. Repeats as
   the page's pagination.
-- **Dictionary card**: the concept set piece, bordered, recessed, serif.
 - **Chapter rail**: fixed right, active state via IntersectionObserver.
 - **Logo**: the OVERT mark (a stylised O built from two mirrored halves,
   set next to "VERT" in Gellix). Inlined as `currentColor` SVG so the
