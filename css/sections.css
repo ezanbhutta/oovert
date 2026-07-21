@@ -209,65 +209,6 @@
   text-wrap: pretty;
 }
 
-/* ---- Capabilities marquee -------------------------------------------------- */
-/* A slow horizontal seam between the argument and the work: perpetual motion
-   against an otherwise vertical scroll. Content is decorative (the practice
-   section lists these semantically); it pauses on hover and for reduced motion. */
-
-.marquee {
-  background: var(--ink);
-  color: var(--paper);
-  overflow: clip;
-  padding: var(--space-4) 0;
-  border-block: 1px solid var(--line-invert);
-  --marquee-dur: 34s;
-}
-
-.marquee__track {
-  display: flex;
-  width: max-content;
-}
-
-.marquee__row {
-  display: flex;
-  align-items: center;
-  flex: none;
-}
-
-.marquee__item {
-  padding: 0 clamp(1rem, 2.6vw, 2.6rem);
-  font-size: var(--text-lg);
-  font-weight: 640;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  font-variation-settings: 'wdth' 108;
-  white-space: nowrap;
-}
-
-.marquee__dot {
-  flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--accent-invert);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .marquee__track {
-    animation: marquee-slide var(--marquee-dur) linear infinite;
-    will-change: transform;
-  }
-
-  .marquee:hover .marquee__track {
-    animation-play-state: paused;
-  }
-
-  @keyframes marquee-slide {
-    to { transform: translateX(-50%); }
-  }
-}
-
 /* ---- Work deck ------------------------------------------------------------ */
 
 .chapter-head--work {
@@ -477,6 +418,31 @@
 
 .evidence .chapter-head__num {
   color: var(--accent-invert);
+}
+
+/* Interim state: real metrics and a client quote replace this once supplied. */
+.evidence__hold {
+  padding: var(--space-section) var(--margin) 0;
+  font-size: var(--text-2xl);
+  font-weight: 640;
+  line-height: 0.9;
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 112;
+}
+
+.evidence__hold em {
+  text-transform: none;
+  color: var(--accent-invert);
+}
+
+.evidence__note {
+  margin: var(--space-6) var(--margin) 0;
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--ink-invert-soft);
+  text-wrap: pretty;
 }
 
 .stats {

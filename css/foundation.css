@@ -352,6 +352,15 @@ sup {
     transform: none;
   }
 
+  /* Measured cascade: items within a list resolve in sequence, not all at
+     once, so each section arrives at a paced, deliberate rhythm. */
+  .js .practice__item:nth-child(2).is-inview,
+  .js .principles__item:nth-child(2).is-inview { transition-delay: 90ms; }
+  .js .practice__item:nth-child(3).is-inview,
+  .js .principles__item:nth-child(3).is-inview { transition-delay: 180ms; }
+  .js .practice__item:nth-child(4).is-inview,
+  .js .principles__item:nth-child(4).is-inview { transition-delay: 270ms; }
+
   /* Section opening: one shared gesture at every chapter boundary, so
      scrolling reads as a single orchestrated rhythm. The hairline draws
      left to right, then the number and label tick in behind it. */
