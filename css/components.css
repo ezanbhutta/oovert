@@ -1,0 +1,376 @@
+/* ==========================================================================
+   OVERT — Components
+   Header, menu overlay, chapter rail, cursor, buttons, links, footer.
+   ========================================================================== */
+
+/* ---- Header ----------------------------------------------------------- */
+/* White + difference blend: legible over paper, ink, and every case field. */
+
+.site-head {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-head);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--margin);
+  color: #FFF;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.site-head a,
+.site-head button {
+  pointer-events: auto;
+}
+
+.site-head__mark {
+  font-weight: 800;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  font-variation-settings: 'wdth' 118;
+}
+
+.site-head__nav {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.site-head__nav a {
+  position: relative;
+  font-size: var(--text-sm);
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0;
+}
+
+.site-head__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.site-head__nav a:hover::after,
+.site-head__nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.site-head__menu {
+  display: none;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+}
+
+/* ---- Menu overlay (small screens) ------------------------------------- */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--space-8) + var(--space-4)) var(--margin) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.menu-overlay[hidden] {
+  display: none;
+}
+
+.menu-overlay__nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-overlay__nav a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--line-invert);
+  font-size: var(--text-lg);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 108;
+}
+
+.menu-overlay__num {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-variation-settings: 'wdth' 100;
+}
+
+.menu-overlay__meta {
+  font-size: var(--text-sm);
+  color: var(--ink-invert-soft);
+  line-height: 1.7;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .menu-overlay:not([hidden]) .menu-overlay__nav a {
+    animation: entrance 700ms var(--ease-out) both;
+  }
+  .menu-overlay__nav a:nth-child(2) { animation-delay: 50ms; }
+  .menu-overlay__nav a:nth-child(3) { animation-delay: 100ms; }
+  .menu-overlay__nav a:nth-child(4) { animation-delay: 150ms; }
+  .menu-overlay__nav a:nth-child(5) { animation-delay: 200ms; }
+  .menu-overlay__nav a:nth-child(6) { animation-delay: 250ms; }
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ---- Chapter rail ------------------------------------------------------ */
+
+.chapter-rail {
+  position: fixed;
+  right: calc(var(--margin) / 2);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-rail);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: #FFF;
+  mix-blend-mode: difference;
+}
+
+.chapter-rail a {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  opacity: 0.38;
+  padding: 0.15rem 0.3rem;
+  transition: opacity var(--dur-fast) ease-out;
+}
+
+.chapter-rail a:hover,
+.chapter-rail a:focus-visible,
+.chapter-rail a.is-active {
+  opacity: 1;
+}
+
+.chapter-rail a.is-active {
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+/* ---- Cursor ------------------------------------------------------------ */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  opacity: 0;
+  display: grid;
+  place-items: center;
+  transition:
+    width var(--dur-fast) var(--ease-out),
+    height var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) ease-out;
+}
+
+.cursor.is-on {
+  opacity: 1;
+}
+
+.cursor.is-hover {
+  width: 56px;
+  height: 56px;
+  background: transparent;
+  border: 1px solid var(--accent);
+}
+
+.cursor__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity var(--dur-fast) ease-out;
+}
+
+.cursor.is-hover .cursor__label:not(:empty) {
+  opacity: 1;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor { display: none; }
+}
+
+/* ---- Buttons & links ---------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.1rem 1.9rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  transition: background-color var(--dur-fast) ease-out, color var(--dur-fast) ease-out;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.btn__arrow {
+  display: inline-block;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateY(0.2em);
+}
+
+.link-quiet {
+  position: relative;
+  font-size: var(--text-sm);
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0.25rem 0;
+  transition: color var(--dur-fast) ease-out;
+}
+
+.link-quiet::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.link-quiet:hover {
+  color: var(--ink);
+}
+
+.link-quiet:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---- Footer -------------------------------------------------------------- */
+
+.site-foot {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--space-8) var(--margin) 0;
+  overflow: clip;
+}
+
+.site-foot__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  padding-bottom: var(--space-8);
+  border-top: 1px solid var(--line-invert);
+  padding-top: var(--space-6);
+}
+
+.site-foot__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.site-foot__label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-invert-soft);
+  margin-bottom: var(--space-1);
+}
+
+.site-foot__col a {
+  position: relative;
+  font-size: var(--text-base);
+  font-weight: 500;
+  padding: 0.1rem 0;
+}
+
+.site-foot__col a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.site-foot__col a:hover::after,
+.site-foot__col a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.site-foot__col--colophon p {
+  font-size: var(--text-sm);
+  color: var(--ink-invert-soft);
+  line-height: 1.8;
+}
+
+.site-foot__top {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Giant clipped wordmark — the sign-off */
+.site-foot__mark {
+  display: block;
+  margin-bottom: -0.24em;
+  font-size: min(17.5vw, 16.5rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.015em;
+  text-align: center;
+  font-variation-settings: 'wdth' 116;
+  color: var(--paper);
+  user-select: none;
+}
