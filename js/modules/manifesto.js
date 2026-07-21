@@ -1,17 +1,19 @@
 /**
- * Manifesto reading reveal.
- * Splits the manifesto copy into per-word spans (keeping marked keywords whole)
- * and lights each word as it rises through a reading band in the viewport, so
- * the paragraph resolves the way you read it. Keywords ignite in the accent.
+ * Manifesto assembly.
+ * The band pins while you scroll it. Across that scroll the connective copy
+ * fades out and the capability keywords lift from their place in the sentence
+ * and gather into a centered, evenly spaced list. A scroll-scrubbed FLIP.
  *
- * Progressive enhancement: without JS the copy is fully legible; under reduced
- * motion the words are lit immediately and never scrubbed.
+ * Progressive enhancement: with no JS (or reduced motion) the section is a
+ * short, fully legible paragraph and never pins or moves.
  */
 export function initManifesto({ reducedMotion } = {}) {
+  const section = document.querySelector('.manifesto');
   const el = document.querySelector('[data-manifesto]');
-  if (!el) return;
+  if (!section || !el) return;
+  const stage = section.querySelector('.manifesto__stage') || section;
 
-  // Split text nodes into words; keep element children (keywords, <em>) whole.
+  // Split text nodes into words; keep marked keywords / <em> whole.
   const nodes = [...el.childNodes];
   const frag = document.createDocumentFragment();
   for (const node of nodes) {
@@ -37,34 +39,51 @@ export function initManifesto({ reducedMotion } = {}) {
   el.appendChild(frag);
 
   const words = [...el.querySelectorAll('.mf-word')];
-  if (!words.length) return;
+  const keys = words.filter((w) => w.classList.contains('mf-key'));
+  const plains = words.filter((w) => !w.classList.contains('mf-key'));
+  if (!words.length || !keys.length || reducedMotion) return; // static legible paragraph
 
-  if (reducedMotion) {
-    words.forEach((w) => w.style.setProperty('--lit', '1'));
-    return;
-  }
+  section.classList.add('manifesto--pin');
 
-  let centers = [];
+  const smooth = (a, b, t) => {
+    t = (t - a) / (b - a);
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return t * t * (3 - 2 * t);
+  };
+
+  let targets = [];
   const measure = () => {
-    const sy = window.scrollY;
-    centers = words.map((w) => {
-      const r = w.getBoundingClientRect();
-      return r.top + sy + r.height / 2;
+    keys.forEach((k) => (k.style.transform = ''));
+    plains.forEach((w) => (w.style.opacity = ''));
+    const sr = stage.getBoundingClientRect();
+    const cx = sr.width / 2;
+    const cy = sr.height / 2;
+    const rects = keys.map((k) => {
+      const r = k.getBoundingClientRect();
+      return { cx: r.left - sr.left + r.width / 2, cy: r.top - sr.top + r.height / 2, h: r.height };
     });
+    const gap = rects[0].h * 1.5; // even list spacing
+    const total = gap * (keys.length - 1);
+    targets = rects.map((s, i) => ({
+      dx: cx - s.cx,
+      dy: cy - total / 2 + i * gap - s.cy,
+    }));
   };
 
   let ticking = false;
   const update = () => {
     ticking = false;
-    const vh = window.innerHeight;
-    const bot = vh * 0.82; // words below this are still dim
-    const top = vh * 0.42; // words above this are fully lit
-    const sy = window.scrollY;
-    for (let i = 0; i < words.length; i++) {
-      const y = centers[i] - sy;
-      let lit = (bot - y) / (bot - top);
-      lit = lit < 0 ? 0 : lit > 1 ? 1 : lit;
-      words[i].style.setProperty('--lit', lit.toFixed(3));
+    const travel = section.offsetHeight - window.innerHeight;
+    const p = travel > 0
+      ? Math.max(0, Math.min(1, -section.getBoundingClientRect().top / travel))
+      : 0;
+    const fade = smooth(0.03, 0.4, p);   // connective words dissolve first
+    const move = smooth(0.12, 0.72, p);  // keywords gather to the centered list
+    const o = (1 - fade).toFixed(3);
+    for (let i = 0; i < plains.length; i++) plains[i].style.opacity = o;
+    for (let i = 0; i < keys.length; i++) {
+      const t = targets[i];
+      keys[i].style.transform = `translate(${(t.dx * move).toFixed(1)}px, ${(t.dy * move).toFixed(1)}px)`;
     }
   };
   const onScroll = () => {
@@ -78,7 +97,6 @@ export function initManifesto({ reducedMotion } = {}) {
   update();
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
-  // Re-measure once fonts settle (metrics shift line wrapping).
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => { measure(); update(); });
   }
