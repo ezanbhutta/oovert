@@ -15,6 +15,7 @@
   flex-direction: column;
   min-height: 100svh;
   padding: calc(var(--space-8) + var(--space-4)) var(--margin) 0;
+  overflow: clip; /* contain the scaled-up hero field */
 }
 
 /* Swiss column hairlines, quiet structure behind the type */
@@ -35,6 +36,21 @@
 
 .hero > * {
   position: relative;
+  z-index: 1;
+}
+
+/* A whisper of drifting light on the ivory ground, behind the type. Kept
+   pale and heavily blurred so the black headline never loses contrast. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(48px) saturate(1.08);
+  transform: scale(1.16);
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .hero__meta {
