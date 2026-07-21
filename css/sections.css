@@ -500,15 +500,18 @@
   text-align: end;
 }
 
+/* A standalone, centred moment: the testimonial sits apart from the stats
+   grid and reads as its own quiet pause before the studio section. */
 .quote {
-  padding: var(--space-8) var(--margin) 0;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--gutter);
+  padding: var(--space-section) var(--margin);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .quote__text {
-  grid-column: 3 / span 8;
+  max-width: 26em;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: var(--text-md);
@@ -517,8 +520,7 @@
 }
 
 .quote__source {
-  grid-column: 3 / span 8;
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
   font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: var(--track-label);
@@ -646,7 +648,6 @@
   .premise__body p { grid-column: 5 / span 8; }
   .practice__name { grid-column: 2 / span 10; }
   .practice__desc { grid-column: 3 / span 9; margin-top: var(--space-2); }
-  .quote__text, .quote__source { grid-column: 1 / span 12; }
   .case__meta dl { grid-column: 1 / span 6; }
   .case__story { grid-column: 7 / span 6; }
   .case__result { grid-column: 7 / span 6; margin-top: var(--space-2); }
