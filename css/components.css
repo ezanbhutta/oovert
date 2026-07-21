@@ -43,7 +43,7 @@
   position: relative;
   font-size: var(--text-sm);
   font-weight: 550;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--track-nav);
   text-transform: uppercase;
   padding: 0.25rem 0;
 }
@@ -116,7 +116,7 @@
 .menu-overlay__num {
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--track-label);
   color: var(--accent-invert);
   font-variation-settings: 'wdth' 100;
 }
@@ -160,10 +160,10 @@ body.menu-open {
 .chapter-rail a {
   font-size: 0.625rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--track-nav);
   opacity: 0.6; /* AA contrast after difference-blend on paper */
   padding: 0.15rem 0.3rem;
-  transition: opacity var(--dur-fast) ease-out;
+  transition: opacity var(--dur-fast) var(--ease-hover);
 }
 
 .chapter-rail a:hover,
@@ -188,10 +188,10 @@ body.menu-open {
   color: var(--paper);
   font-size: var(--text-sm);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--track-nav);
   text-transform: uppercase;
   border-radius: 999px;
-  transition: background-color var(--dur-fast) ease-out, color var(--dur-fast) ease-out;
+  transition: background-color var(--dur-fast) var(--ease-hover), color var(--dur-fast) var(--ease-hover);
 }
 
 .btn:hover {
@@ -212,11 +212,11 @@ body.menu-open {
   position: relative;
   font-size: var(--text-sm);
   font-weight: 550;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--track-nav);
   text-transform: uppercase;
   color: var(--ink-soft);
   padding: 0.25rem 0;
-  transition: color var(--dur-fast) ease-out;
+  transition: color var(--dur-fast) var(--ease-hover);
 }
 
 .link-quiet::after {
@@ -269,7 +269,7 @@ body.menu-open {
 .site-foot__label {
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-invert-soft);
   margin-bottom: var(--space-1);

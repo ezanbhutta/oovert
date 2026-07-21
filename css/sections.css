@@ -43,7 +43,7 @@
   gap: var(--space-2);
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -52,7 +52,7 @@
   margin-top: auto;
   font-size: min(var(--text-2xl), 10.75vw); /* "CAMOUFLAGE" must never clip, at any width */
   font-weight: 640;
-  line-height: 0.92;
+  line-height: 0.9;
   letter-spacing: -0.028em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
@@ -97,7 +97,7 @@
   border-top: 1px solid var(--line);
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -140,7 +140,7 @@
   padding: var(--space-section) var(--margin) 0;
   font-size: var(--text-xl);
   font-weight: 640;
-  line-height: 0.94;
+  line-height: 0.92;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
@@ -166,7 +166,7 @@
   padding: var(--space-section) var(--margin) 0;
   font-size: var(--text-xl);
   font-weight: 640;
-  line-height: 0.94;
+  line-height: 0.92;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   text-align: right;
@@ -390,7 +390,7 @@
   padding: var(--space-section) var(--margin);
   font-size: var(--text-xl);
   font-weight: 640;
-  line-height: 0.94;
+  line-height: 0.92;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
@@ -418,7 +418,7 @@
   grid-column: 1 / span 1;
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--track-label);
   color: var(--accent-invert);
 }
 
@@ -521,7 +521,7 @@
   margin-top: var(--space-3);
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-invert-soft);
 }
@@ -537,7 +537,7 @@
   padding: var(--space-section) var(--margin);
   font-size: var(--text-xl);
   font-weight: 640;
-  line-height: 0.96;
+  line-height: 0.92;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
@@ -582,7 +582,7 @@
   margin: var(--space-8) var(--margin) 0;
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -605,7 +605,7 @@
   padding: var(--space-section) var(--margin) var(--space-6);
   font-size: var(--text-2xl);
   font-weight: 640;
-  line-height: 0.92;
+  line-height: 0.9;
   letter-spacing: -0.028em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
@@ -624,7 +624,7 @@
   letter-spacing: -0.015em;
   box-shadow: inset 0 -2px 0 0 var(--paper);
   padding-bottom: 0.15em;
-  transition: color var(--dur-fast) ease-out, box-shadow var(--dur-fast) ease-out;
+  transition: color var(--dur-fast) var(--ease-hover), box-shadow var(--dur-fast) var(--ease-hover);
 }
 
 .contact__mail:hover {
