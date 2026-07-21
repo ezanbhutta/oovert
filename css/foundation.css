@@ -266,11 +266,24 @@ sup {
 /* ---- Chapter heads ---------------------------------------------------- */
 
 .chapter-head {
+  position: relative;
   display: flex;
   align-items: baseline;
   gap: var(--space-2);
   padding: var(--space-3) var(--margin);
-  border-top: 1px solid var(--line);
+}
+
+/* The section-opening hairline. A pseudo-element so it can draw itself in
+   as each section arrives (see the section-opening cascade below). */
+.chapter-head::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: left;
 }
 
 .chapter-head__num {
@@ -285,8 +298,8 @@ sup {
   text-align: right;
 }
 
-.chapter-head--dark {
-  border-top-color: var(--line-invert);
+.chapter-head--dark::before {
+  background: var(--line-invert);
 }
 
 .chapter-head--dark .chapter-head__label {
@@ -338,6 +351,36 @@ sup {
     opacity: 1;
     transform: none;
   }
+
+  /* Section opening: one shared gesture at every chapter boundary, so
+     scrolling reads as a single orchestrated rhythm. The hairline draws
+     left to right, then the number and label tick in behind it. */
+  .js [data-reveal-head]::before {
+    transform: scaleX(0);
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+
+  .js [data-reveal-head].is-inview::before {
+    transform: scaleX(1);
+  }
+
+  .js [data-reveal-head] .chapter-head__num,
+  .js [data-reveal-head] .chapter-head__label {
+    opacity: 0;
+    transform: translateY(0.4rem);
+    transition:
+      opacity var(--dur-med) var(--ease-out),
+      transform var(--dur-med) var(--ease-out);
+  }
+
+  .js [data-reveal-head].is-inview .chapter-head__num,
+  .js [data-reveal-head].is-inview .chapter-head__label {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js [data-reveal-head].is-inview .chapter-head__num { transition-delay: 140ms; }
+  .js [data-reveal-head].is-inview .chapter-head__label { transition-delay: 200ms; }
 
   /* Entrance choreography (hero), CSS-only, staggered via --d */
   [data-entrance] {

@@ -5,7 +5,9 @@
  * module only flags visibility.
  */
 export function initReveal() {
-  const targets = document.querySelectorAll('[data-reveal], [data-reveal-lines]');
+  const targets = document.querySelectorAll(
+    '[data-reveal], [data-reveal-lines], [data-reveal-head]'
+  );
   if (!targets.length) return;
 
   const observer = new IntersectionObserver(
