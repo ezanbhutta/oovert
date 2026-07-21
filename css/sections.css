@@ -1,5 +1,5 @@
 /* ==========================================================================
-   OVERT — Sections
+   OVERT, Sections
    Hero, Premise, Work deck, Practice, Evidence, Studio, Contact.
    ========================================================================== */
 
@@ -17,7 +17,7 @@
   padding: calc(var(--space-8) + var(--space-4)) var(--margin) 0;
 }
 
-/* Swiss column hairlines — quiet structure behind the type */
+/* Swiss column hairlines, quiet structure behind the type */
 .hero::before {
   content: '';
   position: absolute;
@@ -178,7 +178,7 @@
   color: var(--accent);
 }
 
-/* Dictionary entry — the set piece */
+/* Dictionary entry, the set piece */
 .dict {
   margin: var(--space-section) var(--margin) 0;
   max-width: 34rem;
@@ -284,7 +284,7 @@
   user-select: none;
 }
 
-/* Each identity typeset as its own voice — three from one variable file, Loam in the serif */
+/* Each identity typeset as its own voice, three from one variable file, Loam in the serif */
 .case__wordmark--fathom {
   font-size: clamp(4.5rem, 21vw, 19rem);
   font-weight: 760;
@@ -702,7 +702,7 @@
 }
 
 @media (max-height: 600px) {
-  /* Short viewports: cards can outgrow the screen — release the pin so
+  /* Short viewports: cards can outgrow the screen, release the pin so
      the meta row at the card's foot stays reachable. */
   .case {
     position: static;

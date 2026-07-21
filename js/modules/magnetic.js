@@ -1,5 +1,5 @@
 /**
- * Magnetic hover for [data-magnetic] elements — the element leans toward
+ * Magnetic hover for [data-magnetic] elements, the element leans toward
  * the pointer and springs back on leave. The center is measured once per
  * hover (before any transform is applied), so pointer frames do no layout
  * work and the element's own offset never feeds back into the math. The

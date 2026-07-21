@@ -1,5 +1,5 @@
 /* ==========================================================================
-   OVERT — Components
+   OVERT, Components
    Header, menu overlay, chapter rail, cursor, buttons, links, footer.
    ========================================================================== */
 
@@ -314,7 +314,7 @@ body.menu-open {
   text-transform: uppercase;
 }
 
-/* Oversized logo — the sign-off */
+/* Oversized logo, the sign-off */
 .site-foot__mark {
   display: block;
   width: min(88%, 58rem);

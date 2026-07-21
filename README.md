@@ -3,7 +3,7 @@
 **Camouflage is for prey.**
 
 Marketing site for OVERT, a brand strategy & identity studio.
-A single-page editorial experience — hand-built, zero dependencies, zero build step.
+A single-page editorial experience, hand-built, zero dependencies, zero build step.
 
 ## Stack
 
@@ -11,9 +11,9 @@ A single-page editorial experience — hand-built, zero dependencies, zero build
 - Modular CSS on a token-driven design system (`css/foundation.css` → `components.css` → `sections.css`).
 - Vanilla ES modules for motion (`js/main.js` + `js/modules/*`), all progressive enhancement:
   the page is fully readable and navigable with JavaScript disabled.
-- Two self-hosted typefaces (133 KB total): Archivo Variable (wght 100–900 × wdth 62–125%)
+- Two self-hosted typefaces (133 KB total): Archivo Variable (wght 100-900 × wdth 62-125%)
   and Instrument Serif. Three of the four case-study "identities" (Fathom, Caldera,
-  Halden) are cut from the single Archivo variable file — condensed, expanded, and
+  Halden) are cut from the single Archivo variable file, condensed, expanded, and
   hairline; Loam is deliberately set in the serif.
 
 ## Run it

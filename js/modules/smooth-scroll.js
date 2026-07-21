@@ -1,5 +1,5 @@
 /**
- * Wheel inertia. Native scroll stays authoritative — keyboard, touch,
+ * Wheel inertia. Native scroll stays authoritative, keyboard, touch,
  * scrollbar, and anchors all behave normally; only wheel input is eased,
  * and any external scroll immediately wins over the inertia loop.
  * Gated to fine pointers without reduced-motion (see main.js).
@@ -67,7 +67,7 @@ export function initSmoothScroll() {
 
   // Re-sync on scrolls that didn't come from the inertia loop: keyboard,
   // scrollbar drag, browser find, anchor jumps. A divergence larger than
-  // the loop's own step means an external actor moved the page — yield.
+  // the loop's own step means an external actor moved the page, yield.
   window.addEventListener(
     'scroll',
     () => {

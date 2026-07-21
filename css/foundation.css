@@ -1,5 +1,5 @@
 /* ==========================================================================
-   OVERT — Foundation
+   OVERT, Foundation
    Design tokens, reset, typography, primitives.
    ========================================================================== */
 
@@ -30,7 +30,7 @@
   src: url('../assets/fonts/instrument-serif-italic.woff2') format('woff2');
 }
 
-/* Metric-adjusted local fallbacks — keep layout stable during font swap */
+/* Metric-adjusted local fallbacks, keep layout stable during font swap */
 @font-face {
   font-family: 'Archivo Fallback';
   src: local('Arial');
@@ -52,7 +52,7 @@
 /* ---- Tokens ---------------------------------------------------------- */
 
 :root {
-  /* Palette — ink on paper, one signal color */
+  /* Palette, ink on paper, one signal color */
   --paper:      #F3F0E9;
   --paper-dim:  #E9E5DA;
   --ink:        #16140F;
@@ -60,9 +60,9 @@
   --ink-invert-soft: #A9A294;
   --line:       rgba(22, 20, 15, 0.16);
   --line-invert: rgba(243, 240, 233, 0.18);
-  --accent:     #815EFA; /* brand violet — signal color */
+  --accent:     #815EFA; /* brand violet, signal color */
   --accent-deep: #6039CE; /* violet for small text on light grounds (AA ≥ 5.6:1) */
-  --secondary:  #C99A2C; /* warm gold — the violet's counterpoint */
+  --secondary:  #C99A2C; /* warm gold, the violet's counterpoint */
 
   /* Case fields */
   --field-violet: #3A1E8C; /* deep brand violet, full-bleed identity moment */
@@ -74,9 +74,9 @@
   --font-sans: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Instrument Serif', 'Instrument Serif Fallback', Georgia, serif;
 
-  /* Fluid type scale — editorial jumps, not timid steps */
-  --text-xs:   0.75rem;                            /* 12 — labels     */
-  --text-sm:   0.875rem;                           /* 14 — meta       */
+  /* Fluid type scale, editorial jumps, not timid steps */
+  --text-xs:   0.75rem;                            /* 12, labels     */
+  --text-sm:   0.875rem;                           /* 14, meta       */
   --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --text-lede: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
   --text-md:   clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
@@ -84,7 +84,7 @@
   --text-xl:   clamp(3rem, 1.8rem + 6vw, 7.5rem);
   --text-2xl:  clamp(3.4rem, 1.5rem + 9.5vw, 11.5rem);
 
-  /* Space — 8px rhythm, fluid at section scale */
+  /* Space, 8px rhythm, fluid at section scale */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -105,7 +105,7 @@
   --dur-med: 450ms;
   --dur-slow: 900ms;
 
-  /* Z-scale — header sits above the menu overlay so Close stays reachable */
+  /* Z-scale, header sits above the menu overlay so Close stays reachable */
   --z-rail: 40;
   --z-menu: 60;
   --z-head: 70;
@@ -268,7 +268,7 @@ sup {
 }
 
 .chapter-head__num {
-  color: var(--accent-deep); /* small (12px) — needs the AA-safe violet on light grounds */
+  color: var(--accent-deep); /* small (12px), needs the AA-safe violet on light grounds */
 }
 
 .chapter-head__note {
@@ -332,7 +332,7 @@ sup {
     transform: none;
   }
 
-  /* Entrance choreography (hero) — CSS-only, staggered via --d */
+  /* Entrance choreography (hero), CSS-only, staggered via --d */
   [data-entrance] {
     animation: entrance 1000ms var(--ease-out) both;
     animation-delay: var(--d, 0s);

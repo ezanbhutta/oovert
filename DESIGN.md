@@ -1,8 +1,8 @@
-# OVERT — Design System
+# OVERT, Design System
 
-The brand idea is the word itself: *overt* — done or shown openly.
+The brand idea is the word itself: *overt*, done or shown openly.
 Everything on the page argues one thesis: **visibility is economics**.
-The design proves the thesis by being what it sells — typography loud enough
+The design proves the thesis by being what it sells, typography loud enough
 to need no photography, restraint sharp enough to read as confidence.
 
 ## Voice & concept
@@ -38,23 +38,23 @@ brand `--accent`.
 
 Two families, four voices:
 
-- **Archivo Variable** — the workhorse. Width axis 62–125% is the identity trick:
+- **Archivo Variable**, the workhorse. Width axis 62-125% is the identity trick:
   three of the four client wordmarks (Fathom condensed 62, Caldera expanded 125,
-  Halden hairline weight-275) plus OVERT's own mark (wdth 116–118) all come from
-  the one font file. Loam is the deliberate exception — set in the serif.
-- **Instrument Serif** — the editorial voice. Reserved for the words doing
+  Halden hairline weight-275) plus OVERT's own mark (wdth 116-118) all come from
+  the one font file. Loam is the deliberate exception, set in the serif.
+- **Instrument Serif**, the editorial voice. Reserved for the words doing
   persuasion (*prey*, *the opposite*, *out loud*, pull quotes) and for the one
   case identity, Loam, that wanted warmth over engineering.
 
 Scale: fluid clamp() steps with editorial jumps (`--text-2xl` ≈ 11.5rem max,
-next step down is less than half). Display leading 0.92–0.96, tracking −2.5%.
+next step down is less than half). Display leading 0.92-0.96, tracking −2.5%.
 Labels: 12px caps, +18% tracking. Body measure ≤ 34em.
 
 ## Space & grid
 
 - 8px rhythm (`--space-1..8`), fluid section spacing `clamp(6rem → 14rem)`.
 - 12-column grid, offsets are deliberate: premise body starts col 7,
-  practice descriptions col 8, quote cols 3–10. Asymmetry with a spine.
+  practice descriptions col 8, quote cols 3-10. Asymmetry with a spine.
 - Page margin `clamp(1.25rem → 4rem)`; hairlines (`--line`) do the framing.
 
 ## Motion
@@ -69,17 +69,17 @@ Labels: 12px caps, +18% tracking. Body measure ≤ 34em.
 - Text enters through overflow masks (`.line > .line__inner`), staggered 90ms.
 - Wheel inertia (lerp 0.115) on fine pointers only; native scroll untouched
   for keyboard, touch, scrollbar.
-- Case deck: `position: sticky` card-over-card — the one "wow" structure,
+- Case deck: `position: sticky` card-over-card, the one "wow" structure,
   built without JS.
 - `prefers-reduced-motion: reduce` turns all of it off. No exceptions.
 
 ## Components
 
-- **Header**: white + `mix-blend-mode: difference` — legible over every field
+- **Header**: white + `mix-blend-mode: difference`, legible over every field
   without a background bar.
 - **Chapter head**: hairline + number (accent) + small-caps label. Repeats as
   the page's pagination.
-- **Dictionary card**: the concept set piece — bordered, recessed, serif.
+- **Dictionary card**: the concept set piece, bordered, recessed, serif.
 - **Chapter rail**: fixed right, active state via IntersectionObserver.
 - **Logo**: the OVERT mark (a stylised O built from two mirrored halves,
   set next to "VERT" in Gellix). Inlined as `currentColor` SVG so the

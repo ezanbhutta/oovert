@@ -3,7 +3,7 @@
  *
  * Elements inside the sticky case deck are measured against their card's
  * position in normal flow (deck top + accumulated heights), not the sticky
- * box — so the drift continues while a card is pinned instead of freezing.
+ * box, so the drift continues while a card is pinned instead of freezing.
  * All rect reads happen before any transform writes; transform-only,
  * rAF-throttled.
  */
