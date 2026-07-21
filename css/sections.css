@@ -178,47 +178,6 @@
   color: var(--accent);
 }
 
-/* Dictionary entry, the set piece */
-.dict {
-  margin: var(--space-section) var(--margin) 0;
-  max-width: 34rem;
-  padding: var(--space-4) var(--space-4) var(--space-6);
-  border: 1px solid var(--ink);
-  background: var(--paper-dim);
-}
-
-.dict__word {
-  font-family: var(--font-serif);
-  font-size: var(--text-md);
-  line-height: 1.1;
-}
-
-.dict__ipa {
-  color: var(--ink-soft);
-  font-size: 0.55em;
-}
-
-.dict__pos {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.55em;
-  color: var(--accent-deep);
-}
-
-.dict__defs {
-  margin-top: var(--space-3);
-  list-style: decimal inside;
-  display: grid;
-  gap: 0.5rem;
-  font-size: var(--text-base);
-  color: var(--ink-soft);
-}
-
-.dict__defs li::marker {
-  font-weight: 600;
-  color: var(--ink);
-}
-
 .premise__pull {
   padding: var(--space-section) var(--margin) 0;
   display: grid;
@@ -500,14 +459,14 @@
   text-align: end;
 }
 
-/* A standalone, centred moment: the testimonial sits apart from the stats
-   grid and reads as its own quiet pause before the studio section. */
+/* A standalone moment: the testimonial sits apart from the stats grid as its
+   own quiet pause before the studio section, but shares their left edge so the
+   two read as one column rather than clashing alignments. */
 .quote {
   padding: var(--space-section) var(--margin);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
 }
 
 .quote__text {
