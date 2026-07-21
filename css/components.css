@@ -191,12 +191,22 @@ body.menu-open {
   letter-spacing: var(--track-nav);
   text-transform: uppercase;
   border-radius: 999px;
-  transition: background-color var(--dur-fast) var(--ease-hover), color var(--dur-fast) var(--ease-hover);
+  transition:
+    background-color var(--dur-fast) var(--ease-hover),
+    color var(--dur-fast) var(--ease-hover),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .btn:hover {
   background: var(--accent-deep); /* deep violet keeps paper label at AA */
   color: var(--paper);
+  transform: translateY(-2px); /* a quiet, tactile lift; the site stays flat otherwise */
+  box-shadow: 0 8px 20px -14px rgba(22, 20, 15, 0.35);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn__arrow {
@@ -280,6 +290,12 @@ body.menu-open {
   font-size: var(--text-base);
   font-weight: 500;
   padding: 0.1rem 0;
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+
+.site-foot__col a:hover,
+.site-foot__col a:focus-visible {
+  color: var(--accent-invert);
 }
 
 .site-foot__col a::after {

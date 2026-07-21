@@ -1,6 +1,5 @@
 import { initReveal } from './modules/reveal.js';
 import { initNav } from './modules/nav.js';
-import { initMagnetic } from './modules/magnetic.js';
 import { initParallax } from './modules/parallax.js';
 import { initCounters } from './modules/counters.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
@@ -16,7 +15,6 @@ if (!reducedMotion) {
   initParallax();
 
   if (finePointer) {
-    initMagnetic();
     initSmoothScroll();
   }
 }
