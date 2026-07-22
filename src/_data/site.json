@@ -29,8 +29,21 @@
     "logo": "https://oovert-agency.vercel.app/favicon.svg",
     "image": "https://oovert-agency.vercel.app/assets/og.png",
     "areaServed": "Worldwide",
-    "knowsAbout": ["Brand strategy", "Brand naming", "Brand positioning", "Visual identity design", "Rebranding", "Design systems", "Brand guidelines"],
-    "makesOffer": ["Brand strategy", "Brand positioning", "Brand identity design", "Brand guidelines and rollout"],
+    "knowsAbout": [
+      "Brand strategy",
+      "Brand naming",
+      "Brand positioning",
+      "Visual identity design",
+      "Rebranding",
+      "Design systems",
+      "Brand guidelines"
+    ],
+    "makesOffer": [
+      "Brand strategy",
+      "Brand positioning",
+      "Brand identity design",
+      "Brand guidelines and rollout"
+    ],
     "sameAs": [
       "https://www.instagram.com/oovert/",
       "https://www.linkedin.com/company/oovert-agency/",
@@ -42,31 +55,91 @@
   },
   "nav": {
     "links": [
-      { "label": "Practice", "href": "#practice" },
-      { "label": "Pricing", "href": "#packages" },
-      { "label": "Studio", "href": "#studio" },
-      { "label": "Contact", "href": "#contact" }
+      {
+        "label": "Practice",
+        "href": "#practice"
+      },
+      {
+        "label": "Pricing",
+        "href": "#packages"
+      },
+      {
+        "label": "Studio",
+        "href": "#studio"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
     ],
     "menuButtonLabel": "Menu"
   },
   "menu": {
     "links": [
-      { "num": "01", "label": "Premise", "href": "#premise" },
-      { "num": "02", "label": "Practice", "href": "#practice" },
-      { "num": "03", "label": "Packages", "href": "#packages" },
-      { "num": "04", "label": "Evidence", "href": "#evidence" },
-      { "num": "05", "label": "Studio", "href": "#studio" },
-      { "num": "06", "label": "Invitation", "href": "#contact" }
+      {
+        "num": "01",
+        "label": "Premise",
+        "href": "#premise"
+      },
+      {
+        "num": "02",
+        "label": "Practice",
+        "href": "#practice"
+      },
+      {
+        "num": "03",
+        "label": "Packages",
+        "href": "#packages"
+      },
+      {
+        "num": "04",
+        "label": "Evidence",
+        "href": "#evidence"
+      },
+      {
+        "num": "05",
+        "label": "Studio",
+        "href": "#studio"
+      },
+      {
+        "num": "06",
+        "label": "Invitation",
+        "href": "#contact"
+      }
     ],
     "meta": "Distributed, six timezones<br>new@oovert.com"
   },
   "chapterRail": [
-    { "num": "01", "href": "#premise", "aria": "Chapter 01, Premise" },
-    { "num": "02", "href": "#practice", "aria": "Chapter 02, Practice" },
-    { "num": "03", "href": "#packages", "aria": "Chapter 03, Packages" },
-    { "num": "04", "href": "#evidence", "aria": "Chapter 04, Evidence" },
-    { "num": "05", "href": "#studio", "aria": "Chapter 05, Studio" },
-    { "num": "06", "href": "#contact", "aria": "Chapter 06, Invitation" }
+    {
+      "num": "01",
+      "href": "#premise",
+      "aria": "Chapter 01, Premise"
+    },
+    {
+      "num": "02",
+      "href": "#practice",
+      "aria": "Chapter 02, Practice"
+    },
+    {
+      "num": "03",
+      "href": "#packages",
+      "aria": "Chapter 03, Packages"
+    },
+    {
+      "num": "04",
+      "href": "#evidence",
+      "aria": "Chapter 04, Evidence"
+    },
+    {
+      "num": "05",
+      "href": "#studio",
+      "aria": "Chapter 05, Studio"
+    },
+    {
+      "num": "06",
+      "href": "#contact",
+      "aria": "Chapter 06, Invitation"
+    }
   ],
   "hero": {
     "metaTags": [
@@ -75,8 +148,14 @@
     ],
     "title": "<span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.08s\">Camouflage</span></span>\n        <span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.2s\">is for <em>prey.</em></span></span>",
     "lede": "OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. If your company looks and sounds like its competitors, that is the problem we solve.",
-    "ctaPrimary": { "label": "Start a project", "url": "#contact" },
-    "ctaSecondary": { "label": "How we work", "url": "#practice" },
+    "ctaPrimary": {
+      "label": "Start a project",
+      "url": "#contact"
+    },
+    "ctaSecondary": {
+      "label": "How we work",
+      "url": "#practice"
+    },
     "scrollLabel": "Scroll",
     "statusLine": "Now booking new projects"
   },
@@ -330,22 +409,50 @@
   "footer": {
     "indexLabel": "Index",
     "indexLinks": [
-      { "label": "Premise", "href": "#premise" },
-      { "label": "Practice", "href": "#practice" },
-      { "label": "Packages", "href": "#packages" },
-      { "label": "Evidence", "href": "#evidence" },
-      { "label": "Studio", "href": "#studio" },
-      { "label": "Invitation", "href": "#contact" }
+      {
+        "label": "Premise",
+        "href": "#premise"
+      },
+      {
+        "label": "Practice",
+        "href": "#practice"
+      },
+      {
+        "label": "Packages",
+        "href": "#packages"
+      },
+      {
+        "label": "Evidence",
+        "href": "#evidence"
+      },
+      {
+        "label": "Studio",
+        "href": "#studio"
+      },
+      {
+        "label": "Invitation",
+        "href": "#contact"
+      }
     ],
     "elsewhereLabel": "Elsewhere",
     "socialLinks": [
-      { "label": "Instagram", "url": "https://www.instagram.com/oovert/" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/company/oovert-agency/" },
-      { "label": "Are.na", "url": "https://www.are.na/oovert" }
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/oovert/"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/company/oovert-agency/"
+      },
+      {
+        "label": "Are.na",
+        "url": "https://www.are.na/oovert"
+      }
     ],
     "copyright": "&copy; 2026 Oovert LLC",
     "backToTopLabel": "Back to top &uarr;",
     "askAiLabel": "Ask AI about OOVERT",
     "askAiPrompt": "Give me a concise summary of OOVERT, the brand strategy and identity studio at https://oovert-agency.vercel.app. What do they do, who is it for, and what makes them different?"
-  }
+  },
+  "llmsTxt": "# OOVERT\n\n> OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. If a company looks and sounds like its competitors, that is the problem we solve.\n\nOOVERT is a distributed studio working across six timezones, founded in 2020. It pairs brand strategy with identity design and staffs projects with senior people only. Tagline: \"Camouflage is for prey.\" World-class branding at a fraction of the usual cost — professional branding in the US averages about $7,500; OOVERT starts at $280.\n\n## What we do\n- Brand strategy — a few weeks of interviews, audits and honest questions to find the one true thing about a company that no competitor can copy.\n- Positioning — one clear sentence about who a company is for and why it is the obvious choice.\n- Naming, visual identity design, and rebranding.\n- Design systems, brand guidelines, and rollout.\n\n## Pricing\n- One-time projects: Basic ($280), Premium Branding ($480), The Brand Ecosystem ($987).\n- Monthly retainer (design on tap; pause or cancel anytime): Solo ($4,999/mo), Studio ($7,999/mo), Scale (custom).\n- Staff augmentation (senior people embedded in your team): Dedicated Designer ($3,900/mo), Design Pod ($8,900/mo), Embedded Team (from $18k/mo).\n- Every engagement carries a money-back guarantee.\n\n## The studio\nSenior hands only, four disciplines. OOVERT shows one considered direction rather than three, says what is not working in the room rather than in a wrap-up email, and treats good taste as the reason to hire a studio like this one. Distributed across six timezones.\n\n## Links\n- Website: https://oovert-agency.vercel.app/\n- Pricing: https://oovert-agency.vercel.app/#packages\n- Studio: https://oovert-agency.vercel.app/#studio\n- Contact: https://oovert-agency.vercel.app/#contact\n\n## Elsewhere\n- Instagram: https://www.instagram.com/oovert/\n- LinkedIn: https://www.linkedin.com/company/oovert-agency/\n- Are.na: https://www.are.na/oovert\n\n## Contact\nNew projects: email new@oovert.com with the project and roughly what you plan to invest.\n"
 }

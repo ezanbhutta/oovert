@@ -85,6 +85,7 @@ collections:
             widget: object
             fields:
               - { name: skipLink, label: "Skip link text", widget: string }
+          - { name: llmsTxt, label: "AI summary (llms.txt)", widget: text, required: false, hint: "Plain-text / Markdown summary served at /llms.txt for AI assistants. Keep it accurate; edit whenever the offer or pricing changes." }
           # ---- nav --------------------------------------------------------
           - name: nav
             label: "Top nav"
