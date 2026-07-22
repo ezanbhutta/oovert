@@ -86,11 +86,14 @@ export function initManifesto({ reducedMotion } = {}) {
       keys[i].style.transform = `translate(${(t.dx * move).toFixed(1)}px, ${(t.dy * move).toFixed(1)}px)`;
     }
 
-    // Connective words dissolve top to bottom, staggered by reading order.
+    // Connective words dissolve top to bottom, staggered by reading order, and
+    // are fully gone by p ~= 0.5 — before the keywords finish gathering (0.62) —
+    // so the resolved state is only the clean centered list, never a gathered
+    // list sitting over half-faded leftover words.
     const n = plains.length;
     for (let i = 0; i < n; i++) {
-      const s = (i / n) * 0.45;
-      const f = smooth(s, s + 0.3, p);
+      const s = (i / n) * 0.3;
+      const f = smooth(s, s + 0.2, p);
       plains[i].style.opacity = (1 - f).toFixed(3);
     }
   };
