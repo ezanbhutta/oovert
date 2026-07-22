@@ -64,6 +64,9 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ [`src/${f}`]: f })
   );
 
+  // Content admin (Sveltia): static loader page + config.yml, copied as-is.
+  eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
+
   // Only .njk are templates; every .html is treated as a static asset so the
   // hand-built case study is never re-processed.
   eleventyConfig.setTemplateFormats(["njk"]);
