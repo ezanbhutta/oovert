@@ -13,9 +13,9 @@
   },
   "statement": "You can dress quiet and still take up the whole room.",
   "statementSupport": "That one line decided the gold, the spacing, and everything we left out.",
-  "closing": "We swapped the O for a moon and left the rest alone.",
+  "closing": "New label. Doesn't look new.",
   "nextUrl": "../../index.html#evidence",
-  "theme": {},
+  "theme": null,
   "sections": {
     "hero": {
       "image": "",
@@ -27,63 +27,63 @@
     },
     "logo": {
       "eyebrow": "The mark",
-      "headline": "[ A short line about the logo idea. ]",
+      "headline": "We swapped the O for a moon and left the rest alone.",
       "alt": ""
     },
     "construction": {
       "eyebrow": "Construction",
-      "headline": "[ How the mark is built. ]",
+      "headline": "Small change. Took forever.",
       "notes": [
-        "[ Note one &mdash; the grid, the proportion, the angle. What rule governs it? ]",
-        "[ Note two &mdash; the decision that took the longest, and why it was worth it. ]",
-        "[ Note three &mdash; how it behaves small, or in one colour. ]"
+        "The moon sits exactly where the O used to. Same width, same weight, same rhythm. You read the word first and catch the moon a second later. That order is the whole trick.",
+        "That curve ate most of the project. Too thick and it stopped being a letter. Too thin and it disappeared the moment we shrank it. We kept redrawing until one version survived both.",
+        "Gold foil, twelve millimetres, stitched into the neck of an abaya. If it holds up there it holds up anywhere."
       ],
       "alt": ""
     },
     "concept": {
       "eyebrow": "Exploration",
-      "headline": "[ Where the idea came from. ]"
+      "headline": "Everything else we tried felt borrowed. The moon didn't."
     },
     "typography": {
       "eyebrow": "Typography",
-      "headline": "[ The typeface and why it fits. ]",
-      "alt": ""
+      "headline": "Luxerie for the moments that matter. DM Sans for the other ninety percent.",
+      "alt": "Display Luxerie. Everything else DM Sans, four weights. Scale built on 1:1.618, from a 60pt headline down to 15.3pt body."
     },
     "colour": {
       "eyebrow": "Colour",
-      "headline": "[ What the palette is doing. ]",
-      "alt": ""
+      "headline": "Gold, dialled back until it stopped looking like money and started looking like light.",
+      "alt": "Gold #BF7D1F 60%    Amber #EBAF3D 30%    Sand #F4EFE2 10%"
     },
     "graphic": {
       "eyebrow": "Graphic language",
-      "headline": "[ The pattern, icon set, or device. ]",
+      "headline": "Icons drawn with the same pen as the logo.",
       "alt": ""
     },
     "card": {
       "eyebrow": "In the hand",
-      "headline": "[ A note on the print details. ]",
+      "headline": "Thick uncoated card, gold foil, nothing else. You feel it before you read it.",
       "alt": ""
     },
     "stationery": {
       "eyebrow": "Stationery",
-      "headline": "[ The everyday collateral. ]"
+      "headline": "The boring stuff, treated like it matters."
     },
     "social": {
       "eyebrow": "Social",
-      "headline": "[ How the brand behaves in-feed. ]"
+      "headline": "On a phone screen everything is shouting. This one just sits there."
     },
     "website": {
       "eyebrow": "Website",
-      "headline": "[ The identity, live. ]",
+      "headline": "A lot of white space and one gold mark holding it all down.",
       "alt": ""
     },
     "environment": {
       "eyebrow": "Environment",
-      "headline": "[ The brand in the world. ]"
+      "headline": "Blow it up to four metres and the moon still does all the work."
     },
     "gallery": {
       "eyebrow": "Gallery",
-      "headline": "[ The rest of the system. ]"
+      "headline": "Everything else we made."
     }
   }
 }
