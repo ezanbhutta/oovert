@@ -83,7 +83,24 @@
     },
     "gallery": {
       "eyebrow": "Gallery",
-      "headline": "Everything else we made."
+      "headline": "Everything else we made.",
+      "images": [
+        {
+          "src": "",
+          "alt": "",
+          "video": {
+            "src": "/assets/uploads/hf_20260722_115006_cfe1be4d-c6f5-4f36-948e-0ca637ff65a1.mp4",
+            "poster": "",
+            "autoplay": true,
+            "loop": true,
+            "muted": true,
+            "controls": false,
+            "speed": 1,
+            "start": 0,
+            "end": 0
+          }
+        }
+      ]
     }
   }
 }
