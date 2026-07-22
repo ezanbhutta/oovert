@@ -9,7 +9,7 @@
 :root {
   --cs-max: 1360px;
   --cs-gap: clamp(1rem, 2vw, 2rem);
-  --cs-pad: clamp(4.5rem, 3rem + 10vw, 12rem);
+  --cs-pad: clamp(3.25rem, 2.25rem + 6vw, 7.5rem);
 }
 
 .cs-page {
@@ -232,6 +232,10 @@
   place-items: center;
   width: 100%;
   aspect-ratio: var(--ph-ratio, 16 / 9);
+  /* Placeholders keep their stated ratio but never grow past ~viewport height,
+     so an image-less preview stays compact and quick to scroll. Real <img>
+     content is unaffected and keeps its natural proportions. */
+  max-height: 82vh;
   padding: clamp(1.25rem, 3vw, 3rem);
   background:
     repeating-linear-gradient(-45deg, transparent 0 22px,
