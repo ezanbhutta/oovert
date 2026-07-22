@@ -293,7 +293,9 @@
 }
 
 .manifesto__text .mf-key {
+  display: inline-block;
   color: var(--accent-invert);
+  will-change: transform;
 }
 
 .manifesto__text em {
