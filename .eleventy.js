@@ -15,10 +15,6 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ [`src/${f}`]: f })
   );
 
-  // The case study stays a static passthrough until Phase 0b templatizes it
-  // into a project collection.
-  eleventyConfig.addPassthroughCopy({ "src/work/case-study.html": "work/case-study.html" });
-
   // Only .njk are templates; every .html is treated as a static asset so the
   // hand-built case study is never re-processed.
   eleventyConfig.setTemplateFormats(["njk"]);
