@@ -509,6 +509,17 @@
 .cs-stack > * + * { margin-top: var(--space-8); }
 .cs-mt { margin-top: var(--space-8); }
 
+/* --- Freeform content blocks ---------------------------------------------- */
+/* Owner-composed blocks placed after the hero: media (image/video), heading,
+   text, quote, or spacer — each its own section with a chosen ground + motion. */
+.cs-block-text { max-width: var(--measure); }
+.cs-block-cap { margin-top: var(--space-3); }
+/* A pure-space beat between blocks (no padding of its own; height only). */
+.cs-block-space { padding-block: 0; }
+.cs-block-space--small { height: clamp(2rem, 5vw, 4rem); }
+.cs-block-space--medium { height: clamp(4rem, 9vw, 8rem); }
+.cs-block-space--large { height: clamp(7rem, 15vw, 14rem); }
+
 /* --- Lightbox (gallery) --------------------------------------------------- */
 .cs-lightbox {
   position: fixed;

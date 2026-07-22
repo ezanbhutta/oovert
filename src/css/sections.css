@@ -53,6 +53,64 @@
   pointer-events: none;
 }
 
+/* Optional hero background video (owner-set). A cinematic ground under the
+   copy; the gradient scrim keeps the headline legible. The hero flips to light
+   text only in this mode (.hero--video), so the default paper/ink hero is
+   untouched when no video is set. */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to top,
+    rgba(22, 20, 15, 0.78) 0%,
+    rgba(22, 20, 15, 0.26) 46%,
+    rgba(22, 20, 15, 0.55) 100%);
+}
+.hero--video,
+.hero--video .hero__meta,
+.hero--video .hero__title,
+.hero--video .hero__lede,
+.hero--video .hero__strip,
+.hero--video .hero__scroll { color: var(--paper); }
+.hero--video .hero__scroll i { background: var(--paper); }
+
+/* Showreel — an optional full-bleed video band near the foot of the page. */
+.showreel {
+  position: relative;
+  background: var(--ink);
+  overflow: clip;
+}
+.showreel__media { margin: 0; }
+.showreel__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: cover;
+}
+.showreel__label {
+  position: absolute;
+  left: var(--margin);
+  bottom: var(--margin);
+  z-index: 1;
+  color: #FFF;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+}
+
 .hero__meta {
   display: flex;
   justify-content: space-between;

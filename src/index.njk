@@ -1,3 +1,9 @@
+{#- siteVideo(v, cls) — a homepage <video> with its owner settings. Autoplay
+    implies muted + playsinline; speed / start / end are read by the video.js
+    module as data-rate / start / end. -#}
+{%- macro siteVideo(v, cls='') -%}
+<video class="cs-video{% if cls %} {{ cls }}{% endif %}"{% if v.poster %} poster="{{ v.poster }}"{% endif %}{% if v.controls %} controls{% endif %}{% if v.loop %} loop{% endif %}{% if v.autoplay %} autoplay muted playsinline{% elif v.muted %} muted{% endif %} preload="metadata" data-cs-video{% if v.speed %} data-rate="{{ v.speed }}"{% endif %}{% if v.start %} data-start="{{ v.start }}"{% endif %}{% if v.end %} data-end="{{ v.end }}"{% endif %}><source src="{{ v.src }}"></video>
+{%- endmacro -%}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -105,8 +111,14 @@
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section class="hero" id="top" aria-label="Introduction">
+    {%- set heroVideo = site.hero.video -%}
+    <section class="hero{% if heroVideo and heroVideo.src %} hero--video{% endif %}" id="top" aria-label="Introduction">
+      {% if heroVideo and heroVideo.src %}
+      {{ siteVideo(heroVideo, 'hero__video') }}
+      <div class="hero__scrim" aria-hidden="true"></div>
+      {% else %}
       <canvas class="hero__bg" aria-hidden="true"></canvas>
+      {% endif %}
       <div class="hero__meta" data-entrance style="--d:.42s">
         {% for tag in site.hero.metaTags %}<span>{{ tag }}</span>
         {% endfor %}</div>
@@ -330,6 +342,15 @@
         {{ site.contact.note }}
       </p>
     </section>
+
+    <!-- ============ SHOWREEL (optional full-bleed video band) ============ -->
+    {%- set showreel = site.showreel -%}
+    {% if showreel and showreel.video and showreel.video.src %}
+    <section class="showreel" aria-label="{{ showreel.label | default('Showreel', true) }}">
+      <figure class="showreel__media">{{ siteVideo(showreel.video, 'showreel__video') }}</figure>
+      {% if showreel.label %}<p class="showreel__label">{{ showreel.label | safe }}</p>{% endif %}
+    </section>
+    {% endif %}
   </main>
 
   <footer class="site-foot">

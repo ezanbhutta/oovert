@@ -84,6 +84,37 @@ The Video group is your control panel for how it plays:
 A good background hero clip: autoplay on, loop on, muted on, controls off, and a
 poster still. Keep clips short and compressed — a heavy file is slow to load.
 
+### Putting video (or anything) anywhere — Content blocks
+Beyond the 18 fixed sections, each case study has a **Content blocks** list
+(right under the project fields). This is a freeform canvas: add as many blocks
+as you like, in any order, and drag to reorder. Each block is one of:
+- **Image / Video** — an image or a video (same 🎬 Video settings as above),
+  with a **Width** (contained / wide / full-bleed), a **Background** (paper or
+  ink), a **Scroll transition** (rise, fade, mask, zoom, slide, none), and an
+  optional caption. This is how you drop a video anywhere you want.
+- **Heading** — a big display line.
+- **Text** — a paragraph of body copy.
+- **Quote** — a short, bold pulled statement.
+- **Spacer** — a bit of breathing room (small / medium / large).
+
+Blocks render immediately after the hero. Two ways to use them:
+- **Alongside the template** (default) — blocks appear first, then the 18 guided
+  sections follow. Good for adding a video moment or two.
+- **Freeform only** — turn **Guided template sections** off (a switch in the
+  project fields) and the 18 sections disappear, leaving just the hero, your
+  blocks, and the closing. Now the case study is entirely yours to compose.
+
+### Video on the homepage
+Two optional homepage video spots (both in **Site → Homepage & site content**):
+- **Hero → 🎬 Hero background video** — a clip that plays behind the headline.
+  When set, the hero switches to light text over a dark scrim so the words stay
+  readable (the generative light-field is used when there's no video). Best
+  muted, looping, no controls.
+- **Showreel** — a full-bleed video band near the foot of the page, with an
+  optional label over it. A clean place for a reel or a signature motion piece.
+
+Both use the same 🎬 Video settings (autoplay-in-view, loop, speed, trim, poster).
+
 ### Giving a project its own look (theme)
 Open a case study's **theme** section:
 - **accent** — pick one brand colour. The build automatically derives
