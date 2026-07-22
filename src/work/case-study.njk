@@ -1,10 +1,9 @@
 ---
 pagination:
-  data: projects
+  data: projectList
   size: 1
   alias: project
-  resolve: values
-permalink: "/work/{{ project.slug }}/index.html"
+permalink: "/work/{{ project.slug | slugify }}/index.html"
 eleventyComputed:
   title: "{{ project.name | safe }} — OOVERT case study"
 ---
