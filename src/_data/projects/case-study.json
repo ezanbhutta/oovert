@@ -2,7 +2,7 @@
   "slug": "Nowa Brand Identity",
   "status": "draft",
   "order": 1,
-  "name": "<!DOCTYPE html> <html lang=\"en\"> <head>     <meta charset=\"UTF-8\">     <title>Luxerie Font Example</title>     <style>         @font-face {             font-family: 'Luxerie';             src: url('luxerie.woff2') format('woff2'),                  url('luxerie.ttf') format('truetype');         }         .luxerie-text {             font-family: 'Luxerie', sans-serif;             font-size: 4rem;             letter-spacing: 2px;         }     </style> </head> <body>     <h1 class=\"luxerie-text\">NOWA</h1> </body> </html>",
+  "name": "<!DOCTYPE html> <html lang=\"en\"> <head>     <meta charset=\"UTF-8\">     <title>Luxerie Regular - NOWA</title>     <style>         /* Explicitly load the standard Regular style file */         @font-face {             font-family: 'Luxerie Regular';             src: url('Luxerie.woff2') format('woff2'),                  url('Luxerie.ttf') format('truetype');             font-style: normal;             font-weight: normal;         }          .standard-brand {             font-family: 'Luxerie Regular', sans-serif;             font-size: 4rem;             letter-spacing: 3px;                          /* Forces the browser to use normal glyphs instead of reflected/stylized alternates */             font-variant-ligatures: none;             font-feature-settings: \"liga\" 0, \"clig\" 0, \"calt\" 0, \"salt\" 0, \"ss01\" 0;         }     </style> </head> <body>      <!-- Displays NOWA using the clean, non-reflected standard characters -->     <h1 class=\"standard-brand\">NOWA</h1>  </body> </html>",
   "client": "Client",
   "sector": "Modest Wear",
   "year": "2024",
