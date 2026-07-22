@@ -3,22 +3,22 @@
   "status": "draft",
   "order": 1,
   "name": "NOWA",
-  "client": "Client",
-  "sector": "Modest Wear",
-  "year": "2024",
+  "client": "NOWA",
+  "sector": "Modest fashion — Abayas & Hijabs",
+  "year": "2023",
   "scope": "Brand Identity",
   "intro": {
-    "headline": "[ The one-line premise of the project. ]",
-    "body": "[ Two or three sentences: who the client is, what they came to OOVERT for, and the shift you were hired to make. Keep it human and specific &mdash; roughly 45 words. ]"
+    "headline": "She walks in covered head to toe and the room still turns.",
+    "body": "NOWA makes abayas for young women who never once saw modesty as a limit. They came to us with a name they loved and nothing to put it on. No logo, no colours, no rules. We built them a brand that feels expensive before anyone gets close enough to read a price tag."
   },
-  "statement": "[ The idea the whole brand hangs on, in one bold line &mdash; the sentence you would defend in the room. ]",
-  "statementSupport": "[ One small supporting sentence underneath. ]",
-  "closing": "[ One closing line &mdash; the result, or a thank-you to the client. ]",
+  "statement": "You can dress quiet and still take up the whole room.",
+  "statementSupport": "That one line decided the gold, the spacing, and everything we left out.",
+  "closing": "We swapped the O for a moon and left the rest alone.",
   "nextUrl": "../../index.html#evidence",
   "theme": {},
   "sections": {
     "hero": {
-      "image": "/assets/uploads/Nowa Page 1.jpg",
+      "image": "",
       "alt": ""
     },
     "intro": {
