@@ -243,69 +243,8 @@
     },
   };
 
-  // --- Veil & Crescent mood (theme.mood: "veil") ----------------------------
-  // A modest reveal language: every media element unveils behind a soft veil
-  // that lifts away, and the hero carries a waxing crescent of light. When the
-  // mood is on it replaces the varied per-section transitions with this one
-  // calm gesture (restraint), keeping only the word-scrub and the closing.
-  const veil = document.body.classList.contains('cs-veil');
-
-  function addVeilLayer(fig) {
-    if (!fig || fig.querySelector('.cs-veil-layer')) return null;
-    const layer = document.createElement('div');
-    layer.className = 'cs-veil-layer';
-    fig.appendChild(layer);
-    return layer;
-  }
-
-  function veilReveal(fig, delay = 0) {
-    if (!fig) return;
-    const layer = addVeilLayer(fig);
-    const m = inner(fig);
-    if (layer) {
-      // Retract the veil into its own top edge (scaleY, not a translate) so it
-      // can never slide up over the copy above it — it only ever shrinks within
-      // its own frame, revealing the media from the bottom up.
-      gsap.fromTo(layer, { scaleY: 1 },
-        { scaleY: 0, transformOrigin: 'top center', ease: 'power3.inOut', duration: 1.5, delay,
-          scrollTrigger: { trigger: fig, start: 'top 84%' } });
-    }
-    gsap.from(m, { scale: 1.05, autoAlpha: 0.5, ease: 'power2.out', duration: 1.5, delay,
-      scrollTrigger: { trigger: fig, start: 'top 84%' } });
-  }
-
-  function crescentHero(sec) {
-    const fig = sec.querySelector('[data-cs-media]');
-    veilReveal(fig);
-    const inr = sec.querySelector('.cs-hero__inner');
-    if (inr) gsap.from(inr, { autoAlpha: 0, y: 26, duration: 1.6, ease: 'power3.out', delay: 0.55 });
-    const cres = sec.querySelector('.cs-crescent');
-    const moon = sec.querySelector('.cs-crescent__moon');
-    if (cres) {
-      gsap.set(cres, { xPercent: -50, yPercent: -50 });
-      gsap.to(cres, { yPercent: -78, ease: 'none',
-        scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom top', scrub: true } });
-    }
-    if (moon) {
-      gsap.fromTo(moon, { autoAlpha: 0, scale: 0.6 },
-        { autoAlpha: 0.7, scale: 1, duration: 2.6, ease: 'power2.out' });
-      gsap.to(moon, { yPercent: -3, duration: 6, ease: 'sine.inOut', repeat: -1, yoyo: true });
-    }
-  }
-
   q('[data-cs]').forEach((sec) => {
     const kind = sec.getAttribute('data-cs');
-    if (veil) {
-      if (kind === 'hero') { crescentHero(sec); return; }
-      if (kind === 'split') { behaviors.split(sec); return; }
-      if (kind === 'closing') { behaviors.closing(sec); return; }
-      const figs = q('[data-cs-media]', sec);
-      if (figs.length) { figs.forEach((f, i) => veilReveal(f, i * 0.12)); return; }
-      // sections with no media (e.g. the pinned website frame) keep their own move
-      const runV = behaviors[kind];
-      if (runV) runV(sec);
-      return;
-    }
     const run = behaviors[kind];
     if (run) run(sec);
   });

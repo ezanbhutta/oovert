@@ -103,7 +103,7 @@ eleventyComputed:
     ==========================================================================
   -->
 </head>
-<body class="cs-page{% if th.mood == 'veil' %} cs-veil{% endif %}" data-theme="{{ project.slug }}">
+<body class="cs-page" data-theme="{{ project.slug }}">
   <a class="skip-link" href="#cs-main">Skip to content</a>
 
   <!-- Fixed header (persists over every section) -->
@@ -123,7 +123,6 @@ eleventyComputed:
     <!-- ================= 01 · HERO ================= -->
     <!-- Purpose: introduce the project with maximum impact, full frame. -->
     <section class="cs-section cs-section--ink cs-hero" data-cs="hero" aria-label="Project hero">
-      {% if th.mood == 'veil' %}<div class="cs-crescent" aria-hidden="true"><span class="cs-crescent__moon"></span></div>{% endif %}
       <figure class="cs-hero__media" data-cs-media>
         <!-- SWAP → hero image OR a background video (project.sections.hero.video) -->
         {% call media(project.sections.hero, '', 'fetchpriority="high"') %}
