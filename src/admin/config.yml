@@ -372,15 +372,15 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -395,15 +395,15 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -420,15 +420,15 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -450,15 +450,15 @@ collections:
                 widget: list
                 required: false
                 field: { name: item, label: "Note", widget: string, hint: "Supports HTML entities, e.g. &mdash;" }
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -480,15 +480,15 @@ collections:
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image, required: false }
+                  - { name: src, label: "Image", widget: image, required: false, hint: "For a video item, leave this empty and open the '🎬 Video' group below." }
                   - { name: alt, label: "Alt text", widget: string, required: false }
                   - name: video
-                    label: "Video (optional — overrides the image)"
+                    label: "🎬 Video — upload a clip to use instead of the image"
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                       - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                       - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                       - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -505,15 +505,15 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -530,15 +530,15 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -555,15 +555,15 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -580,15 +580,15 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -610,15 +610,15 @@ collections:
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image, required: false }
+                  - { name: src, label: "Image", widget: image, required: false, hint: "For a video item, leave this empty and open the '🎬 Video' group below." }
                   - { name: alt, label: "Alt text", widget: string, required: false }
                   - name: video
-                    label: "Video (optional — overrides the image)"
+                    label: "🎬 Video — upload a clip to use instead of the image"
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                       - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                       - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                       - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -633,15 +633,15 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -663,15 +663,15 @@ collections:
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image, required: false }
+                  - { name: src, label: "Image", widget: image, required: false, hint: "For a video item, leave this empty and open the '🎬 Video' group below." }
                   - { name: alt, label: "Alt text", widget: string, required: false }
                   - name: video
-                    label: "Video (optional — overrides the image)"
+                    label: "🎬 Video — upload a clip to use instead of the image"
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                       - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                       - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                       - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -688,15 +688,15 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
-              - { name: image, label: "Image (long screenshot)", widget: image, required: false }
+              - { name: image, label: "Image (long screenshot)", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -718,16 +718,16 @@ collections:
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image, required: false }
+                  - { name: src, label: "Image", widget: image, required: false, hint: "For a video item, leave this empty and open the '🎬 Video' group below." }
                   - { name: alt, label: "Alt text", widget: string, required: false }
                   - { name: speed, label: "Parallax speed", widget: number, required: false, hint: "e.g. -14 (more negative = faster drift). Separate from video playback speed." }
                   - name: video
-                    label: "Video (optional — overrides the image)"
+                    label: "🎬 Video — upload a clip to use instead of the image"
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                       - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                       - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                       - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -742,15 +742,15 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: image, label: "Image", widget: image, required: false }
+              - { name: image, label: "Image", widget: image, required: false, hint: "Prefer a video here? Leave this empty and open the '🎬 Video' group below instead." }
               - { name: alt, label: "Alt text", widget: string, required: false }
               - name: video
-                label: "Video (optional — overrides the image)"
+                label: "🎬 Video — upload a clip to use instead of the image"
                 widget: object
                 required: false
                 collapsed: true
                 fields:
-                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                   - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                   - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                   - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
@@ -772,15 +772,15 @@ collections:
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image, required: false }
+                  - { name: src, label: "Image", widget: image, required: false, hint: "For a video item, leave this empty and open the '🎬 Video' group below." }
                   - { name: alt, label: "Alt text", widget: string, required: false }
                   - name: video
-                    label: "Video (optional — overrides the image)"
+                    label: "🎬 Video — upload a clip to use instead of the image"
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
                       - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
                       - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
                       - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
