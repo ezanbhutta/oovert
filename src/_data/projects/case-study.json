@@ -1,0 +1,74 @@
+{
+  "slug": "case-study",
+  "status": "published",
+  "order": 1,
+  "name": "[ Project&nbsp;<em>name</em> ]",
+  "client": "[ Client ]",
+  "sector": "[ Sector ]",
+  "year": "[ Year ]",
+  "scope": "[ Scope: naming, identity, web ]",
+  "nextUrl": "../../index.html#evidence",
+  "theme": {},
+  "intro": {
+    "headline": "[ The one-line premise of the project. ]",
+    "body": "[ Two or three sentences: who the client is, what they came to OOVERT for, and the shift you were hired to make. Keep it human and specific &mdash; roughly 45 words. ]"
+  },
+  "statement": "[ The idea the whole brand hangs on, in one bold line &mdash; the sentence you would defend in the room. ]",
+  "statementSupport": "[ One small supporting sentence underneath. ]",
+  "closing": "[ One closing line &mdash; the result, or a thank-you to the client. ]",
+  "sections": {
+    "logo": {
+      "eyebrow": "The mark",
+      "headline": "[ A short line about the logo idea. ]"
+    },
+    "construction": {
+      "eyebrow": "Construction",
+      "headline": "[ How the mark is built. ]",
+      "notes": [
+        "[ Note one &mdash; the grid, the proportion, the angle. What rule governs it? ]",
+        "[ Note two &mdash; the decision that took the longest, and why it was worth it. ]",
+        "[ Note three &mdash; how it behaves small, or in one colour. ]"
+      ]
+    },
+    "concept": {
+      "eyebrow": "Exploration",
+      "headline": "[ Where the idea came from. ]"
+    },
+    "typography": {
+      "eyebrow": "Typography",
+      "headline": "[ The typeface and why it fits. ]"
+    },
+    "colour": {
+      "eyebrow": "Colour",
+      "headline": "[ What the palette is doing. ]"
+    },
+    "graphic": {
+      "eyebrow": "Graphic language",
+      "headline": "[ The pattern, icon set, or device. ]"
+    },
+    "card": {
+      "eyebrow": "In the hand",
+      "headline": "[ A note on the print details. ]"
+    },
+    "stationery": {
+      "eyebrow": "Stationery",
+      "headline": "[ The everyday collateral. ]"
+    },
+    "social": {
+      "eyebrow": "Social",
+      "headline": "[ How the brand behaves in-feed. ]"
+    },
+    "website": {
+      "eyebrow": "Website",
+      "headline": "[ The identity, live. ]"
+    },
+    "environment": {
+      "eyebrow": "Environment",
+      "headline": "[ The brand in the world. ]"
+    },
+    "gallery": {
+      "eyebrow": "Gallery",
+      "headline": "[ The rest of the system. ]"
+    }
+  }
+}

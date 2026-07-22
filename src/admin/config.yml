@@ -1,0 +1,546 @@
+# OOVERT content admin — Sveltia CMS (Decap-compatible) configuration.
+# Single-owner setup: sign in with a GitHub fine-grained token (Contents R/W).
+# Saving commits the edited JSON back to `main`; Vercel rebuilds.
+#
+# IMPORTANT (git-based CMS): the CMS writes back ONLY the fields declared here.
+# Every field `name` below must exactly equal its JSON key, and nested groups
+# must mirror the JSON structure, or unknown keys are DROPPED on save.
+# HTML-bearing values use string/text (NEVER markdown, which would mangle HTML).
+
+backend:
+  name: github
+  repo: ezanbhutta/oovert
+  branch: main
+
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  # ==========================================================================
+  # Collection 1 — Site (files singleton: the homepage content in site.json)
+  # ==========================================================================
+  - name: settings
+    label: "Site"
+    files:
+      - name: site
+        label: "Homepage & site content"
+        file: "src/_data/site.json"
+        fields:
+          # ---- meta -------------------------------------------------------
+          - name: meta
+            label: "Meta / SEO"
+            widget: object
+            fields:
+              - { name: pageTitle, label: "Page title", widget: string }
+              - { name: description, label: "Meta description", widget: text }
+              - { name: canonicalUrl, label: "Canonical URL", widget: string }
+              - { name: themeColor, label: "Theme colour", widget: string, hint: "Hex, e.g. #16140F" }
+              - name: og
+                label: "Open Graph"
+                widget: object
+                fields:
+                  - { name: siteName, label: "Site name", widget: string }
+                  - { name: title, label: "OG title", widget: string }
+                  - { name: description, label: "OG description", widget: text }
+                  - { name: url, label: "OG URL", widget: string }
+                  - { name: image, label: "OG image URL", widget: string }
+                  - { name: imageAlt, label: "OG image alt", widget: string }
+              - name: twitter
+                label: "Twitter card"
+                widget: object
+                fields:
+                  - { name: title, label: "Twitter title", widget: string }
+                  - { name: description, label: "Twitter description", widget: text }
+                  - { name: image, label: "Twitter image URL", widget: string }
+          # ---- schema (JSON-LD) -------------------------------------------
+          - name: schema
+            label: "Schema (JSON-LD org data)"
+            widget: object
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: legalName, label: "Legal name", widget: string }
+              - { name: url, label: "URL", widget: string }
+              - { name: email, label: "Email", widget: string }
+              - { name: foundingDate, label: "Founding date", widget: string }
+              - { name: slogan, label: "Slogan", widget: string }
+              - { name: description, label: "Description", widget: text }
+              - { name: logo, label: "Logo URL", widget: string }
+              - { name: image, label: "Image URL", widget: string }
+              - { name: areaServed, label: "Area served", widget: string }
+              - name: knowsAbout
+                label: "Knows about"
+                widget: list
+                field: { name: item, label: "Topic", widget: string }
+              - name: makesOffer
+                label: "Makes offer"
+                widget: list
+                field: { name: item, label: "Offer", widget: string }
+              - name: sameAs
+                label: "Same as (profile URLs)"
+                widget: list
+                field: { name: item, label: "URL", widget: string }
+          # ---- a11y -------------------------------------------------------
+          - name: a11y
+            label: "Accessibility"
+            widget: object
+            fields:
+              - { name: skipLink, label: "Skip link text", widget: string }
+          # ---- nav --------------------------------------------------------
+          - name: nav
+            label: "Top nav"
+            widget: object
+            fields:
+              - name: links
+                label: "Links"
+                widget: list
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: href, label: "Href", widget: string, hint: "e.g. #practice" }
+              - { name: menuButtonLabel, label: "Menu button label", widget: string }
+          # ---- menu -------------------------------------------------------
+          - name: menu
+            label: "Overlay menu"
+            widget: object
+            fields:
+              - name: links
+                label: "Links"
+                widget: list
+                fields:
+                  - { name: num, label: "Number", widget: string }
+                  - { name: label, label: "Label", widget: string }
+                  - { name: href, label: "Href", widget: string }
+              - { name: meta, label: "Meta line", widget: text, hint: "Keeps HTML: <br> makes a line break" }
+          # ---- chapterRail (array of objects) -----------------------------
+          - name: chapterRail
+            label: "Chapter rail"
+            widget: list
+            fields:
+              - { name: num, label: "Number", widget: string }
+              - { name: href, label: "Href", widget: string }
+              - { name: aria, label: "Aria label", widget: string }
+          # ---- hero -------------------------------------------------------
+          - name: hero
+            label: "Hero"
+            widget: object
+            fields:
+              - name: metaTags
+                label: "Meta tags"
+                widget: list
+                field: { name: item, label: "Tag", widget: string }
+              - { name: title, label: "Title", widget: text, hint: "Keeps HTML: uses <span class=\"line\">, <em>… and newlines. Edit raw HTML." }
+              - { name: lede, label: "Lede", widget: text }
+              - name: ctaPrimary
+                label: "Primary CTA"
+                widget: object
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: url, label: "URL", widget: string }
+              - name: ctaSecondary
+                label: "Secondary CTA"
+                widget: object
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: url, label: "URL", widget: string }
+              - { name: scrollLabel, label: "Scroll label", widget: string }
+              - { name: statusLine, label: "Status line", widget: string }
+          # ---- premise ----------------------------------------------------
+          - name: premise
+            label: "Premise"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: statement, label: "Statement", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…, newlines." }
+              - { name: body, label: "Body", widget: text }
+              - { name: counter, label: "Counter", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…" }
+              - { name: pullLine, label: "Pull line", widget: string, hint: "Keeps HTML: wrap an emphasis word in <em>…</em>" }
+              - { name: pullNote, label: "Pull note", widget: text }
+          # ---- manifesto --------------------------------------------------
+          - name: manifesto
+            label: "Manifesto"
+            widget: object
+            fields:
+              - { name: text, label: "Text", widget: text, hint: "Keeps HTML: highlight terms with <span class=\"mf-key\">…</span>, emphasis with <em>…</em>" }
+          # ---- practice ---------------------------------------------------
+          - name: practice
+            label: "Practice"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: intro, label: "Intro", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…" }
+              - name: items
+                label: "Items"
+                widget: list
+                fields:
+                  - { name: num, label: "Number", widget: string }
+                  - { name: name, label: "Name", widget: string }
+                  - { name: desc, label: "Description", widget: text }
+              - { name: terms, label: "Terms", widget: text }
+          # ---- packages ---------------------------------------------------
+          - name: packages
+            label: "Packages"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: chapterNote, label: "Chapter note", widget: text }
+              - { name: lead, label: "Lead", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…" }
+              - name: onetime
+                label: "One-time packages"
+                widget: object
+                fields:
+                  - { name: note, label: "Note", widget: text }
+                  - name: cards
+                    label: "Cards"
+                    widget: list
+                    fields:
+                      - { name: featured, label: "Featured", widget: boolean, required: false }
+                      - { name: badge, label: "Badge", widget: string, required: false }
+                      - { name: name, label: "Name", widget: string }
+                      - { name: price, label: "Price", widget: string, hint: "Keeps HTML entities, e.g. &rsquo;" }
+                      - { name: per, label: "Per (e.g. /mo)", widget: string, required: false }
+                      - { name: desc, label: "Description", widget: string }
+                      - { name: ctaLabel, label: "CTA label", widget: string, hint: "Keeps HTML entities, e.g. Let&rsquo;s talk" }
+                      - { name: ctaUrl, label: "CTA URL", widget: string }
+                      - { name: more, label: "More (\"Everything in …, plus\")", widget: string, required: false }
+                      - name: features
+                        label: "Features"
+                        widget: list
+                        field: { name: item, label: "Feature", widget: string, hint: "Keeps HTML entities, e.g. Vector &amp; source files" }
+              - name: monthly
+                label: "Monthly packages"
+                widget: object
+                fields:
+                  - { name: note, label: "Note", widget: text }
+                  - name: cards
+                    label: "Cards"
+                    widget: list
+                    fields:
+                      - { name: featured, label: "Featured", widget: boolean, required: false }
+                      - { name: badge, label: "Badge", widget: string, required: false }
+                      - { name: name, label: "Name", widget: string }
+                      - { name: price, label: "Price", widget: string }
+                      - { name: per, label: "Per (e.g. /mo)", widget: string, required: false }
+                      - { name: desc, label: "Description", widget: string }
+                      - { name: ctaLabel, label: "CTA label", widget: string, hint: "Keeps HTML entities, e.g. Let&rsquo;s talk" }
+                      - { name: ctaUrl, label: "CTA URL", widget: string }
+                      - { name: more, label: "More (\"Everything in …, plus\")", widget: string, required: false }
+                      - name: features
+                        label: "Features"
+                        widget: list
+                        field: { name: item, label: "Feature", widget: string, hint: "Keeps HTML entities, e.g. Vector &amp; source files" }
+              - name: staff
+                label: "Staffing packages"
+                widget: object
+                fields:
+                  - { name: note, label: "Note", widget: text }
+                  - name: cards
+                    label: "Cards"
+                    widget: list
+                    fields:
+                      - { name: featured, label: "Featured", widget: boolean, required: false }
+                      - { name: badge, label: "Badge", widget: string, required: false }
+                      - { name: name, label: "Name", widget: string }
+                      - { name: price, label: "Price", widget: string }
+                      - { name: per, label: "Per (e.g. /mo)", widget: string, required: false }
+                      - { name: desc, label: "Description", widget: string }
+                      - { name: ctaLabel, label: "CTA label", widget: string }
+                      - { name: ctaUrl, label: "CTA URL", widget: string }
+                      - { name: more, label: "More (\"Everything in …, plus\")", widget: string, required: false }
+                      - name: features
+                        label: "Features"
+                        widget: list
+                        field: { name: item, label: "Feature", widget: string, hint: "Keeps HTML entities, e.g. Vector &amp; source files" }
+              - { name: guarantee, label: "Guarantee", widget: text, hint: "Keeps HTML: emphasis with <strong>…</strong>" }
+          # ---- evidence ---------------------------------------------------
+          - name: evidence
+            label: "Evidence"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: hold, label: "Hold", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…" }
+              - { name: note, label: "Note", widget: text }
+              - { name: linkLabel, label: "Link label", widget: string }
+              - { name: linkUrl, label: "Link URL", widget: string }
+          # ---- studio -----------------------------------------------------
+          - name: studio
+            label: "Studio"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: statement, label: "Statement", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…, newlines." }
+              - name: principles
+                label: "Principles"
+                widget: list
+                fields:
+                  - { name: num, label: "Number", widget: string }
+                  - { name: text, label: "Text", widget: text }
+              - { name: where, label: "Where", widget: text }
+          # ---- contact ----------------------------------------------------
+          - name: contact
+            label: "Contact"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: statement, label: "Statement", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…" }
+              - { name: email, label: "Email", widget: string }
+              - { name: note, label: "Note", widget: text }
+          # ---- footer -----------------------------------------------------
+          - name: footer
+            label: "Footer"
+            widget: object
+            fields:
+              - { name: indexLabel, label: "Index label", widget: string }
+              - name: indexLinks
+                label: "Index links"
+                widget: list
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: href, label: "Href", widget: string }
+              - { name: elsewhereLabel, label: "Elsewhere label", widget: string }
+              - name: socialLinks
+                label: "Social links"
+                widget: list
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: url, label: "URL", widget: string }
+              - { name: copyright, label: "Copyright", widget: string, hint: "Keeps HTML entities, e.g. &copy; 2026 Oovert LLC" }
+              - { name: backToTopLabel, label: "Back to top label", widget: string, hint: "Keeps HTML entities, e.g. Back to top &uarr;" }
+
+  # ==========================================================================
+  # Collection 2 — Case studies (folder collection: one JSON per project)
+  # ==========================================================================
+  - name: projects
+    label: "Case studies"
+    label_singular: "Case study"
+    folder: "src/_data/projects"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{name}}"
+    identifier_field: name
+    fields:
+      - { name: slug, label: "Slug", widget: string, hint: "URL: /work/<slug>/" }
+      - { name: status, label: "Status", widget: select, options: ["draft", "published"], default: "published" }
+      - { name: order, label: "Order", widget: number, value_type: int, required: false }
+      - { name: name, label: "Name", widget: string, hint: "Supports HTML, e.g. wrap a word in <em>…</em>" }
+      - { name: client, label: "Client", widget: string }
+      - { name: sector, label: "Sector", widget: string }
+      - { name: year, label: "Year", widget: string }
+      - { name: scope, label: "Scope", widget: string, hint: "e.g. Naming, identity, web" }
+      - name: intro
+        label: "Introduction"
+        widget: object
+        fields:
+          - { name: headline, label: "Headline", widget: text, hint: "Supports HTML, e.g. <em>…</em>" }
+          - { name: body, label: "Body", widget: text, hint: "Supports HTML entities, e.g. &mdash;" }
+      - { name: statement, label: "Brand statement", widget: text, hint: "Supports HTML, e.g. &mdash;, <em>…</em>" }
+      - { name: statementSupport, label: "Statement support", widget: text }
+      - { name: closing, label: "Closing line", widget: text }
+      - { name: nextUrl, label: "Next project URL", widget: string, required: false, hint: "Relative URL, e.g. ../../index.html#evidence" }
+
+      # ---- Per-project theme (all optional; base look used when empty) -----
+      - name: theme
+        label: "Theme (optional overrides)"
+        widget: object
+        required: false
+        fields:
+          - { name: accent, label: "Accent", widget: color }
+          - { name: accentOnLight, label: "Accent on light", widget: color, required: false }
+          - { name: accentOnDark, label: "Accent on dark", widget: color, required: false }
+          - { name: field, label: "Field colour", widget: color, required: false }
+          - { name: ease, label: "Ease curve", widget: string, required: false, hint: "CSS easing, e.g. cubic-bezier(.2,.7,0,1)" }
+          - { name: motion, label: "Motion scale", widget: number, value_type: float, default: 1, min: 0.6, max: 1.4, step: 0.05, required: false }
+          - { name: displayWidth, label: "Display width", widget: number, required: false, hint: "Archivo width 62–125" }
+          - { name: displayWeight, label: "Display weight", widget: number, required: false, hint: "100–900" }
+
+      # ---- Sections -------------------------------------------------------
+      # Field names mirror project.sections.<key> exactly. Copy sections carry
+      # eyebrow + headline; image-only sections (hero, intro, packaging,
+      # context) carry only image/alt (their copy is project-level or none).
+      - name: sections
+        label: "Sections"
+        widget: object
+        fields:
+          # 01 · Hero — image only
+          - name: hero
+            label: "01 · Hero (image only)"
+            widget: object
+            required: false
+            fields:
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 02 · Introduction — image only (copy lives in project.intro)
+          - name: intro
+            label: "02 · Introduction image (image only)"
+            widget: object
+            required: false
+            fields:
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 04 · Logo — single image
+          - name: logo
+            label: "04 · Logo"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 05 · Construction — single image + notes list
+          - name: construction
+            label: "05 · Construction"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - name: notes
+                label: "Notes"
+                widget: list
+                required: false
+                field: { name: item, label: "Note", widget: string, hint: "Supports HTML entities, e.g. &mdash;" }
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 06 · Concept — multi image
+          - name: concept
+            label: "06 · Concept"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - name: images
+                label: "Images"
+                widget: list
+                required: false
+                fields:
+                  - { name: src, label: "Image", widget: image }
+                  - { name: alt, label: "Alt text", widget: string, required: false }
+          # 07 · Typography — single image
+          - name: typography
+            label: "07 · Typography"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 08 · Colour — single image
+          - name: colour
+            label: "08 · Colour"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 09 · Graphic language — single image
+          - name: graphic
+            label: "09 · Graphic language"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 10 · Business card — single image
+          - name: card
+            label: "10 · Business card"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 11 · Stationery — multi image
+          - name: stationery
+            label: "11 · Stationery"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - name: images
+                label: "Images"
+                widget: list
+                required: false
+                fields:
+                  - { name: src, label: "Image", widget: image }
+                  - { name: alt, label: "Alt text", widget: string, required: false }
+          # 12 · Packaging — image only
+          - name: packaging
+            label: "12 · Packaging (image only)"
+            widget: object
+            required: false
+            fields:
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 13 · Social — multi image
+          - name: social
+            label: "13 · Social"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - name: images
+                label: "Images"
+                widget: list
+                required: false
+                fields:
+                  - { name: src, label: "Image", widget: image }
+                  - { name: alt, label: "Alt text", widget: string, required: false }
+          # 14 · Website — single image
+          - name: website
+            label: "14 · Website"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: image, label: "Image (long screenshot)", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 15 · Environment — multi image (with parallax speed)
+          - name: environment
+            label: "15 · Environment"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - name: images
+                label: "Images"
+                widget: list
+                required: false
+                fields:
+                  - { name: src, label: "Image", widget: image }
+                  - { name: alt, label: "Alt text", widget: string, required: false }
+                  - { name: speed, label: "Parallax speed", widget: number, required: false, hint: "e.g. -14 (more negative = faster drift)" }
+          # 16 · Brand in context — image only
+          - name: context
+            label: "16 · Brand in context (image only)"
+            widget: object
+            required: false
+            fields:
+              - { name: image, label: "Image", widget: image, required: false }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+          # 17 · Gallery — multi image
+          - name: gallery
+            label: "17 · Gallery"
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - name: images
+                label: "Images"
+                widget: list
+                required: false
+                fields:
+                  - { name: src, label: "Image", widget: image }
+                  - { name: alt, label: "Alt text", widget: string, required: false }

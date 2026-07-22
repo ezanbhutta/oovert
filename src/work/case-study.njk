@@ -1,44 +1,82 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+  resolve: values
+permalink: "/work/{{ project.slug }}/index.html"
+eleventyComputed:
+  title: "{{ project.name | safe }} — OOVERT case study"
+---
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Case study — OOVERT</title>
+  <title>{{ title | safe }}</title>
   <meta name="description" content="OOVERT case study template. A cinematic, editorial scroll experience built to present a brand identity project.">
   <meta name="theme-color" content="#16140F">
   <meta name="robots" content="noindex">
 
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="../favicon.ico" sizes="32x32">
-  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
 
-  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/foundation.css">
-  <link rel="stylesheet" href="../css/case-study.css">
+  <link rel="stylesheet" href="../../css/foundation.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+
+  <!-- Per-project theme: re-points the real tokens the components already read,
+       scoped to this project. Only what the project customises is emitted, so an
+       un-themed project renders in the base OOVERT look. Accents are derived at
+       build time to clear AA on both grounds; --motion scales the reveal tempo
+       (CSS durations here, GSAP timeScale in case-study.js). -->
+  {%- set th = project.theme or {} -%}
+  <style>
+  [data-theme="{{ project.slug }}"]{
+    {%- if th.accent %}
+    --accent: {{ th.accent }};
+    --accent-deep: {{ th.accentOnLight | default(th.accent | onLight, true) }};
+    --accent-invert: {{ th.accentOnDark | default(th.accent | onDark, true) }};
+    {%- endif %}
+    {%- if th.field %}
+    --field-violet: {{ th.field }};
+    --field-ink: {{ th.field | fieldInk }};
+    {%- endif %}
+    {%- if th.ease %}--ease-out: {{ th.ease }};{% endif %}
+    --motion: {{ th.motion | default(1, true) }};
+    --dur-fast: calc(240ms * var(--motion));
+    --dur-med: calc(500ms * var(--motion));
+    --dur-slow: calc(800ms * var(--motion));
+    {%- if th.displayWidth %}--cs-wdth: {{ th.displayWidth }};{% endif %}
+    {%- if th.displayWeight %}--cs-wght: {{ th.displayWeight }};{% endif %}
+  }
+  </style>
   <!--
     ==========================================================================
     OOVERT — CASE STUDY TEMPLATE
-    Duplicate this file per project (work/<slug>.html). Every visual is a
-    placeholder that states exactly what image belongs there, its ratio, size,
-    composition, and the motion it will receive. To go live, swap each
-    placeholder <div class="ph ...">…</div> for the <img> shown in the comment
-    above it, and fill the bracketed [ … ] copy. Nothing else needs touching.
-    Motion + smooth-scroll are handled by ../js/case-study.js (GSAP + Lenis).
+    Driven by one JSON file per project (src/_data/projects/<slug>.json). Every
+    visual is a placeholder that states exactly what image belongs there, its
+    ratio, size, composition, and the motion it will receive. A project with no
+    images renders the annotated placeholders unchanged; adding images to the
+    project JSON swaps each placeholder for the real <img>. Copy comes from the
+    project fields. Motion + smooth-scroll are handled by ../../js/case-study.js
+    (GSAP + Lenis).
     ==========================================================================
   -->
 </head>
-<body class="cs-page">
+<body class="cs-page" data-theme="{{ project.slug }}">
   <a class="skip-link" href="#cs-main">Skip to content</a>
 
   <!-- Fixed header (persists over every section) -->
   <header class="cs-head">
-    <a class="cs-head__back" href="../index.html#evidence"><span aria-hidden="true">&larr;</span> All work</a>
-    <span class="cs-head__title">[ Project name ] &middot; OOVERT</span>
-    <a class="cs-head__next" href="../index.html#evidence">Next project <span aria-hidden="true">&rarr;</span></a>
+    <a class="cs-head__back" href="../../index.html#evidence"><span aria-hidden="true">&larr;</span> All work</a>
+    <span class="cs-head__title">{{ project.name | safe }} &middot; OOVERT</span>
+    <a class="cs-head__next" href="{{ project.nextUrl | default('../../index.html#evidence', true) }}">Next project <span aria-hidden="true">&rarr;</span></a>
     <div class="cs-progress"><div class="cs-progress__fill"></div></div>
   </header>
 
@@ -49,6 +87,9 @@
     <section class="cs-section cs-section--ink cs-hero" data-cs="hero" aria-label="Project hero">
       <figure class="cs-hero__media" data-cs-media>
         <!-- SWAP → <img class="cs-img" src="hero.jpg" alt="[Project] — final identity, hero shot" fetchpriority="high"> -->
+        {% if project.sections.hero.image %}
+        <img class="cs-img" src="{{ project.sections.hero.image }}" alt="{{ project.sections.hero.alt | default('', true) }}" fetchpriority="high">
+        {% else %}
         <div class="ph">
           <div class="ph__inner">
             <span class="ph__kicker">Hero image</span>
@@ -61,12 +102,13 @@
             <p class="ph__motion"><span>Motion</span>Scale 1.08 &rarr; 1.00 on load, slow parallax drift on scroll</p>
           </div>
         </div>
+        {% endif %}
       </figure>
       <div class="cs-hero__inner">
         <div class="cs-hero__meta">
-          <span>[ Client ]</span><span>[ Sector ]</span><span>[ Year ]</span><span>[ Scope: naming, identity, web ]</span>
+          <span>{{ project.client }}</span><span>{{ project.sector }}</span><span>{{ project.year }}</span>{% if project.scope is string %}<span>{{ project.scope | safe }}</span>{% else %}<span>{{ project.scope | join(', ') | safe }}</span>{% endif %}
         </div>
-        <h1 class="cs-hero__title">[ Project&nbsp;<em>name</em> ]</h1>
+        <h1 class="cs-hero__title">{{ project.name | safe }}</h1>
       </div>
     </section>
 
@@ -77,11 +119,14 @@
         <div class="cs-cols">
           <div class="cs-cols__flow">
             <p class="cs-eyebrow"><span class="cs-eyebrow__num">02</span> Introduction</p>
-            <h2 class="cs-title" id="cs-intro-h" data-cs-text>[ The one-line premise of the project. ]</h2>
-            <p class="cs-body" data-cs-text>[ Two or three sentences: who the client is, what they came to OOVERT for, and the shift you were hired to make. Keep it human and specific &mdash; roughly 45 words. ]</p>
+            <h2 class="cs-title" id="cs-intro-h" data-cs-text>{{ project.intro.headline | safe }}</h2>
+            <p class="cs-body" data-cs-text>{{ project.intro.body | safe }}</p>
           </div>
           <figure class="cs-figure" data-cs-media>
             <!-- SWAP → <img class="cs-img" src="intro.jpg" alt="[Project] — introduction portrait"> -->
+            {% if project.sections.intro.image %}
+            <img class="cs-img" src="{{ project.sections.intro.image }}" alt="{{ project.sections.intro.alt | default('', true) }}" loading="lazy">
+            {% else %}
             <div class="ph ph--4x5">
               <div class="ph__inner">
                 <span class="ph__kicker">Portrait image</span>
@@ -94,6 +139,7 @@
                 <p class="ph__motion"><span>Motion</span>Wipes open left &rarr; right; the text rises beside it</p>
               </div>
             </div>
+            {% endif %}
           </figure>
         </div>
       </div>
@@ -103,8 +149,8 @@
     <!-- Purpose: the idea, stated once, at scale. No image. -->
     <section class="cs-section cs-section--ink" data-cs="split" aria-label="Brand statement">
       <div class="cs-inner">
-        <p class="cs-statement" data-cs-words>[ The idea the whole brand hangs on, in one bold line &mdash; the sentence you would defend in the room. ]</p>
-        <p class="cs-body cs-mt" style="margin-inline:auto;text-align:center" data-cs-text>[ One small supporting sentence underneath. ]</p>
+        <p class="cs-statement" data-cs-words>{{ project.statement | safe }}</p>
+        <p class="cs-body cs-mt" style="margin-inline:auto;text-align:center" data-cs-text>{{ project.statementSupport | safe }}</p>
       </div>
     </section>
 
@@ -112,10 +158,13 @@
     <!-- Purpose: the mark, alone, given room. -->
     <section class="cs-section cs-section--paper" data-cs="logo" aria-labelledby="cs-logo-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">04</span> The mark</p>
-        <h2 class="cs-title" id="cs-logo-h" data-cs-text>[ A short line about the logo idea. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">04</span> {{ project.sections.logo.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-logo-h" data-cs-text>{{ project.sections.logo.headline | safe }}</h2>
         <figure class="cs-figure cs-mt" data-cs-media style="max-width:52rem;margin-inline:auto">
           <!-- SWAP → <img class="cs-img" src="logo.png" alt="[Project] — primary logo"> (transparent PNG/SVG) -->
+          {% if project.sections.logo.image %}
+          <img class="cs-img" src="{{ project.sections.logo.image }}" alt="{{ project.sections.logo.alt | default('', true) }}" loading="lazy">
+          {% else %}
           <div class="ph ph--3x2">
             <div class="ph__inner">
               <span class="ph__kicker">Logo &mdash; transparent</span>
@@ -128,6 +177,7 @@
               <p class="ph__motion"><span>Motion</span>Scales up from 0.78 with a soft counter-rotation, settling true</p>
             </div>
           </div>
+          {% endif %}
         </figure>
       </div>
     </section>
@@ -139,6 +189,9 @@
         <div class="cs-cols">
           <figure class="cs-figure cs-cols__sticky" data-cs-media>
             <!-- SWAP → <img class="cs-img" src="construction.jpg" alt="[Project] — logo construction / grid"> -->
+            {% if project.sections.construction.image %}
+            <img class="cs-img" src="{{ project.sections.construction.image }}" alt="{{ project.sections.construction.alt | default('', true) }}" loading="lazy">
+            {% else %}
             <div class="ph ph--1x1">
               <div class="ph__inner">
                 <span class="ph__kicker">Construction</span>
@@ -151,13 +204,13 @@
                 <p class="ph__motion"><span>Motion</span>Pinned &mdash; holds still while the notes scroll; a slow scale settle</p>
               </div>
             </div>
+            {% endif %}
           </figure>
           <div class="cs-cols__flow">
-            <p class="cs-eyebrow"><span class="cs-eyebrow__num">05</span> Construction</p>
-            <h2 class="cs-title" id="cs-build-h" data-cs-text>[ How the mark is built. ]</h2>
-            <p class="cs-body" data-cs-text>[ Note one &mdash; the grid, the proportion, the angle. What rule governs it? ]</p>
-            <p class="cs-body" data-cs-text>[ Note two &mdash; the decision that took the longest, and why it was worth it. ]</p>
-            <p class="cs-body" data-cs-text>[ Note three &mdash; how it behaves small, or in one colour. ]</p>
+            <p class="cs-eyebrow"><span class="cs-eyebrow__num">05</span> {{ project.sections.construction.eyebrow }}</p>
+            <h2 class="cs-title" id="cs-build-h" data-cs-text>{{ project.sections.construction.headline | safe }}</h2>
+            {% for note in project.sections.construction.notes %}<p class="cs-body" data-cs-text>{{ note | safe }}</p>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -167,9 +220,12 @@
     <!-- Purpose: the thinking behind the final. Three uprights, in sequence. -->
     <section class="cs-section cs-section--ink" data-cs="sequence" aria-labelledby="cs-concept-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">06</span> Exploration</p>
-        <h2 class="cs-title" id="cs-concept-h" data-cs-text>[ Where the idea came from. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">06</span> {{ project.sections.concept.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-concept-h" data-cs-text>{{ project.sections.concept.headline | safe }}</h2>
         <div class="cs-trio cs-mt">
+          {% for img in project.sections.concept.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="concept-1.jpg" alt="[Project] — moodboard"> -->
             <div class="ph ph--4x5">
@@ -203,6 +259,7 @@
               </div>
             </div>
           </figure>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -211,11 +268,14 @@
     <!-- Purpose: the voice in letterforms. Artwork unmasks bottom-up. -->
     <section class="cs-section cs-section--paper" data-cs="mask" aria-labelledby="cs-type-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">07</span> Typography</p>
-        <h2 class="cs-title" id="cs-type-h" data-cs-text>[ The typeface and why it fits. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">07</span> {{ project.sections.typography.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-type-h" data-cs-text>{{ project.sections.typography.headline | safe }}</h2>
       </div>
       <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
         <!-- SWAP → <img class="cs-img" src="type.jpg" alt="[Project] — typography composition"> -->
+        {% if project.sections.typography.image %}
+        <img class="cs-img" src="{{ project.sections.typography.image }}" alt="{{ project.sections.typography.alt | default('', true) }}" loading="lazy">
+        {% else %}
         <div class="ph ph--16x9">
           <div class="ph__inner">
             <span class="ph__kicker">Type composition</span>
@@ -228,6 +288,7 @@
             <p class="ph__motion"><span>Motion</span>Unmasks from the bottom up as it enters</p>
           </div>
         </div>
+        {% endif %}
       </figure>
     </section>
 
@@ -235,11 +296,14 @@
     <!-- Purpose: the palette as a feeling. Fade + layered parallax. -->
     <section class="cs-section cs-section--ink" data-cs="parallax" aria-labelledby="cs-colour-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">08</span> Colour</p>
-        <h2 class="cs-title" id="cs-colour-h" data-cs-text>[ What the palette is doing. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">08</span> {{ project.sections.colour.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-colour-h" data-cs-text>{{ project.sections.colour.headline | safe }}</h2>
       </div>
       <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
         <!-- SWAP → <img class="cs-img" src="colour.jpg" alt="[Project] — colour composition"> -->
+        {% if project.sections.colour.image %}
+        <img class="cs-img" src="{{ project.sections.colour.image }}" alt="{{ project.sections.colour.alt | default('', true) }}" loading="lazy">
+        {% else %}
         <div class="ph ph--21x9">
           <div class="ph__inner">
             <span class="ph__kicker">Colour composition</span>
@@ -252,6 +316,7 @@
             <p class="ph__motion"><span>Motion</span>Fades up from the ground and drifts on a parallax layer</p>
           </div>
         </div>
+        {% endif %}
       </figure>
     </section>
 
@@ -259,10 +324,13 @@
     <!-- Purpose: the system beyond the logo. Scale + slight rotate. -->
     <section class="cs-section cs-section--paper" data-cs="rotate" aria-labelledby="cs-graphic-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">09</span> Graphic language</p>
-        <h2 class="cs-title" id="cs-graphic-h" data-cs-text>[ The pattern, icon set, or device. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">09</span> {{ project.sections.graphic.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-graphic-h" data-cs-text>{{ project.sections.graphic.headline | safe }}</h2>
         <figure class="cs-figure cs-mt" data-cs-media>
           <!-- SWAP → <img class="cs-img" src="graphic.jpg" alt="[Project] — graphic language / pattern"> -->
+          {% if project.sections.graphic.image %}
+          <img class="cs-img" src="{{ project.sections.graphic.image }}" alt="{{ project.sections.graphic.alt | default('', true) }}" loading="lazy">
+          {% else %}
           <div class="ph ph--3x2">
             <div class="ph__inner">
               <span class="ph__kicker">Pattern &amp; icons</span>
@@ -275,6 +343,7 @@
               <p class="ph__motion"><span>Motion</span>Scales in with a slight rotation, resolving to square</p>
             </div>
           </div>
+          {% endif %}
         </figure>
       </div>
     </section>
@@ -283,11 +352,14 @@
     <!-- Purpose: the identity in the hand. Slides in from the left. -->
     <section class="cs-section cs-section--ink" data-cs="slide-x" aria-labelledby="cs-card-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">10</span> In the hand</p>
-        <h2 class="cs-title" id="cs-card-h" data-cs-text>[ A note on the print details. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">10</span> {{ project.sections.card.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-card-h" data-cs-text>{{ project.sections.card.headline | safe }}</h2>
       </div>
       <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
         <!-- SWAP → <img class="cs-img" src="card.jpg" alt="[Project] — business card mockup"> -->
+        {% if project.sections.card.image %}
+        <img class="cs-img" src="{{ project.sections.card.image }}" alt="{{ project.sections.card.alt | default('', true) }}" loading="lazy">
+        {% else %}
         <div class="ph ph--16x9">
           <div class="ph__inner">
             <span class="ph__kicker">Business card</span>
@@ -300,6 +372,7 @@
             <p class="ph__motion"><span>Motion</span>Slides in from the left as it enters</p>
           </div>
         </div>
+        {% endif %}
       </figure>
     </section>
 
@@ -307,9 +380,12 @@
     <!-- Purpose: the system applied. Grid cascades from centre. -->
     <section class="cs-section cs-section--paper" data-cs="cascade" aria-labelledby="cs-stat-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">11</span> Stationery</p>
-        <h2 class="cs-title" id="cs-stat-h" data-cs-text>[ The everyday collateral. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">11</span> {{ project.sections.stationery.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-stat-h" data-cs-text>{{ project.sections.stationery.headline | safe }}</h2>
         <div class="cs-grid3 cs-mt">
+          {% for img in project.sections.stationery.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="stationery-1.jpg" alt="[Project] — letterhead"> -->
             <div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Letterhead</span><p class="ph__desc">Correspondence or document.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div></dl><p class="ph__motion"><span>Motion</span>Cascades from centre</p></div></div>
@@ -322,6 +398,7 @@
             <!-- SWAP → <img class="cs-img" src="stationery-3.jpg" alt="[Project] — folder / notebook"> -->
             <div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Folder</span><p class="ph__desc">Folder, notebook, or tag.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div></dl><p class="ph__motion"><span>Motion</span>Cascades from centre</p></div></div>
           </figure>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -331,6 +408,9 @@
     <section class="cs-section cs-section--ink cs-section--flush" data-cs="zoom" aria-label="Packaging">
       <figure class="cs-figure cs-figure--bleed" data-cs-media>
         <!-- SWAP → <img class="cs-img" src="packaging.jpg" alt="[Project] — packaging"> -->
+        {% if project.sections.packaging.image %}
+        <img class="cs-img" src="{{ project.sections.packaging.image }}" alt="{{ project.sections.packaging.alt | default('', true) }}" loading="lazy">
+        {% else %}
         <div class="ph ph--21x9">
           <div class="ph__inner">
             <span class="ph__kicker">Packaging &mdash; full bleed</span>
@@ -343,6 +423,7 @@
             <p class="ph__motion"><span>Motion</span>Slow push-in (Ken Burns) across the whole section</p>
           </div>
         </div>
+        {% endif %}
       </figure>
     </section>
 
@@ -350,9 +431,12 @@
     <!-- Purpose: the brand at phone scale. Frames rise into a fanned stack. -->
     <section class="cs-section cs-section--paper" data-cs="stack" aria-labelledby="cs-social-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">13</span> Social</p>
-        <h2 class="cs-title" id="cs-social-h" data-cs-text>[ How the brand behaves in-feed. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">13</span> {{ project.sections.social.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-social-h" data-cs-text>{{ project.sections.social.headline | safe }}</h2>
         <div class="cs-phones cs-mt">
+          {% for img in project.sections.social.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="social-1.jpg" alt="[Project] — social post 1"> -->
             <div class="ph ph--phone"><div class="ph__inner"><span class="ph__kicker">Phone 1</span><p class="ph__desc">Profile or key post.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>9:19</dd></div></dl><p class="ph__motion"><span>Motion</span>Rises into stack</p></div></div>
@@ -365,6 +449,7 @@
             <!-- SWAP → <img class="cs-img" src="social-3.jpg" alt="[Project] — social post 3"> -->
             <div class="ph ph--phone"><div class="ph__inner"><span class="ph__kicker">Phone 3</span><p class="ph__desc">Grid or reel cover.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>9:19</dd></div></dl><p class="ph__motion"><span>Motion</span>Rises into stack</p></div></div>
           </figure>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -373,11 +458,14 @@
     <!-- Purpose: the digital home. Section pins; the long shot scrubs up. -->
     <section class="cs-section cs-section--ink" data-cs="pin-scrub" aria-labelledby="cs-web-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">14</span> Website</p>
-        <h2 class="cs-title" id="cs-web-h" data-cs-text>[ The identity, live. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">14</span> {{ project.sections.website.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-web-h" data-cs-text>{{ project.sections.website.headline | safe }}</h2>
         <div class="cs-frame cs-mt">
           <div class="cs-frame__long" data-cs-long>
             <!-- SWAP → <img class="cs-img" src="website-full.jpg" alt="[Project] — full site screenshot"> -->
+            {% if project.sections.website.image %}
+            <img class="cs-img" src="{{ project.sections.website.image }}" alt="{{ project.sections.website.alt | default('', true) }}" loading="lazy">
+            {% else %}
             <div class="ph">
               <div class="ph__inner">
                 <span class="ph__kicker">Long desktop screenshot</span>
@@ -390,6 +478,7 @@
                 <p class="ph__motion"><span>Motion</span>Section pins; the screenshot scrubs upward inside the frame</p>
               </div>
             </div>
+            {% endif %}
           </div>
         </div>
         <p class="cs-cap">Tip: also supply a mobile screenshot (9:19) &mdash; drop it beside the frame if you want the responsive story too.</p>
@@ -400,9 +489,12 @@
     <!-- Purpose: the brand at scale, outside. Layers move at different speeds. -->
     <section class="cs-section cs-section--paper" data-cs="layer" aria-labelledby="cs-env-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">15</span> Environment</p>
-        <h2 class="cs-title" id="cs-env-h" data-cs-text>[ The brand in the world. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">15</span> {{ project.sections.environment.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-env-h" data-cs-text>{{ project.sections.environment.headline | safe }}</h2>
         <div class="cs-layers cs-mt">
+          {% for img in project.sections.environment.images %}
+          <figure class="cs-figure" data-cs-layer data-speed="{{ img.speed | default('-12', true) }}" data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% else %}
           <figure class="cs-figure" data-cs-layer data-speed="-14" data-cs-media>
             <!-- SWAP → <img class="cs-img" src="env-billboard.jpg" alt="[Project] — billboard"> -->
             <div class="ph ph--16x9"><div class="ph__inner"><span class="ph__kicker">Billboard</span><p class="ph__desc">Large-format out-of-home &mdash; the brand at its biggest.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>16:9</dd></div><div><dt>Size</dt><dd>2400px+</dd></div></dl><p class="ph__motion"><span>Motion</span>Parallax, fastest layer</p></div></div>
@@ -411,6 +503,7 @@
             <!-- SWAP → <img class="cs-img" src="env-storefront.jpg" alt="[Project] — storefront / signage"> -->
             <div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Storefront &amp; signage</span><p class="ph__desc">Signage, wayfinding, or a storefront application.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>3:2</dd></div><div><dt>Size</dt><dd>2200px+</dd></div></dl><p class="ph__motion"><span>Motion</span>Parallax, slower layer</p></div></div>
           </figure>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -420,6 +513,9 @@
     <section class="cs-section cs-section--ink cs-section--flush" data-cs="cinematic" aria-label="Brand in context">
       <figure class="cs-figure cs-figure--bleed" data-cs-media>
         <!-- SWAP → <img class="cs-img" src="context.jpg" alt="[Project] — lifestyle / in context"> -->
+        {% if project.sections.context.image %}
+        <img class="cs-img" src="{{ project.sections.context.image }}" alt="{{ project.sections.context.alt | default('', true) }}" loading="lazy">
+        {% else %}
         <div class="ph ph--16x9">
           <div class="ph__inner">
             <span class="ph__kicker">Lifestyle &amp; product</span>
@@ -432,6 +528,7 @@
             <p class="ph__motion"><span>Motion</span>Long, slow fade and settle &mdash; the calmest beat on the page</p>
           </div>
         </div>
+        {% endif %}
       </figure>
     </section>
 
@@ -439,15 +536,19 @@
     <!-- Purpose: everything else, at a glance. Masonry, rises in, lightbox. -->
     <section class="cs-section cs-section--paper" data-cs="masonry" aria-labelledby="cs-gallery-h">
       <div class="cs-inner">
-        <p class="cs-eyebrow"><span class="cs-eyebrow__num">17</span> Gallery</p>
-        <h2 class="cs-title" id="cs-gallery-h" data-cs-text>[ The rest of the system. ]</h2>
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">17</span> {{ project.sections.gallery.eyebrow }}</p>
+        <h2 class="cs-title" id="cs-gallery-h" data-cs-text>{{ project.sections.gallery.headline | safe }}</h2>
         <div class="cs-masonry cs-mt">
+          {% for img in project.sections.gallery.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; portrait</span><p class="ph__desc">Any strong detail.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; landscape</span><p class="ph__desc">Application shot.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--1x1"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; square</span><p class="ph__desc">Detail or icon.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; landscape</span><p class="ph__desc">Application shot.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; portrait</span><p class="ph__desc">Any strong detail.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--1x1"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; square</span><p class="ph__desc">Detail or icon.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+          {% endfor %}
         </div>
         <p class="cs-cap">Supply 6&ndash;10 images. Real images open in a lightbox on click.</p>
       </div>
@@ -469,17 +570,17 @@
             <path d="M94.63,31.5c6.91,1.73,10.83,9.35,9.67,16.22-.97,7.56-8.26,13.41-15.83,13.24-14.62.09-21.73-17.93-10.51-27.34,1.34-1.01,2.84-1.76,4.39-2.15l.51,1.08c-4.41,3.34-6.09,8.92-4.53,13.93,1.88,6.93,10.8,9.59,16.41,5.47,6.33-4.56,5.72-14.78-.64-19.38,0,0,.51-1.08.51-1.08h0Z"/>
           </svg>
         </figure>
-        <p class="cs-body" style="margin-inline:auto;text-align:center" data-cs-text>[ One closing line &mdash; the result, or a thank-you to the client. ]</p>
-        <a class="cs-next" href="../index.html#evidence">Next project <span aria-hidden="true">&rarr;</span></a>
+        <p class="cs-body" style="margin-inline:auto;text-align:center" data-cs-text>{{ project.closing | safe }}</p>
+        <a class="cs-next" href="{{ project.nextUrl | default('../../index.html#evidence', true) }}">Next project <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
 
   </main>
 
   <!-- Motion engine (self-hosted GSAP + ScrollTrigger + Lenis). Order matters. -->
-  <script src="../vendor/gsap.min.js"></script>
-  <script src="../vendor/ScrollTrigger.min.js"></script>
-  <script src="../vendor/lenis.min.js"></script>
-  <script src="../js/case-study.js"></script>
+  <script src="../../vendor/gsap.min.js"></script>
+  <script src="../../vendor/ScrollTrigger.min.js"></script>
+  <script src="../../vendor/lenis.min.js"></script>
+  <script src="../../js/case-study.js"></script>
 </body>
 </html>
