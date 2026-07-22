@@ -2,7 +2,7 @@
   "slug": "Nowa Brand Identity",
   "status": "draft",
   "order": 1,
-  "name": "<!DOCTYPE html> <html lang=\"en\"> <head>     <meta charset=\"UTF-8\">     <title>NOWA in Gellix</title>     <style>         /* Include custom font or fallback */         @font-face {             font-family: 'Gellix';             src: local('Gellix'), local('Gellix-Regular');             /* Add external woff2/woff src URL here if hosted on your server */         }          .nowa-text {             font-family: 'Gellix', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;             font-size: 64px;             font-weight: 750;             letter-spacing: 2px;             color: #111111;         }     </style> </head> <body>     <div class=\"nowa-text\">NOWA</div> </body> </html>",
+  "name": "<span style=\"font-family: 'Gellix', sans-serif;\">NOWA</span>",
   "client": "Client",
   "sector": "Modest Wear",
   "year": "2024",
