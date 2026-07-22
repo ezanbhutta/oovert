@@ -71,13 +71,16 @@ export function initManifesto({ reducedMotion } = {}) {
   const update = () => {
     ticking = false;
     const vh = window.innerHeight;
-    const top = section.getBoundingClientRect().top;
-    // 0 as the section enters low in the viewport, 1 as it reaches centre.
-    let p = (vh * 0.55 - top) / (vh * 0.55 + vh * 0.02);
+    // Progress keyed to the paragraph itself: it stays fully intact until its
+    // centre reaches mid-screen (so you can read the whole thing), then the
+    // effect runs as it scrolls up past that point.
+    const rect = el.getBoundingClientRect();
+    const mid = rect.top + rect.height / 2;
+    let p = (vh * 0.5 - mid) / (vh * 0.5);
     p = p < 0 ? 0 : p > 1 ? 1 : p;
 
     // Keywords gather to the centered column.
-    const move = smooth(0.28, 0.95, p);
+    const move = smooth(0.0, 0.62, p);
     for (let i = 0; i < keys.length; i++) {
       const t = targets[i];
       keys[i].style.transform = `translate(${(t.dx * move).toFixed(1)}px, ${(t.dy * move).toFixed(1)}px)`;
@@ -86,8 +89,8 @@ export function initManifesto({ reducedMotion } = {}) {
     // Connective words dissolve top to bottom, staggered by reading order.
     const n = plains.length;
     for (let i = 0; i < n; i++) {
-      const s = (i / n) * 0.5;
-      const f = smooth(s, s + 0.35, p);
+      const s = (i / n) * 0.45;
+      const f = smooth(s, s + 0.3, p);
       plains[i].style.opacity = (1 - f).toFixed(3);
     }
   };
