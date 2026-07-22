@@ -1,14 +1,12 @@
 {
-  "slug": "case-study",
+  "slug": "Nowa Brand Identity",
   "status": "published",
   "order": 1,
   "name": "[ Project&nbsp;<em>name</em> ]",
-  "client": "[ Client ]",
+  "client": "Client",
   "sector": "[ Sector ]",
   "year": "[ Year ]",
   "scope": "[ Scope: naming, identity, web ]",
-  "nextUrl": "../../index.html#evidence",
-  "theme": {},
   "intro": {
     "headline": "[ The one-line premise of the project. ]",
     "body": "[ Two or three sentences: who the client is, what they came to OOVERT for, and the shift you were hired to make. Keep it human and specific &mdash; roughly 45 words. ]"
@@ -16,10 +14,21 @@
   "statement": "[ The idea the whole brand hangs on, in one bold line &mdash; the sentence you would defend in the room. ]",
   "statementSupport": "[ One small supporting sentence underneath. ]",
   "closing": "[ One closing line &mdash; the result, or a thank-you to the client. ]",
+  "nextUrl": "../../index.html#evidence",
+  "theme": {},
   "sections": {
+    "hero": {
+      "image": "",
+      "alt": ""
+    },
+    "intro": {
+      "image": "",
+      "alt": ""
+    },
     "logo": {
       "eyebrow": "The mark",
-      "headline": "[ A short line about the logo idea. ]"
+      "headline": "[ A short line about the logo idea. ]",
+      "alt": ""
     },
     "construction": {
       "eyebrow": "Construction",
@@ -28,7 +37,8 @@
         "[ Note one &mdash; the grid, the proportion, the angle. What rule governs it? ]",
         "[ Note two &mdash; the decision that took the longest, and why it was worth it. ]",
         "[ Note three &mdash; how it behaves small, or in one colour. ]"
-      ]
+      ],
+      "alt": ""
     },
     "concept": {
       "eyebrow": "Exploration",
@@ -36,19 +46,23 @@
     },
     "typography": {
       "eyebrow": "Typography",
-      "headline": "[ The typeface and why it fits. ]"
+      "headline": "[ The typeface and why it fits. ]",
+      "alt": ""
     },
     "colour": {
       "eyebrow": "Colour",
-      "headline": "[ What the palette is doing. ]"
+      "headline": "[ What the palette is doing. ]",
+      "alt": ""
     },
     "graphic": {
       "eyebrow": "Graphic language",
-      "headline": "[ The pattern, icon set, or device. ]"
+      "headline": "[ The pattern, icon set, or device. ]",
+      "alt": ""
     },
     "card": {
       "eyebrow": "In the hand",
-      "headline": "[ A note on the print details. ]"
+      "headline": "[ A note on the print details. ]",
+      "alt": ""
     },
     "stationery": {
       "eyebrow": "Stationery",
@@ -60,7 +74,8 @@
     },
     "website": {
       "eyebrow": "Website",
-      "headline": "[ The identity, live. ]"
+      "headline": "[ The identity, live. ]",
+      "alt": ""
     },
     "environment": {
       "eyebrow": "Environment",
