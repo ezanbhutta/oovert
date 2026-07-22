@@ -344,6 +344,8 @@
       { "label": "Are.na", "url": "https://www.are.na/oovert" }
     ],
     "copyright": "&copy; 2026 Oovert LLC",
-    "backToTopLabel": "Back to top &uarr;"
+    "backToTopLabel": "Back to top &uarr;",
+    "askAiLabel": "Ask AI about OOVERT",
+    "askAiPrompt": "Give me a concise summary of OOVERT, the brand strategy and identity studio at https://oovert-agency.vercel.app. What do they do, who is it for, and what makes them different?"
   }
 }

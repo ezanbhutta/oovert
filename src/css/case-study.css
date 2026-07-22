@@ -166,6 +166,13 @@
 .cs-section--ink .cs-title em,
 .cs-section--ink .cs-statement em { color: var(--accent-invert); }
 
+/* Per-project display face: uses an owner-uploaded font when the theme sets one,
+   otherwise the base grotesk. The serif <em> emphasis keeps its own face. */
+.cs-hero__title,
+.cs-display,
+.cs-title,
+.cs-statement { font-family: var(--cs-display-font, inherit); }
+
 .cs-statement {
   max-width: 20ch;
   margin-inline: auto;

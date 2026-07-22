@@ -304,6 +304,8 @@ collections:
                   - { name: url, label: "URL", widget: string }
               - { name: copyright, label: "Copyright", widget: string, hint: "Keeps HTML entities, e.g. &copy; 2026 Oovert LLC" }
               - { name: backToTopLabel, label: "Back to top label", widget: string, hint: "Keeps HTML entities, e.g. Back to top &uarr;" }
+              - { name: askAiLabel, label: "Ask-AI label", widget: string, required: false, hint: "Heading above the AI icons, e.g. Ask AI about OOVERT" }
+              - { name: askAiPrompt, label: "Ask-AI prompt", widget: text, required: false, hint: "The question sent to each AI assistant when its icon is clicked." }
 
   # ==========================================================================
   # Collection 2 — Case studies (folder collection: one JSON per project)
@@ -352,6 +354,7 @@ collections:
           - { name: motion, label: "Motion scale", widget: number, value_type: float, default: 1, min: 0.6, max: 1.4, step: 0.05, required: false }
           - { name: displayWidth, label: "Display width", widget: number, required: false, hint: "Archivo width 62–125" }
           - { name: displayWeight, label: "Display weight", widget: number, required: false, hint: "100–900" }
+          - { name: displayFont, label: "Display font (upload)", widget: file, required: false, hint: "Upload a .woff2 (best) / .otf / .ttf to set this project's headline font, e.g. Luxerie. Leave empty to use the site's default." }
 
       # ---- Sections -------------------------------------------------------
       # Field names mirror project.sections.<key> exactly. Copy sections carry
