@@ -1,0 +1,13 @@
+{
+  "name": "oovert",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OOVERT — brand strategy and identity studio. Static site rendered by Eleventy from editable content files.",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6"
+  }
+}
