@@ -36,7 +36,18 @@ eleventyComputed:
        (CSS durations here, GSAP timeScale in case-study.js). -->
   {%- set th = project.theme or {} -%}
   <style>
+  {%- if th.displayFont %}
+  /* Owner-uploaded display face for this project (e.g. a custom brand font). */
+  @font-face {
+    font-family: "csfont-{{ project.slug | slugify }}";
+    src: url("{{ th.displayFont }}");
+    font-display: swap;
+  }
+  {%- endif %}
   [data-theme="{{ project.slug }}"]{
+    {%- if th.displayFont %}
+    --cs-display-font: "csfont-{{ project.slug | slugify }}", var(--font-sans);
+    {%- endif %}
     {%- if th.accent %}
     --accent: {{ th.accent }};
     --accent-deep: {{ th.accentOnLight | default(th.accent | onLight, true) }};
@@ -579,7 +590,6 @@ eleventyComputed:
   <!-- Motion engine (self-hosted GSAP + ScrollTrigger + Lenis). Order matters. -->
   <script src="../../vendor/gsap.min.js"></script>
   <script src="../../vendor/ScrollTrigger.min.js"></script>
-  <script src="../../vendor/lenis.min.js"></script>
   <script src="../../js/case-study.js"></script>
 </body>
 </html>

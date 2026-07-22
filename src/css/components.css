@@ -262,12 +262,51 @@ body.menu-open {
 
 .site-foot__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--gutter);
   padding-bottom: var(--space-8);
   border-top: 1px solid var(--line-invert);
   padding-top: var(--space-6);
 }
+
+/* Ask-AI: small monochrome AI icons that deep-link each assistant with a
+   pre-filled prompt to summarise OOVERT (an "AI SEO" / GEO touch). */
+.ai-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.ai-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--line-invert);
+  border-radius: 0.5rem;
+  transition:
+    border-color var(--dur-fast) var(--ease-hover),
+    background-color var(--dur-fast) var(--ease-hover),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.ai-chip img {
+  width: 1.05rem;
+  height: 1.05rem;
+  opacity: 0.7;
+  transition: opacity var(--dur-fast) var(--ease-hover);
+}
+
+.ai-chip:hover,
+.ai-chip:focus-visible {
+  border-color: var(--accent-invert);
+  background: color-mix(in oklab, var(--accent-invert) 14%, transparent);
+  transform: translateY(-2px);
+}
+
+.ai-chip:hover img,
+.ai-chip:focus-visible img { opacity: 1; }
 
 .site-foot__col {
   display: flex;

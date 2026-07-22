@@ -342,6 +342,15 @@
         <h2 class="site-foot__label">{{ site.footer.elsewhereLabel }}</h2>
         {% for link in site.footer.socialLinks %}<a href="{{ link.url }}" rel="noopener">{{ link.label }}</a>
         {% endfor %}</div>
+      <div class="site-foot__col site-foot__col--ai">
+        <h2 class="site-foot__label">{{ site.footer.askAiLabel }}</h2>
+        <ul class="ai-row">
+          <li><a class="ai-chip" href="https://chatgpt.com/?q={{ site.footer.askAiPrompt | urlencode }}" target="_blank" rel="noopener noreferrer" aria-label="Ask ChatGPT to summarise OOVERT"><img src="/assets/ai/openai.svg" alt="" width="20" height="20" loading="lazy"></a></li>
+          <li><a class="ai-chip" href="https://claude.ai/new?q={{ site.footer.askAiPrompt | urlencode }}" target="_blank" rel="noopener noreferrer" aria-label="Ask Claude to summarise OOVERT"><img src="/assets/ai/claude.svg" alt="" width="20" height="20" loading="lazy"></a></li>
+          <li><a class="ai-chip" href="https://www.perplexity.ai/search?q={{ site.footer.askAiPrompt | urlencode }}" target="_blank" rel="noopener noreferrer" aria-label="Ask Perplexity to summarise OOVERT"><img src="/assets/ai/perplexity.svg" alt="" width="20" height="20" loading="lazy"></a></li>
+          <li><a class="ai-chip" href="https://gemini.google.com/app?q={{ site.footer.askAiPrompt | urlencode }}" target="_blank" rel="noopener noreferrer" aria-label="Ask Google Gemini to summarise OOVERT"><img src="/assets/ai/googlegemini.svg" alt="" width="20" height="20" loading="lazy"></a></li>
+        </ul>
+      </div>
     </div>
     <p class="site-foot__mark" aria-hidden="true">
       <svg viewBox="0 0 297.55 66.38" fill="currentColor">

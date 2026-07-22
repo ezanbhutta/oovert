@@ -16,7 +16,6 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
-  const Lenis = window.Lenis;
 
   // No engine, or the reader asked for stillness: show the static page.
   if (reduce || !gsap || !ScrollTrigger) {
@@ -29,13 +28,9 @@
   root.classList.add('cs-motion');
   gsap.registerPlugin(ScrollTrigger);
 
-  // --- Smooth scroll (fine pointers only; touch keeps native momentum) -------
-  if (Lenis && window.matchMedia('(pointer: fine)').matches) {
-    const lenis = new Lenis({ duration: 0.85, smoothWheel: true, wheelMultiplier: 1.1, touchMultiplier: 1.6 });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((t) => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
+  // Native scroll (quick and 1:1). The scroll-linked transitions below run on
+  // the browser's own scroll — no smoothing layer, so it never feels heavy or
+  // laggy while the reveals and scrubs stay intact.
 
   // Per-project motion: the theme sets --motion (1 = base, >1 more expressive,
   // <1 calmer). CSS reads it for its own durations; here we scale GSAP's
