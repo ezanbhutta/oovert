@@ -30,16 +30,30 @@ eleventyComputed:
   <link rel="stylesheet" href="../../css/foundation.css">
   <link rel="stylesheet" href="../../css/case-study.css">
 
-  <!-- Per-project theme tokens (defaults match the base look; foundation.css
-       is wired to consume these in a later phase). -->
+  <!-- Per-project theme: re-points the real tokens the components already read,
+       scoped to this project. Only what the project customises is emitted, so an
+       un-themed project renders in the base OOVERT look. Accents are derived at
+       build time to clear AA on both grounds; --motion scales the reveal tempo
+       (CSS durations here, GSAP timeScale in case-study.js). -->
+  {%- set th = project.theme or {} -%}
   <style>
   [data-theme="{{ project.slug }}"]{
-    --theme-accent: {{ project.theme.accent | default('#815EFA', true) }};
-    --theme-accent-on-light: {{ project.theme.accentOnLight | default('#6039CE', true) }};
-    --theme-accent-on-dark: {{ project.theme.accentOnDark | default('#9B7BFF', true) }};
-    --theme-field: {{ project.theme.field | default('#3A1E8C', true) }};
-    --theme-motion: {{ project.theme.motion | default('1', true) }};
-    --theme-display-wdth: {{ project.theme.displayWidth | default('110', true) }};
+    {%- if th.accent %}
+    --accent: {{ th.accent }};
+    --accent-deep: {{ th.accentOnLight | default(th.accent | onLight, true) }};
+    --accent-invert: {{ th.accentOnDark | default(th.accent | onDark, true) }};
+    {%- endif %}
+    {%- if th.field %}
+    --field-violet: {{ th.field }};
+    --field-ink: {{ th.field | fieldInk }};
+    {%- endif %}
+    {%- if th.ease %}--ease-out: {{ th.ease }};{% endif %}
+    --motion: {{ th.motion | default(1, true) }};
+    --dur-fast: calc(240ms * var(--motion));
+    --dur-med: calc(500ms * var(--motion));
+    --dur-slow: calc(800ms * var(--motion));
+    {%- if th.displayWidth %}--cs-wdth: {{ th.displayWidth }};{% endif %}
+    {%- if th.displayWeight %}--cs-wght: {{ th.displayWeight }};{% endif %}
   }
   </style>
   <!--

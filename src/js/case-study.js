@@ -37,6 +37,12 @@
     gsap.ticker.lagSmoothing(0);
   }
 
+  // Per-project motion: the theme sets --motion (1 = base, >1 more expressive,
+  // <1 calmer). CSS reads it for its own durations; here we scale GSAP's
+  // time-based entrance tweens to match. Scrubbed tweens stay scroll-linked.
+  const motion = parseFloat(getComputedStyle(document.body).getPropertyValue('--motion')) || 1;
+  if (motion !== 1) gsap.globalTimeline.timeScale(1 / motion);
+
   const q = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   // The element a transition acts on: a real <img>, else the placeholder box.
   const mediaOf = (sec) => sec.querySelector('[data-cs-media]') || sec;

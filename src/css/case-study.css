@@ -137,19 +137,19 @@
 
 .cs-display {
   font-size: var(--text-xl);
-  font-weight: 660;
+  font-weight: var(--cs-wght, 660);
   line-height: 0.94;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  font-variation-settings: 'wdth' 110;
+  font-variation-settings: 'wdth' var(--cs-wdth, 110);
   text-wrap: balance;
 }
 .cs-title {
   font-size: var(--text-lg);
-  font-weight: 660;
+  font-weight: var(--cs-wght, 660);
   line-height: 0.98;
   letter-spacing: -0.025em;
-  font-variation-settings: 'wdth' 106;
+  font-variation-settings: 'wdth' var(--cs-wdth, 106);
   text-wrap: balance;
 }
 .cs-display em,
@@ -171,11 +171,11 @@
   margin-inline: auto;
   text-align: center;
   font-size: var(--text-2xl);
-  font-weight: 660;
+  font-weight: var(--cs-wght, 660);
   line-height: 0.94;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  font-variation-settings: 'wdth' 108;
+  font-variation-settings: 'wdth' var(--cs-wdth, 108);
   text-wrap: balance;
 }
 
@@ -368,11 +368,11 @@
 }
 .cs-hero__title {
   font-size: var(--text-2xl);
-  font-weight: 660;
+  font-weight: var(--cs-wght, 660);
   line-height: 0.9;
   letter-spacing: -0.035em;
   text-transform: uppercase;
-  font-variation-settings: 'wdth' 108;
+  font-variation-settings: 'wdth' var(--cs-wdth, 108);
 }
 .cs-hero__title em {
   font-family: var(--font-serif);
