@@ -233,6 +233,14 @@
   object-fit: cover;
 }
 
+/* Video slots share the image box (cover, full width). A dark ground shows
+   through until the first frame or poster paints, so nothing flashes light.
+   Controls, when the owner turns them on, sit above section transforms. */
+.cs-video {
+  background: var(--ink);
+}
+.cs-video[controls] { cursor: auto; }
+
 /* The placeholder: a framed, self-describing brief. Replaced by <img class="cs-img">. */
 .ph {
   position: relative;

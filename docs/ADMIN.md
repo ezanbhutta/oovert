@@ -58,6 +58,32 @@ drop in images, and pick its look.
 4. Set **status** to `published` when it's ready. Drafts don't appear publicly.
 5. Save.
 
+### Using video instead of an image
+Every media slot (and every item in the multi-image sections — concept,
+stationery, social, environment, gallery) has a collapsed **Video** group under
+the image. Open it and upload a clip to that slot; **when a video file is set it
+replaces the image** there. Use `.mp4` (widest support) or `.webm`.
+
+The Video group is your control panel for how it plays:
+- **Autoplay in view** — the clip plays (silently) when it scrolls onto screen
+  and pauses when it leaves. Great for a moving hero or a full-bleed moment.
+  Leave it on for background clips.
+- **Loop** — repeat continuously.
+- **Muted** — required for autoplay (browsers block sound-on autoplay). Only
+  turn this off if you also turn autoplay off and switch controls on.
+- **Show player controls** — the play / pause / volume bar. Best left off for
+  background clips; turn it on for a clip people should choose to watch with
+  sound.
+- **Playback speed** — `1` is normal, `0.5` is half-speed (dreamy), `2` is
+  double.
+- **Start / End (seconds)** — trim: play only a slice of the clip. Leave **End**
+  at `0` to run to the natural end. With Loop on, it loops that slice.
+- **Poster image** — a still shown before the clip plays / while it loads, so
+  nothing flashes empty.
+
+A good background hero clip: autoplay on, loop on, muted on, controls off, and a
+poster still. Keep clips short and compressed — a heavy file is slow to load.
+
 ### Giving a project its own look (theme)
 Open a case study's **theme** section:
 - **accent** — pick one brand colour. The build automatically derives
@@ -81,7 +107,7 @@ serif. Edit around those tags; if in doubt, leave them as they are.
 ## Where things live (for reference)
 - Homepage content: `src/_data/site.json`
 - Case studies: `src/_data/projects/<slug>.json`
-- Uploaded images: `src/assets/uploads/`
+- Uploaded images & videos: `src/assets/uploads/`
 
 ## If you ever want to edit without the admin (the escape hatch)
 Because everything is just files in your repo, you're never locked in:

@@ -18,8 +18,12 @@
   const ScrollTrigger = window.ScrollTrigger;
 
   // No engine, or the reader asked for stillness: show the static page.
+  // Videos still get their settings (speed / trim / controls); autoplay is
+  // suppressed for reduced-motion readers but kept when it's only the engine
+  // that failed to load.
   if (reduce || !gsap || !ScrollTrigger) {
     root.classList.add('cs-static');
+    initVideos(!reduce);
     initLightbox();
     return;
   }
@@ -41,7 +45,7 @@
   const q = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   // The element a transition acts on: a real <img>, else the placeholder box.
   const mediaOf = (sec) => sec.querySelector('[data-cs-media]') || sec;
-  const inner = (fig) => fig.querySelector('img, .ph') || fig;
+  const inner = (fig) => fig.querySelector('img, video, .ph') || fig;
 
   // Copy blocks rise and fade in as they arrive, independent of the section's
   // own media transition. Skipped inside split sections (they scrub words).
@@ -237,10 +241,58 @@
       scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true } });
   }
 
+  initVideos(true);
   initLightbox();
   window.addEventListener('load', () => ScrollTrigger.refresh());
 
   // --- helpers ---------------------------------------------------------------
+  // Owner-configured video slots. Each <video data-cs-video> carries its
+  // settings as data-* (rate = playback speed, start/end = trim window in
+  // seconds); loop / muted / controls / poster are plain HTML attributes set
+  // by the template. Autoplay is handled here, not by the browser, so a clip
+  // only runs while it is on screen — that keeps scrolling at 60fps and spares
+  // the battery. Muted is required for programmatic play() without a gesture.
+  function initVideos(allowAutoplay) {
+    q('[data-cs-video]').forEach((v) => {
+      const rate = parseFloat(v.getAttribute('data-rate'));
+      const start = parseFloat(v.getAttribute('data-start')) || 0;
+      const end = parseFloat(v.getAttribute('data-end')) || 0;
+      const shouldLoop = v.hasAttribute('loop');
+      // With a trim start, drive the loop from JS so the native loop doesn't
+      // race it back to 0 at the natural end.
+      if (start > 0) v.removeAttribute('loop');
+
+      const applyRate = () => { if (rate > 0) v.playbackRate = rate; };
+      const seekStart = () => { if (start > 0) { try { v.currentTime = start; } catch (e) {} } };
+      applyRate();
+      if (v.readyState >= 1) seekStart();
+      else v.addEventListener('loadedmetadata', () => { applyRate(); seekStart(); }, { once: true });
+
+      // Trim window: at the end mark, loop back to the start or stop.
+      if (start > 0 || end > 0) {
+        v.addEventListener('timeupdate', () => {
+          const stop = end > 0 ? end : (v.duration || Infinity);
+          if (v.currentTime >= stop) {
+            if (shouldLoop) { v.currentTime = start; const p = v.play(); if (p) p.catch(() => {}); }
+            else { v.pause(); }
+          }
+        });
+      }
+
+      // Play only while visible; the browser's own autoplay is disabled above.
+      const wantsAutoplay = v.hasAttribute('autoplay');
+      v.removeAttribute('autoplay');
+      if (wantsAutoplay && allowAutoplay && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); }
+            else { v.pause(); }
+          });
+        }, { threshold: 0.2 });
+        io.observe(v);
+      }
+    });
+  }
   function splitWords(host) {
     const out = [];
     const walk = (node) => {

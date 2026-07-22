@@ -7,6 +7,25 @@ permalink: "/work/{{ project.slug | slugify }}/index.html"
 eleventyComputed:
   title: "{{ project.name | safe }} — OOVERT case study"
 ---
+{#-
+  media(m, cls, attrs) — one media slot. Renders, in order of precedence:
+    1. a <video> when the slot has video.src (with its playback settings),
+    2. an <img> when the slot has image / src,
+    3. otherwise the placeholder passed as the {% call %} body.
+  Works for both single slots (m.image) and gallery/array items (m.src).
+  Autoplay implies muted + playsinline (browsers block sound-on autoplay);
+  speed / start / end are read by case-study.js as data-rate / start / end.
+-#}
+{%- macro media(m, cls='', attrs='loading="lazy"') -%}
+{%- set v = m.video -%}
+{%- if v and v.src -%}
+<video class="cs-img cs-video{% if cls %} {{ cls }}{% endif %}"{% if v.poster %} poster="{{ v.poster }}"{% endif %}{% if v.controls %} controls{% endif %}{% if v.loop %} loop{% endif %}{% if v.autoplay %} autoplay muted playsinline{% elif v.muted %} muted{% endif %} preload="metadata" data-cs-video{% if v.speed %} data-rate="{{ v.speed }}"{% endif %}{% if v.start %} data-start="{{ v.start }}"{% endif %}{% if v.end %} data-end="{{ v.end }}"{% endif %}{% if m.alt %} aria-label="{{ m.alt }}"{% endif %}><source src="{{ v.src }}"></video>
+{%- elif m.image or m.src -%}
+<img class="cs-img{% if cls %} {{ cls }}{% endif %}" src="{{ m.image or m.src }}" alt="{{ m.alt | default('', true) }}"{% if attrs %} {{ attrs | safe }}{% endif %}>
+{%- else -%}
+{% if caller %}{{ caller() }}{% endif %}
+{%- endif -%}
+{%- endmacro -%}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -72,10 +91,11 @@ eleventyComputed:
     Driven by one JSON file per project (src/_data/projects/<slug>.json). Every
     visual is a placeholder that states exactly what image belongs there, its
     ratio, size, composition, and the motion it will receive. A project with no
-    images renders the annotated placeholders unchanged; adding images to the
-    project JSON swaps each placeholder for the real <img>. Copy comes from the
-    project fields. Motion + smooth-scroll are handled by ../../js/case-study.js
-    (GSAP + Lenis).
+    media renders the annotated placeholders unchanged; adding an image — or a
+    video with its playback settings — to a slot swaps the placeholder for the
+    real <img> / <video> (see the media() macro at the top of this file). Copy
+    comes from the project fields. Motion is handled by ../../js/case-study.js
+    (GSAP + ScrollTrigger; video playback / autoplay-in-view lives there too).
     ==========================================================================
   -->
 </head>
@@ -96,14 +116,12 @@ eleventyComputed:
     <!-- Purpose: introduce the project with maximum impact, full frame. -->
     <section class="cs-section cs-section--ink cs-hero" data-cs="hero" aria-label="Project hero">
       <figure class="cs-hero__media" data-cs-media>
-        <!-- SWAP → <img class="cs-img" src="hero.jpg" alt="[Project] — final identity, hero shot" fetchpriority="high"> -->
-        {% if project.sections.hero.image %}
-        <img class="cs-img" src="{{ project.sections.hero.image }}" alt="{{ project.sections.hero.alt | default('', true) }}" fetchpriority="high">
-        {% else %}
+        <!-- SWAP → hero image OR a background video (project.sections.hero.video) -->
+        {% call media(project.sections.hero, '', 'fetchpriority="high"') %}
         <div class="ph">
           <div class="ph__inner">
-            <span class="ph__kicker">Hero image</span>
-            <p class="ph__desc">Full-bleed landscape of the finished work &mdash; the single most striking frame of the identity, on a dark or moody ground.</p>
+            <span class="ph__kicker">Hero image or video</span>
+            <p class="ph__desc">Full-bleed landscape of the finished work &mdash; the single most striking frame of the identity, on a dark or moody ground. A muted, looping clip works here too.</p>
             <dl class="ph__specs">
               <div><dt>Ratio</dt><dd>16:9</dd></div>
               <div><dt>Size</dt><dd>2400px+ wide</dd></div>
@@ -112,7 +130,7 @@ eleventyComputed:
             <p class="ph__motion"><span>Motion</span>Scale 1.08 &rarr; 1.00 on load, slow parallax drift on scroll</p>
           </div>
         </div>
-        {% endif %}
+        {% endcall %}
       </figure>
       <div class="cs-hero__inner">
         <div class="cs-hero__meta">
@@ -133,13 +151,11 @@ eleventyComputed:
             <p class="cs-body" data-cs-text>{{ project.intro.body | safe }}</p>
           </div>
           <figure class="cs-figure" data-cs-media>
-            <!-- SWAP → <img class="cs-img" src="intro.jpg" alt="[Project] — introduction portrait"> -->
-            {% if project.sections.intro.image %}
-            <img class="cs-img" src="{{ project.sections.intro.image }}" alt="{{ project.sections.intro.alt | default('', true) }}" loading="lazy">
-            {% else %}
+            <!-- SWAP → intro image OR video (project.sections.intro.video) -->
+            {% call media(project.sections.intro) %}
             <div class="ph ph--4x5">
               <div class="ph__inner">
-                <span class="ph__kicker">Portrait image</span>
+                <span class="ph__kicker">Portrait image or video</span>
                 <p class="ph__desc">One quiet, high-craft portrait crop &mdash; a detail, the founder, or the object at the heart of the brand.</p>
                 <dl class="ph__specs">
                   <div><dt>Ratio</dt><dd>4:5</dd></div>
@@ -149,7 +165,7 @@ eleventyComputed:
                 <p class="ph__motion"><span>Motion</span>Wipes open left &rarr; right; the text rises beside it</p>
               </div>
             </div>
-            {% endif %}
+            {% endcall %}
           </figure>
         </div>
       </div>
@@ -171,14 +187,12 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">04</span> {{ project.sections.logo.eyebrow }}</p>
         <h2 class="cs-title" id="cs-logo-h" data-cs-text>{{ project.sections.logo.headline | safe }}</h2>
         <figure class="cs-figure cs-mt" data-cs-media style="max-width:52rem;margin-inline:auto">
-          <!-- SWAP → <img class="cs-img" src="logo.png" alt="[Project] — primary logo"> (transparent PNG/SVG) -->
-          {% if project.sections.logo.image %}
-          <img class="cs-img" src="{{ project.sections.logo.image }}" alt="{{ project.sections.logo.alt | default('', true) }}" loading="lazy">
-          {% else %}
+          <!-- SWAP → logo image (transparent PNG/SVG) OR an animated logo video -->
+          {% call media(project.sections.logo) %}
           <div class="ph ph--3x2">
             <div class="ph__inner">
-              <span class="ph__kicker">Logo &mdash; transparent</span>
-              <p class="ph__desc">The primary lockup on its own, centered, with nothing competing for attention.</p>
+              <span class="ph__kicker">Logo &mdash; transparent (or animated)</span>
+              <p class="ph__desc">The primary lockup on its own, centered, with nothing competing for attention. An animated build works well here.</p>
               <dl class="ph__specs">
                 <div><dt>Ratio</dt><dd>3:2</dd></div>
                 <div><dt>Size</dt><dd>2000px, PNG/SVG</dd></div>
@@ -187,7 +201,7 @@ eleventyComputed:
               <p class="ph__motion"><span>Motion</span>Scales up from 0.78 with a soft counter-rotation, settling true</p>
             </div>
           </div>
-          {% endif %}
+          {% endcall %}
         </figure>
       </div>
     </section>
@@ -198,10 +212,8 @@ eleventyComputed:
       <div class="cs-inner">
         <div class="cs-cols">
           <figure class="cs-figure cs-cols__sticky" data-cs-media>
-            <!-- SWAP → <img class="cs-img" src="construction.jpg" alt="[Project] — logo construction / grid"> -->
-            {% if project.sections.construction.image %}
-            <img class="cs-img" src="{{ project.sections.construction.image }}" alt="{{ project.sections.construction.alt | default('', true) }}" loading="lazy">
-            {% else %}
+            <!-- SWAP → construction image OR video (grid build, animation) -->
+            {% call media(project.sections.construction) %}
             <div class="ph ph--1x1">
               <div class="ph__inner">
                 <span class="ph__kicker">Construction</span>
@@ -214,7 +226,7 @@ eleventyComputed:
                 <p class="ph__motion"><span>Motion</span>Pinned &mdash; holds still while the notes scroll; a slow scale settle</p>
               </div>
             </div>
-            {% endif %}
+            {% endcall %}
           </figure>
           <div class="cs-cols__flow">
             <p class="cs-eyebrow"><span class="cs-eyebrow__num">05</span> {{ project.sections.construction.eyebrow }}</p>
@@ -233,8 +245,8 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">06</span> {{ project.sections.concept.eyebrow }}</p>
         <h2 class="cs-title" id="cs-concept-h" data-cs-text>{{ project.sections.concept.headline | safe }}</h2>
         <div class="cs-trio cs-mt">
-          {% for img in project.sections.concept.images %}
-          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% for item in project.sections.concept.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media>{{ media(item) }}</figure>
           {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="concept-1.jpg" alt="[Project] — moodboard"> -->
@@ -282,10 +294,8 @@ eleventyComputed:
         <h2 class="cs-title" id="cs-type-h" data-cs-text>{{ project.sections.typography.headline | safe }}</h2>
       </div>
       <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
-        <!-- SWAP → <img class="cs-img" src="type.jpg" alt="[Project] — typography composition"> -->
-        {% if project.sections.typography.image %}
-        <img class="cs-img" src="{{ project.sections.typography.image }}" alt="{{ project.sections.typography.alt | default('', true) }}" loading="lazy">
-        {% else %}
+        <!-- SWAP → typography image OR video (kinetic type) -->
+        {% call media(project.sections.typography) %}
         <div class="ph ph--16x9">
           <div class="ph__inner">
             <span class="ph__kicker">Type composition</span>
@@ -298,7 +308,7 @@ eleventyComputed:
             <p class="ph__motion"><span>Motion</span>Unmasks from the bottom up as it enters</p>
           </div>
         </div>
-        {% endif %}
+        {% endcall %}
       </figure>
     </section>
 
@@ -310,10 +320,8 @@ eleventyComputed:
         <h2 class="cs-title" id="cs-colour-h" data-cs-text>{{ project.sections.colour.headline | safe }}</h2>
       </div>
       <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
-        <!-- SWAP → <img class="cs-img" src="colour.jpg" alt="[Project] — colour composition"> -->
-        {% if project.sections.colour.image %}
-        <img class="cs-img" src="{{ project.sections.colour.image }}" alt="{{ project.sections.colour.alt | default('', true) }}" loading="lazy">
-        {% else %}
+        <!-- SWAP → colour image OR video -->
+        {% call media(project.sections.colour) %}
         <div class="ph ph--21x9">
           <div class="ph__inner">
             <span class="ph__kicker">Colour composition</span>
@@ -326,7 +334,7 @@ eleventyComputed:
             <p class="ph__motion"><span>Motion</span>Fades up from the ground and drifts on a parallax layer</p>
           </div>
         </div>
-        {% endif %}
+        {% endcall %}
       </figure>
     </section>
 
@@ -337,10 +345,8 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">09</span> {{ project.sections.graphic.eyebrow }}</p>
         <h2 class="cs-title" id="cs-graphic-h" data-cs-text>{{ project.sections.graphic.headline | safe }}</h2>
         <figure class="cs-figure cs-mt" data-cs-media>
-          <!-- SWAP → <img class="cs-img" src="graphic.jpg" alt="[Project] — graphic language / pattern"> -->
-          {% if project.sections.graphic.image %}
-          <img class="cs-img" src="{{ project.sections.graphic.image }}" alt="{{ project.sections.graphic.alt | default('', true) }}" loading="lazy">
-          {% else %}
+          <!-- SWAP → graphic-language image OR video (motion system) -->
+          {% call media(project.sections.graphic) %}
           <div class="ph ph--3x2">
             <div class="ph__inner">
               <span class="ph__kicker">Pattern &amp; icons</span>
@@ -353,7 +359,7 @@ eleventyComputed:
               <p class="ph__motion"><span>Motion</span>Scales in with a slight rotation, resolving to square</p>
             </div>
           </div>
-          {% endif %}
+          {% endcall %}
         </figure>
       </div>
     </section>
@@ -366,10 +372,8 @@ eleventyComputed:
         <h2 class="cs-title" id="cs-card-h" data-cs-text>{{ project.sections.card.headline | safe }}</h2>
       </div>
       <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
-        <!-- SWAP → <img class="cs-img" src="card.jpg" alt="[Project] — business card mockup"> -->
-        {% if project.sections.card.image %}
-        <img class="cs-img" src="{{ project.sections.card.image }}" alt="{{ project.sections.card.alt | default('', true) }}" loading="lazy">
-        {% else %}
+        <!-- SWAP → business-card image OR video -->
+        {% call media(project.sections.card) %}
         <div class="ph ph--16x9">
           <div class="ph__inner">
             <span class="ph__kicker">Business card</span>
@@ -382,7 +386,7 @@ eleventyComputed:
             <p class="ph__motion"><span>Motion</span>Slides in from the left as it enters</p>
           </div>
         </div>
-        {% endif %}
+        {% endcall %}
       </figure>
     </section>
 
@@ -393,8 +397,8 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">11</span> {{ project.sections.stationery.eyebrow }}</p>
         <h2 class="cs-title" id="cs-stat-h" data-cs-text>{{ project.sections.stationery.headline | safe }}</h2>
         <div class="cs-grid3 cs-mt">
-          {% for img in project.sections.stationery.images %}
-          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% for item in project.sections.stationery.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media>{{ media(item) }}</figure>
           {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="stationery-1.jpg" alt="[Project] — letterhead"> -->
@@ -417,14 +421,12 @@ eleventyComputed:
     <!-- Purpose: a full-bleed hero moment. Slow zoom in. -->
     <section class="cs-section cs-section--ink cs-section--flush" data-cs="zoom" aria-label="Packaging">
       <figure class="cs-figure cs-figure--bleed" data-cs-media>
-        <!-- SWAP → <img class="cs-img" src="packaging.jpg" alt="[Project] — packaging"> -->
-        {% if project.sections.packaging.image %}
-        <img class="cs-img" src="{{ project.sections.packaging.image }}" alt="{{ project.sections.packaging.alt | default('', true) }}" loading="lazy">
-        {% else %}
+        <!-- SWAP → packaging image OR a full-bleed video -->
+        {% call media(project.sections.packaging) %}
         <div class="ph ph--21x9">
           <div class="ph__inner">
-            <span class="ph__kicker">Packaging &mdash; full bleed</span>
-            <p class="ph__desc">The most cinematic application shot, edge to edge &mdash; packaging, product, or the identity in a real environment.</p>
+            <span class="ph__kicker">Packaging &mdash; full bleed (image or video)</span>
+            <p class="ph__desc">The most cinematic application shot, edge to edge &mdash; packaging, product, or the identity in a real environment. A full-bleed clip is at its best here.</p>
             <dl class="ph__specs">
               <div><dt>Ratio</dt><dd>21:9 (full width)</dd></div>
               <div><dt>Size</dt><dd>3200px+ wide</dd></div>
@@ -433,7 +435,7 @@ eleventyComputed:
             <p class="ph__motion"><span>Motion</span>Slow push-in (Ken Burns) across the whole section</p>
           </div>
         </div>
-        {% endif %}
+        {% endcall %}
       </figure>
     </section>
 
@@ -444,8 +446,8 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">13</span> {{ project.sections.social.eyebrow }}</p>
         <h2 class="cs-title" id="cs-social-h" data-cs-text>{{ project.sections.social.headline | safe }}</h2>
         <div class="cs-phones cs-mt">
-          {% for img in project.sections.social.images %}
-          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% for item in project.sections.social.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media>{{ media(item) }}</figure>
           {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="social-1.jpg" alt="[Project] — social post 1"> -->
@@ -472,14 +474,12 @@ eleventyComputed:
         <h2 class="cs-title" id="cs-web-h" data-cs-text>{{ project.sections.website.headline | safe }}</h2>
         <div class="cs-frame cs-mt">
           <div class="cs-frame__long" data-cs-long>
-            <!-- SWAP → <img class="cs-img" src="website-full.jpg" alt="[Project] — full site screenshot"> -->
-            {% if project.sections.website.image %}
-            <img class="cs-img" src="{{ project.sections.website.image }}" alt="{{ project.sections.website.alt | default('', true) }}" loading="lazy">
-            {% else %}
+            <!-- SWAP → long site screenshot (scrubs in the frame) OR a screen-recording video -->
+            {% call media(project.sections.website) %}
             <div class="ph">
               <div class="ph__inner">
-                <span class="ph__kicker">Long desktop screenshot</span>
-                <p class="ph__desc">One tall, full-page capture of the site. It scrolls inside this pinned browser frame as you move down the page.</p>
+                <span class="ph__kicker">Long desktop screenshot (or screen recording)</span>
+                <p class="ph__desc">One tall, full-page capture of the site. It scrolls inside this pinned browser frame as you move down the page. A screen-recording video plays here instead.</p>
                 <dl class="ph__specs">
                   <div><dt>Ratio</dt><dd>Tall (1440px wide)</dd></div>
                   <div><dt>Size</dt><dd>1440 &times; up to ~6000px</dd></div>
@@ -488,7 +488,7 @@ eleventyComputed:
                 <p class="ph__motion"><span>Motion</span>Section pins; the screenshot scrubs upward inside the frame</p>
               </div>
             </div>
-            {% endif %}
+            {% endcall %}
           </div>
         </div>
         <p class="cs-cap">Tip: also supply a mobile screenshot (9:19) &mdash; drop it beside the frame if you want the responsive story too.</p>
@@ -502,8 +502,8 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">15</span> {{ project.sections.environment.eyebrow }}</p>
         <h2 class="cs-title" id="cs-env-h" data-cs-text>{{ project.sections.environment.headline | safe }}</h2>
         <div class="cs-layers cs-mt">
-          {% for img in project.sections.environment.images %}
-          <figure class="cs-figure" data-cs-layer data-speed="{{ img.speed | default('-12', true) }}" data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% for item in project.sections.environment.images %}
+          <figure class="cs-figure" data-cs-layer data-speed="{{ item.speed | default('-12', true) }}" data-cs-media>{{ media(item) }}</figure>
           {% else %}
           <figure class="cs-figure" data-cs-layer data-speed="-14" data-cs-media>
             <!-- SWAP → <img class="cs-img" src="env-billboard.jpg" alt="[Project] — billboard"> -->
@@ -522,14 +522,12 @@ eleventyComputed:
     <!-- Purpose: the brand lived-in. A long, slow cinematic fade. -->
     <section class="cs-section cs-section--ink cs-section--flush" data-cs="cinematic" aria-label="Brand in context">
       <figure class="cs-figure cs-figure--bleed" data-cs-media>
-        <!-- SWAP → <img class="cs-img" src="context.jpg" alt="[Project] — lifestyle / in context"> -->
-        {% if project.sections.context.image %}
-        <img class="cs-img" src="{{ project.sections.context.image }}" alt="{{ project.sections.context.alt | default('', true) }}" loading="lazy">
-        {% else %}
+        <!-- SWAP → in-context image OR a cinematic full-bleed video -->
+        {% call media(project.sections.context) %}
         <div class="ph ph--16x9">
           <div class="ph__inner">
-            <span class="ph__kicker">Lifestyle &amp; product</span>
-            <p class="ph__desc">Photography of the brand in real hands or spaces &mdash; warm, human, unstaged where possible.</p>
+            <span class="ph__kicker">Lifestyle &amp; product (image or video)</span>
+            <p class="ph__desc">Photography or film of the brand in real hands or spaces &mdash; warm, human, unstaged where possible.</p>
             <dl class="ph__specs">
               <div><dt>Ratio</dt><dd>16:9 (full width)</dd></div>
               <div><dt>Size</dt><dd>2800px+ wide</dd></div>
@@ -538,7 +536,7 @@ eleventyComputed:
             <p class="ph__motion"><span>Motion</span>Long, slow fade and settle &mdash; the calmest beat on the page</p>
           </div>
         </div>
-        {% endif %}
+        {% endcall %}
       </figure>
     </section>
 
@@ -549,8 +547,8 @@ eleventyComputed:
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">17</span> {{ project.sections.gallery.eyebrow }}</p>
         <h2 class="cs-title" id="cs-gallery-h" data-cs-text>{{ project.sections.gallery.headline | safe }}</h2>
         <div class="cs-masonry cs-mt">
-          {% for img in project.sections.gallery.images %}
-          <figure class="cs-figure" data-cs-item data-cs-media><img class="cs-img" src="{{ img.src }}" alt="{{ img.alt | default('', true) }}" loading="lazy"></figure>
+          {% for item in project.sections.gallery.images %}
+          <figure class="cs-figure" data-cs-item data-cs-media>{{ media(item) }}</figure>
           {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; portrait</span><p class="ph__desc">Any strong detail.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
           <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; landscape</span><p class="ph__desc">Application shot.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
