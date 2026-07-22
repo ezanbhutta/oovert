@@ -239,25 +239,13 @@
   --mf-dim: rgba(233, 229, 218, 0.20);
 }
 
-.manifesto--pin {
-  height: 260vh;
-}
-
 .manifesto__stage {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 78vh;
-  padding: clamp(6rem, 4rem + 10vw, 11rem) var(--margin);
+  min-height: 100vh;
+  padding: clamp(5rem, 3rem + 8vw, 9rem) var(--margin);
   overflow: clip;
-}
-
-.manifesto--pin .manifesto__stage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  min-height: 0;
-  padding: 0 var(--margin);
 }
 
 .manifesto__bg {
@@ -301,8 +289,7 @@
 }
 
 .manifesto__text .mf-word {
-  display: inline-block;
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
 .manifesto__text .mf-key {
