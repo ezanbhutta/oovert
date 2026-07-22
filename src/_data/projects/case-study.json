@@ -2,7 +2,7 @@
   "slug": "Nowa Brand Identity",
   "status": "draft",
   "order": 1,
-  "name": "NOWA",
+  "name": "<!DOCTYPE html> <html> <head> <style>   .gellix-text {     font-family: 'Gellix', 'Nova', sans-serif;     font-size: 20px;   } </style> </head> <body>   <p class=\"gellix-text\">This text is displayed in Gellix font.</p> </body> </html>",
   "client": "Client",
   "sector": "Modest Wear",
   "year": "2024",
