@@ -319,7 +319,7 @@ collections:
     summary: "{{name}}"
     identifier_field: name
     fields:
-      - { name: slug, label: "Slug", widget: string, hint: "URL: /work/<slug>/" }
+      - { name: slug, label: "Slug (URL)", widget: string, hint: "The page URL: /work/<slug>/. Lowercase words with hyphens, e.g. nowa-brand-identity. Spaces/capitals are auto-cleaned, but keep it short and readable." }
       - { name: status, label: "Status", widget: select, options: ["draft", "published"], default: "published" }
       - { name: order, label: "Order", widget: number, value_type: int, required: false }
       - { name: name, label: "Name", widget: string, hint: "Supports HTML, e.g. wrap a word in <em>…</em>" }
