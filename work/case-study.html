@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case study — OOVERT</title>
+  <meta name="description" content="OOVERT case study template. A cinematic, editorial scroll experience built to present a brand identity project.">
+  <meta name="theme-color" content="#16140F">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="../css/foundation.css">
+  <link rel="stylesheet" href="../css/case-study.css">
+  <!--
+    ==========================================================================
+    OOVERT — CASE STUDY TEMPLATE
+    Duplicate this file per project (work/<slug>.html). Every visual is a
+    placeholder that states exactly what image belongs there, its ratio, size,
+    composition, and the motion it will receive. To go live, swap each
+    placeholder <div class="ph ...">…</div> for the <img> shown in the comment
+    above it, and fill the bracketed [ … ] copy. Nothing else needs touching.
+    Motion + smooth-scroll are handled by ../js/case-study.js (GSAP + Lenis).
+    ==========================================================================
+  -->
+</head>
+<body class="cs-page">
+  <a class="skip-link" href="#cs-main">Skip to content</a>
+
+  <!-- Fixed header (persists over every section) -->
+  <header class="cs-head">
+    <a class="cs-head__back" href="../index.html#evidence"><span aria-hidden="true">&larr;</span> All work</a>
+    <span class="cs-head__title">[ Project name ] &middot; OOVERT</span>
+    <a class="cs-head__next" href="../index.html#evidence">Next project <span aria-hidden="true">&rarr;</span></a>
+    <div class="cs-progress"><div class="cs-progress__fill"></div></div>
+  </header>
+
+  <main id="cs-main">
+
+    <!-- ================= 01 · HERO ================= -->
+    <!-- Purpose: introduce the project with maximum impact, full frame. -->
+    <section class="cs-section cs-section--ink cs-hero" data-cs="hero" aria-label="Project hero">
+      <figure class="cs-hero__media" data-cs-media>
+        <!-- SWAP → <img class="cs-img" src="hero.jpg" alt="[Project] — final identity, hero shot" fetchpriority="high"> -->
+        <div class="ph">
+          <div class="ph__inner">
+            <span class="ph__kicker">Hero image</span>
+            <p class="ph__desc">Full-bleed landscape of the finished work &mdash; the single most striking frame of the identity, on a dark or moody ground.</p>
+            <dl class="ph__specs">
+              <div><dt>Ratio</dt><dd>16:9</dd></div>
+              <div><dt>Size</dt><dd>2400px+ wide</dd></div>
+              <div><dt>Frame</dt><dd>Centered subject, generous air</dd></div>
+            </dl>
+            <p class="ph__motion"><span>Motion</span>Scale 1.08 &rarr; 1.00 on load, slow parallax drift on scroll</p>
+          </div>
+        </div>
+      </figure>
+      <div class="cs-hero__inner">
+        <div class="cs-hero__meta">
+          <span>[ Client ]</span><span>[ Sector ]</span><span>[ Year ]</span><span>[ Scope: naming, identity, web ]</span>
+        </div>
+        <h1 class="cs-hero__title">[ Project&nbsp;<em>name</em> ]</h1>
+      </div>
+    </section>
+
+    <!-- ================= 02 · INTRODUCTION ================= -->
+    <!-- Purpose: set the scene. Minimal words beside a single portrait. -->
+    <section class="cs-section cs-section--paper" data-cs="clip" aria-labelledby="cs-intro-h">
+      <div class="cs-inner">
+        <div class="cs-cols">
+          <div class="cs-cols__flow">
+            <p class="cs-eyebrow"><span class="cs-eyebrow__num">02</span> Introduction</p>
+            <h2 class="cs-title" id="cs-intro-h" data-cs-text>[ The one-line premise of the project. ]</h2>
+            <p class="cs-body" data-cs-text>[ Two or three sentences: who the client is, what they came to OOVERT for, and the shift you were hired to make. Keep it human and specific &mdash; roughly 45 words. ]</p>
+          </div>
+          <figure class="cs-figure" data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="intro.jpg" alt="[Project] — introduction portrait"> -->
+            <div class="ph ph--4x5">
+              <div class="ph__inner">
+                <span class="ph__kicker">Portrait image</span>
+                <p class="ph__desc">One quiet, high-craft portrait crop &mdash; a detail, the founder, or the object at the heart of the brand.</p>
+                <dl class="ph__specs">
+                  <div><dt>Ratio</dt><dd>4:5</dd></div>
+                  <div><dt>Size</dt><dd>1600&times;2000px+</dd></div>
+                  <div><dt>Frame</dt><dd>Tight, editorial</dd></div>
+                </dl>
+                <p class="ph__motion"><span>Motion</span>Wipes open left &rarr; right; the text rises beside it</p>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 · BRAND STATEMENT ================= -->
+    <!-- Purpose: the idea, stated once, at scale. No image. -->
+    <section class="cs-section cs-section--ink" data-cs="split" aria-label="Brand statement">
+      <div class="cs-inner">
+        <p class="cs-statement" data-cs-words>[ The idea the whole brand hangs on, in one bold line &mdash; the sentence you would defend in the room. ]</p>
+        <p class="cs-body cs-mt" style="margin-inline:auto;text-align:center" data-cs-text>[ One small supporting sentence underneath. ]</p>
+      </div>
+    </section>
+
+    <!-- ================= 04 · LOGO SHOWCASE ================= -->
+    <!-- Purpose: the mark, alone, given room. -->
+    <section class="cs-section cs-section--paper" data-cs="logo" aria-labelledby="cs-logo-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">04</span> The mark</p>
+        <h2 class="cs-title" id="cs-logo-h" data-cs-text>[ A short line about the logo idea. ]</h2>
+        <figure class="cs-figure cs-mt" data-cs-media style="max-width:52rem;margin-inline:auto">
+          <!-- SWAP → <img class="cs-img" src="logo.png" alt="[Project] — primary logo"> (transparent PNG/SVG) -->
+          <div class="ph ph--3x2">
+            <div class="ph__inner">
+              <span class="ph__kicker">Logo &mdash; transparent</span>
+              <p class="ph__desc">The primary lockup on its own, centered, with nothing competing for attention.</p>
+              <dl class="ph__specs">
+                <div><dt>Ratio</dt><dd>3:2</dd></div>
+                <div><dt>Size</dt><dd>2000px, PNG/SVG</dd></div>
+                <div><dt>Frame</dt><dd>Centered, ample margin</dd></div>
+              </dl>
+              <p class="ph__motion"><span>Motion</span>Scales up from 0.78 with a soft counter-rotation, settling true</p>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= 05 · CONSTRUCTION DETAIL ================= -->
+    <!-- Purpose: show the rigor. Image pins; the notes scroll past it. -->
+    <section class="cs-section cs-section--paper" data-cs="sticky" aria-labelledby="cs-build-h">
+      <div class="cs-inner">
+        <div class="cs-cols">
+          <figure class="cs-figure cs-cols__sticky" data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="construction.jpg" alt="[Project] — logo construction / grid"> -->
+            <div class="ph ph--1x1">
+              <div class="ph__inner">
+                <span class="ph__kicker">Construction</span>
+                <p class="ph__desc">Grid, geometry, or sketch view of the mark &mdash; the proof there is a system underneath.</p>
+                <dl class="ph__specs">
+                  <div><dt>Ratio</dt><dd>1:1</dd></div>
+                  <div><dt>Size</dt><dd>1800&times;1800px</dd></div>
+                  <div><dt>Frame</dt><dd>Technical, on grid</dd></div>
+                </dl>
+                <p class="ph__motion"><span>Motion</span>Pinned &mdash; holds still while the notes scroll; a slow scale settle</p>
+              </div>
+            </div>
+          </figure>
+          <div class="cs-cols__flow">
+            <p class="cs-eyebrow"><span class="cs-eyebrow__num">05</span> Construction</p>
+            <h2 class="cs-title" id="cs-build-h" data-cs-text>[ How the mark is built. ]</h2>
+            <p class="cs-body" data-cs-text>[ Note one &mdash; the grid, the proportion, the angle. What rule governs it? ]</p>
+            <p class="cs-body" data-cs-text>[ Note two &mdash; the decision that took the longest, and why it was worth it. ]</p>
+            <p class="cs-body" data-cs-text>[ Note three &mdash; how it behaves small, or in one colour. ]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 · CONCEPT EXPLORATION ================= -->
+    <!-- Purpose: the thinking behind the final. Three uprights, in sequence. -->
+    <section class="cs-section cs-section--ink" data-cs="sequence" aria-labelledby="cs-concept-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">06</span> Exploration</p>
+        <h2 class="cs-title" id="cs-concept-h" data-cs-text>[ Where the idea came from. ]</h2>
+        <div class="cs-trio cs-mt">
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="concept-1.jpg" alt="[Project] — moodboard"> -->
+            <div class="ph ph--4x5">
+              <div class="ph__inner">
+                <span class="ph__kicker">Moodboard</span>
+                <p class="ph__desc">Reference and tone &mdash; the world the brand wants to live in.</p>
+                <dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div><div><dt>Size</dt><dd>1400&times;1750px</dd></div></dl>
+                <p class="ph__motion"><span>Motion</span>Reveals first, in sequence</p>
+              </div>
+            </div>
+          </figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="concept-2.jpg" alt="[Project] — sketches"> -->
+            <div class="ph ph--4x5">
+              <div class="ph__inner">
+                <span class="ph__kicker">Sketch</span>
+                <p class="ph__desc">Hand or early digital exploration &mdash; the rough that shows the search.</p>
+                <dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div><div><dt>Size</dt><dd>1400&times;1750px</dd></div></dl>
+                <p class="ph__motion"><span>Motion</span>Reveals second</p>
+              </div>
+            </div>
+          </figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="concept-3.jpg" alt="[Project] — chosen direction"> -->
+            <div class="ph ph--4x5">
+              <div class="ph__inner">
+                <span class="ph__kicker">Chosen concept</span>
+                <p class="ph__desc">The direction that won, cleaned up &mdash; the bridge to the final work.</p>
+                <dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div><div><dt>Size</dt><dd>1400&times;1750px</dd></div></dl>
+                <p class="ph__motion"><span>Motion</span>Reveals last</p>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 07 · TYPOGRAPHY ================= -->
+    <!-- Purpose: the voice in letterforms. Artwork unmasks bottom-up. -->
+    <section class="cs-section cs-section--paper" data-cs="mask" aria-labelledby="cs-type-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">07</span> Typography</p>
+        <h2 class="cs-title" id="cs-type-h" data-cs-text>[ The typeface and why it fits. ]</h2>
+      </div>
+      <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
+        <!-- SWAP → <img class="cs-img" src="type.jpg" alt="[Project] — typography composition"> -->
+        <div class="ph ph--16x9">
+          <div class="ph__inner">
+            <span class="ph__kicker">Type composition</span>
+            <p class="ph__desc">A large type specimen &mdash; the alphabet, a headline set at size, or the scale in use.</p>
+            <dl class="ph__specs">
+              <div><dt>Ratio</dt><dd>16:9</dd></div>
+              <div><dt>Size</dt><dd>2400px+ wide</dd></div>
+              <div><dt>Frame</dt><dd>Confident, lots of black</dd></div>
+            </dl>
+            <p class="ph__motion"><span>Motion</span>Unmasks from the bottom up as it enters</p>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ================= 08 · COLOUR STORY ================= -->
+    <!-- Purpose: the palette as a feeling. Fade + layered parallax. -->
+    <section class="cs-section cs-section--ink" data-cs="parallax" aria-labelledby="cs-colour-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">08</span> Colour</p>
+        <h2 class="cs-title" id="cs-colour-h" data-cs-text>[ What the palette is doing. ]</h2>
+      </div>
+      <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
+        <!-- SWAP → <img class="cs-img" src="colour.jpg" alt="[Project] — colour composition"> -->
+        <div class="ph ph--21x9">
+          <div class="ph__inner">
+            <span class="ph__kicker">Colour composition</span>
+            <p class="ph__desc">A single artful frame &mdash; large colour blocks, texture, or material that carries the palette.</p>
+            <dl class="ph__specs">
+              <div><dt>Ratio</dt><dd>21:9</dd></div>
+              <div><dt>Size</dt><dd>2800px+ wide</dd></div>
+              <div><dt>Frame</dt><dd>Abstract, immersive</dd></div>
+            </dl>
+            <p class="ph__motion"><span>Motion</span>Fades up from the ground and drifts on a parallax layer</p>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ================= 09 · GRAPHIC LANGUAGE ================= -->
+    <!-- Purpose: the system beyond the logo. Scale + slight rotate. -->
+    <section class="cs-section cs-section--paper" data-cs="rotate" aria-labelledby="cs-graphic-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">09</span> Graphic language</p>
+        <h2 class="cs-title" id="cs-graphic-h" data-cs-text>[ The pattern, icon set, or device. ]</h2>
+        <figure class="cs-figure cs-mt" data-cs-media>
+          <!-- SWAP → <img class="cs-img" src="graphic.jpg" alt="[Project] — graphic language / pattern"> -->
+          <div class="ph ph--3x2">
+            <div class="ph__inner">
+              <span class="ph__kicker">Pattern &amp; icons</span>
+              <p class="ph__desc">Brand graphics laid out as a set &mdash; pattern, iconography, or the supporting shapes.</p>
+              <dl class="ph__specs">
+                <div><dt>Ratio</dt><dd>3:2</dd></div>
+                <div><dt>Size</dt><dd>2200px+ wide</dd></div>
+                <div><dt>Frame</dt><dd>Systematic, tiled</dd></div>
+              </dl>
+              <p class="ph__motion"><span>Motion</span>Scales in with a slight rotation, resolving to square</p>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= 10 · BUSINESS CARD ================= -->
+    <!-- Purpose: the identity in the hand. Slides in from the left. -->
+    <section class="cs-section cs-section--ink" data-cs="slide-x" aria-labelledby="cs-card-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">10</span> In the hand</p>
+        <h2 class="cs-title" id="cs-card-h" data-cs-text>[ A note on the print details. ]</h2>
+      </div>
+      <figure class="cs-figure cs-figure--wide cs-mt" data-cs-media>
+        <!-- SWAP → <img class="cs-img" src="card.jpg" alt="[Project] — business card mockup"> -->
+        <div class="ph ph--16x9">
+          <div class="ph__inner">
+            <span class="ph__kicker">Business card</span>
+            <p class="ph__desc">A large, tactile mockup &mdash; both sides, edge or stock detail if it earns its place.</p>
+            <dl class="ph__specs">
+              <div><dt>Ratio</dt><dd>16:9</dd></div>
+              <div><dt>Size</dt><dd>2400px+ wide</dd></div>
+              <div><dt>Frame</dt><dd>Angled or flat-lay, real light</dd></div>
+            </dl>
+            <p class="ph__motion"><span>Motion</span>Slides in from the left as it enters</p>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ================= 11 · STATIONERY ================= -->
+    <!-- Purpose: the system applied. Grid cascades from centre. -->
+    <section class="cs-section cs-section--paper" data-cs="cascade" aria-labelledby="cs-stat-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">11</span> Stationery</p>
+        <h2 class="cs-title" id="cs-stat-h" data-cs-text>[ The everyday collateral. ]</h2>
+        <div class="cs-grid3 cs-mt">
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="stationery-1.jpg" alt="[Project] — letterhead"> -->
+            <div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Letterhead</span><p class="ph__desc">Correspondence or document.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div></dl><p class="ph__motion"><span>Motion</span>Cascades from centre</p></div></div>
+          </figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="stationery-2.jpg" alt="[Project] — envelope / compliment slip"> -->
+            <div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Envelope</span><p class="ph__desc">Envelope or comp slip.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div></dl><p class="ph__motion"><span>Motion</span>Cascades from centre</p></div></div>
+          </figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="stationery-3.jpg" alt="[Project] — folder / notebook"> -->
+            <div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Folder</span><p class="ph__desc">Folder, notebook, or tag.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>4:5</dd></div></dl><p class="ph__motion"><span>Motion</span>Cascades from centre</p></div></div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 12 · PACKAGING ================= -->
+    <!-- Purpose: a full-bleed hero moment. Slow zoom in. -->
+    <section class="cs-section cs-section--ink cs-section--flush" data-cs="zoom" aria-label="Packaging">
+      <figure class="cs-figure cs-figure--bleed" data-cs-media>
+        <!-- SWAP → <img class="cs-img" src="packaging.jpg" alt="[Project] — packaging"> -->
+        <div class="ph ph--21x9">
+          <div class="ph__inner">
+            <span class="ph__kicker">Packaging &mdash; full bleed</span>
+            <p class="ph__desc">The most cinematic application shot, edge to edge &mdash; packaging, product, or the identity in a real environment.</p>
+            <dl class="ph__specs">
+              <div><dt>Ratio</dt><dd>21:9 (full width)</dd></div>
+              <div><dt>Size</dt><dd>3200px+ wide</dd></div>
+              <div><dt>Frame</dt><dd>Room to breathe; safe centre</dd></div>
+            </dl>
+            <p class="ph__motion"><span>Motion</span>Slow push-in (Ken Burns) across the whole section</p>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ================= 13 · SOCIAL MEDIA ================= -->
+    <!-- Purpose: the brand at phone scale. Frames rise into a fanned stack. -->
+    <section class="cs-section cs-section--paper" data-cs="stack" aria-labelledby="cs-social-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">13</span> Social</p>
+        <h2 class="cs-title" id="cs-social-h" data-cs-text>[ How the brand behaves in-feed. ]</h2>
+        <div class="cs-phones cs-mt">
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="social-1.jpg" alt="[Project] — social post 1"> -->
+            <div class="ph ph--phone"><div class="ph__inner"><span class="ph__kicker">Phone 1</span><p class="ph__desc">Profile or key post.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>9:19</dd></div></dl><p class="ph__motion"><span>Motion</span>Rises into stack</p></div></div>
+          </figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="social-2.jpg" alt="[Project] — social post 2"> -->
+            <div class="ph ph--phone"><div class="ph__inner"><span class="ph__kicker">Phone 2</span><p class="ph__desc">Story or carousel.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>9:19</dd></div></dl><p class="ph__motion"><span>Motion</span>Lifted centre frame</p></div></div>
+          </figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="social-3.jpg" alt="[Project] — social post 3"> -->
+            <div class="ph ph--phone"><div class="ph__inner"><span class="ph__kicker">Phone 3</span><p class="ph__desc">Grid or reel cover.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>9:19</dd></div></dl><p class="ph__motion"><span>Motion</span>Rises into stack</p></div></div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 14 · WEBSITE ================= -->
+    <!-- Purpose: the digital home. Section pins; the long shot scrubs up. -->
+    <section class="cs-section cs-section--ink" data-cs="pin-scrub" aria-labelledby="cs-web-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">14</span> Website</p>
+        <h2 class="cs-title" id="cs-web-h" data-cs-text>[ The identity, live. ]</h2>
+        <div class="cs-frame cs-mt">
+          <div class="cs-frame__long" data-cs-long>
+            <!-- SWAP → <img class="cs-img" src="website-full.jpg" alt="[Project] — full site screenshot"> -->
+            <div class="ph">
+              <div class="ph__inner">
+                <span class="ph__kicker">Long desktop screenshot</span>
+                <p class="ph__desc">One tall, full-page capture of the site. It scrolls inside this pinned browser frame as you move down the page.</p>
+                <dl class="ph__specs">
+                  <div><dt>Ratio</dt><dd>Tall (1440px wide)</dd></div>
+                  <div><dt>Size</dt><dd>1440 &times; up to ~6000px</dd></div>
+                  <div><dt>Frame</dt><dd>Homepage, full length</dd></div>
+                </dl>
+                <p class="ph__motion"><span>Motion</span>Section pins; the screenshot scrubs upward inside the frame</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-cap">Tip: also supply a mobile screenshot (9:19) &mdash; drop it beside the frame if you want the responsive story too.</p>
+      </div>
+    </section>
+
+    <!-- ================= 15 · ENVIRONMENTAL GRAPHICS ================= -->
+    <!-- Purpose: the brand at scale, outside. Layers move at different speeds. -->
+    <section class="cs-section cs-section--paper" data-cs="layer" aria-labelledby="cs-env-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">15</span> Environment</p>
+        <h2 class="cs-title" id="cs-env-h" data-cs-text>[ The brand in the world. ]</h2>
+        <div class="cs-layers cs-mt">
+          <figure class="cs-figure" data-cs-layer data-speed="-14" data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="env-billboard.jpg" alt="[Project] — billboard"> -->
+            <div class="ph ph--16x9"><div class="ph__inner"><span class="ph__kicker">Billboard</span><p class="ph__desc">Large-format out-of-home &mdash; the brand at its biggest.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>16:9</dd></div><div><dt>Size</dt><dd>2400px+</dd></div></dl><p class="ph__motion"><span>Motion</span>Parallax, fastest layer</p></div></div>
+          </figure>
+          <figure class="cs-figure" data-cs-layer data-speed="-7" data-cs-media>
+            <!-- SWAP → <img class="cs-img" src="env-storefront.jpg" alt="[Project] — storefront / signage"> -->
+            <div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Storefront &amp; signage</span><p class="ph__desc">Signage, wayfinding, or a storefront application.</p><dl class="ph__specs"><div><dt>Ratio</dt><dd>3:2</dd></div><div><dt>Size</dt><dd>2200px+</dd></div></dl><p class="ph__motion"><span>Motion</span>Parallax, slower layer</p></div></div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 16 · BRAND IN CONTEXT ================= -->
+    <!-- Purpose: the brand lived-in. A long, slow cinematic fade. -->
+    <section class="cs-section cs-section--ink cs-section--flush" data-cs="cinematic" aria-label="Brand in context">
+      <figure class="cs-figure cs-figure--bleed" data-cs-media>
+        <!-- SWAP → <img class="cs-img" src="context.jpg" alt="[Project] — lifestyle / in context"> -->
+        <div class="ph ph--16x9">
+          <div class="ph__inner">
+            <span class="ph__kicker">Lifestyle &amp; product</span>
+            <p class="ph__desc">Photography of the brand in real hands or spaces &mdash; warm, human, unstaged where possible.</p>
+            <dl class="ph__specs">
+              <div><dt>Ratio</dt><dd>16:9 (full width)</dd></div>
+              <div><dt>Size</dt><dd>2800px+ wide</dd></div>
+              <div><dt>Frame</dt><dd>Cinematic, shallow depth</dd></div>
+            </dl>
+            <p class="ph__motion"><span>Motion</span>Long, slow fade and settle &mdash; the calmest beat on the page</p>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ================= 17 · GALLERY ================= -->
+    <!-- Purpose: everything else, at a glance. Masonry, rises in, lightbox. -->
+    <section class="cs-section cs-section--paper" data-cs="masonry" aria-labelledby="cs-gallery-h">
+      <div class="cs-inner">
+        <p class="cs-eyebrow"><span class="cs-eyebrow__num">17</span> Gallery</p>
+        <h2 class="cs-title" id="cs-gallery-h" data-cs-text>[ The rest of the system. ]</h2>
+        <div class="cs-masonry cs-mt">
+          <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; portrait</span><p class="ph__desc">Any strong detail.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+          <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; landscape</span><p class="ph__desc">Application shot.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+          <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--1x1"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; square</span><p class="ph__desc">Detail or icon.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+          <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--3x2"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; landscape</span><p class="ph__desc">Application shot.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+          <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--4x5"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; portrait</span><p class="ph__desc">Any strong detail.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+          <figure class="cs-figure" data-cs-item data-cs-media><div class="ph ph--1x1"><div class="ph__inner"><span class="ph__kicker">Gallery &mdash; square</span><p class="ph__desc">Detail or icon.</p><p class="ph__motion"><span>Motion</span>Rises in on enter</p></div></div></figure>
+        </div>
+        <p class="cs-cap">Supply 6&ndash;10 images. Real images open in a lightbox on click.</p>
+      </div>
+    </section>
+
+    <!-- ================= 18 · CLOSING ================= -->
+    <!-- Purpose: sign off; send them onward. -->
+    <section class="cs-section cs-section--ink cs-closing" data-cs="closing" aria-label="Closing">
+      <div class="cs-inner">
+        <figure class="cs-closing__mark" data-cs-media aria-hidden="true">
+          <svg viewBox="0 0 297.55 66.38" fill="currentColor">
+            <path d="M148.46,65.32h-10.12l-21.6-51.52h12.75l13.91,35.82,13.8-35.82h12.85l-21.6,51.52Z"/>
+            <path d="M220.79,43.41h-39.51c1.47,7.59,6.74,12.33,15.07,12.33,6.32,0,11.27-2.95,12.33-7.38h11.8c-1.9,10.85-11.7,18.02-24.34,18.02-15.07,0-26.76-11.7-26.76-27.08s11.7-26.55,26.55-26.55c13.91,0,25.18,10.64,25.18,25.71,0,1.37-.11,4-.32,4.95ZM208.36,33.4c-1.05-5.9-6.01-10.01-13.07-10.01s-12.01,3.69-13.7,10.01h26.76Z"/>
+            <path d="M258.36,13.38v10.75c-1.69-.42-3.48-.74-5.16-.74-7.48,0-13.59,5.16-13.59,14.43v27.5h-11.69V13.8h11.69v6.85c3.06-4.95,7.8-7.9,13.91-7.9,1.58,0,3.27.32,4.85.63Z"/>
+            <path d="M284.07,24.97v20.76c0,6.53,4,9.17,9.69,9.17,1.26,0,2.63-.11,3.79-.42v10.85c-1.79.42-4.42.63-6.32.63-11.38,0-18.96-6.95-18.96-20.02v-20.97h-9.8v-11.17h9.8V0h11.8v13.8h13.49v11.17h-13.49Z"/>
+            <path d="M38.9,14.59c10.39,2.55,17.39,13.26,17.3,23.78.5,19.73-19.54,32.79-37.82,26.35C-1.3,58.18-6.66,31.27,9.61,18.32c2.35-1.8,5-3.07,7.72-3.77l.9,1.89c-7.51,5.57-10.79,15.8-7.96,24.48,3.52,12.29,18.76,16.83,28.84,9.6,11.26-8.17,9.92-25.95-1.12-34.05,0,0,.9-1.89.9-1.89h0Z"/>
+            <path d="M21.98,47.63c-6.91-1.73-10.83-9.35-9.67-16.22.97-7.56,8.26-13.41,15.83-13.24,14.62-.09,21.73,17.93,10.51,27.34-1.34,1.01-2.84,1.76-4.39,2.15l-.51-1.08c4.41-3.34,6.09-8.92,4.53-13.93-1.88-6.93-10.8-9.59-16.41-5.47-6.33,4.56-5.72,14.78.64,19.38,0,0-.51,1.08-.51,1.08h0Z"/>
+            <path d="M77.71,64.53c-10.39-2.55-17.39-13.26-17.3-23.78-.5-19.73,19.54-32.79,37.82-26.35,19.68,6.54,25.04,33.45,8.77,46.4-2.35,1.8-5,3.07-7.72,3.77l-.9-1.89c7.51-5.57,10.78-15.8,7.96-24.48-3.52-12.29-18.76-16.83-28.84-9.6-11.26,8.17-9.92,25.95,1.12,34.05,0,0-.9,1.89-.9,1.89h0Z"/>
+            <path d="M94.63,31.5c6.91,1.73,10.83,9.35,9.67,16.22-.97,7.56-8.26,13.41-15.83,13.24-14.62.09-21.73-17.93-10.51-27.34,1.34-1.01,2.84-1.76,4.39-2.15l.51,1.08c-4.41,3.34-6.09,8.92-4.53,13.93,1.88,6.93,10.8,9.59,16.41,5.47,6.33-4.56,5.72-14.78-.64-19.38,0,0,.51-1.08.51-1.08h0Z"/>
+          </svg>
+        </figure>
+        <p class="cs-body" style="margin-inline:auto;text-align:center" data-cs-text>[ One closing line &mdash; the result, or a thank-you to the client. ]</p>
+        <a class="cs-next" href="../index.html#evidence">Next project <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Motion engine (self-hosted GSAP + ScrollTrigger + Lenis). Order matters. -->
+  <script src="../vendor/gsap.min.js"></script>
+  <script src="../vendor/ScrollTrigger.min.js"></script>
+  <script src="../vendor/lenis.min.js"></script>
+  <script src="../js/case-study.js"></script>
+</body>
+</html>
