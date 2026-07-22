@@ -15,11 +15,7 @@
   "statementSupport": "That one line decided the gold, the spacing, and everything we left out.",
   "closing": "New label. Doesn't look new.",
   "nextUrl": "../../index.html#evidence",
-  "theme": {
-    "mood": "veil",
-    "accent": "#BF7D1F",
-    "field": "#2A1D0B"
-  },
+  "theme": null,
   "sections": {
     "hero": {
       "image": "",
