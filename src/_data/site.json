@@ -1,0 +1,350 @@
+{
+  "meta": {
+    "pageTitle": "OOVERT · Brand Strategy and Identity Studio",
+    "description": "OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. Founded 2020.",
+    "canonicalUrl": "https://oovert-agency.vercel.app/",
+    "themeColor": "#16140F",
+    "og": {
+      "siteName": "OOVERT",
+      "title": "OOVERT · Camouflage is for prey.",
+      "description": "Brand strategy, naming, and identity design for companies that want to be seen. A distributed studio.",
+      "url": "https://oovert-agency.vercel.app/",
+      "image": "https://oovert-agency.vercel.app/assets/og.png",
+      "imageAlt": "OOVERT. Camouflage is for prey. Brand strategy and identity."
+    },
+    "twitter": {
+      "title": "OOVERT · Camouflage is for prey.",
+      "description": "Brand strategy, naming, and identity design for companies that want to be seen.",
+      "image": "https://oovert-agency.vercel.app/assets/og.png"
+    }
+  },
+  "schema": {
+    "name": "OOVERT",
+    "legalName": "Oovert LLC",
+    "url": "https://oovert-agency.vercel.app/",
+    "email": "new@oovert.com",
+    "foundingDate": "2020",
+    "slogan": "Camouflage is for prey.",
+    "description": "OOVERT is a brand strategy and identity studio. We name companies, position them, and design brand identities that get remembered and chosen.",
+    "logo": "https://oovert-agency.vercel.app/favicon.svg",
+    "image": "https://oovert-agency.vercel.app/assets/og.png",
+    "areaServed": "Worldwide",
+    "knowsAbout": ["Brand strategy", "Brand naming", "Brand positioning", "Visual identity design", "Rebranding", "Design systems", "Brand guidelines"],
+    "makesOffer": ["Brand strategy", "Brand positioning", "Brand identity design", "Brand guidelines and rollout"],
+    "sameAs": [
+      "https://www.instagram.com/oovert/",
+      "https://www.linkedin.com/company/oovert-agency/",
+      "https://www.are.na/oovert"
+    ]
+  },
+  "a11y": {
+    "skipLink": "Skip to content"
+  },
+  "nav": {
+    "links": [
+      { "label": "Practice", "href": "#practice" },
+      { "label": "Pricing", "href": "#packages" },
+      { "label": "Studio", "href": "#studio" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "menuButtonLabel": "Menu"
+  },
+  "menu": {
+    "links": [
+      { "num": "01", "label": "Premise", "href": "#premise" },
+      { "num": "02", "label": "Practice", "href": "#practice" },
+      { "num": "03", "label": "Packages", "href": "#packages" },
+      { "num": "04", "label": "Evidence", "href": "#evidence" },
+      { "num": "05", "label": "Studio", "href": "#studio" },
+      { "num": "06", "label": "Invitation", "href": "#contact" }
+    ],
+    "meta": "Distributed, six timezones<br>new@oovert.com"
+  },
+  "chapterRail": [
+    { "num": "01", "href": "#premise", "aria": "Chapter 01, Premise" },
+    { "num": "02", "href": "#practice", "aria": "Chapter 02, Practice" },
+    { "num": "03", "href": "#packages", "aria": "Chapter 03, Packages" },
+    { "num": "04", "href": "#evidence", "aria": "Chapter 04, Evidence" },
+    { "num": "05", "href": "#studio", "aria": "Chapter 05, Studio" },
+    { "num": "06", "href": "#contact", "aria": "Chapter 06, Invitation" }
+  ],
+  "hero": {
+    "metaTags": [
+      "Brand strategy and identity",
+      "A distributed studio",
+      "Since 2020"
+    ],
+    "title": "<span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.08s\">Camouflage</span></span>\n        <span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.2s\">is for <em>prey.</em></span></span>",
+    "lede": "OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. If your company looks and sounds like its competitors, that is the problem we solve.",
+    "ctaPrimary": { "label": "Start a project", "url": "#contact" },
+    "ctaSecondary": { "label": "How we work", "url": "#practice" },
+    "scrollLabel": "Scroll",
+    "statusLine": "Now booking new projects"
+  },
+  "premise": {
+    "chapterLabel": "The premise",
+    "statement": "<span class=\"line\"><span class=\"line__inner\">Most branding</span></span>\n        <span class=\"line\"><span class=\"line__inner\">is camouflage.</span></span>",
+    "body": "Safe colours. Borrowed language. A logo built to upset no one, and forgotten by everyone. That is not branding. It is money spent to stay invisible, and companies pay it every month.",
+    "counter": "<span class=\"line\"><span class=\"line__inner\">We build</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>the opposite.</em></span></span>",
+    "pullLine": "A clear brand is <em>a business asset.</em>",
+    "pullNote": "It shortens your sales cycle, protects your pricing when the market gets nervous, and gives customers a reason to choose you before they have even spoken to you."
+  },
+  "manifesto": {
+    "text": "Visibility is economics. It starts with <span class=\"mf-key\">Strategy</span>, the one true thing no competitor can copy, sharpened by <span class=\"mf-key\">Positioning</span> until the market cannot look away. Then the <span class=\"mf-key\">Identity</span> that carries it: a name, a mark, a voice recognised before it is read. <span class=\"mf-key\">Naming</span> makes it travel. <span class=\"mf-key\">Rebranding</span> wakes the companies the world stopped seeing. Camouflage is for <em>prey.</em> We build brands that refuse to hide."
+  },
+  "practice": {
+    "chapterLabel": "The practice",
+    "intro": "<span class=\"line\"><span class=\"line__inner\">We keep the offer</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>short on purpose.</em></span></span>",
+    "items": [
+      {
+        "num": "01",
+        "name": "Brand strategy",
+        "desc": "It starts with a few weeks of interviews, audits and honest questions. We are looking for the one true thing about your company that no competitor can copy. Everything else gets built on top of it."
+      },
+      {
+        "num": "02",
+        "name": "Positioning",
+        "desc": "One clear sentence about who you are for and why you are the obvious choice. If your nearest competitor could say the same line, you do not have a position yet."
+      },
+      {
+        "num": "03",
+        "name": "Brand identity",
+        "desc": "Name, logo, type, colour, voice and motion, built into one system people recognise before they finish reading it."
+      },
+      {
+        "num": "04",
+        "name": "Guidelines and rollout",
+        "desc": "The guidelines, templates and everyday tools your team needs to keep the brand sharp long after we hand it over."
+      }
+    ],
+    "terms": "Every engagement runs on senior people start to finish, so your brand is never handed to a B team."
+  },
+  "packages": {
+    "chapterLabel": "The packages",
+    "chapterNote": "Professional branding in the US averages about $7,500. Ours start at $280.",
+    "lead": "<span class=\"line\"><span class=\"line__inner\">World-class branding,</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>a fraction of the cost.</em></span></span>",
+    "onetime": {
+      "note": "Fixed scope, fixed price, delivered fast. One brief, one invoice, one launch.",
+      "cards": [
+        {
+          "name": "Basic",
+          "price": "$280",
+          "desc": "To get a real brand off the ground.",
+          "ctaLabel": "Order now",
+          "ctaUrl": "#contact",
+          "features": [
+            "1 logo concept",
+            "Logo transparency",
+            "Vector &amp; source files",
+            "Print-ready files",
+            "2 revisions",
+            "2-day delivery"
+          ]
+        },
+        {
+          "featured": true,
+          "badge": "Most popular",
+          "name": "Premium Branding",
+          "price": "$480",
+          "desc": "Everything you need to launch and grow.",
+          "ctaLabel": "Order now",
+          "ctaUrl": "#contact",
+          "more": "Everything in Basic, plus",
+          "features": [
+            "3 logo concepts",
+            "Complete brand guidelines",
+            "Competitive analysis",
+            "Colour palette &amp; typography",
+            "Imagery &amp; graphic styles",
+            "Logo usage guidelines",
+            "Social media kit",
+            "3D mockups",
+            "Business-card design",
+            "Unlimited revisions"
+          ]
+        },
+        {
+          "name": "The Brand Ecosystem",
+          "price": "$987",
+          "desc": "To scale and market online.",
+          "ctaLabel": "Order now",
+          "ctaUrl": "#contact",
+          "more": "Everything in Premium, plus",
+          "features": [
+            "Marketing angles strategy",
+            "Brand vision &amp; voice",
+            "10 social creatives",
+            "LinkedIn profile design",
+            "Email marketing design",
+            "5 Google ad banners",
+            "5 static ad creatives",
+            "Packaging &amp; merchandising",
+            "Pattern, icon &amp; UI assets",
+            "5-day delivery"
+          ]
+        }
+      ]
+    },
+    "monthly": {
+      "note": "Design on tap, month to month. Pause or cancel anytime, no lock-in.",
+      "cards": [
+        {
+          "name": "Solo",
+          "price": "$4,999",
+          "per": "/mo",
+          "desc": "One active request at a time.",
+          "ctaLabel": "Start today",
+          "ctaUrl": "#contact",
+          "features": [
+            "Unlimited brands",
+            "Unlimited users",
+            "Unlimited revisions",
+            "Senior designers only",
+            "Pause or cancel anytime"
+          ]
+        },
+        {
+          "featured": true,
+          "badge": "Most popular",
+          "name": "Studio",
+          "price": "$7,999",
+          "per": "/mo",
+          "desc": "Two active requests at a time.",
+          "ctaLabel": "Start today",
+          "ctaUrl": "#contact",
+          "more": "Everything in Solo, plus",
+          "features": [
+            "Two requests in parallel",
+            "Priority turnaround",
+            "Dedicated project lead",
+            "Quarterly brand review",
+            "Pause or cancel anytime"
+          ]
+        },
+        {
+          "name": "Scale",
+          "price": "Custom",
+          "desc": "A dedicated squad for high volume.",
+          "ctaLabel": "Let&rsquo;s talk",
+          "ctaUrl": "#contact",
+          "more": "Everything in Studio, plus",
+          "features": [
+            "Multiple parallel requests",
+            "Multi-disciplinary team",
+            "Same-day standups",
+            "Custom SLAs",
+            "Named references on request"
+          ]
+        }
+      ]
+    },
+    "staff": {
+      "note": "Our senior people, embedded in your team for as long as you need them.",
+      "cards": [
+        {
+          "name": "Dedicated Designer",
+          "price": "$3,900",
+          "per": "/mo",
+          "desc": "One senior designer, full-time on your team.",
+          "ctaLabel": "Book a call",
+          "ctaUrl": "#contact",
+          "features": [
+            "Full-time, dedicated",
+            "Your tools &amp; workflow",
+            "Direct daily comms",
+            "Monthly rolling",
+            "Pause anytime"
+          ]
+        },
+        {
+          "featured": true,
+          "badge": "Most popular",
+          "name": "Design Pod",
+          "price": "$8,900",
+          "per": "/mo",
+          "desc": "A small senior squad: design and strategy.",
+          "ctaLabel": "Book a call",
+          "ctaUrl": "#contact",
+          "features": [
+            "2 to 3 senior specialists",
+            "Design, strategy &amp; direction",
+            "Shared project lead",
+            "Your tools &amp; workflow",
+            "Monthly rolling"
+          ]
+        },
+        {
+          "name": "Embedded Team",
+          "price": "From $18k",
+          "per": "/mo",
+          "desc": "A full multi-disciplinary team on tap.",
+          "ctaLabel": "Let&rsquo;s talk",
+          "ctaUrl": "#contact",
+          "features": [
+            "Designers, strategists &amp; engineers",
+            "Scales up or down monthly",
+            "Embedded project management",
+            "Custom SLAs",
+            "Named references on request"
+          ]
+        }
+      ]
+    },
+    "guarantee": "<strong>Money-back guarantee.</strong> If you are not thrilled with the work, we keep going until you are, or refund you."
+  },
+  "evidence": {
+    "chapterLabel": "The evidence",
+    "hold": "<span class=\"line\"><span class=\"line__inner\">Proof, on</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>request.</em></span></span>",
+    "note": "We are putting the current results together for this page. Ask, and we will show you the numbers that matter in your category, with clients you can call.",
+    "linkLabel": "See how we present a project",
+    "linkUrl": "work/case-study.html"
+  },
+  "studio": {
+    "chapterLabel": "The studio",
+    "statement": "<span class=\"line\"><span class=\"line__inner\">Senior hands only.</span></span>\n        <span class=\"line\"><span class=\"line__inner\">Four disciplines.</span></span>\n        <span class=\"line\"><span class=\"line__inner\">One question:</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>would we sign it?</em></span></span>",
+    "principles": [
+      {
+        "num": "P.1",
+        "text": "We show you one direction, not three. Choosing is the hard part, and it is the part you are paying us for."
+      },
+      {
+        "num": "P.2",
+        "text": "If something is not working, we say so in the room, not in the wrap-up email."
+      },
+      {
+        "num": "P.3",
+        "text": "Good taste is not a line on the invoice. It is the reason to hire a studio like this one."
+      },
+      {
+        "num": "P.4",
+        "text": "If the strategy cannot survive being explained in a hallway in one breath, it is not finished."
+      }
+    ],
+    "where": "A distributed studio across six timezones. We work wherever the project takes us."
+  },
+  "contact": {
+    "chapterLabel": "The invitation",
+    "statement": "<span class=\"line\"><span class=\"line__inner\">Say it</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>out loud.</em></span></span>",
+    "email": "new@oovert.com",
+    "note": "If you are serious about the work, tell us about the project and roughly what you plan to invest. We read everything that fits."
+  },
+  "footer": {
+    "indexLabel": "Index",
+    "indexLinks": [
+      { "label": "Premise", "href": "#premise" },
+      { "label": "Practice", "href": "#practice" },
+      { "label": "Packages", "href": "#packages" },
+      { "label": "Evidence", "href": "#evidence" },
+      { "label": "Studio", "href": "#studio" },
+      { "label": "Invitation", "href": "#contact" }
+    ],
+    "elsewhereLabel": "Elsewhere",
+    "socialLinks": [
+      { "label": "Instagram", "url": "https://www.instagram.com/oovert/" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/company/oovert-agency/" },
+      { "label": "Are.na", "url": "https://www.are.na/oovert" }
+    ],
+    "copyright": "&copy; 2026 Oovert LLC",
+    "backToTopLabel": "Back to top &uarr;"
+  }
+}
