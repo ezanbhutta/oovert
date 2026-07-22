@@ -1,16 +1,20 @@
 /**
- * Manifesto dissolve.
- * As the band scrolls past, the connective copy fades from the top down while
- * the capability keywords stay lit. Scroll-linked, never pins: the page keeps
- * moving normally. A fixed fade window in the upper-middle of the viewport
- * sweeps down the text as you scroll, so words dissolve top to bottom.
+ * Manifesto dissolve + gather.
+ * As the band scrolls through the viewport (it never pins), the connective
+ * copy fades from the top down while the capability keywords lift out of the
+ * sentence and gather into a centered, evenly spaced list. Both are driven by
+ * the section's own scroll progress, so by the time it reaches the middle of
+ * the screen the paragraph has resolved into the centered list, and the page
+ * keeps scrolling normally throughout.
  *
- * Progressive enhancement: with no JS (or reduced motion) it's a legible
- * paragraph and nothing fades.
+ * Progressive enhancement: a legible paragraph with no JS or reduced motion,
+ * nothing fades or moves.
  */
 export function initManifesto({ reducedMotion } = {}) {
+  const section = document.querySelector('.manifesto');
   const el = document.querySelector('[data-manifesto]');
-  if (!el) return;
+  if (!section || !el) return;
+  const stage = section.querySelector('.manifesto__stage') || section;
 
   // Split text nodes into words; keep marked keywords / <em> whole.
   const nodes = [...el.childNodes];
@@ -19,9 +23,8 @@ export function initManifesto({ reducedMotion } = {}) {
     if (node.nodeType === Node.TEXT_NODE) {
       for (const tok of node.textContent.split(/(\s+)/)) {
         if (tok === '') continue;
-        if (/^\s+$/.test(tok)) {
-          frag.appendChild(document.createTextNode(' '));
-        } else {
+        if (/^\s+$/.test(tok)) frag.appendChild(document.createTextNode(' '));
+        else {
           const s = document.createElement('span');
           s.className = 'mf-word';
           s.textContent = tok;
@@ -38,31 +41,54 @@ export function initManifesto({ reducedMotion } = {}) {
   el.appendChild(frag);
 
   const words = [...el.querySelectorAll('.mf-word')];
-  // Only the connective words dissolve; the keywords stay lit.
+  const keys = words.filter((w) => w.classList.contains('mf-key'));
   const plains = words.filter((w) => !w.classList.contains('mf-key'));
-  if (!plains.length || reducedMotion) return;
+  if (!words.length || reducedMotion) return;
 
-  let centers = [];
+  const smooth = (a, b, t) => {
+    t = (t - a) / (b - a);
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    return t * t * (3 - 2 * t);
+  };
+
+  // Target: an evenly spaced, centered column inside the stage.
+  let targets = [];
   const measure = () => {
-    const sy = window.scrollY;
-    centers = plains.map((w) => {
-      const r = w.getBoundingClientRect();
-      return r.top + sy + r.height / 2;
+    keys.forEach((k) => (k.style.transform = ''));
+    const sr = stage.getBoundingClientRect();
+    const cx = sr.width / 2;
+    const cy = sr.height / 2;
+    const rects = keys.map((k) => {
+      const r = k.getBoundingClientRect();
+      return { cx: r.left - sr.left + r.width / 2, cy: r.top - sr.top + r.height / 2, h: r.height };
     });
+    const gap = rects[0].h * 1.5;
+    const total = gap * (keys.length - 1);
+    targets = rects.map((s, i) => ({ dx: cx - s.cx, dy: cy - total / 2 + i * gap - s.cy }));
   };
 
   let ticking = false;
   const update = () => {
     ticking = false;
     const vh = window.innerHeight;
-    const solid = vh * 0.62; // below this line, fully visible
-    const gone = vh * 0.36;  // above this line, fully faded
-    const sy = window.scrollY;
-    for (let i = 0; i < plains.length; i++) {
-      const y = centers[i] - sy;
-      let o = (y - gone) / (solid - gone);
-      o = o < 0 ? 0 : o > 1 ? 1 : o;
-      plains[i].style.opacity = o.toFixed(3);
+    const top = section.getBoundingClientRect().top;
+    // 0 as the section enters low in the viewport, 1 as it reaches centre.
+    let p = (vh * 0.55 - top) / (vh * 0.55 + vh * 0.02);
+    p = p < 0 ? 0 : p > 1 ? 1 : p;
+
+    // Keywords gather to the centered column.
+    const move = smooth(0.28, 0.95, p);
+    for (let i = 0; i < keys.length; i++) {
+      const t = targets[i];
+      keys[i].style.transform = `translate(${(t.dx * move).toFixed(1)}px, ${(t.dy * move).toFixed(1)}px)`;
+    }
+
+    // Connective words dissolve top to bottom, staggered by reading order.
+    const n = plains.length;
+    for (let i = 0; i < n; i++) {
+      const s = (i / n) * 0.5;
+      const f = smooth(s, s + 0.35, p);
+      plains[i].style.opacity = (1 - f).toFixed(3);
     }
   };
   const onScroll = () => {
