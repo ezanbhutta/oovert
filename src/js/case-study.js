@@ -31,7 +31,7 @@
 
   // --- Smooth scroll (fine pointers only; touch keeps native momentum) -------
   if (Lenis && window.matchMedia('(pointer: fine)').matches) {
-    const lenis = new Lenis({ duration: 1.1, smoothWheel: true, wheelMultiplier: 0.9 });
+    const lenis = new Lenis({ duration: 0.85, smoothWheel: true, wheelMultiplier: 1.1, touchMultiplier: 1.6 });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -174,12 +174,23 @@
       });
     },
 
-    // 14 Website — section pins; the long screenshot scrubs upward.
+    // 14 Website — section pins; the long screenshot scrubs upward. Only when a
+    // real screenshot is present: pinning an empty placeholder would just eat
+    // screens of dead scroll, so an image-less slot renders inline instead. The
+    // pin distance is also capped so even a very tall shot never traps the
+    // reader for more than ~1.4 viewports.
     'pin-scrub'(sec) {
       const shot = sec.querySelector('[data-cs-long]');
       if (!shot) return;
-      const distance = () => Math.max(0, shot.scrollHeight - shot.parentElement.clientHeight);
-      gsap.to(shot, { y: () => -distance(), ease: 'none',
+      if (!shot.querySelector('img')) {
+        const frame = shot.parentElement;
+        frame.style.height = 'auto';
+        shot.style.position = 'static';
+        return;
+      }
+      const cap = () => window.innerHeight * 1.4;
+      const distance = () => Math.min(cap(), Math.max(0, shot.scrollHeight - shot.parentElement.clientHeight));
+      gsap.to(shot, { y: () => -Math.max(0, shot.scrollHeight - shot.parentElement.clientHeight), ease: 'none',
         scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + (distance() + window.innerHeight),
           pin: true, scrub: true, invalidateOnRefresh: true } });
     },
