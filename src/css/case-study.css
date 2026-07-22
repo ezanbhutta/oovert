@@ -520,6 +520,74 @@
 .cs-block-space--medium { height: clamp(4rem, 9vw, 8rem); }
 .cs-block-space--large { height: clamp(7rem, 15vw, 14rem); }
 
+/* === Veil & Crescent mood (theme.mood: "veil") ============================
+   A modest, unhurried motion personality: every image unveils behind a soft
+   veil that lifts away on a gentle arc, a crescent of warm light waxes behind
+   the hero wordmark, and each section number carries a small moon. The feel
+   is covered-then-revealed — restraint over spectacle. Motion in case-study.js
+   under the `veil` branch; this file holds the surfaces it animates. */
+
+/* The lifting veil over a media element. JS animates transform (yPercent). Its
+   lower edge is a shallow arc, so the reveal sweeps in like a rising moon. */
+.cs-veil-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: var(--paper);
+  border-radius: 0 0 46% 46% / 0 0 12% 12%;
+  will-change: transform;
+}
+.cs-section--ink .cs-veil-layer,
+.cs-hero .cs-veil-layer { background: var(--ink); }
+
+/* Hero crescent — a soft moon of warm light behind the wordmark. Sits above
+   the media, below the title, so the word reads first and the moon glows. */
+.cs-crescent {
+  position: absolute;
+  z-index: 1;
+  left: 72%;
+  top: 32%;
+  width: min(42vmin, 27rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  will-change: transform;
+}
+.cs-crescent__moon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in oklab, var(--accent-invert) 55%, #fff) 0%,
+    var(--accent-invert) 52%,
+    transparent 74%);
+  /* Carve the crescent: subtract an offset circle, the same move as the logo. */
+  -webkit-mask: radial-gradient(circle at 63% 45%, transparent 46%, #000 47%);
+          mask: radial-gradient(circle at 63% 45%, transparent 46%, #000 47%);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  filter: blur(0.5px);
+  will-change: transform, opacity;
+}
+
+/* A small waning crescent before each section number. */
+.cs-veil .cs-eyebrow__num::before {
+  content: '\263E';
+  margin-right: 0.5em;
+  font-size: 1.05em;
+  vertical-align: -0.02em;
+}
+
+/* Modesty tempo: a touch slower and softer than the base reveal. */
+.cs-veil { --dur-slow: calc(1000ms * var(--motion)); }
+
+/* Static / reduced motion: no veil covering (media fully visible); the moon
+   rests quietly in place. */
+.cs-static .cs-veil-layer { display: none; }
+.cs-static .cs-crescent__moon { opacity: 0.4; }
+
 /* --- Lightbox (gallery) --------------------------------------------------- */
 .cs-lightbox {
   position: fixed;

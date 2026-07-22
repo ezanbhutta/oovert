@@ -386,6 +386,7 @@ collections:
         widget: object
         required: false
         fields:
+          - { name: mood, label: "Motion mood", widget: select, required: false, default: "none", options: ["none", "veil"], hint: "none = the standard varied transitions. veil = a modest, unhurried personality: images unveil behind a soft lifting veil and a crescent of light waxes behind the hero — made for a modest-wear / crescent identity like NOWA." }
           - { name: accent, label: "Accent", widget: color }
           - { name: accentOnLight, label: "Accent on light", widget: color, required: false }
           - { name: accentOnDark, label: "Accent on dark", widget: color, required: false }
