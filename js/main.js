@@ -6,12 +6,14 @@ import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initManifesto } from './modules/manifesto.js';
 import { initBackdrop } from './modules/backdrop.js';
 import { initHeroField } from './modules/herofield.js';
+import { initPackages } from './modules/packages.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
 
 initReveal();
 initNav();
+initPackages({ reducedMotion });
 initCounters({ reducedMotion });
 initManifesto({ reducedMotion });
 initBackdrop({ reducedMotion });

@@ -271,11 +271,14 @@
         <span class="line"><span class="line__inner"><em>a fraction of the cost.</em></span></span>
       </p>
 
-      <div class="pkg-group" data-reveal>
-        <div class="pkg-group__head">
-          <h3 class="pkg-group__title"><span class="pkg-group__num" aria-hidden="true">A</span>One-time projects</h3>
-          <p class="pkg-group__note">Fixed scope, fixed price, delivered fast.</p>
-        </div>
+      <div class="pkg-tabs" role="tablist" aria-label="Package type" data-reveal>
+        <button type="button" class="pkg-tab is-active" role="tab" id="pkg-tab-onetime" aria-selected="true" aria-controls="pkg-panel-onetime">One&#8209;time</button>
+        <button type="button" class="pkg-tab" role="tab" id="pkg-tab-monthly" aria-selected="false" aria-controls="pkg-panel-monthly" tabindex="-1">Monthly</button>
+        <button type="button" class="pkg-tab" role="tab" id="pkg-tab-staff" aria-selected="false" aria-controls="pkg-panel-staff" tabindex="-1">Staffing</button>
+      </div>
+
+      <div class="pkg-group is-active" id="pkg-panel-onetime" role="tabpanel" aria-labelledby="pkg-tab-onetime" tabindex="0">
+        <p class="pkg-group__note">Fixed scope, fixed price, delivered fast. One brief, one invoice, one launch.</p>
         <div class="pkg-row">
           <article class="pkg">
             <h4 class="pkg__name">Basic</h4>
@@ -333,11 +336,8 @@
         </div>
       </div>
 
-      <div class="pkg-group" data-reveal>
-        <div class="pkg-group__head">
-          <h3 class="pkg-group__title"><span class="pkg-group__num" aria-hidden="true">B</span>Monthly retainer</h3>
-          <p class="pkg-group__note">Design on tap. Pause or cancel anytime.</p>
-        </div>
+      <div class="pkg-group" id="pkg-panel-monthly" role="tabpanel" aria-labelledby="pkg-tab-monthly" tabindex="0">
+        <p class="pkg-group__note">Design on tap, month to month. Pause or cancel anytime, no lock-in.</p>
         <div class="pkg-row">
           <article class="pkg">
             <h4 class="pkg__name">Solo</h4>
@@ -384,11 +384,8 @@
         </div>
       </div>
 
-      <div class="pkg-group" data-reveal>
-        <div class="pkg-group__head">
-          <h3 class="pkg-group__title"><span class="pkg-group__num" aria-hidden="true">C</span>Staff augmentation</h3>
-          <p class="pkg-group__note">Our senior people, embedded in your team.</p>
-        </div>
+      <div class="pkg-group" id="pkg-panel-staff" role="tabpanel" aria-labelledby="pkg-tab-staff" tabindex="0">
+        <p class="pkg-group__note">Our senior people, embedded in your team for as long as you need them.</p>
         <div class="pkg-row">
           <article class="pkg">
             <h4 class="pkg__name">Dedicated Designer</h4>
