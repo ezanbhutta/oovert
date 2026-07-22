@@ -2,7 +2,7 @@
   "slug": "Nowa Brand Identity",
   "status": "draft",
   "order": 1,
-  "name": "NOWA",
+  "name": "<!DOCTYPE html> <html lang=\"en\"> <head>     <meta charset=\"UTF-8\">     <title>Luxerie Font Example</title>     <style>         @font-face {             font-family: 'Luxerie';             src: url('luxerie.woff2') format('woff2'),                  url('luxerie.ttf') format('truetype');         }         .luxerie-text {             font-family: 'Luxerie', sans-serif;             font-size: 4rem;             letter-spacing: 2px;         }     </style> </head> <body>     <h1 class=\"luxerie-text\">NOWA</h1> </body> </html>",
   "client": "Client",
   "sector": "Modest Wear",
   "year": "2024",
