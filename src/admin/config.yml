@@ -358,30 +358,61 @@ collections:
           - { name: displayFont, label: "Display font (upload)", widget: file, required: false, hint: "Upload a .woff2 (best) / .otf / .ttf to set this project's headline font, e.g. Luxerie. Leave empty to use the site's default." }
 
       # ---- Sections -------------------------------------------------------
-      # Field names mirror project.sections.<key> exactly. Copy sections carry
-      # eyebrow + headline; image-only sections (hero, intro, packaging,
-      # context) carry only image/alt (their copy is project-level or none).
+      # Field names mirror project.sections.<key> exactly. Every media slot
+      # takes an image OR a video (the collapsed "Video" group; when a video
+      # file is set it replaces the image). Multi-item sections take a mixed
+      # list where each entry is an image or a video.
       - name: sections
         label: "Sections"
         widget: object
         fields:
-          # 01 · Hero — image only
+          # 01 · Hero — image or video
           - name: hero
-            label: "01 · Hero (image only)"
+            label: "01 · Hero (image or video)"
             widget: object
             required: false
             fields:
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 02 · Introduction — image only (copy lives in project.intro)
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 02 · Introduction media (copy lives in project.intro)
           - name: intro
-            label: "02 · Introduction image (image only)"
+            label: "02 · Introduction (image or video)"
             widget: object
             required: false
             fields:
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 04 · Logo — single image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 04 · Logo
           - name: logo
             label: "04 · Logo"
             widget: object
@@ -391,14 +422,29 @@ collections:
               - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 05 · Construction — single image + notes list
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 05 · Construction (image/video + notes)
           - name: construction
             label: "05 · Construction"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - name: notes
                 label: "Notes"
                 widget: list
@@ -406,145 +452,340 @@ collections:
                 field: { name: item, label: "Note", widget: string, hint: "Supports HTML entities, e.g. &mdash;" }
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 06 · Concept — multi image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 06 · Concept (mixed list)
           - name: concept
             label: "06 · Concept"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - name: images
-                label: "Images"
+                label: "Images & videos"
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image }
+                  - { name: src, label: "Image", widget: image, required: false }
                   - { name: alt, label: "Alt text", widget: string, required: false }
-          # 07 · Typography — single image
+                  - name: video
+                    label: "Video (optional — overrides the image)"
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                      - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                      - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                      - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                      - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                      - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                      - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                      - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 07 · Typography
           - name: typography
             label: "07 · Typography"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 08 · Colour — single image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 08 · Colour
           - name: colour
             label: "08 · Colour"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 09 · Graphic language — single image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 09 · Graphic language
           - name: graphic
             label: "09 · Graphic language"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 10 · Business card — single image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 10 · Business card
           - name: card
             label: "10 · Business card"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 11 · Stationery — multi image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 11 · Stationery (mixed list)
           - name: stationery
             label: "11 · Stationery"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - name: images
-                label: "Images"
+                label: "Images & videos"
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image }
+                  - { name: src, label: "Image", widget: image, required: false }
                   - { name: alt, label: "Alt text", widget: string, required: false }
-          # 12 · Packaging — image only
+                  - name: video
+                    label: "Video (optional — overrides the image)"
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                      - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                      - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                      - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                      - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                      - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                      - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                      - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 12 · Packaging — image or video
           - name: packaging
-            label: "12 · Packaging (image only)"
+            label: "12 · Packaging (image or video)"
             widget: object
             required: false
             fields:
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 13 · Social — multi image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 13 · Social (mixed list)
           - name: social
             label: "13 · Social"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - name: images
-                label: "Images"
+                label: "Images & videos"
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image }
+                  - { name: src, label: "Image", widget: image, required: false }
                   - { name: alt, label: "Alt text", widget: string, required: false }
-          # 14 · Website — single image
+                  - name: video
+                    label: "Video (optional — overrides the image)"
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                      - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                      - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                      - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                      - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                      - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                      - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                      - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 14 · Website
           - name: website
             label: "14 · Website"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - { name: image, label: "Image (long screenshot)", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 15 · Environment — multi image (with parallax speed)
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 15 · Environment (mixed list, with parallax speed)
           - name: environment
             label: "15 · Environment"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - name: images
-                label: "Images"
+                label: "Images & videos"
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image }
+                  - { name: src, label: "Image", widget: image, required: false }
                   - { name: alt, label: "Alt text", widget: string, required: false }
-                  - { name: speed, label: "Parallax speed", widget: number, required: false, hint: "e.g. -14 (more negative = faster drift)" }
-          # 16 · Brand in context — image only
+                  - { name: speed, label: "Parallax speed", widget: number, required: false, hint: "e.g. -14 (more negative = faster drift). Separate from video playback speed." }
+                  - name: video
+                    label: "Video (optional — overrides the image)"
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                      - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                      - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                      - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                      - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                      - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                      - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                      - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 16 · Brand in context — image or video
           - name: context
-            label: "16 · Brand in context (image only)"
+            label: "16 · Brand in context (image or video)"
             widget: object
             required: false
             fields:
               - { name: image, label: "Image", widget: image, required: false }
               - { name: alt, label: "Alt text", widget: string, required: false }
-          # 17 · Gallery — multi image
+              - name: video
+                label: "Video (optional — overrides the image)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+          # 17 · Gallery (mixed list)
           - name: gallery
             label: "17 · Gallery"
             widget: object
             required: false
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
-              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML" }
+              - { name: headline, label: "Headline", widget: string, required: false, hint: "Supports HTML, e.g. <em>…</em>" }
               - name: images
-                label: "Images"
+                label: "Images & videos"
                 widget: list
                 required: false
                 fields:
-                  - { name: src, label: "Image", widget: image }
+                  - { name: src, label: "Image", widget: image, required: false }
                   - { name: alt, label: "Alt text", widget: string, required: false }
+                  - name: video
+                    label: "Video (optional — overrides the image)"
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Upload an .mp4 (best support) or .webm. When set, the video replaces the image in this slot." }
+                      - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                      - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                      - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                      - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                      - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                      - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                      - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                      - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
