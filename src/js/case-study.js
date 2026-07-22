@@ -263,8 +263,11 @@
     const layer = addVeilLayer(fig);
     const m = inner(fig);
     if (layer) {
-      gsap.fromTo(layer, { yPercent: 0 },
-        { yPercent: -110, ease: 'power3.inOut', duration: 1.5, delay,
+      // Retract the veil into its own top edge (scaleY, not a translate) so it
+      // can never slide up over the copy above it — it only ever shrinks within
+      // its own frame, revealing the media from the bottom up.
+      gsap.fromTo(layer, { scaleY: 1 },
+        { scaleY: 0, transformOrigin: 'top center', ease: 'power3.inOut', duration: 1.5, delay,
           scrollTrigger: { trigger: fig, start: 'top 84%' } });
     }
     gsap.from(m, { scale: 1.05, autoAlpha: 0.5, ease: 'power2.out', duration: 1.5, delay,
