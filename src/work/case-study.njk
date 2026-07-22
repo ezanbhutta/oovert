@@ -26,6 +26,10 @@ eleventyComputed:
 {% if caller %}{{ caller() }}{% endif %}
 {%- endif -%}
 {%- endmacro -%}
+{#- Placeholder shown for a freeform media block with no image/video yet. -#}
+{%- macro blockPh() -%}
+<div class="ph ph--16x9"><div class="ph__inner"><span class="ph__kicker">Image or video block</span><p class="ph__desc">Add an image, or open the Video group to drop a clip here.</p></div></div>
+{%- endmacro -%}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -111,6 +115,10 @@ eleventyComputed:
   </header>
 
   <main id="cs-main">
+    {#- Guided template sections (02–17) show by default. Set the project's
+        "Guided template sections" off to build a case study purely from the
+        freeform content blocks below the hero. #}
+    {%- set showTemplate = project.templateSections | default(true) -%}
 
     <!-- ================= 01 · HERO ================= -->
     <!-- Purpose: introduce the project with maximum impact, full frame. -->
@@ -140,6 +148,44 @@ eleventyComputed:
       </div>
     </section>
 
+    <!-- ============ FREEFORM CONTENT BLOCKS (owner-composed, any order) ============
+         Each block is media (image OR video), a heading, body text, a pulled
+         quote, or a spacer — with its own width, ground, and scroll transition.
+         This is where video (or anything) can go anywhere you like. -->
+    {%- for b in project.blocks -%}
+    {%- set tr = b.transition | default('rise', true) -%}
+    {%- set trKey = 'slide-x' if tr == 'slide' else tr -%}
+    {%- set ground = 'cs-section--ink' if b.bg == 'ink' else 'cs-section--paper' -%}
+    {%- if b.type == 'heading' -%}
+    <section class="cs-section {{ ground }}" aria-label="Heading">
+      <div class="cs-inner"><h2 class="cs-display" data-cs-text>{{ b.text | safe }}</h2></div>
+    </section>
+    {%- elif b.type == 'text' -%}
+    <section class="cs-section {{ ground }}" aria-label="Text">
+      <div class="cs-inner"><div class="cs-body cs-block-text" data-cs-text>{{ b.text | safe }}</div></div>
+    </section>
+    {%- elif b.type == 'quote' -%}
+    <section class="cs-section {{ ground }}" data-cs="split" aria-label="Quote">
+      <div class="cs-inner"><p class="cs-statement" data-cs-words>{{ b.text | safe }}</p></div>
+    </section>
+    {%- elif b.type == 'spacer' -%}
+    <section class="cs-section {{ ground }} cs-block-space cs-block-space--{{ b.space | default('medium', true) }}" aria-hidden="true"></section>
+    {%- else -%}
+    {%- set full = b.width == 'full' -%}
+    <section class="cs-section {{ ground }}{% if full %} cs-section--flush{% endif %}" data-cs="{{ trKey }}" aria-label="Media">
+      {%- if full -%}
+      <figure class="cs-figure cs-figure--bleed" data-cs-media>{% call media(b) %}{{ blockPh() }}{% endcall %}</figure>
+      {%- elif b.width == 'wide' -%}
+      <figure class="cs-figure cs-figure--wide" data-cs-media>{% call media(b) %}{{ blockPh() }}{% endcall %}</figure>
+      {%- else -%}
+      <div class="cs-inner"><figure class="cs-figure" data-cs-media>{% call media(b) %}{{ blockPh() }}{% endcall %}</figure></div>
+      {%- endif -%}
+      {%- if b.caption -%}<div class="cs-inner"><p class="cs-cap cs-block-cap">{{ b.caption | safe }}</p></div>{%- endif -%}
+    </section>
+    {%- endif -%}
+    {%- endfor -%}
+
+    {% if showTemplate %}
     <!-- ================= 02 · INTRODUCTION ================= -->
     <!-- Purpose: set the scene. Minimal words beside a single portrait. -->
     <section class="cs-section cs-section--paper" data-cs="clip" aria-labelledby="cs-intro-h">
@@ -561,6 +607,7 @@ eleventyComputed:
         <p class="cs-cap">Supply 6&ndash;10 images. Real images open in a lightbox on click.</p>
       </div>
     </section>
+    {% endif %}{# /showTemplate #}
 
     <!-- ================= 18 · CLOSING ================= -->
     <!-- Purpose: sign off; send them onward. -->

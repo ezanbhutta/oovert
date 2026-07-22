@@ -220,6 +220,21 @@
       });
     },
 
+    // Freeform blocks — a generic rise+fade as the block enters.
+    rise(sec) {
+      const m = inner(mediaOf(sec));
+      gsap.from(m, { yPercent: 14, autoAlpha: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: sec, start: 'top 80%' } });
+    },
+
+    // Freeform blocks — a soft opacity + scale settle.
+    fade(sec) {
+      const m = inner(mediaOf(sec));
+      gsap.fromTo(m, { autoAlpha: 0, scale: 1.03 },
+        { autoAlpha: 1, scale: 1, duration: 1.1, ease: 'power2.out',
+          scrollTrigger: { trigger: sec, start: 'top 82%' } });
+    },
+
     // 18 Closing — wordmark fades up; the page exhales.
     closing(sec) {
       const m = inner(mediaOf(sec));

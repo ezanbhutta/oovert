@@ -144,6 +144,22 @@ collections:
                   - { name: url, label: "URL", widget: string }
               - { name: scrollLabel, label: "Scroll label", widget: string }
               - { name: statusLine, label: "Status line", widget: string }
+              - name: video
+                label: "🎬 Hero background video (optional)"
+                widget: object
+                required: false
+                collapsed: true
+                hint: "Set a clip to play behind the hero headline. The hero switches to light text with a scrim for legibility. Best muted + looping, no controls."
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (an Image picker does not). .mp4 has the widest support; .webm also works." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
           # ---- premise ----------------------------------------------------
           - name: premise
             label: "Premise"
@@ -307,6 +323,29 @@ collections:
               - { name: backToTopLabel, label: "Back to top label", widget: string, hint: "Keeps HTML entities, e.g. Back to top &uarr;" }
               - { name: askAiLabel, label: "Ask-AI label", widget: string, required: false, hint: "Heading above the AI icons, e.g. Ask AI about OOVERT" }
               - { name: askAiPrompt, label: "Ask-AI prompt", widget: text, required: false, hint: "The question sent to each AI assistant when its icon is clicked." }
+          # ---- showreel (optional homepage video band) -------------------
+          - name: showreel
+            label: "Showreel (optional homepage video band)"
+            widget: object
+            required: false
+            fields:
+              - { name: label, label: "Label", widget: string, required: false, hint: "Small caption over the video, e.g. Selected work, 2024. Supports HTML." }
+              - name: video
+                label: "🎬 Video"
+                widget: object
+                required: false
+                collapsed: true
+                hint: "A full-bleed clip near the foot of the homepage. Best muted + looping."
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (an Image picker does not). .mp4 has the widest support; .webm also works." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
 
   # ==========================================================================
   # Collection 2 — Case studies (folder collection: one JSON per project)
@@ -356,7 +395,63 @@ collections:
           - { name: displayWidth, label: "Display width", widget: number, required: false, hint: "Archivo width 62–125" }
           - { name: displayWeight, label: "Display weight", widget: number, required: false, hint: "100–900" }
           - { name: displayFont, label: "Display font (upload)", widget: file, required: false, hint: "Upload a .woff2 (best) / .otf / .ttf to set this project's headline font, e.g. Luxerie. Leave empty to use the site's default." }
-
+      # ---- Layout & freeform blocks --------------------------------------
+      - { name: templateSections, label: "Guided template sections", widget: boolean, default: true, required: false, hint: "On: show the 18 designed sections (02–17) below the hero. Off: build this case study purely from the freeform Content blocks below." }
+      - name: blocks
+        label: "Content blocks (freeform — video / image / text, any order)"
+        widget: list
+        required: false
+        hint: "Add media (image or video), headings, text, quotes, or spacers in any order. Rendered right after the hero — this is where video can go anywhere you like."
+        types:
+          - name: media
+            label: "Image / Video"
+            widget: object
+            fields:
+              - { name: width, label: "Width", widget: select, default: "wide", options: ["contained", "wide", "full"], hint: "contained = text column · wide = near-full · full = edge-to-edge bleed." }
+              - { name: bg, label: "Background", widget: select, default: "paper", options: ["paper", "ink"] }
+              - { name: transition, label: "Scroll transition", widget: select, default: "rise", options: ["rise", "fade", "mask", "zoom", "slide", "none"] }
+              - { name: image, label: "Image", widget: image, required: false, hint: "For a video instead, leave empty and open the '🎬 Video' group below." }
+              - { name: alt, label: "Alt text", widget: string, required: false }
+              - name: video
+                label: "🎬 Video — upload a clip to use instead of the image"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: src, label: "Video file (mp4 / webm)", widget: file, required: false, hint: "Click, then Upload — this picker accepts videos (the Image picker above does not). .mp4 has the widest support; .webm also works. When set, the video replaces the image in this slot." }
+                  - { name: poster, label: "Poster image", widget: image, required: false, hint: "Still frame shown before the clip plays and while it loads." }
+                  - { name: autoplay, label: "Autoplay in view", widget: boolean, default: true, required: false, hint: "Plays (muted) when scrolled into view; pauses when off-screen." }
+                  - { name: loop, label: "Loop", widget: boolean, default: true, required: false }
+                  - { name: muted, label: "Muted", widget: boolean, default: true, required: false, hint: "Required for autoplay. Turn off only with autoplay off and controls on." }
+                  - { name: controls, label: "Show player controls", widget: boolean, default: false, required: false, hint: "Native play / pause / volume bar. Leave off for background clips." }
+                  - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
+                  - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
+                  - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+              - { name: caption, label: "Caption", widget: string, required: false, hint: "Optional line under the media. Supports HTML." }
+          - name: heading
+            label: "Heading"
+            widget: object
+            fields:
+              - { name: bg, label: "Background", widget: select, default: "paper", options: ["paper", "ink"] }
+              - { name: text, label: "Heading", widget: string, hint: "Big display line. Supports HTML, e.g. <em>…</em>." }
+          - name: text
+            label: "Text"
+            widget: object
+            fields:
+              - { name: bg, label: "Background", widget: select, default: "paper", options: ["paper", "ink"] }
+              - { name: text, label: "Body text", widget: text, hint: "Supports HTML." }
+          - name: quote
+            label: "Quote"
+            widget: object
+            fields:
+              - { name: bg, label: "Background", widget: select, default: "ink", options: ["paper", "ink"] }
+              - { name: text, label: "Quote", widget: text, hint: "A short, bold pulled statement." }
+          - name: spacer
+            label: "Spacer"
+            widget: object
+            fields:
+              - { name: space, label: "Height", widget: select, default: "medium", options: ["small", "medium", "large"] }
+              - { name: bg, label: "Background", widget: select, default: "paper", options: ["paper", "ink"] }
       # ---- Sections -------------------------------------------------------
       # Field names mirror project.sections.<key> exactly. Every media slot
       # takes an image OR a video (the collapsed "Video" group; when a video

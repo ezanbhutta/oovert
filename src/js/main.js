@@ -7,6 +7,7 @@ import { initManifesto } from './modules/manifesto.js';
 import { initBackdrop } from './modules/backdrop.js';
 import { initHeroField } from './modules/herofield.js';
 import { initPackages } from './modules/packages.js';
+import { initVideo } from './modules/video.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -18,6 +19,7 @@ initCounters({ reducedMotion });
 initManifesto({ reducedMotion });
 initBackdrop({ reducedMotion });
 initHeroField({ reducedMotion });
+initVideo({ reducedMotion });
 
 if (!reducedMotion) {
   initParallax();
