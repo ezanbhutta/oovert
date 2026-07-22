@@ -8,6 +8,7 @@ import { initBackdrop } from './modules/backdrop.js';
 import { initHeroField } from './modules/herofield.js';
 import { initPackages } from './modules/packages.js';
 import { initVideo } from './modules/video.js';
+import { initScrollColor } from './modules/scrollcolor.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -20,6 +21,7 @@ initManifesto({ reducedMotion });
 initBackdrop({ reducedMotion });
 initHeroField({ reducedMotion });
 initVideo({ reducedMotion });
+initScrollColor();
 
 if (!reducedMotion) {
   initParallax();
