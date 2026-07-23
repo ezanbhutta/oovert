@@ -144,6 +144,15 @@ html {
   }
 }
 
+/* ---- Cross-page view transitions ------------------------------------- */
+/* Same-origin navigations (home ↔ work ↔ approach ↔ studio) cross-fade
+   instead of hard-cutting, so the multi-page site reads as one experience.
+   Progressive: unsupported browsers just navigate; the browser suppresses the
+   animation under prefers-reduced-motion. The fixed header is named so it holds
+   steady while the page beneath it changes. */
+@view-transition { navigation: auto; }
+.site-head { view-transition-name: site-head; }
+
 body {
   background: var(--paper);
   color: var(--ink);

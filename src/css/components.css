@@ -34,6 +34,25 @@
   width: auto;
 }
 
+/* Living mark — the eclipse "oo". transform-box:fill-box spins each circle
+   group around its own centre. In the header the two counter-rotate on hover /
+   focus (the eclipse realigns); in the footer they drift with scroll (JS). */
+.mark__o {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-head__mark .mark__o {
+    transition: transform 0.7s var(--ease-out);
+  }
+  .site-head__mark:hover .mark__o--l,
+  .site-head__mark:focus-visible .mark__o--l { transform: rotate(-180deg); }
+  .site-head__mark:hover .mark__o--r,
+  .site-head__mark:focus-visible .mark__o--r { transform: rotate(180deg); }
+  .site-foot__mark .mark__o { will-change: transform; }
+}
+
 .site-head__nav {
   display: flex;
   gap: var(--space-4);
