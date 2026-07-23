@@ -471,6 +471,9 @@ collections:
           - { name: accentOnLight, label: "Accent on light", widget: color, required: false }
           - { name: accentOnDark, label: "Accent on dark", widget: color, required: false }
           - { name: field, label: "Field colour", widget: color, required: false }
+          - { name: paper, label: "Page ground · light", widget: color, required: false, hint: "Warm (or cool) the light sections for this brand. Empty = default cream." }
+          - { name: paperDim, label: "Page ground · light dim", widget: color, required: false, hint: "The muted light tone (placeholders, hovers). Empty = default." }
+          - { name: ink, label: "Page ground · dark", widget: color, required: false, hint: "The dark sections' ground. Empty = default near-black." }
           - { name: ease, label: "Ease curve", widget: string, required: false, hint: "CSS easing, e.g. cubic-bezier(.2,.7,0,1)" }
           - { name: motion, label: "Motion scale", widget: number, value_type: float, default: 1, min: 0.6, max: 1.4, step: 0.05, required: false }
           - { name: displayWidth, label: "Display width", widget: number, required: false, hint: "Archivo width 62–125" }
