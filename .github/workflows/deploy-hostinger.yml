@@ -1,0 +1,52 @@
+name: Build and deploy to Hostinger
+
+# Runs on every change to main — including content saved from the CMS, which
+# commits to main. Builds the Eleventy site and uploads the built _site folder
+# to Hostinger over FTPS, so the live site stays in sync automatically.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    # Surface the secret as an env var so the deploy step can be skipped
+    # (cleanly, no red run) until the FTP secrets are configured.
+    env:
+      HAS_FTP: ${{ secrets.FTP_SERVER }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Upload _site to Hostinger (FTPS)
+        if: ${{ env.HAS_FTP != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./_site/
+          # The folder on Hostinger that serves oovert.com. Usually
+          # /public_html/ for a primary domain, or
+          # /domains/oovert.com/public_html/ for a secondary domain.
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
