@@ -72,6 +72,20 @@
     "sameAs": {{ site.schema.sameAs | dump | safe }}
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+{% for item in site.faq.items %}      {
+        "@type": "Question",
+        "name": {{ item.q | dump | safe }},
+        "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} }
+      }{% if not loop.last %},{% endif %}
+{% endfor %}    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
@@ -365,10 +379,32 @@
       </p>
     </section>
 
-    <!-- ============ 06 CONTACT ============ -->
+    <!-- ============ 06 QUESTIONS (FAQ) ============ -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-title">
+      <header class="chapter-head" data-reveal-head>
+        <span class="chapter-head__num" aria-hidden="true">06</span>
+        <h2 class="chapter-head__label" id="faq-title">{{ site.faq.chapterLabel }}</h2>
+      </header>
+
+      <p class="faq-statement" data-reveal-lines>
+        {{ site.faq.statement | safe }}
+      </p>
+
+      <div class="faq">
+        {% for item in site.faq.items %}<details class="faq__item"{% if loop.first %} open{% endif %}>
+          <summary class="faq__q">
+            <span class="faq__q-text">{{ item.q }}</span>
+            <span class="faq__marker" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a"><p>{{ item.a }}</p></div>
+        </details>
+        {% endfor %}</div>
+    </section>
+
+    <!-- ============ 07 CONTACT ============ -->
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <header class="chapter-head chapter-head--dark" data-reveal-head>
-        <span class="chapter-head__num" aria-hidden="true">06</span>
+        <span class="chapter-head__num" aria-hidden="true">07</span>
         <h2 class="chapter-head__label" id="contact-title">{{ site.contact.chapterLabel }}</h2>
       </header>
 

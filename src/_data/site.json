@@ -117,6 +117,11 @@
       },
       {
         "num": "06",
+        "label": "Questions",
+        "href": "#faq"
+      },
+      {
+        "num": "07",
         "label": "Invitation",
         "href": "#contact"
       }
@@ -151,8 +156,13 @@
     },
     {
       "num": "06",
+      "href": "#faq",
+      "aria": "Chapter 06, Questions"
+    },
+    {
+      "num": "07",
       "href": "#contact",
-      "aria": "Chapter 06, Invitation"
+      "aria": "Chapter 07, Invitation"
     }
   ],
   "hero": {
@@ -414,6 +424,36 @@
     ],
     "where": "A distributed studio across six timezones. We work wherever the project takes us."
   },
+  "faq": {
+    "chapterLabel": "The questions",
+    "statement": "<span class=\"line\"><span class=\"line__inner\">Straight</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>answers.</em></span></span>",
+    "items": [
+      {
+        "q": "How can you charge a fraction of the usual agency price?",
+        "a": "Senior people, no overhead, no account managers, no juniors billed as experts. You pay for the work and the taste, not the office. The thinking is the same one a network agency would charge ten times for."
+      },
+      {
+        "q": "Do you only design logos, or the whole brand?",
+        "a": "The logo is one part. We name companies, decide what they stand for, and build the whole system the logo lives inside: strategy, voice, colour, type and motion."
+      },
+      {
+        "q": "How long does it take?",
+        "a": "Fixed-scope projects ship in two to five working days. A full strategy-led identity runs a few weeks, because the thinking cannot be rushed. You get a real date before we start."
+      },
+      {
+        "q": "How do revisions work?",
+        "a": "Every package lists its rounds, and the recommended tier is unlimited. Either way the money-back guarantee stands: we keep going until you are happy, or we refund you."
+      },
+      {
+        "q": "Who owns the final brand and files?",
+        "a": "You do. Full rights and every source file transfer to you on final payment. No licensing games, no holding your logo hostage."
+      },
+      {
+        "q": "You are a distributed studio. How do we actually work together?",
+        "a": "Senior people across six timezones, in direct contact with you start to finish. Calls when they matter, async when they do not, and one person who owns your project."
+      }
+    ]
+  },
   "contact": {
     "chapterLabel": "The invitation",
     "statement": "<span class=\"line\"><span class=\"line__inner\">Say it</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>out loud.</em></span></span>",
@@ -450,6 +490,10 @@
       {
         "label": "Studio",
         "href": "#studio"
+      },
+      {
+        "label": "Questions",
+        "href": "#faq"
       },
       {
         "label": "Invitation",
