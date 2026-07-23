@@ -76,6 +76,9 @@ eleventyComputed:
     --accent-deep: {{ th.accentOnLight | default(th.accent | onLight, true) }};
     --accent-invert: {{ th.accentOnDark | default(th.accent | onDark, true) }};
     {%- endif %}
+    {%- if th.paper %}--paper: {{ th.paper }};{% endif %}
+    {%- if th.paperDim %}--paper-dim: {{ th.paperDim }};{% endif %}
+    {%- if th.ink %}--ink: {{ th.ink }};{% endif %}
     {%- if th.field %}
     --field-violet: {{ th.field }};
     --field-ink: {{ th.field | fieldInk }};
