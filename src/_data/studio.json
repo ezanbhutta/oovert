@@ -1,0 +1,45 @@
+{
+  "eyebrow": "The studio",
+  "lede": "A distributed studio of senior people. No juniors, no handoffs, no house style — just the sharpest answer to one question, asked of every project.",
+  "thesis": {
+    "line": "Camouflage is <em>for prey.</em>",
+    "body": "Most branding is camouflage: safe colours, borrowed language, a logo built to upset no one and remembered by no one. We build the opposite — brands that choose to be seen, and are chosen because of it. That is the whole studio in one line."
+  },
+  "disciplines": [
+    {
+      "num": "01",
+      "name": "Strategy",
+      "text": "The one true thing no competitor can copy. A few weeks of interviews and audits to find it, then everything else gets built on top."
+    },
+    {
+      "num": "02",
+      "name": "Positioning",
+      "text": "One sentence about who you are for and why you are the obvious choice, sharpened until only you can say it."
+    },
+    {
+      "num": "03",
+      "name": "Identity",
+      "text": "Name, mark, type, colour, voice and motion, built into one system people recognise before they finish reading it."
+    },
+    {
+      "num": "04",
+      "name": "Naming",
+      "text": "A name that carries the strategy and travels: legally clear, easy to say, hard to forget."
+    }
+  ],
+  "timezones": [
+    { "label": "Pacific", "tz": "America/Los_Angeles" },
+    { "label": "Eastern", "tz": "America/New_York" },
+    { "label": "London", "tz": "Europe/London" },
+    { "label": "Central Europe", "tz": "Europe/Berlin" },
+    { "label": "South Asia", "tz": "Asia/Karachi" },
+    { "label": "Tokyo", "tz": "Asia/Tokyo" }
+  ],
+  "where": "Distributed across six timezones. We work wherever the project takes us, on senior people start to finish.",
+  "closing": {
+    "line": "Would we <em>sign it?</em>",
+    "note": "That is the only test that matters here. If the work would not carry our own name, it does not ship. Tell us what you are building.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}
