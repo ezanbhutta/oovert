@@ -6,9 +6,11 @@
    name (lg), body (lede), note (sm), micro-label (xs). Left-aligned throughout.
    ========================================================================== */
 
-.page-work { background: var(--paper); }
+.page-work,
+.page-approach { background: var(--paper); }
 
-.work { padding-bottom: var(--space-section); }
+.work,
+.approach { padding-bottom: var(--space-section); }
 
 /* ---- Hero ---- */
 .work-hero {
@@ -228,4 +230,117 @@
     align-items: start;
   }
   .work-plate__meta { text-align: left; }
+}
+
+/* ============================================================================
+   Approach — the process spine.
+   Four phases, each a row on the shared type system: a sticky marker (big
+   number + role + name) holds on the left while its summary and deliverables
+   scroll past on the right — the "pin and unfold" feel, no GSAP needed.
+   ========================================================================== */
+
+.approach-spine {
+  padding: var(--space-8) var(--margin) 0;
+}
+
+.phase {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: clamp(2rem, 5vw, 6rem);
+  padding: clamp(3rem, 6vw, 6rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.phase:last-child { border-bottom: 1px solid var(--line); }
+
+.phase__marker {
+  position: sticky;
+  top: clamp(6rem, 12vh, 8rem);
+  align-self: start;
+}
+
+.phase__num {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 640;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  font-variation-settings: 'wdth' 112;
+  font-variant-numeric: tabular-nums;
+}
+
+.phase__role {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.phase__name {
+  margin-top: var(--space-1);
+  font-size: var(--text-lg);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 108;
+}
+
+.phase__body { padding-top: var(--space-2); }
+
+.phase__summary {
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.phase__deliverables { margin-top: var(--space-6); }
+
+.phase__deliverables-label {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.phase__deliverables ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+  gap: 0.7rem clamp(1.5rem, 3vw, 3rem);
+}
+
+.phase__deliverables li {
+  position: relative;
+  padding-left: 1.6em;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.phase__deliverables li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 0.62em;
+  height: 0.34em;
+  border-left: 1.5px solid var(--accent-deep);
+  border-bottom: 1.5px solid var(--accent-deep);
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 820px) {
+  .phase {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .phase__marker { position: static; }
 }
