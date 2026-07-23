@@ -60,8 +60,8 @@
         "href": "/work/"
       },
       {
-        "label": "Practice",
-        "href": "#practice"
+        "label": "Approach",
+        "href": "/approach/"
       },
       {
         "label": "Pricing",
@@ -84,6 +84,11 @@
         "num": "↗",
         "label": "Work",
         "href": "/work/"
+      },
+      {
+        "num": "↗",
+        "label": "Approach",
+        "href": "/approach/"
       },
       {
         "num": "01",
@@ -421,6 +426,10 @@
       {
         "label": "Work",
         "href": "/work/"
+      },
+      {
+        "label": "Approach",
+        "href": "/approach/"
       },
       {
         "label": "Premise",

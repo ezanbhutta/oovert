@@ -1,0 +1,61 @@
+{
+  "eyebrow": "How we work",
+  "lede": "No menus, no maybes. A brand is built in four moves, each one finished before the next begins. Here is exactly what happens, and what you leave with.",
+  "phases": [
+    {
+      "num": "01",
+      "name": "Strategy",
+      "role": "The foundation",
+      "summary": "A few weeks of interviews, audits and honest questions. We are hunting for the one true thing about your company that no competitor can copy, the idea everything else gets built on.",
+      "deliverables": [
+        "Market and competitor audit",
+        "Stakeholder interviews",
+        "The core idea, in one line",
+        "Strategic brief"
+      ]
+    },
+    {
+      "num": "02",
+      "name": "Positioning",
+      "role": "The sentence",
+      "summary": "One clear sentence about who you are for and why you are the obvious choice. If your nearest competitor could say the same line, it is not finished. We sharpen it until it can only be yours.",
+      "deliverables": [
+        "Positioning statement",
+        "Audience and value map",
+        "Messaging pillars",
+        "Tone of voice"
+      ]
+    },
+    {
+      "num": "03",
+      "name": "Identity",
+      "role": "The system",
+      "summary": "Name, logo, type, colour, voice and motion, built into one system people recognise before they finish reading it. We show one considered direction, not three.",
+      "deliverables": [
+        "Naming, where it is needed",
+        "Logo and wordmark",
+        "Type, colour and imagery",
+        "Motion and sound cues",
+        "Core applications"
+      ]
+    },
+    {
+      "num": "04",
+      "name": "Rollout",
+      "role": "The handover",
+      "summary": "The guidelines, templates and everyday tools your team needs to keep the brand sharp long after we hand it over. We stay close through the first launch.",
+      "deliverables": [
+        "Brand guidelines",
+        "Templates and asset kit",
+        "Team handover and training",
+        "Launch support"
+      ]
+    }
+  ],
+  "closing": {
+    "line": "Ready when <em>you are.</em>",
+    "note": "Every engagement runs on senior people start to finish, so your brand is never handed to a B team. Tell us where you are and we will tell you which move comes first.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}
