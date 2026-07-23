@@ -235,17 +235,17 @@ eleventyComputed:
       <div class="cs-inner">
         <p class="cs-eyebrow"><span class="cs-eyebrow__num">04</span> {{ project.sections.logo.eyebrow }}</p>
         <h2 class="cs-title" id="cs-logo-h" data-cs-text>{{ project.sections.logo.headline | safe }}</h2>
-        <figure class="cs-figure cs-mt" data-cs-media style="max-width:52rem;margin-inline:auto">
+        <figure class="cs-figure cs-mt" data-cs-media style="max-width:66rem">
           <!-- SWAP → logo image (transparent PNG/SVG) OR an animated logo video -->
           {% call media(project.sections.logo) %}
           <div class="ph ph--3x2">
             <div class="ph__inner">
               <span class="ph__kicker">Logo &mdash; transparent (or animated)</span>
-              <p class="ph__desc">The primary lockup on its own, centered, with nothing competing for attention. An animated build works well here.</p>
+              <p class="ph__desc">The primary lockup on its own, large and left-aligned, with nothing competing for attention. An animated build works well here.</p>
               <dl class="ph__specs">
                 <div><dt>Ratio</dt><dd>3:2</dd></div>
                 <div><dt>Size</dt><dd>2000px, PNG/SVG</dd></div>
-                <div><dt>Frame</dt><dd>Centered, ample margin</dd></div>
+                <div><dt>Frame</dt><dd>Left, ample margin</dd></div>
               </dl>
               <p class="ph__motion"><span>Motion</span>Scales up from 0.78 with a soft counter-rotation, settling true</p>
             </div>
