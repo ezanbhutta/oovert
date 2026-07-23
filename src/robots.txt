@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://oovert-agency.vercel.app/sitemap.xml
+Sitemap: https://oovert.com/sitemap.xml
