@@ -1192,6 +1192,121 @@
   text-wrap: pretty;
 }
 
+/* ---- FAQ ------------------------------------------------------------------------ */
+/* Plain answers on the candour-light ground, the same light register as pricing.
+   A native <details> accordion: accessible, keyboard-driven and open with no JS;
+   the first question ships open. Section-opening hairline plus one rule per row,
+   consistent with the other enumerated lists. */
+
+.faq-section {
+  background: var(--paper);
+  padding-bottom: var(--space-section);
+}
+
+.faq-statement {
+  padding: var(--space-section) var(--margin) var(--space-8);
+  font-size: var(--text-xl);
+  font-weight: 640;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 112;
+}
+
+.faq-statement em {
+  text-transform: none;
+  color: var(--accent);
+  font-variation-settings: 'wdth' 100;
+}
+
+.faq {
+  margin: 0 var(--margin);
+  max-width: 52rem;
+}
+
+.faq__item { border-top: 1px solid var(--line); }
+.faq__item:last-child { border-bottom: 1px solid var(--line); }
+
+.faq__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  cursor: pointer;
+  list-style: none;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q:hover { color: var(--accent-deep); }
+
+.faq__q:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+.faq__q-text {
+  font-size: var(--text-lede);
+  font-weight: 620;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Ringed plus that drops its stem to a minus when the row opens. */
+.faq__marker {
+  position: relative;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color var(--dur-fast) var(--ease-hover);
+}
+
+.faq__marker::before,
+.faq__marker::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.7rem;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-hover);
+}
+
+.faq__marker::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq__item[open] .faq__marker::after { opacity: 0; transform: translate(-50%, -50%) rotate(0); }
+.faq__q:hover .faq__marker { border-color: var(--accent-deep); }
+
+.faq__a {
+  padding: 0 0 var(--space-5);
+  max-width: var(--measure);
+}
+
+.faq__a p {
+  font-size: var(--text-lede);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__item[open] .faq__a {
+    animation: faqReveal var(--dur-med) var(--ease-out) both;
+  }
+  @keyframes faqReveal {
+    from { opacity: 0; transform: translateY(-0.4rem); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
 /* ==========================================================================
    Responsive
    ========================================================================== */

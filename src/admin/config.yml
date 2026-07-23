@@ -291,6 +291,19 @@ collections:
                   - { name: num, label: "Number", widget: string }
                   - { name: text, label: "Text", widget: text }
               - { name: where, label: "Where", widget: text }
+          # ---- faq --------------------------------------------------------
+          - name: faq
+            label: "FAQ / Questions"
+            widget: object
+            fields:
+              - { name: chapterLabel, label: "Chapter label", widget: string }
+              - { name: statement, label: "Statement", widget: text, hint: "Keeps HTML: <span class=\"line\">…, <em>…, newlines." }
+              - name: items
+                label: "Questions"
+                widget: list
+                fields:
+                  - { name: q, label: "Question", widget: string }
+                  - { name: a, label: "Answer", widget: text }
           # ---- contact ----------------------------------------------------
           - name: contact
             label: "Contact"
@@ -346,6 +359,74 @@ collections:
                   - { name: speed, label: "Playback speed", widget: number, value_type: float, default: 1, min: 0.25, max: 3, step: 0.05, required: false, hint: "1 = normal, 0.5 = half speed, 2 = double." }
                   - { name: start, label: "Start (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: begin playback at this time." }
                   - { name: end, label: "End (seconds)", widget: number, value_type: float, default: 0, min: 0, step: 0.1, required: false, hint: "Trim: stop here. 0 = play to the natural end." }
+
+      # ======================================================================
+      # Approach page — src/_data/approach.json
+      # ======================================================================
+      - name: approach
+        label: "Approach page"
+        file: "src/_data/approach.json"
+        fields:
+          - { name: eyebrow, label: "Eyebrow", widget: string }
+          - { name: lede, label: "Lede", widget: text }
+          - name: phases
+            label: "Phases"
+            widget: list
+            fields:
+              - { name: num, label: "Number", widget: string }
+              - { name: name, label: "Name", widget: string }
+              - { name: role, label: "Role (subtitle)", widget: string }
+              - { name: summary, label: "Summary", widget: text }
+              - name: deliverables
+                label: "Deliverables (You leave with)"
+                widget: list
+                field: { name: item, label: "Deliverable", widget: string }
+          - name: closing
+            label: "Closing"
+            widget: object
+            fields:
+              - { name: line, label: "Closing line", widget: string, hint: "Keeps HTML: <em>…</em>" }
+              - { name: note, label: "Note", widget: text }
+              - { name: ctaLabel, label: "CTA label", widget: string }
+              - { name: ctaUrl, label: "CTA URL", widget: string }
+
+      # ======================================================================
+      # Studio page — src/_data/studio.json
+      # ======================================================================
+      - name: studioPage
+        label: "Studio page"
+        file: "src/_data/studio.json"
+        fields:
+          - { name: eyebrow, label: "Eyebrow", widget: string }
+          - { name: lede, label: "Lede", widget: text }
+          - name: thesis
+            label: "Thesis"
+            widget: object
+            fields:
+              - { name: line, label: "Thesis line", widget: string, hint: "Keeps HTML: <em>…</em>" }
+              - { name: body, label: "Body", widget: text }
+          - name: disciplines
+            label: "Disciplines"
+            widget: list
+            fields:
+              - { name: num, label: "Number", widget: string }
+              - { name: name, label: "Name", widget: string }
+              - { name: text, label: "Text", widget: text }
+          - name: timezones
+            label: "Timezones (live clocks)"
+            widget: list
+            fields:
+              - { name: label, label: "Label", widget: string }
+              - { name: tz, label: "IANA timezone", widget: string, hint: "e.g. Asia/Karachi, Europe/London, America/New_York, America/Los_Angeles, Asia/Tokyo" }
+          - { name: where, label: "Where (note under the clocks)", widget: text }
+          - name: closing
+            label: "Closing"
+            widget: object
+            fields:
+              - { name: line, label: "Closing line", widget: string, hint: "Keeps HTML: <em>…</em>" }
+              - { name: note, label: "Note", widget: text }
+              - { name: ctaLabel, label: "CTA label", widget: string }
+              - { name: ctaUrl, label: "CTA URL", widget: string }
 
   # ==========================================================================
   # Collection 2 — Case studies (folder collection: one JSON per project)
