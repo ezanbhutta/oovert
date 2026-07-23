@@ -220,6 +220,18 @@
         {{ site.packages.lead | safe }}
       </p>
 
+      <div class="ledger-reveal" data-reveal aria-hidden="true">
+        <span class="ledger-reveal__unit">
+          <span class="ledger-reveal__cap">Industry average</span>
+          <span class="ledger-reveal__was">$7,500</span>
+        </span>
+        <span class="ledger-reveal__arrow" aria-hidden="true">&rarr;</span>
+        <span class="ledger-reveal__unit ledger-reveal__unit--ours">
+          <span class="ledger-reveal__cap">We open at</span>
+          <span class="ledger-reveal__now">$280</span>
+        </span>
+      </div>
+
       <div class="pkg-tabs" role="tablist" aria-label="Package type" data-reveal>
         <button type="button" class="pkg-tab is-active" role="tab" id="pkg-tab-onetime" aria-selected="true" aria-controls="pkg-panel-onetime">One&#8209;time</button>
         <button type="button" class="pkg-tab" role="tab" id="pkg-tab-monthly" aria-selected="false" aria-controls="pkg-panel-monthly" tabindex="-1">Monthly</button>
@@ -228,51 +240,93 @@
 
       <div class="pkg-group is-active" id="pkg-panel-onetime" role="tabpanel" aria-labelledby="pkg-tab-onetime" tabindex="0">
         <p class="pkg-group__note">{{ site.packages.onetime.note }}</p>
-        <div class="pkg-row">
-          {% for card in site.packages.onetime.cards %}<article class="pkg{% if card.featured %} pkg--featured{% endif %}">
-            {% if card.badge %}<p class="pkg__badge">{{ card.badge }}</p>
-            {% endif %}<h4 class="pkg__name">{{ card.name }}</h4>
-            <p class="pkg__price">{{ card.price }}{% if card.per %}<span class="pkg__per">{{ card.per }}</span>{% endif %}</p>
-            <p class="pkg__desc">{{ card.desc }}</p>
-            <a class="pkg__cta{% if card.featured %} pkg__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
-            {% if card.more %}<p class="pkg__more">{{ card.more }}</p>
-            {% endif %}<ul class="pkg__features">
-              {% for feature in card.features %}<li>{{ feature | safe }}</li>
-              {% endfor %}</ul>
+        <div class="ledger">
+          {% for card in site.packages.onetime.cards %}<article class="ledger-row{% if card.featured %} is-featured is-open{% endif %}">
+            <button type="button" class="ledger-row__head" aria-expanded="{{ 'true' if card.featured else 'false' }}" aria-controls="ledger-onetime-{{ loop.index }}">
+              <span class="ledger-row__num" aria-hidden="true">0{{ loop.index }}</span>
+              <span class="ledger-row__id">
+                <span class="ledger-row__name-line">
+                  <span class="ledger-row__name">{{ card.name }}</span>
+                  {% if card.badge %}<span class="ledger-row__tag"><span class="ledger-row__tag-mark" aria-hidden="true">&#10022;</span>{{ card.badge }}</span>{% endif %}
+                </span>
+                <span class="ledger-row__desc">{{ card.desc }}</span>
+              </span>
+              <span class="ledger-row__price">{{ card.price }}{% if card.per %}<span class="ledger-row__per">{{ card.per }}</span>{% endif %}</span>
+              <span class="ledger-row__toggle" aria-hidden="true"></span>
+            </button>
+            <div class="ledger-row__panel" id="ledger-onetime-{{ loop.index }}">
+              <div class="ledger-row__panel-inner">
+                <div class="ledger-row__panel-body">
+                  {% if card.more %}<p class="ledger-row__more">{{ card.more }}</p>{% endif %}
+                  <ul class="ledger-row__features">
+                    {% for feature in card.features %}<li>{{ feature | safe }}</li>{% endfor %}
+                  </ul>
+                  <a class="ledger-row__cta{% if card.featured %} ledger-row__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
+                </div>
+              </div>
+            </div>
           </article>
           {% endfor %}</div>
       </div>
 
       <div class="pkg-group" id="pkg-panel-monthly" role="tabpanel" aria-labelledby="pkg-tab-monthly" tabindex="0">
         <p class="pkg-group__note">{{ site.packages.monthly.note }}</p>
-        <div class="pkg-row">
-          {% for card in site.packages.monthly.cards %}<article class="pkg{% if card.featured %} pkg--featured{% endif %}">
-            {% if card.badge %}<p class="pkg__badge">{{ card.badge }}</p>
-            {% endif %}<h4 class="pkg__name">{{ card.name }}</h4>
-            <p class="pkg__price">{{ card.price }}{% if card.per %}<span class="pkg__per">{{ card.per }}</span>{% endif %}</p>
-            <p class="pkg__desc">{{ card.desc }}</p>
-            <a class="pkg__cta{% if card.featured %} pkg__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
-            {% if card.more %}<p class="pkg__more">{{ card.more }}</p>
-            {% endif %}<ul class="pkg__features">
-              {% for feature in card.features %}<li>{{ feature | safe }}</li>
-              {% endfor %}</ul>
+        <div class="ledger">
+          {% for card in site.packages.monthly.cards %}<article class="ledger-row{% if card.featured %} is-featured is-open{% endif %}">
+            <button type="button" class="ledger-row__head" aria-expanded="{{ 'true' if card.featured else 'false' }}" aria-controls="ledger-monthly-{{ loop.index }}">
+              <span class="ledger-row__num" aria-hidden="true">0{{ loop.index }}</span>
+              <span class="ledger-row__id">
+                <span class="ledger-row__name-line">
+                  <span class="ledger-row__name">{{ card.name }}</span>
+                  {% if card.badge %}<span class="ledger-row__tag"><span class="ledger-row__tag-mark" aria-hidden="true">&#10022;</span>{{ card.badge }}</span>{% endif %}
+                </span>
+                <span class="ledger-row__desc">{{ card.desc }}</span>
+              </span>
+              <span class="ledger-row__price">{{ card.price }}{% if card.per %}<span class="ledger-row__per">{{ card.per }}</span>{% endif %}</span>
+              <span class="ledger-row__toggle" aria-hidden="true"></span>
+            </button>
+            <div class="ledger-row__panel" id="ledger-monthly-{{ loop.index }}">
+              <div class="ledger-row__panel-inner">
+                <div class="ledger-row__panel-body">
+                  {% if card.more %}<p class="ledger-row__more">{{ card.more }}</p>{% endif %}
+                  <ul class="ledger-row__features">
+                    {% for feature in card.features %}<li>{{ feature | safe }}</li>{% endfor %}
+                  </ul>
+                  <a class="ledger-row__cta{% if card.featured %} ledger-row__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
+                </div>
+              </div>
+            </div>
           </article>
           {% endfor %}</div>
       </div>
 
       <div class="pkg-group" id="pkg-panel-staff" role="tabpanel" aria-labelledby="pkg-tab-staff" tabindex="0">
         <p class="pkg-group__note">{{ site.packages.staff.note }}</p>
-        <div class="pkg-row">
-          {% for card in site.packages.staff.cards %}<article class="pkg{% if card.featured %} pkg--featured{% endif %}">
-            {% if card.badge %}<p class="pkg__badge">{{ card.badge }}</p>
-            {% endif %}<h4 class="pkg__name">{{ card.name }}</h4>
-            <p class="pkg__price">{{ card.price }}{% if card.per %}<span class="pkg__per">{{ card.per }}</span>{% endif %}</p>
-            <p class="pkg__desc">{{ card.desc }}</p>
-            <a class="pkg__cta{% if card.featured %} pkg__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
-            {% if card.more %}<p class="pkg__more">{{ card.more }}</p>
-            {% endif %}<ul class="pkg__features">
-              {% for feature in card.features %}<li>{{ feature | safe }}</li>
-              {% endfor %}</ul>
+        <div class="ledger">
+          {% for card in site.packages.staff.cards %}<article class="ledger-row{% if card.featured %} is-featured is-open{% endif %}">
+            <button type="button" class="ledger-row__head" aria-expanded="{{ 'true' if card.featured else 'false' }}" aria-controls="ledger-staff-{{ loop.index }}">
+              <span class="ledger-row__num" aria-hidden="true">0{{ loop.index }}</span>
+              <span class="ledger-row__id">
+                <span class="ledger-row__name-line">
+                  <span class="ledger-row__name">{{ card.name }}</span>
+                  {% if card.badge %}<span class="ledger-row__tag"><span class="ledger-row__tag-mark" aria-hidden="true">&#10022;</span>{{ card.badge }}</span>{% endif %}
+                </span>
+                <span class="ledger-row__desc">{{ card.desc }}</span>
+              </span>
+              <span class="ledger-row__price">{{ card.price }}{% if card.per %}<span class="ledger-row__per">{{ card.per }}</span>{% endif %}</span>
+              <span class="ledger-row__toggle" aria-hidden="true"></span>
+            </button>
+            <div class="ledger-row__panel" id="ledger-staff-{{ loop.index }}">
+              <div class="ledger-row__panel-inner">
+                <div class="ledger-row__panel-body">
+                  {% if card.more %}<p class="ledger-row__more">{{ card.more }}</p>{% endif %}
+                  <ul class="ledger-row__features">
+                    {% for feature in card.features %}<li>{{ feature | safe }}</li>{% endfor %}
+                  </ul>
+                  <a class="ledger-row__cta{% if card.featured %} ledger-row__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
+                </div>
+              </div>
+            </div>
           </article>
           {% endfor %}</div>
       </div>
