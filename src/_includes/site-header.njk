@@ -1,0 +1,22 @@
+{#- Shared header for sub-pages. Homepage-anchor hrefs (#practice) are rewritten
+    root-relative (/#practice) so they resolve from any page. Set `currentPath`
+    before including to mark the active nav item. -#}
+{%- macro navhref(h) -%}{% if h[0] == '/' %}{{ h }}{% else %}/{{ h }}{% endif %}{%- endmacro -%}
+<header class="site-head">
+  <a class="site-head__mark" href="/" aria-label="OOVERT, home">
+    {% include "mark.njk" %}
+  </a>
+  <nav class="site-head__nav" aria-label="Primary">
+    {% for link in site.nav.links %}<a href="{{ navhref(link.href) }}"{% if link.href == currentPath %} aria-current="page"{% endif %}>{{ link.label }}</a>
+    {% endfor %}</nav>
+  <button class="site-head__menu" type="button" aria-expanded="false" aria-controls="menu-overlay">
+    <span class="site-head__menu-label">{{ site.nav.menuButtonLabel }}</span>
+  </button>
+</header>
+
+<div class="menu-overlay" id="menu-overlay" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <nav class="menu-overlay__nav" aria-label="Menu">
+    {% for link in site.menu.links %}<a href="{{ navhref(link.href) }}"><span class="menu-overlay__num">{{ link.num }}</span>{{ link.label }}</a>
+    {% endfor %}</nav>
+  <p class="menu-overlay__meta">{{ site.menu.meta | safe }}</p>
+</div>

@@ -56,6 +56,11 @@ module.exports = function (eleventyConfig) {
     return contrast(rgb, INK) >= contrast(rgb, PAPER) ? '#16140F' : '#F3F0E9';
   });
 
+  // Filter an array of objects by an exact key match (e.g. published projects).
+  eleventyConfig.addFilter('where', (arr, key, val) =>
+    (arr || []).filter((o) => o && o[key] === val)
+  );
+
   // Passthrough the hand-built craft, unchanged, to identical output paths.
   ["css", "js", "vendor", "assets"].forEach((dir) =>
     eleventyConfig.addPassthroughCopy({ [`src/${dir}`]: dir })
