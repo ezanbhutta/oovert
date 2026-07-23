@@ -7,10 +7,23 @@
    ========================================================================== */
 
 .page-work,
-.page-approach { background: var(--paper); }
+.page-approach,
+.page-studio { background: var(--paper); }
 
 .work,
-.approach { padding-bottom: var(--space-section); }
+.approach,
+.studio-page { padding-bottom: var(--space-section); }
+
+/* Small section eyebrow shared by sub-page blocks. */
+.section-eyebrow {
+  padding: 0 var(--margin);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
 
 /* ---- Hero ---- */
 .work-hero {
@@ -343,4 +356,136 @@
     gap: var(--space-4);
   }
   .phase__marker { position: static; }
+}
+
+/* ============================================================================
+   Studio — the dossier.
+   Thesis, four disciplines, principles (reused), and a live six-timezone strip.
+   Same type system; left-aligned; section-opening hairlines only.
+   ========================================================================== */
+
+.studio-thesis {
+  padding: var(--space-section) var(--margin) 0;
+}
+
+.studio-thesis__line {
+  font-size: var(--text-xl);
+  font-weight: 640;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 112;
+  max-width: 14em;
+}
+
+.studio-thesis__line em {
+  text-transform: none;
+  color: var(--accent);
+  font-variation-settings: 'wdth' 100;
+}
+
+.studio-thesis__body {
+  margin-top: var(--space-5);
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.disc-wrap {
+  padding-top: var(--space-section);
+}
+
+.disc { margin: 0 var(--margin); }
+
+.disc__item {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: baseline;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--line);
+}
+
+.disc__num {
+  grid-column: 1 / span 1;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  color: var(--accent-deep);
+}
+
+.disc__name {
+  grid-column: 2 / span 5;
+  font-size: var(--text-lg);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 108;
+}
+
+.disc__text {
+  grid-column: 8 / span 5;
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Live clocks */
+.clocks-wrap { padding-top: var(--space-section); }
+
+.clocks {
+  margin: 0 var(--margin);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--gutter);
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-4);
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.clock__time {
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'wdth' 108;
+  font-variant-numeric: tabular-nums;
+}
+
+.clock__label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.clocks__note {
+  margin: var(--space-6) var(--margin) 0;
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+@media (max-width: 820px) {
+  .disc__item { display: block; }
+  .disc__num { display: block; margin-bottom: var(--space-1); }
+  .disc__name { margin-bottom: var(--space-2); }
+  .clocks { grid-template-columns: repeat(3, 1fr); gap: var(--space-4) var(--gutter); }
+}
+
+@media (max-width: 480px) {
+  .clocks { grid-template-columns: repeat(2, 1fr); }
 }

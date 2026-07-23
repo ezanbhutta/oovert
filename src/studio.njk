@@ -1,0 +1,111 @@
+---
+permalink: "/studio/index.html"
+---
+{%- set currentPath = "/studio/" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio — OOVERT</title>
+  <meta name="description" content="OOVERT is a distributed studio of senior people across six timezones. Four disciplines — strategy, positioning, identity and naming — and one question asked of every project: would we sign it?">
+  <link rel="canonical" href="https://oovert-agency.vercel.app/studio/">
+  <meta name="theme-color" content="#F3F0E9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="Studio — OOVERT">
+  <meta property="og:description" content="A distributed studio of senior people across six timezones. Four disciplines, one question: would we sign it?">
+  <meta property="og:url" content="https://oovert-agency.vercel.app/studio/">
+  <meta property="og:image" content="https://oovert-agency.vercel.app/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/sections.css">
+  <link rel="stylesheet" href="/css/work.css">
+
+  <link rel="modulepreload" href="/js/modules/reveal.js">
+  <link rel="modulepreload" href="/js/modules/nav.js">
+</head>
+<body class="page-studio">
+  <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
+
+  {% include "site-header.njk" %}
+
+  <main id="main" class="studio-page">
+    <header class="work-hero" id="top">
+      <p class="work-hero__eyebrow" data-reveal>{{ studio.eyebrow }}</p>
+      <h1 class="work-hero__title" data-reveal-lines>
+        <span class="line"><span class="line__inner">Senior hands</span></span>
+        <span class="line"><span class="line__inner"><em>only.</em></span></span>
+      </h1>
+      <p class="work-hero__lede" data-reveal>{{ studio.lede }}</p>
+    </header>
+
+    <section class="studio-thesis">
+      <p class="studio-thesis__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ studio.thesis.line | safe }}</span></span>
+      </p>
+      <p class="studio-thesis__body" data-reveal>{{ studio.thesis.body }}</p>
+    </section>
+
+    <section class="disc-wrap" aria-label="Disciplines">
+      <p class="section-eyebrow" data-reveal>Four disciplines</p>
+      <ol class="disc">
+        {% for d in studio.disciplines %}
+        <li class="disc__item" data-reveal>
+          <span class="disc__num" aria-hidden="true">{{ d.num }}</span>
+          <h2 class="disc__name">{{ d.name }}</h2>
+          <p class="disc__text">{{ d.text }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <section class="disc-wrap" aria-label="How we work">
+      <p class="section-eyebrow" data-reveal>How we behave</p>
+      <ol class="principles">
+        {% for item in site.studio.principles %}<li class="principles__item" data-reveal>
+          <span class="principles__num" aria-hidden="true">{{ item.num }}</span>
+          <p>{{ item.text }}</p>
+        </li>
+        {% endfor %}</ol>
+    </section>
+
+    <section class="clocks-wrap" aria-label="Where we are">
+      <p class="section-eyebrow" data-reveal>Six timezones, right now</p>
+      <div class="clocks" data-reveal>
+        {% for z in studio.timezones %}
+        <div class="clock">
+          <span class="clock__time" data-clock data-tz="{{ z.tz }}">--:--</span>
+          <span class="clock__label">{{ z.label }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <p class="clocks__note" data-reveal>{{ studio.where }}</p>
+    </section>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ studio.closing.line | safe }}</span></span>
+      </p>
+      <p class="work-more__note" data-reveal>{{ studio.closing.note }}</p>
+      <a class="work-more__cta" href="{{ studio.closing.ctaUrl }}" data-reveal>{{ studio.closing.ctaLabel }} <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  {% include "site-footer.njk" %}
+
+  <script type="module" src="/js/studio.js"></script>
+</body>
+</html>
