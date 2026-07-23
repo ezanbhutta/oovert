@@ -63,12 +63,125 @@
   text-wrap: pretty;
 }
 
+/* ---- Feature hero (the work leads with an image) ---- */
+/* A full-bleed hero image of the featured project. A dual scrim keeps the ink
+   header legible over the light top band, and the paper overlay text legible
+   over the dark bottom band, so no scroll-aware header colour is needed. */
+.work-feature {
+  position: relative;
+  display: block;
+  color: var(--paper);
+}
+
+.work-feature__media {
+  position: relative;
+  height: min(92vh, 62rem);
+  overflow: hidden;
+  background: var(--paper-dim);
+}
+
+.work-feature__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.work-feature:hover .work-feature__media img { transform: scale(1.02); }
+
+.work-feature__ph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+}
+
+.work-feature__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(243, 240, 233, 0.9) 0%, rgba(243, 240, 233, 0) 15%),
+    linear-gradient(to top, rgba(22, 20, 15, 0.74) 0%, rgba(22, 20, 15, 0) 48%);
+}
+
+.work-feature__body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-8) var(--margin) var(--space-6);
+}
+
+.work-feature__eyebrow {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.82;
+}
+
+.work-feature__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  flex-wrap: wrap;
+  font-size: var(--text-xl);
+  font-weight: 640;
+  line-height: 0.9;
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 112;
+}
+
+.work-feature__go {
+  font-size: 0.36em;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.work-feature:hover .work-feature__go { transform: translateX(0.35em); }
+
+.work-feature__line {
+  margin-top: var(--space-3);
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.4;
+  color: var(--paper);
+  opacity: 0.9;
+  text-wrap: pretty;
+}
+
+.work-feature__meta {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: var(--space-5);
+}
+
+.work-feature__meta dt {
+  margin-bottom: 0.5em;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.work-feature__meta dd {
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
 /* ---- Reel ---- */
 .work-reel {
   display: flex;
   flex-direction: column;
   gap: clamp(4rem, 8vw, 8rem);
-  padding: var(--space-8) var(--margin) 0;
+  padding: clamp(4rem, 8vw, 8rem) var(--margin) 0;
 }
 
 .work-plate {
