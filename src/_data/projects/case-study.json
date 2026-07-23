@@ -17,9 +17,16 @@
   "nextUrl": "../../index.html#evidence",
   "theme": {
     "accent": "#BF7D1F",
+    "accentOnLight": "",
+    "accentOnDark": "",
+    "field": "",
     "paper": "#F1E9D6",
     "paperDim": "#E7DDC7",
-    "ink": "#18120A"
+    "ink": "#18120A",
+    "ease": "",
+    "motion": null,
+    "displayWidth": null,
+    "displayWeight": null
   },
   "sections": {
     "hero": {
@@ -83,6 +90,7 @@
     "typography": {
       "eyebrow": "Typography",
       "headline": "Luxerie for the moments that matter. DM Sans for the other ninety percent.",
+      "image": "/assets/uploads/nowa typo.jpg",
       "alt": "Display Luxerie. Everything else DM Sans, four weights. Scale built on 1:1.618, from a 60pt headline down to 15.3pt body."
     },
     "colour": {
