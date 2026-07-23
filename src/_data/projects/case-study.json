@@ -15,9 +15,7 @@
   "statementSupport": "That one line decided the gold, the spacing, and everything we left out.",
   "closing": "New label. Doesn't look new.",
   "nextUrl": "../../index.html#evidence",
-  "theme": {
-    "accent": "#BF7D1F"
-  },
+  "theme": null,
   "sections": {
     "hero": {
       "image": "/assets/uploads/649103984 (1).jpg",
@@ -42,6 +40,7 @@
     "logo": {
       "eyebrow": "The mark",
       "headline": "We swapped the O for a moon and left the rest alone.",
+      "image": "/assets/uploads/Asset 1.png",
       "alt": ""
     },
     "construction": {
@@ -52,11 +51,29 @@
         "That curve ate most of the project. Too thick and it stopped being a letter. Too thin and it disappeared the moment we shrank it. We kept redrawing until one version survived both.",
         "Gold foil, twelve millimetres, stitched into the neck of an abaya. If it holds up there it holds up anywhere."
       ],
+      "image": "/assets/uploads/Mark Construction.jpg",
       "alt": ""
     },
     "concept": {
       "eyebrow": "Exploration",
-      "headline": "Everything else we tried felt borrowed. The moon didn't."
+      "headline": "Everything else we tried felt borrowed. The moon didn't.",
+      "images": [
+        {
+          "src": "/assets/uploads/Untitled-3.jpg",
+          "alt": "",
+          "video": null
+        },
+        {
+          "src": "/assets/uploads/Sketch.png",
+          "alt": "",
+          "video": null
+        },
+        {
+          "src": "/assets/uploads/Untitled-4.jpg",
+          "alt": "",
+          "video": null
+        }
+      ]
     },
     "typography": {
       "eyebrow": "Typography",
