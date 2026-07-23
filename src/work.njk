@@ -43,26 +43,36 @@ permalink: "/work/index.html"
   {% include "site-header.njk" %}
 
   <main id="main" class="work">
-    <header class="work-hero" id="top">
-      <p class="work-hero__eyebrow" data-reveal>The evidence</p>
-      <h1 class="work-hero__title" data-reveal-lines>
-        <span class="line"><span class="line__inner">Selected</span></span>
-        <span class="line"><span class="line__inner"><em>work.</em></span></span>
-      </h1>
-      <p class="work-hero__lede" data-reveal>
-        A short, honest shelf. Every project here was named, positioned and built end to end by senior hands. Open one to see how we present it.
-      </p>
-    </header>
-
     {%- set published = projectList | where('status', 'published') -%}
-    {% if published.length %}
+    {%- if published.length -%}
+    {%- set feature = published[0] -%}
+    {%- set fimg = feature.sections.hero.image or feature.intro.image -%}
+    <a class="work-feature" id="top" href="/work/{{ feature.slug | slugify }}/">
+      <figure class="work-feature__media">
+        {% if fimg %}<img src="{{ fimg }}" alt="{{ feature.sections.hero.alt or feature.name }}" fetchpriority="high">
+        {% else %}<span class="work-feature__ph" aria-hidden="true">{{ feature.name }}</span>{% endif %}
+        <span class="work-feature__scrim" aria-hidden="true"></span>
+      </figure>
+      <div class="work-feature__body">
+        <h1 class="work-feature__eyebrow">Selected work</h1>
+        <p class="work-feature__name">{{ feature.name }}<span class="work-feature__go" aria-hidden="true">&rarr;</span></p>
+        <p class="work-feature__line">{{ feature.intro.headline or feature.statement }}</p>
+        <dl class="work-feature__meta">
+          <div><dt>Client</dt><dd>{{ feature.client or feature.name }}</dd></div>
+          <div><dt>Scope</dt><dd>{{ feature.scope }}</dd></div>
+          <div><dt>Year</dt><dd>{{ feature.year }}</dd></div>
+        </dl>
+      </div>
+    </a>
+
+    {% if published.length > 1 %}
     <div class="work-reel">
-      {% for p in published %}
+      {% for p in published %}{% if not loop.first %}
       {%- set img = p.sections.hero.image or p.intro.image -%}
       {%- set plateAccent = (p.theme.accent | onLight) if (p.theme and p.theme.accent) else '#6039CE' -%}
       <a class="work-plate" href="/work/{{ p.slug | slugify }}/" data-reveal style="--plate-accent: {{ plateAccent }}">
         <figure class="work-plate__media">
-          {% if img %}<img src="{{ img }}" alt="{{ p.sections.hero.alt or p.name }}"{% if loop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+          {% if img %}<img src="{{ img }}" alt="{{ p.sections.hero.alt or p.name }}" loading="lazy">
           {% else %}<span class="work-plate__ph" aria-hidden="true">{{ p.name }}</span>{% endif %}
           <span class="work-plate__index" aria-hidden="true">0{{ loop.index }}</span>
         </figure>
@@ -78,9 +88,15 @@ permalink: "/work/index.html"
           </dl>
         </div>
       </a>
-      {% endfor %}
+      {% endif %}{% endfor %}
     </div>
     {% endif %}
+    {%- else -%}
+    <header class="work-hero" id="top">
+      <p class="work-hero__eyebrow">The evidence</p>
+      <h1 class="work-hero__title">Selected <em>work.</em></h1>
+    </header>
+    {%- endif -%}
 
     <section class="work-more">
       <p class="work-more__line" data-reveal-lines>
