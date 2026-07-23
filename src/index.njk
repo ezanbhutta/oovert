@@ -337,11 +337,9 @@
       <p class="evidence__note" data-reveal>
         {{ site.evidence.note }}
       </p>
-      {%- if projectList.length %}
-      <a class="evidence__link" href="/work/{{ projectList[0].slug | slugify }}/" data-reveal>
+      <a class="evidence__link" href="/work/" data-reveal>
         {{ site.evidence.linkLabel }} <span aria-hidden="true">&rarr;</span>
       </a>
-      {%- endif %}
     </section>
 
     <!-- ============ 05 STUDIO ============ -->

@@ -56,6 +56,10 @@
   "nav": {
     "links": [
       {
+        "label": "Work",
+        "href": "/work/"
+      },
+      {
         "label": "Practice",
         "href": "#practice"
       },
@@ -76,6 +80,11 @@
   },
   "menu": {
     "links": [
+      {
+        "num": "↗",
+        "label": "Work",
+        "href": "/work/"
+      },
       {
         "num": "01",
         "label": "Premise",
@@ -374,8 +383,8 @@
     "chapterLabel": "The evidence",
     "hold": "<span class=\"line\"><span class=\"line__inner\">Proof, on</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>request.</em></span></span>",
     "note": "We are putting the current results together for this page. Ask, and we will show you the numbers that matter in your category, with clients you can call.",
-    "linkLabel": "See how we present a project",
-    "linkUrl": "work/case-study/"
+    "linkLabel": "See the work",
+    "linkUrl": "/work/"
   },
   "studio": {
     "chapterLabel": "The studio",
@@ -409,6 +418,10 @@
   "footer": {
     "indexLabel": "Index",
     "indexLinks": [
+      {
+        "label": "Work",
+        "href": "/work/"
+      },
       {
         "label": "Premise",
         "href": "#premise"

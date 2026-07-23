@@ -1,0 +1,231 @@
+/* ============================================================================
+   Work index — the case-study reel.
+   A short, editorial shelf: a statement, then each published project as a large
+   plate (media + name + one line + meta) that links into its case study. Uses
+   the same type system as the rest of the site: statement (xl uppercase),
+   name (lg), body (lede), note (sm), micro-label (xs). Left-aligned throughout.
+   ========================================================================== */
+
+.page-work { background: var(--paper); }
+
+.work { padding-bottom: var(--space-section); }
+
+/* ---- Hero ---- */
+.work-hero {
+  padding: clamp(7rem, 6rem + 8vw, 11rem) var(--margin) var(--space-8);
+}
+
+.work-hero__eyebrow {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.work-hero__title {
+  font-size: var(--text-xl);
+  font-weight: 640;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 112;
+}
+
+.work-hero__title em {
+  text-transform: none;
+  color: var(--accent);
+  font-variation-settings: 'wdth' 100;
+}
+
+.work-hero__lede {
+  margin-top: var(--space-5);
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* ---- Reel ---- */
+.work-reel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 8vw, 8rem);
+  padding: var(--space-8) var(--margin) 0;
+}
+
+.work-plate {
+  display: block;
+  color: var(--ink);
+}
+
+.work-plate__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  max-height: 82vh;
+  background: var(--paper-dim);
+}
+
+.work-plate__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.work-plate:hover .work-plate__media img { transform: scale(1.03); }
+
+/* Index reads over any image via difference blend. */
+.work-plate__index {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 620;
+  letter-spacing: 0.02em;
+  color: #fff;
+  mix-blend-mode: difference;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-plate__ph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--margin);
+  text-align: center;
+  font-size: var(--text-lg);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.work-plate__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-4);
+  align-items: end;
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.work-plate__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  flex-wrap: wrap;
+  font-size: var(--text-lg);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 108;
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+
+.work-plate__go {
+  font-size: 0.5em;
+  color: var(--plate-accent, var(--accent-deep));
+  opacity: 0;
+  transform: translateX(-0.2em);
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-hover);
+}
+
+.work-plate:hover .work-plate__name { color: var(--plate-accent, var(--accent-deep)); }
+.work-plate:hover .work-plate__go { opacity: 1; transform: translateX(0.1em); }
+
+.work-plate__line {
+  margin-top: var(--space-2);
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.work-plate__meta {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  text-align: right;
+}
+
+.work-plate__meta dt {
+  margin-bottom: 0.5em;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.work-plate__meta dd {
+  font-size: var(--text-sm);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---- Closing ---- */
+.work-more {
+  padding: clamp(5rem, 10vw, 9rem) var(--margin) 0;
+}
+
+.work-more__line {
+  font-size: var(--text-xl);
+  font-weight: 640;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 112;
+}
+
+.work-more__line em {
+  text-transform: none;
+  color: var(--accent);
+  font-variation-settings: 'wdth' 100;
+}
+
+.work-more__note {
+  margin-top: var(--space-4);
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.work-more__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: var(--space-5);
+  font-size: var(--text-md);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 0 var(--ink);
+  padding-bottom: 0.12em;
+  transition:
+    color var(--dur-fast) var(--ease-hover),
+    box-shadow var(--dur-fast) var(--ease-hover);
+}
+
+.work-more__cta span { transition: transform var(--dur-med) var(--ease-out); }
+.work-more__cta:hover { color: var(--accent-deep); box-shadow: inset 0 -2px 0 0 var(--accent-deep); }
+.work-more__cta:hover span { transform: translateX(0.3em); }
+
+@media (max-width: 820px) {
+  .work-plate__foot {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    align-items: start;
+  }
+  .work-plate__meta { text-align: left; }
+}
