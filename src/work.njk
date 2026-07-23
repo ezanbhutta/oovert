@@ -46,10 +46,12 @@ permalink: "/work/index.html"
     {%- set published = projectList | where('status', 'published') -%}
     {%- if published.length -%}
     {%- set feature = published[0] -%}
+    {%- set fvid = feature.sections.hero.video -%}
     {%- set fimg = feature.sections.hero.image or feature.intro.image -%}
     <a class="work-feature" id="top" href="/work/{{ feature.slug | slugify }}/">
       <figure class="work-feature__media">
-        {% if fimg %}<img src="{{ fimg }}" alt="{{ feature.sections.hero.alt or feature.name }}" fetchpriority="high">
+        {% if fvid and fvid.src %}<video class="work-feature__el" data-cs-video autoplay muted loop playsinline preload="metadata"{% if fvid.poster %} poster="{{ fvid.poster }}"{% endif %}{% if fvid.speed %} data-rate="{{ fvid.speed }}"{% endif %}{% if fvid.start %} data-start="{{ fvid.start }}"{% endif %}{% if fvid.end %} data-end="{{ fvid.end }}"{% endif %}><source src="{{ fvid.src }}"></video>
+        {% elif fimg %}<img class="work-feature__el" src="{{ fimg }}" alt="{{ feature.sections.hero.alt or feature.name }}" fetchpriority="high">
         {% else %}<span class="work-feature__ph" aria-hidden="true">{{ feature.name }}</span>{% endif %}
         <span class="work-feature__scrim" aria-hidden="true"></span>
       </figure>
