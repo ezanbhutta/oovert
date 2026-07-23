@@ -655,36 +655,159 @@
   text-wrap: balance;
 }
 
-.pkg-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gutter);
-  padding: 0 var(--margin);
-  align-items: start;
+/* ---- The Ledger ---------------------------------------------------------------- */
+/* Pricing as an editorial index. Each plan is a full-width row, ruled by a
+   hairline and numbered like a ledger entry: tier, one line, price. Opening a
+   row unfolds its full scope beneath. The recommended tier is marked — a starred
+   tag, a faint wash, a single accent rule on its leading edge — not boxed, so
+   the eye lands on it without a hard sell. Under no-JS every row is open and all
+   scope stays reachable. */
+
+/* Value reveal: the industry number struck through, ours set beside it. It
+   echoes the chapter note's figures visually, so it is aria-hidden and the note
+   carries the same claim in prose for assistive tech. */
+.ledger-reveal {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding: 0 var(--margin) var(--space-8);
 }
 
-.pkg {
+.ledger-reveal__unit {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: var(--space-5) var(--space-4) var(--space-4);
-  border: 1px solid var(--line);
-  background: var(--paper);
-  transition:
-    transform var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-hover);
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.pkg:hover {
-  transform: translateY(-3px);
-  border-color: rgba(22, 20, 15, 0.32);
-  box-shadow: 0 18px 40px -30px rgba(22, 20, 15, 0.5);
+.ledger-reveal__cap {
+  font-size: var(--text-xs);
+  font-weight: 620;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.pkg__badge {
-  align-self: flex-start;
-  margin-bottom: var(--space-3);
+.ledger-reveal__was,
+.ledger-reveal__now {
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: 'wdth' 108;
+}
+
+.ledger-reveal__was {
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem);
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+.ledger-reveal__now {
+  font-size: clamp(2.6rem, 1.6rem + 4.5vw, 4.8rem);
+  color: var(--ink);
+}
+
+.ledger-reveal__arrow {
+  font-size: clamp(1.4rem, 1rem + 2vw, 2.4rem);
+  line-height: 1;
+  color: var(--accent-deep);
+  padding-bottom: 0.35em;
+}
+
+/* Rows */
+.ledger {
+  --ledger-num: 2rem;
+  --ledger-gap: clamp(1.25rem, 3vw, 3rem);
+  --ledger-pad: clamp(0.75rem, 2vw, 1.5rem);
+  padding: 0 var(--margin);
+}
+
+.ledger-row {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.ledger-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.ledger-row.is-featured {
+  background: color-mix(in oklab, var(--accent) 5%, transparent);
+}
+
+.ledger-row.is-featured::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+}
+
+.ledger-row__head {
+  display: grid;
+  grid-template-columns: var(--ledger-num) minmax(0, 1fr) auto 2.25rem;
+  align-items: center;
+  column-gap: var(--ledger-gap);
+  width: 100%;
+  padding: clamp(1.5rem, 3vw, 2.5rem) var(--ledger-pad);
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-hover);
+}
+
+.ledger-row__head:hover {
+  background: color-mix(in oklab, var(--ink) 3.5%, transparent);
+}
+
+.ledger-row__head:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: -3px;
+}
+
+.ledger-row__num {
+  font-size: var(--text-sm);
+  font-weight: 620;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.is-featured .ledger-row__num { color: var(--accent-deep); }
+
+.ledger-row__id {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.ledger-row__name-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+
+.ledger-row__name {
+  font-size: clamp(1.35rem, 1rem + 1.6vw, 2.1rem);
+  font-weight: 660;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'wdth' 104;
+}
+
+.ledger-row__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   padding: 0.3em 0.7em;
   font-size: var(--text-xs);
   font-weight: 640;
@@ -693,98 +816,108 @@
   color: var(--accent-deep);
   border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
   border-radius: 999px;
+  white-space: nowrap;
 }
 
-.pkg__name {
-  font-size: var(--text-lede);
-  font-weight: 660;
-  line-height: 1.05;
-  letter-spacing: -0.018em;
-  font-variation-settings: 'wdth' 104;
-  text-wrap: balance;
+.ledger-row__tag-mark { font-size: 0.9em; line-height: 1; }
+
+.ledger-row__desc {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 34em;
 }
 
-.pkg__price {
-  margin-top: var(--space-3);
-  font-size: var(--text-lg);
+.ledger-row__price {
+  font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.75rem);
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.035em;
   font-variation-settings: 'wdth' 108;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
 }
 
-.pkg__per {
-  font-size: 0.32em;
+.ledger-row__per {
+  font-size: 0.34em;
   font-weight: 600;
   letter-spacing: 0;
   color: var(--ink-soft);
-  vertical-align: baseline;
   margin-left: 0.15em;
 }
 
-.pkg__desc {
-  margin-top: var(--space-3);
-  font-size: var(--text-sm);
-  line-height: 1.45;
-  color: var(--ink-soft);
-  max-width: 24em;
-  text-wrap: pretty;
-}
-
-.pkg__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6em;
-  align-self: flex-start;
-  margin-top: var(--space-4);
-  padding-bottom: 0.2em;
-  font-size: var(--text-sm);
-  font-weight: 640;
-  letter-spacing: 0.01em;
-  color: var(--ink);
-  box-shadow: inset 0 -1px 0 0 var(--ink);
-  transition:
-    color var(--dur-fast) var(--ease-hover),
-    box-shadow var(--dur-fast) var(--ease-hover);
-}
-
-.pkg__cta span {
-  transition: transform var(--dur-med) var(--ease-out);
-}
-
-.pkg__cta:hover {
-  color: var(--accent-deep);
-  box-shadow: inset 0 -1px 0 0 var(--accent-deep);
-}
-
-.pkg__cta:hover span {
-  transform: translateX(0.25em);
-}
-
-/* The primary action on each row is a filled pill; on featured (dark) cards it
-   turns violet so it still carries against ink. */
-.pkg__cta--solid {
-  gap: 0.75em;
-  padding: 0.95rem 1.5rem;
-  background: var(--ink);
-  color: var(--paper);
+/* Toggle: a ringed plus that drops its stem to a minus when the row opens. */
+.ledger-row__toggle {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line);
   border-radius: 999px;
-  box-shadow: none;
-  text-transform: uppercase;
-  letter-spacing: var(--track-nav);
+  transition:
+    border-color var(--dur-fast) var(--ease-hover),
+    background-color var(--dur-fast) var(--ease-hover);
 }
 
-.pkg__cta--solid:hover {
-  background: var(--accent-deep);
-  color: var(--paper);
-  box-shadow: 0 8px 20px -14px rgba(22, 20, 15, 0.5);
+.ledger-row__toggle::before,
+.ledger-row__toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.8rem;
+  height: 1.5px;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-hover);
 }
 
-.pkg__more {
-  margin-top: var(--space-4);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--line);
+.ledger-row__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+.ledger-row.is-open .ledger-row__toggle::after {
+  transform: translate(-50%, -50%) rotate(0);
+  opacity: 0;
+}
+
+.ledger-row__head:hover .ledger-row__toggle {
+  border-color: var(--accent-deep);
+  background: color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+.is-featured .ledger-row__toggle {
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
+/* Panel: collapsed under JS and animated via grid-template-rows; open at rest
+   with no JS so every scope stays reachable. */
+.js .ledger-row__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-med) var(--ease-out);
+}
+
+.js .ledger-row.is-open .ledger-row__panel {
+  grid-template-rows: 1fr;
+}
+
+/* The clip is the animated grid item: no padding or border of its own, so the
+   0fr track can collapse it to nothing. All spacing lives on the body inside. */
+.ledger-row__panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ledger-row__panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0 var(--ledger-pad) clamp(1.75rem, 3vw, 2.75rem);
+  padding-left: calc(var(--ledger-num) + var(--ledger-gap) + var(--ledger-pad));
+}
+
+.ledger-row__more {
   font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: var(--track-label);
@@ -792,14 +925,13 @@
   color: var(--ink-soft);
 }
 
-.pkg__features {
-  margin-top: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: 0.65em;
+.ledger-row__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+  gap: 0.7rem clamp(1.5rem, 3vw, 3rem);
 }
 
-.pkg__features li {
+.ledger-row__features li {
   position: relative;
   padding-left: 1.6em;
   font-size: var(--text-sm);
@@ -807,7 +939,7 @@
   color: var(--ink);
 }
 
-.pkg__features li::before {
+.ledger-row__features li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -819,60 +951,43 @@
   transform: rotate(-45deg);
 }
 
-/* A card that has features but no CTA-anchored footer: push the list to sit
-   flush, and let a lone-feature card fill the row height evenly. */
-.pkg__features:last-child {
-  margin-bottom: 0;
-}
-
-/* Recommended tier: inverts to ink, so the choice reads at a glance. */
-.pkg--featured {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-  box-shadow: 0 24px 60px -40px rgba(22, 20, 15, 0.7);
-}
-
-.pkg--featured:hover {
-  border-color: var(--ink);
-  box-shadow: 0 30px 70px -38px rgba(22, 20, 15, 0.8);
-}
-
-.pkg--featured .pkg__badge {
-  color: var(--accent-invert);
-  border-color: color-mix(in oklab, var(--accent-invert) 55%, transparent);
-}
-
-.pkg--featured .pkg__price {
-  color: var(--paper);
-}
-
-.pkg--featured .pkg__per,
-.pkg--featured .pkg__desc,
-.pkg--featured .pkg__more {
-  color: var(--ink-invert-soft);
-}
-
-.pkg--featured .pkg__more {
-  border-top-color: var(--line-invert);
-}
-
-.pkg--featured .pkg__features li {
-  color: var(--paper);
-}
-
-.pkg--featured .pkg__features li::before {
-  border-color: var(--accent-invert);
-}
-
-.pkg--featured .pkg__cta--solid {
-  background: var(--accent);
-  color: var(--paper);
-}
-
-.pkg--featured .pkg__cta--solid:hover {
-  background: var(--accent-invert);
+.ledger-row__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  padding-bottom: 0.2em;
+  font-size: var(--text-sm);
+  font-weight: 640;
+  letter-spacing: 0.01em;
   color: var(--ink);
+  box-shadow: inset 0 -1px 0 0 var(--ink);
+  transition:
+    color var(--dur-fast) var(--ease-hover),
+    box-shadow var(--dur-fast) var(--ease-hover);
+}
+
+.ledger-row__cta span { transition: transform var(--dur-med) var(--ease-out); }
+.ledger-row__cta:hover { color: var(--accent-deep); box-shadow: inset 0 -1px 0 0 var(--accent-deep); }
+.ledger-row__cta:hover span { transform: translateX(0.25em); }
+
+/* Featured row's CTA is the primary action: a filled accent pill. */
+.ledger-row__cta--solid {
+  gap: 0.75em;
+  padding: 0.9rem 1.5rem;
+  background: var(--accent-deep);
+  color: var(--paper);
+  border-radius: 999px;
+  box-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: var(--track-nav);
+}
+
+.ledger-row__cta--solid:hover {
+  color: var(--paper);
+  background: var(--ink);
+  box-shadow: 0 8px 20px -14px rgba(22, 20, 15, 0.5);
 }
 
 .packages__guarantee {
@@ -1178,10 +1293,22 @@
   }
   .stats__item { min-height: 0; }
 
-  .pkg-row {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+  .ledger-row__head {
+    grid-template-columns: minmax(0, 1fr) 2.25rem;
+    grid-template-areas:
+      "num   toggle"
+      "id    toggle"
+      "price toggle";
+    align-items: start;
+    column-gap: var(--space-3);
+    row-gap: var(--space-2);
   }
+  .ledger-row__num { grid-area: num; }
+  .ledger-row__id { grid-area: id; }
+  .ledger-row__price { grid-area: price; text-align: left; }
+  .ledger-row__toggle { grid-area: toggle; align-self: center; }
+  .ledger-row__panel-body { padding-left: var(--ledger-pad); }
+
   .pkg-tabs {
     width: 100%;
     max-width: none;
