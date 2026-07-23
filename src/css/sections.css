@@ -569,6 +569,116 @@
   text-wrap: pretty;
 }
 
+/* ---- What we do (interactive services) --------------------------------------- */
+/* The practice list as a showcase on the dark ground: big discipline names on
+   the left; selecting one (hover / click / arrow keys) reveals its description
+   on the right and turns the eclipse mark to that phase. No JS shows the first
+   panel, with every description in the DOM. */
+.wwd {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: var(--space-6) var(--margin) 0;
+  align-items: start;
+}
+
+.wwd__names {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--line-invert);
+}
+
+.wwd__trigger {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  width: 100%;
+  padding: clamp(0.9rem, 2vw, 1.6rem) 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink-invert-soft);
+  border-top: 1px solid var(--line-invert);
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+
+.wwd__trigger:hover,
+.wwd__trigger.is-active { color: var(--paper); }
+
+.wwd__trigger:focus-visible {
+  outline: 2px solid var(--accent-invert);
+  outline-offset: 3px;
+}
+
+.wwd__num {
+  flex: none;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  color: var(--ink-invert-soft);
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+
+.wwd__trigger.is-active .wwd__num { color: var(--accent-invert); }
+
+.wwd__name {
+  font-size: var(--text-lg);
+  font-weight: 640;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 104;
+  text-wrap: balance;
+}
+
+.wwd__stage {
+  position: sticky;
+  top: clamp(6rem, 14vh, 9rem);
+  min-height: 14rem;
+  padding-top: var(--space-3);
+}
+
+.wwd__eclipse {
+  display: block;
+  width: clamp(4rem, 8vw, 6.5rem);
+  margin-bottom: var(--space-5);
+  color: var(--accent-invert);
+  opacity: 0.55;
+  transform: rotate(calc(var(--wwd-turn, 0) * 30deg));
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.wwd__eclipse svg { display: block; width: 100%; height: auto; }
+
+.wwd__panel[hidden] { display: none; }
+
+.wwd__desc {
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--paper);
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wwd__panel.is-active { animation: wwdReveal var(--dur-med) var(--ease-out) both; }
+  @keyframes wwdReveal {
+    from { opacity: 0; transform: translateY(0.6rem); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@media (max-width: 820px) {
+  .wwd {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .wwd__stage {
+    position: static;
+    min-height: 0;
+  }
+  .wwd__desc { color: var(--ink-invert-soft); }
+}
+
 /* ---- Packages ------------------------------------------------------------------ */
 /* Pricing sits on paper between two dark chapters (Practice, Evidence): the light
    ground reads as candour, the moment the site stops performing and states the
