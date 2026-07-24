@@ -648,13 +648,15 @@
   text-wrap: pretty;
 }
 
-/* ---- What we do (the practice, revealed) ------------------------------------ */
-/* The four disciplines list down the left on the dark ground; selecting one
-   (hover on fine pointers, click, or arrow keys) opens its name from cover
-   toward full width, marks it with a short accent rule, and reveals its
-   description on the right while the eclipse turns gently to that phase. A calm
-   ARIA tabs control — no scroll-drive, no wheel. No JS shows the first panel
-   with every description already in the DOM. */
+/* ---- What we do — Break Cover ------------------------------------------------ */
+/* The four disciplines list down the dark ground as a thicket of condensed,
+   quiet words (in cover). Select one — hover on fine pointers, click, or arrow
+   keys — and it BREAKS COVER: a width wave sweeps its letters narrow to wide to
+   full overt, its number turns violet, and a single violet marker travels to it;
+   the one you leave reluctantly re-camouflages. On fine pointers the active word
+   stays alive under the cursor. The gesture is the brand's own thesis — de-
+   camouflage on the width axis — performed on the word you are reading about.
+   No JS: every description ships in the DOM and the first is shown. */
 .wwd {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -664,10 +666,30 @@
 }
 
 .wwd__names {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--line-invert);
 }
+
+/* The single travelling marker — the scarce violet, present at the active row,
+   sliding vertically between disciplines on the column's right edge. */
+.wwd__marker {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3px;
+  height: 2.1rem;
+  margin-top: -1.05rem;
+  background: var(--accent-invert);
+  opacity: 0;
+  transform: translateY(-4rem) scaleY(0.4);
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    opacity 200ms var(--ease-out);
+  pointer-events: none;
+}
+.wwd__marker.is-on { opacity: 1; }
 
 .wwd__trigger {
   display: flex;
@@ -703,17 +725,17 @@
 .wwd__trigger.is-active .wwd__num { color: var(--accent-invert); }
 
 .wwd__name {
-  /* Sized to the column so even the longest discipline stays on ONE line,
-     including when it opens to full width on hover (no wrap, ever). */
-  font-size: clamp(1.4rem, 2.6vw, 3.4rem);
+  /* Sized to the column so even the longest discipline stays on ONE line at its
+     overt width (no wrap, ever). Width — not size — supplies the reveal. */
+  font-size: clamp(1.55rem, 4vw, 3.5rem);
   font-weight: 640;
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  line-height: 0.96;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
-  /* Width is the tell: a discipline in cover sits condensed; the selected one
-     opens toward the overt end of the axis. Restrained — a quiet reveal, not a
-     spin. --wwd-w is registered so it eases. */
-  --wwd-w: 90;
+  /* In cover by default (deeply condensed, the thicket); the active discipline
+     breaks toward overt. --wwd-w is registered so the no-JS / reduced-motion
+     path eases it; when JS splits the name, per-letter --w drives the wave. */
+  --wwd-w: 78;
   font-variation-settings: 'wdth' var(--wwd-w);
   white-space: nowrap;
 }
@@ -721,19 +743,14 @@
 .wwd__trigger:hover .wwd__name,
 .wwd__trigger.is-active .wwd__name { --wwd-w: 116; }
 
-/* The short accent rule that marks the open discipline, held to its right. */
-.wwd__cue {
-  flex: none;
-  align-self: center;
-  margin-left: auto;
-  width: 0;
-  height: 1px;
-  background: var(--accent-invert);
-  transition: width var(--dur-med) var(--ease-out);
+/* Per-letter spans (added by JS) carry the travelling wave. Out-of-range letters
+   hold a byte-identical width so the browser skips reshaping them. */
+.wwd__name--split { letter-spacing: 0.005em; }
+.wwd__l {
+  display: inline-block;
+  white-space: pre;
+  font-variation-settings: 'wdth' var(--w, 78);
 }
-
-.wwd__trigger:hover .wwd__cue,
-.wwd__trigger.is-active .wwd__cue { width: clamp(1.5rem, 4vw, 3rem); }
 
 .wwd__stage {
   position: sticky;
@@ -748,7 +765,7 @@
   margin-bottom: var(--space-5);
   color: var(--accent-invert);
   opacity: 0.55;
-  transform: rotate(calc(var(--wwd-turn, 0) * 12deg));
+  transform: rotate(calc(var(--wwd-turn, 0) * 14deg));
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
@@ -765,14 +782,19 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* The description dissolves in on switch; the name eases across the width
-     axis. That is the whole motion — quiet and deliberate. */
-  .wwd__panel.is-active { animation: wwdReveal var(--dur-med) var(--ease-out) both; }
+  /* The description wipes up into view — a clip reveal from below plus a soft
+     rise — each time the discipline changes. */
+  .wwd__panel.is-active { animation: wwdReveal var(--dur-slow) var(--ease-out) both; }
   @keyframes wwdReveal {
-    from { opacity: 0; transform: translateY(0.6rem); }
-    to { opacity: 1; transform: none; }
+    from { opacity: 0; transform: translateY(0.9rem); clip-path: inset(0 0 100% 0); }
+    to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
   }
+  /* No-JS / not-yet-split fallback easing for the whole-name width. */
   .wwd__name { transition: --wwd-w var(--dur-med) var(--ease-out); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wwd__marker { transition: none; }
 }
 
 @media (max-width: 820px) {
@@ -785,6 +807,7 @@
     min-height: 0;
   }
   .wwd__desc { color: var(--ink-invert-soft); }
+  .wwd__marker { display: none; }
 }
 
 /* ---- Packages ------------------------------------------------------------------ */
