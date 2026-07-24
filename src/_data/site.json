@@ -170,7 +170,7 @@
       "Brand strategy and identity",
       "Since 2020"
     ],
-    "title": "<span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.08s\">Camouflage</span></span>\n        <span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.2s\">is for <em>prey.</em></span></span>",
+    "title": "<span class=\"line\"><span class=\"line__inner\" data-entrance style=\"--d:.12s\">Camouflage</span></span>\n        <span class=\"line line--seg\"><span class=\"line__inner\" data-entrance style=\"--d:.24s;--edur:1.15s\">is for&nbsp;</span></span><span class=\"line line--seg\"><span class=\"line__inner\" data-entrance style=\"--d:.34s;--edur:1.25s\"><em>prey.</em></span></span>",
     "lede": "OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. If your company looks and sounds like its competitors, that is the problem we solve.",
     "ctaPrimary": {
       "label": "Start a project",

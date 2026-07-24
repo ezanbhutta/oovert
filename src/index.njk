@@ -33,7 +33,18 @@
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script>
+    document.documentElement.classList.replace('no-js', 'js');
+    // Entrance gate: masked serif reveals must never FOUT mid-rise. Failsafe
+    // releases the gate at 600ms even if the fonts promise stalls.
+    document.fonts.ready.then(function () { document.documentElement.classList.add('fonts-ready'); });
+    setTimeout(function () { document.documentElement.classList.add('fonts-ready'); }, 600);
+    // First visit gets the overture; returns get the same move, compressed.
+    try {
+      if (sessionStorage.getItem('ov-entered')) document.documentElement.classList.add('is-return');
+      else sessionStorage.setItem('ov-entered', '1');
+    } catch (e) {}
+  </script>
 
   <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -98,8 +109,8 @@
     <nav class="site-head__nav" aria-label="Primary">
       {% for link in site.nav.links %}<a href="{{ link.href }}">{{ link.label }}</a>
       {% endfor %}</nav>
-    <button class="site-head__menu" type="button" aria-expanded="false" aria-controls="menu-overlay">
-      <span class="site-head__menu-label">{{ site.nav.menuButtonLabel }}</span>
+    <button class="site-head__menu" type="button" aria-expanded="false" aria-controls="menu-overlay" aria-label="Menu">
+      <span class="site-head__menu-label" aria-hidden="true"><span>{{ site.nav.menuButtonLabel }}</span><span>Close</span></span>
     </button>
   </header>
 
@@ -125,8 +136,11 @@
       {% else %}
       <canvas class="hero__bg" aria-hidden="true"></canvas>
       {% endif %}
-      <div class="hero__meta" data-entrance style="--d:.42s">
-        {% for tag in site.hero.metaTags %}<span>{{ tag }}</span>
+      {#- Entrance cadence: tight pair for the headline (.12/.24), a breath
+          while it settles alone, then a widening tail (.64/.76/.90/1.06) —
+          shaped, not metronomic. Meta tags step in 70ms apart. -#}
+      <div class="hero__meta">
+        {% for tag in site.hero.metaTags %}<span data-entrance style="--d:{{ (0.64 + loop.index0 * 0.07) | round(2) }}s">{{ tag }}</span>
         {% endfor %}</div>
 
       <h1 class="hero__title">
@@ -134,16 +148,16 @@
       </h1>
 
       <div class="hero__foot">
-        <p class="hero__lede" data-entrance style="--d:.52s">
+        <p class="hero__lede" data-entrance style="--d:.76s">
           {{ site.hero.lede }}
         </p>
-        <div class="hero__cta" data-entrance style="--d:.62s">
-          <a class="btn" href="{{ site.hero.ctaPrimary.url }}" data-magnetic>{{ site.hero.ctaPrimary.label }}<span class="btn__arrow" aria-hidden="true">&darr;</span></a>
+        <div class="hero__cta" data-entrance style="--d:.90s">
+          <a class="btn" href="{{ site.hero.ctaPrimary.url }}" data-magnetic><span class="btn__label">{{ site.hero.ctaPrimary.label }}</span><span class="btn__arrow" aria-hidden="true">&darr;</span></a>
           <a class="link-quiet" href="{{ site.hero.ctaSecondary.url }}">{{ site.hero.ctaSecondary.label }}</a>
         </div>
       </div>
 
-      <div class="hero__strip" data-entrance style="--d:.72s">
+      <div class="hero__strip" data-entrance style="--d:1.06s">
         <span class="hero__scroll" aria-hidden="true">{{ site.hero.scrollLabel }}<i></i></span>
         <span>{{ site.hero.statusLine }}</span>
       </div>
