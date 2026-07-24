@@ -171,21 +171,25 @@
       {
         "num": "01",
         "name": "Brand strategy",
+        "overt": 114,
         "desc": "It starts with a few weeks of interviews, audits and honest questions. We are looking for the one true thing about your company that no competitor can copy. Everything else gets built on top of it."
       },
       {
         "num": "02",
         "name": "Positioning",
+        "overt": 122,
         "desc": "One clear sentence about who you are for and why you are the obvious choice. If your nearest competitor could say the same line, you do not have a position yet."
       },
       {
         "num": "03",
         "name": "Brand identity",
+        "overt": 116,
         "desc": "Name, logo, type, colour, voice and motion, built into one system people recognise before they finish reading it."
       },
       {
         "num": "04",
         "name": "Guidelines and rollout",
+        "overt": 100,
         "desc": "The guidelines, templates and everyday tools your team needs to keep the brand sharp long after we hand it over."
       }
     ],
