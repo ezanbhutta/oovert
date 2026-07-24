@@ -1527,7 +1527,10 @@
   .ledger-row__panel-body { padding-left: var(--ledger-pad); }
 
   .pkg-tabs {
-    width: 100%;
+    /* auto (not 100%) so the flex row fills its containing block MINUS its own
+       horizontal margins — width:100% + margin overflowed the viewport by
+       ~2×--margin on phones/tablets. */
+    width: auto;
     max-width: none;
   }
   .pkg-tab {
