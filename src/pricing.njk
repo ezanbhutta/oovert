@@ -1,0 +1,164 @@
+---
+permalink: "/pricing/index.html"
+---
+{%- set currentPath = "/pricing/" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  {% include "analytics.njk" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much Does Branding Cost? — OOVERT Pricing</title>
+  <meta name="description" content="How much does branding cost? Honest numbers: US branding averages ~$7,500 and agencies charge $5k–$70k+. OOVERT does strategy-led brand identity from $280.">
+  <link rel="canonical" href="https://oovert.com/pricing/">
+  <meta name="theme-color" content="#F3F0E9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="How Much Does Branding Cost? — OOVERT">
+  <meta property="og:description" content="Honest branding prices across the market — and world-class, strategy-led brand identity from $280.">
+  <meta property="og:url" content="https://oovert.com/pricing/">
+  <meta property="og:image" content="https://oovert.com/assets/og/pricing.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/sections.css">
+  <link rel="stylesheet" href="/css/work.css">
+
+  <link rel="modulepreload" href="/js/modules/reveal.js">
+  <link rel="modulepreload" href="/js/modules/nav.js">
+  <link rel="modulepreload" href="/js/modules/packages.js">
+  {% set schemaKey = "pricing" %}{% include "schema.njk" %}
+</head>
+<body class="page-pricing">
+  <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
+
+  {% include "site-header.njk" %}
+
+  <main id="main" class="pricing">
+    <header class="work-hero" id="top">
+      <p class="work-hero__eyebrow" data-reveal>{{ pricing.eyebrow }}</p>
+      <h1 class="work-hero__title" data-reveal-lines>
+        <span class="line"><span class="line__inner">How much does</span></span>
+        <span class="line"><span class="line__inner"><em>branding cost?</em></span></span>
+      </h1>
+      <p class="work-hero__lede" data-reveal>{{ pricing.lede }}</p>
+    </header>
+
+    <!-- The honest market range -->
+    <section class="cost-range" aria-label="What branding costs across the market">
+      <p class="cost-range__intro" data-reveal>{{ pricing.range.intro }}</p>
+      <dl class="cost-range__list">
+        {% for tier in pricing.range.tiers %}<div class="cost-range__row" data-reveal>
+          <dt class="cost-range__label">{{ tier.label }}</dt>
+          <dd class="cost-range__price">{{ tier.price }}</dd>
+        </div>
+        {% endfor %}</dl>
+      <p class="cost-range__average" data-reveal>{{ pricing.range.average | safe }}</p>
+    </section>
+
+    <!-- What it costs with OOVERT (the pricing ledger, shared with the homepage) -->
+    <section class="packages" aria-labelledby="pricing-packages-title">
+      <header class="chapter-head" data-reveal-head>
+        <h2 class="chapter-head__label" id="pricing-packages-title">{{ pricing.packagesLead }}</h2>
+        <p class="chapter-head__note" data-reveal>{{ site.packages.chapterNote }}</p>
+      </header>
+
+      <p class="packages__lead" data-reveal-lines>{{ site.packages.lead | safe }}</p>
+
+      <div class="pkg-tabs" role="tablist" aria-label="Package type" data-reveal>
+        <button type="button" class="pkg-tab is-active" role="tab" id="pkg-tab-onetime" aria-selected="true" aria-controls="pkg-panel-onetime">One&#8209;time</button>
+        <button type="button" class="pkg-tab" role="tab" id="pkg-tab-monthly" aria-selected="false" aria-controls="pkg-panel-monthly" tabindex="-1">Monthly</button>
+        <button type="button" class="pkg-tab" role="tab" id="pkg-tab-staff" aria-selected="false" aria-controls="pkg-panel-staff" tabindex="-1">Staffing</button>
+      </div>
+
+      {% for group in [
+        { id: 'onetime', data: site.packages.onetime },
+        { id: 'monthly', data: site.packages.monthly },
+        { id: 'staff', data: site.packages.staff }
+      ] %}
+      <div class="pkg-group{% if loop.first %} is-active{% endif %}" id="pkg-panel-{{ group.id }}" role="tabpanel" aria-labelledby="pkg-tab-{{ group.id }}" tabindex="0">
+        <p class="pkg-group__note">{{ group.data.note }}</p>
+        <div class="ledger">
+          {% for card in group.data.cards %}<article class="ledger-row{% if card.featured %} is-featured is-open{% endif %}">
+            <button type="button" class="ledger-row__head" aria-expanded="{{ 'true' if card.featured else 'false' }}" aria-controls="ledger-{{ group.id }}-{{ loop.index }}">
+              <span class="ledger-row__num" aria-hidden="true">0{{ loop.index }}</span>
+              <span class="ledger-row__id">
+                <span class="ledger-row__name-line">
+                  <span class="ledger-row__name">{{ card.name }}</span>
+                  {% if card.badge %}<span class="ledger-row__tag"><span class="ledger-row__tag-mark" aria-hidden="true">&#10022;</span>{{ card.badge }}</span>{% endif %}
+                </span>
+                <span class="ledger-row__desc">{{ card.desc }}</span>
+              </span>
+              <span class="ledger-row__price">{{ card.price }}{% if card.per %}<span class="ledger-row__per">{{ card.per }}</span>{% endif %}</span>
+              <span class="ledger-row__toggle" aria-hidden="true"></span>
+            </button>
+            <div class="ledger-row__panel" id="ledger-{{ group.id }}-{{ loop.index }}">
+              <div class="ledger-row__panel-inner">
+                <div class="ledger-row__panel-body">
+                  {% if card.more %}<p class="ledger-row__more">{{ card.more }}</p>{% endif %}
+                  <ul class="ledger-row__features">
+                    {% for feature in card.features %}<li>{{ feature | safe }}</li>{% endfor %}
+                  </ul>
+                  <a class="ledger-row__cta{% if card.featured %} ledger-row__cta--solid{% endif %}" href="{{ card.ctaUrl }}">{{ card.ctaLabel | safe }} <span aria-hidden="true">&rarr;</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+          {% endfor %}</div>
+      </div>
+      {% endfor %}
+
+      <p class="packages__guarantee" data-reveal>{{ site.packages.guarantee | safe }}</p>
+    </section>
+
+    <!-- Why the range is so wide -->
+    <section class="cost-why" aria-label="What affects the price of branding">
+      <p class="cost-why__text" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ pricing.range.why | safe }}</span></span>
+      </p>
+    </section>
+
+    <!-- Pricing FAQ -->
+    <section class="faq-section" id="faq" aria-labelledby="pricing-faq-title">
+      <header class="chapter-head" data-reveal-head>
+        <h2 class="chapter-head__label" id="pricing-faq-title">Money, answered.</h2>
+      </header>
+      <div class="faq">
+        {% for item in pricing.faq %}<details class="faq__item"{% if loop.first %} open{% endif %}>
+          <summary class="faq__q">
+            <span class="faq__q-text">{{ item.q }}</span>
+            <span class="faq__marker" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a"><p>{{ item.a | safe }}</p></div>
+        </details>
+        {% endfor %}</div>
+    </section>
+
+    <!-- Close -->
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ pricing.closing.line | safe }}</span></span>
+      </p>
+      <p class="work-more__note" data-reveal>{{ pricing.closing.note }}</p>
+      <a class="work-more__cta" href="{{ pricing.closing.ctaUrl }}" data-reveal>{{ pricing.closing.ctaLabel }} <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  {% include "site-footer.njk" %}
+
+  <script type="module" src="/js/pricing.js"></script>
+</body>
+</html>

@@ -11,6 +11,7 @@
  */
 const site = require('./site.json');
 const project = require('./projects/case-study.json');
+const pricing = require('./pricing.json');
 
 const BASE = 'https://oovert.com';
 const ORG_ID = `${BASE}/#organization`;
@@ -122,6 +123,30 @@ const studioPage = {
   inLanguage: 'en',
 };
 
+/* ---- Pricing page: WebPage + FAQPage --------------------------------------
+ * FAQPage from the pricing questions (text only — no Offer/price nodes, per the
+ * studio's "no prices in schema" rule; the numbers live in the visible copy). */
+const pricingPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/pricing/#webpage`,
+  name: 'How Much Does Branding Cost? — OOVERT Pricing',
+  description:
+    'What branding costs across the market, and OOVERT’s transparent, strategy-led pricing.',
+  url: `${BASE}/pricing/`,
+  isPartOf: { '@id': ORG_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const pricingFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/pricing/#faq`,
+  mainEntity: pricing.faq.map((q) => ({
+    '@type': 'Question',
+    name: q.q,
+    acceptedAnswer: { '@type': 'Answer', text: q.a },
+  })),
+};
+
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -156,5 +181,10 @@ module.exports = {
   studio: graph([
     studioPage,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Studio', path: '/studio/' }]),
+  ]),
+  pricing: graph([
+    pricingPage,
+    pricingFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing/' }]),
   ]),
 };

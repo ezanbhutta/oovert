@@ -3,13 +3,10 @@
 _Audit date: 2026-07-24. Verified against the live production build (all pages
 crawled and read), not assumed. Competitive/industry research via web search._
 
-> **Data caveat, stated up front:** no keyword-**volume** API (DataForSEO, Ahrefs,
-> Google Keyword Planner) is connected to this project, so search-volume and
-> difficulty figures below are **industry-informed estimates**, not pulled
-> metrics. Intent, cannibalization, and gap analysis are exact (read from the
-> live pages). Connecting the `seo-google` skill's Keyword Planner or a
-> DataForSEO key would upgrade the volume/difficulty columns to real numbers —
-> recommended as a follow-up.
+> **Update (2026-07-25): real search volumes are now attached.** Verified Google
+> Ads data for the target keywords was pulled via DataForSEO — see **Part 9**
+> (raw JSON in `tools/keyword-volume.json`). It reprioritizes the roadmap; the
+> qualitative analysis below stands, and Part 9 is the number-backed layer on top.
 
 ---
 
@@ -218,8 +215,73 @@ untouched except where noted.
 
 ## Suggested next step
 
-Greenlight **item #1 (the cost page)** and I'll draft it in OOVERT's voice for
-your review before it ships — it's the single highest-leverage page and plays
-directly to your pricing advantage. In parallel, connecting a keyword-volume
-source (Keyword Planner via the `seo-google` skill, or a DataForSEO key) will
-put real volume/difficulty numbers behind every recommendation here.
+Greenlight the top pages (Part 9) and I'll build them in OOVERT's voice for your
+review before they ship.
+
+---
+
+## Part 9 — Verified search volume (DataForSEO · US / English · 2026-07-25)
+
+Real Google Ads data, pulled via `tools/keyword-volume.mjs` (run cost $0.09).
+Full JSON in `tools/keyword-volume.json`. "Comp" = Google Ads competition;
+CPC = top-of-page bid range (a proxy for commercial value).
+
+| Keyword | Vol/mo | Comp | CPC (low–high) | Intent | OOVERT status |
+|---------|-------:|:----:|----------------|--------|---------------|
+| **brand identity design** | **18,100** | LOW | $2.43–$9.80 | Commercial | mentioned, no dedicated page |
+| **branding agency** | **9,900** | LOW | $5.77–$25.00 | Commercial | "studio" positioning; not targeted |
+| brand strategy agency | 880 | LOW | $10.45–**$46.98** | Commercial (high value) | homepage |
+| branding studio | 880 | LOW | $2.33–$10.24 | Commercial | owned |
+| brand naming agency | 590 | LOW | $5.04–$24.83 | Commercial | partial (work page) |
+| rebranding agency | 390 | LOW | $7.65–$17.82 | Commercial | **gap** |
+| brand identity agency | 320 | LOW | $5.71–$28.98 | Commercial | partial |
+| branding for startups | 260 | LOW | $4.08–$14.76 | Commercial | **gap** |
+| brand identity package | 210 | HIGH | $2.08–$9.55 | Commercial | on homepage (#packages) |
+| how to name a company | 210 | MED | $0.76–$4.46 | Informational | **gap** |
+| naming agency | 140 | MED | $5.39–$12.54 | Commercial | partial |
+| company naming service | 140 | LOW | $1.35–$14.53 | Commercial | **gap** |
+| rebranding services | 140 | LOW | $15.90–$29.99 | Commercial | **gap** |
+| brand positioning agency | 140 | LOW | $4.04–$25.00 | Commercial | approach page |
+| branding cost | 140 | LOW | $3.25–$12.54 | Info/commercial | **gap** (cost page) |
+| design subscription | 140 | MED | $6.68–$22.91 | Commercial | offered, not targeted |
+| how much does branding cost | 110 | LOW | $1.39–$7.00 | Informational | **gap** (cost page) |
+| brand strategy for startups | 70 | LOW | $7.71–$16.29 | Commercial | gap |
+| branding package price | 50 | MED | $1.62–$5.47 | Commercial | gap (cost page) |
+| brand identity pricing | 20 | MED | $2.31–$5.00 | Commercial | gap (cost page) |
+| affordable branding agency | 20 | — | — | Commercial | gap |
+| brand strategy vs brand identity | 20 | LOW | — | Informational | gap |
+| brand identity studio | 10 | LOW | — | Commercial | studio page |
+| when to rebrand | 10 | LOW | — | Informational | gap |
+| boutique branding studio | 10 | MED | $3.72–$8.49 | Commercial | gap |
+| branding retainer | — | — | — | Commercial | offered, not targeted |
+
+### What the numbers change
+
+1. **"brand identity design" — 18,100/mo at LOW competition — is the single
+   biggest, most winnable prize**, 2× the next term. OOVERT already *does* exactly
+   this; it just has no page that targets the phrase. **This is the new #1.**
+2. **"branding agency" — 9,900/mo, LOW comp.** OOVERT is a *studio* by choice, but
+   can capture most of this with body copy + an "agency or studio?" FAQ, without
+   diluting positioning.
+3. **The cost cluster is real** (branding cost 140 + how much does branding cost
+   110 + package price 50 + brand identity pricing 20 ≈ **320+/mo**, commercial) —
+   the `/pricing/` page is validated, and the pricing wedge makes it convert.
+4. **Rebranding** (agency 390 + services 140 ≈ **530/mo**, entirely un-owned) and
+   **naming** (brand naming 590 + naming 140 + company naming 140 ≈ **870/mo**)
+   justify dedicated service pages.
+5. **"brand strategy agency"** is low volume but **$46.98 top CPC** — the highest
+   commercial value per click on the list; worth owning even at 880/mo.
+
+### Revised priority (number-backed)
+
+1. **`/brand-identity/`** (or hard-optimize an existing page) for **"brand
+   identity design" (18,100)** — biggest + lowest difficulty. Highest ROI.
+2. **`/pricing/`** cost page (already drafted) — commercial cluster + wedge.
+3. **Service pages**: `/brand-naming/` (~870), `/rebranding/` (~530),
+   `/brand-strategy/` (880, top CPC).
+4. **Capture "branding agency" (9,900)** via content + FAQ (no rebrand).
+5. **Informational**: "how to name a company" (210), "when to rebrand",
+   "brand strategy vs brand identity" — top-funnel + AI-citation fuel.
+
+_To refresh these numbers later: `DATAFORSEO_LOGIN=… DATAFORSEO_PASSWORD=… node
+tools/keyword-volume.mjs`._

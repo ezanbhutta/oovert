@@ -1,0 +1,48 @@
+{
+  "eyebrow": "Pricing",
+  "lede": "Straight numbers, no \"it depends.\" Here is what branding actually costs across the market — and what it costs with us.",
+  "range": {
+    "intro": "Branding is priced all over the map. Here is the honest spread:",
+    "tiers": [
+      { "label": "Freelancer or template shop", "price": "$250 – $5,000" },
+      { "label": "Boutique agency", "price": "$5,000 – $20,000" },
+      { "label": "Full brand-identity package", "price": "$2,500 – $50,000" },
+      { "label": "Network agency, enterprise scale", "price": "$70,000 – $100,000+" }
+    ],
+    "average": "The average US company spends about <em>$7,500</em> on branding. Most of that pays for overhead, account managers and juniors billed as experts — not the thinking.",
+    "why": "What moves the number is simple: how much strategy the work needs, how many deliverables you want, and who actually does the work. A logo is cheap. A brand that shortens your sales cycle is a different purchase."
+  },
+  "packagesLead": "What it costs with OOVERT",
+  "faq": [
+    {
+      "q": "How much should a small business spend on branding?",
+      "a": "Enough to be chosen, not so much that you feel it for a year. Most small businesses land between a few hundred and a few thousand dollars — the range our work sits in. Spend it on the thinking and the taste, not the office overhead."
+    },
+    {
+      "q": "Why is OOVERT so much cheaper than a typical agency?",
+      "a": "Senior people, no overhead, no account managers, no juniors billed as experts. You pay for the work and the taste, not the office. The thinking is the same one a network agency would charge ten times for."
+    },
+    {
+      "q": "What is included in the price?",
+      "a": "Every package lists its scope in full before you buy. Depending on the tier: strategy, positioning, naming, logo, type, colour, voice, guidelines and every source file. No surprise line items, no licensing games — the brand and its files are yours on final payment."
+    },
+    {
+      "q": "Do you offer monthly or payment options?",
+      "a": "Yes. Alongside fixed-scope projects we run monthly retainers — design on tap, pause or cancel anytime — and embedded staffing for teams that need senior hands full-time. Pick the shape that fits how you work."
+    },
+    {
+      "q": "Is cheaper branding worse branding?",
+      "a": "Cheaper overhead is not cheaper work. What makes branding bad is juniors, templates and no strategy — not the invoice. Ours is senior-only and strategy-led, and the money-back guarantee stands behind every project."
+    },
+    {
+      "q": "What if I am not happy with the work?",
+      "a": "We keep going until you are, or we refund you. That is the whole guarantee, and it applies to every tier."
+    }
+  ],
+  "closing": {
+    "line": "Tell us the budget. We will tell you the <em>truth.</em>",
+    "note": "Send us the project and roughly what you plan to invest. We will tell you honestly what it takes — and whether we are the right studio for it.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}
