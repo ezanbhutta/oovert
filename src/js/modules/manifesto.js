@@ -1,14 +1,14 @@
 /**
  * Manifesto dissolve + gather.
- * As the band scrolls through the viewport (it never pins), the connective
- * copy fades from the top down while the capability keywords lift out of the
- * sentence and gather into a centered, evenly spaced list. Both are driven by
- * the section's own scroll progress, so by the time it reaches the middle of
- * the screen the paragraph has resolved into the centered list, and the page
- * keeps scrolling normally throughout.
+ * The paragraph reads as a normal, static block. When it scrolls into view it
+ * holds for a beat (fully readable), then the connective words dissolve top to
+ * bottom while the capability keywords glide into a centred column. This plays
+ * as a self-contained, TIMED animation — it is not tied to scroll, so the page
+ * never pins or locks; you scroll freely throughout. It re-arms when the band
+ * leaves the viewport, so it replays on the next visit.
  *
- * Progressive enhancement: a legible paragraph with no JS or reduced motion,
- * nothing fades or moves.
+ * Progressive enhancement: with no JS or reduced motion it stays a plain,
+ * legible paragraph — nothing fades or moves.
  */
 export function initManifesto({ reducedMotion } = {}) {
   const section = document.querySelector('.manifesto');
@@ -45,16 +45,12 @@ export function initManifesto({ reducedMotion } = {}) {
   const plains = words.filter((w) => !w.classList.contains('mf-key'));
   if (!words.length || reducedMotion) return;
 
-  // Pin the stage so the paragraph holds still on screen (fully readable) while
-  // scroll drives the transform. The tall-section CSS is gated on this class,
-  // so the no-JS / reduced-motion fallback stays a normal, readable band.
-  section.classList.add('manifesto--pinned');
-
+  const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t);
   const smooth = (a, b, t) => {
-    t = (t - a) / (b - a);
-    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    t = clamp01((t - a) / (b - a));
     return t * t * (3 - 2 * t);
   };
+  const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
   // Target: an evenly spaced, centered column inside the stage.
   let targets = [];
@@ -72,37 +68,18 @@ export function initManifesto({ reducedMotion } = {}) {
     targets = rects.map((s, i) => ({ dx: cx - s.cx, dy: cy - total / 2 + i * gap - s.cy }));
   };
 
-  // Fraction of the pinned scroll spent holding the full, readable paragraph
-  // before anything moves. After the hold, the dissolve + gather runs over the
-  // remaining scroll. Larger = longer read before the effect starts.
-  const HOLD = 0.4;
-
-  let ticking = false;
-  const update = () => {
-    ticking = false;
-    const vh = window.innerHeight;
-    // Progress across the pinned section: 0 the moment the stage sticks to the
-    // top of the viewport, 1 as it releases. While pinned the paragraph is
-    // fixed on screen, so the reader gets the whole thing before it transforms.
-    const r = section.getBoundingClientRect();
-    const travel = section.offsetHeight - vh;
-    let raw = travel > 0 ? -r.top / travel : 0;
-    raw = raw < 0 ? 0 : raw > 1 ? 1 : raw;
-    // Hold the paragraph intact through the first HOLD of the scroll, then run
-    // the effect across the remainder.
-    let p = raw <= HOLD ? 0 : (raw - HOLD) / (1 - HOLD);
-
-    // Keywords gather to the centered column.
+  // Render the effect at progress p (0 = full paragraph, 1 = keyword column).
+  let lastP = 0;
+  const render = (p) => {
+    lastP = p;
     const move = smooth(0.0, 0.62, p);
     for (let i = 0; i < keys.length; i++) {
       const t = targets[i];
       keys[i].style.transform = `translate(${(t.dx * move).toFixed(1)}px, ${(t.dy * move).toFixed(1)}px)`;
     }
-
-    // Connective words dissolve top to bottom, staggered by reading order, and
-    // are fully gone by p ~= 0.5 — before the keywords finish gathering (0.62) —
-    // so the resolved state is only the clean centered list, never a gathered
-    // list sitting over half-faded leftover words.
+    // Connective words dissolve top to bottom, staggered, gone by p ~= 0.5 —
+    // before the keywords finish gathering (0.62) — so the resolved state is
+    // only the clean centered list, never a gathered list over faded leftovers.
     const n = plains.length;
     for (let i = 0; i < n; i++) {
       const s = (i / n) * 0.3;
@@ -110,18 +87,61 @@ export function initManifesto({ reducedMotion } = {}) {
       plains[i].style.opacity = (1 - f).toFixed(3);
     }
   };
-  const onScroll = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
+
+  // Timed play, fully decoupled from scroll. HOLD keeps the paragraph readable
+  // before anything moves; then p eases 0 -> 1 over DURATION.
+  const HOLD = 900; // ms the full paragraph holds before it starts
+  const DURATION = 2600; // ms of the dissolve + gather
+  let rafId = null;
+  let start = null;
+  let playing = false;
+  const step = (ts) => {
+    if (start === null) start = ts;
+    const elapsed = ts - start;
+    if (elapsed < HOLD) {
+      rafId = requestAnimationFrame(step);
+      return;
     }
+    const t = clamp01((elapsed - HOLD) / DURATION);
+    render(easeInOut(t));
+    if (t < 1) rafId = requestAnimationFrame(step);
+    else {
+      rafId = null;
+      playing = false;
+    }
+  };
+  const play = () => {
+    if (playing || lastP > 0) return; // already running or already resolved
+    playing = true;
+    start = null;
+    rafId = requestAnimationFrame(step);
+  };
+  const reset = () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+    start = null;
+    playing = false;
+    render(0);
   };
 
   measure();
-  update();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
+  render(0);
+
+  // Play once the band is well into view; re-arm when it fully leaves so it
+  // replays on the next visit. No scroll listener — nothing is scroll-driven.
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && e.intersectionRatio >= 0.6) play();
+        else if (!e.isIntersecting) reset();
+      }
+    },
+    { threshold: [0, 0.6] }
+  );
+  io.observe(el);
+
+  window.addEventListener('resize', () => { measure(); render(lastP); }, { passive: true });
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => { measure(); update(); });
+    document.fonts.ready.then(() => { measure(); render(lastP); });
   }
 }
