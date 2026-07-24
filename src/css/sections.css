@@ -624,11 +624,13 @@
   text-wrap: pretty;
 }
 
-/* ---- What we do (interactive services) --------------------------------------- */
-/* The practice list as a showcase on the dark ground: big discipline names on
-   the left; selecting one (hover / click / arrow keys) reveals its description
-   on the right and turns the eclipse mark to that phase. No JS shows the first
-   panel, with every description in the DOM. */
+/* ---- What we do (the practice, revealed) ------------------------------------ */
+/* The four disciplines list down the left on the dark ground; selecting one
+   (hover on fine pointers, click, or arrow keys) opens its name from cover
+   toward full width, marks it with a short accent rule, and reveals its
+   description on the right while the eclipse turns gently to that phase. A calm
+   ARIA tabs control — no scroll-drive, no wheel. No JS shows the first panel
+   with every description already in the DOM. */
 .wwd {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -641,9 +643,6 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--line-invert);
-  /* The dial curves in depth: names above/below the read line lean back on the
-     wheel (see the tilt on .wwd__trigger, motion-users only). */
-  perspective: 1300px;
 }
 
 .wwd__trigger {
@@ -656,7 +655,7 @@
   cursor: pointer;
   color: var(--ink-invert-soft);
   border-top: 1px solid var(--line-invert);
-  transition: color var(--dur-fast) var(--ease-hover);
+  transition: color var(--dur-med) var(--ease-hover);
 }
 
 .wwd__trigger:hover,
@@ -673,9 +672,10 @@
   font-weight: 600;
   letter-spacing: var(--track-label);
   color: var(--ink-invert-soft);
-  transition: color var(--dur-fast) var(--ease-hover);
+  transition: color var(--dur-med) var(--ease-hover);
 }
 
+.wwd__trigger:hover .wwd__num,
 .wwd__trigger.is-active .wwd__num { color: var(--accent-invert); }
 
 .wwd__name {
@@ -684,14 +684,30 @@
   line-height: 0.98;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  /* Width is the tell: a name in cover sits condensed; the one at the read line
-     opens to full width (see .is-active). --wwd-w is registered so it animates. */
-  --wwd-w: 88;
+  /* Width is the tell: a discipline in cover sits condensed; the selected one
+     opens toward the overt end of the axis. Restrained — a quiet reveal, not a
+     spin. --wwd-w is registered so it eases. */
+  --wwd-w: 90;
   font-variation-settings: 'wdth' var(--wwd-w);
   text-wrap: balance;
 }
 
-.wwd__trigger.is-active .wwd__name { --wwd-w: 120; }
+.wwd__trigger:hover .wwd__name,
+.wwd__trigger.is-active .wwd__name { --wwd-w: 116; }
+
+/* The short accent rule that marks the open discipline, held to its right. */
+.wwd__cue {
+  flex: none;
+  align-self: center;
+  margin-left: auto;
+  width: 0;
+  height: 1px;
+  background: var(--accent-invert);
+  transition: width var(--dur-med) var(--ease-out);
+}
+
+.wwd__trigger:hover .wwd__cue,
+.wwd__trigger.is-active .wwd__cue { width: clamp(1.5rem, 4vw, 3rem); }
 
 .wwd__stage {
   position: sticky;
@@ -706,7 +722,7 @@
   margin-bottom: var(--space-5);
   color: var(--accent-invert);
   opacity: 0.55;
-  transform: rotate(calc(var(--wwd-turn, 0) * 30deg));
+  transform: rotate(calc(var(--wwd-turn, 0) * 12deg));
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
@@ -723,26 +739,14 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* The description dissolves in on switch; the name eases across the width
+     axis. That is the whole motion — quiet and deliberate. */
   .wwd__panel.is-active { animation: wwdReveal var(--dur-med) var(--ease-out) both; }
   @keyframes wwdReveal {
     from { opacity: 0; transform: translateY(0.6rem); }
     to { opacity: 1; transform: none; }
   }
-
-  /* The dial. Scroll (or hover/keys) advances --active on .wwd__names; each name
-     leans back on the wheel by its distance from the read line, and opens from
-     condensed to full width as it arrives — camouflage giving way to overt. */
-  .wwd__trigger {
-    transform-origin: left center;
-    transform: rotateX(calc((var(--i, 0) - var(--active, 0)) * -6deg));
-    transition:
-      transform var(--dur-slow) var(--ease-out),
-      color var(--dur-fast) var(--ease-hover);
-  }
-  .wwd__name {
-    transition: --wwd-w var(--dur-slow) var(--ease-out);
-  }
-  .wwd__eclipse { will-change: transform; }
+  .wwd__name { transition: --wwd-w var(--dur-med) var(--ease-out); }
 }
 
 @media (max-width: 820px) {
