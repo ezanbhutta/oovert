@@ -123,13 +123,21 @@
 }
 
 .hero__title {
+  --wdth: 112;
   margin-top: auto;
   font-size: min(var(--text-2xl), 10.75vw); /* "CAMOUFLAGE" must never clip, at any width */
   font-weight: 640;
   line-height: 0.9;
   letter-spacing: -0.028em;
   text-transform: uppercase;
-  font-variation-settings: 'wdth' 112;
+  font-variation-settings: 'wdth' var(--wdth);
+  /* Break Cover veil: 0 = overt ink, higher = quieted toward the paper. */
+  color: color-mix(in oklab, var(--ink), var(--paper) calc(var(--veil, 0) * 1%));
+}
+
+/* Width only ever narrows from rest, and never rewraps — zero layout shift. */
+.hero__title .line__inner {
+  white-space: nowrap;
 }
 
 .hero__title em {
@@ -218,6 +226,21 @@
   letter-spacing: -0.025em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
+}
+
+/* The Tell — the word "camouflage" holds still in cover, then surfaces
+   letter by letter under the reader's gaze. Static full-width by default (no
+   JS / touch / reduced motion): identical to prose. .tell--live (added by JS
+   on fine pointers) drops each letter to its condensed rest and lets the wave
+   drive per-letter width. Nowrap + a reserved advance keep it from rewrapping
+   as letters widen (zero layout shift). */
+.tell__l {
+  display: inline-block;
+  font-variation-settings: 'wdth' var(--w, 112);
+  white-space: pre;
+}
+.tell--live {
+  white-space: nowrap;
 }
 
 .premise__body {

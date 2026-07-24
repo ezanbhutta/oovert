@@ -51,6 +51,24 @@
 
 /* ---- Tokens ---------------------------------------------------------- */
 
+/* ── The width-axis grammar of visibility ─────────────────────────────────
+   OOVERT's one owned signature: proportion is visibility. Condensed + veiled
+   = camouflaged (prey, in cover); expanded + full ink = overt (seen). These
+   registered custom properties let the width and veil animate smoothly (a
+   plain custom property can't be transitioned; a registered <number> can).
+   Movement is always the betrayal — the thing that changes width is the thing
+   giving itself away. */
+@property --wdth {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 112;
+}
+@property --veil {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
 :root {
   /* Palette, ink on paper, one signal color */
   --paper:      #F3F0E9;

@@ -264,18 +264,28 @@ body.menu-open {
   mix-blend-mode: difference;
 }
 
+/* The Quiet Index — wayfinding in the width grammar. Every chapter number
+   rests in cover (condensed, quiet); the one you are inside breaks to full
+   width and full ink — the spotted target. Same verb as the hero and The
+   Tell, conjugated at navigation scale. */
 .chapter-rail a {
+  --wdth: 74;
   font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: var(--track-nav);
-  opacity: 0.6; /* AA contrast after difference-blend on paper */
+  font-variation-settings: 'wdth' var(--wdth);
+  opacity: 0.5; /* AA contrast after difference-blend on paper */
   padding: 0.15rem 0.3rem;
-  transition: opacity var(--dur-fast) var(--ease-hover);
+  transition: opacity 500ms var(--ease-hover), --wdth 500ms var(--ease-out);
 }
 
 .chapter-rail a:hover,
-.chapter-rail a:focus-visible,
+.chapter-rail a:focus-visible {
+  opacity: 1;
+}
+
 .chapter-rail a.is-active {
+  --wdth: 118;
   opacity: 1;
 }
 
