@@ -1,0 +1,19 @@
+# Caching policy.
+# HTML, CSS and JS revalidate on every load ("no-cache" = store, but check
+# with the server first) — with ETags this costs a cheap 304 when nothing
+# changed, and picks up new deploys instantly. Without this, Hostinger's
+# default 7-day max-age keeps visitors on stale styles/scripts for up to a
+# week after every CMS save or design change.
+# Fonts and media are content-stable, so they keep a long cache.
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|json|xml|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(woff2?|ttf|otf|jpg|jpeg|png|webp|avif|gif|svg|ico|mp4|webm)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
