@@ -88,7 +88,10 @@
   transition: transform var(--dur-slow) var(--ease-out);
 }
 
-.work-feature:hover .work-feature__el { transform: scale(1.02); }
+.work-feature:hover .work-feature__el {
+  transform: scale(1.02);
+  transition-duration: 1.2s; /* viewport-huge: a slow drift, never a pop */
+}
 
 .work-feature__ph {
   position: absolute;
@@ -198,14 +201,26 @@
   background: var(--paper-dim);
 }
 
+/* Images are material, not controls: a long slow glide in, an even lazier
+   settle out (enter 700ms, exit 900ms — release is always the slower half). */
 .work-plate__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease-out);
+  transition: transform 900ms var(--ease-out);
 }
 
-.work-plate:hover .work-plate__media img { transform: scale(1.03); }
+.work-plate:hover .work-plate__media img {
+  transform: scale(1.04);
+  transition-duration: 700ms;
+}
+
+/* Attention is subtraction: the plate you're reading holds, siblings recede
+   (softly — dimmed imagery reads as broken past ~0.7). */
+@media (hover: hover) {
+  .work-plate { transition: opacity 420ms var(--ease-hover); }
+  .work-reel:hover .work-plate:not(:hover) { opacity: 0.72; }
+}
 
 /* Index reads over any image via difference blend. */
 .work-plate__index {

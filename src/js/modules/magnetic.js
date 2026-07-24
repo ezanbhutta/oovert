@@ -32,7 +32,9 @@ export function initMagnetic() {
     };
 
     const reset = () => {
-      el.style.transition = `${base}, transform 500ms cubic-bezier(0.16, 1, 0.3, 1)`;
+      // Springy release — one visible overshoot, then settle. Pure
+      // deceleration reads as "dragged"; the spring is what reads magnetic.
+      el.style.transition = `${base}, transform 560ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
       el.style.transform = '';
     };
 

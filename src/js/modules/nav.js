@@ -4,6 +4,46 @@
 export function initNav() {
   initMenuOverlay();
   initChapterRail();
+  initHeaderScroll();
+}
+
+/* Header obeys scroll direction: hides going down (only past the hero floor),
+   returns the moment you scroll up, compresses once the page is underway.
+   8px delta kills jitter at direction flips; focus always brings it back. */
+function initHeaderScroll() {
+  const head = document.querySelector('.site-head');
+  if (!head) return;
+  const DELTA = 8;
+  const HIDE_FLOOR = 160;
+  const COMPRESS_AT = 80;
+  let lastY = Math.max(0, window.scrollY);
+  let ticking = false;
+
+  const update = () => {
+    const y = Math.max(0, window.scrollY); // clamp: rubber-band guard
+    head.classList.toggle('site-head--scrolled', y > COMPRESS_AT);
+    if (Math.abs(y - lastY) > DELTA) {
+      const hide =
+        y > lastY && y > HIDE_FLOOR && !document.body.classList.contains('menu-open');
+      head.classList.toggle('site-head--hidden', hide);
+      lastY = y;
+    }
+    ticking = false;
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true }
+  );
+
+  // Keyboard users always get the header back.
+  head.addEventListener('focusin', () => head.classList.remove('site-head--hidden'));
 }
 
 function initMenuOverlay() {
@@ -17,14 +57,32 @@ function initMenuOverlay() {
   // behind the dialog goes inert.
   const background = document.querySelectorAll('main, footer, .chapter-rail, .skip-link');
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
   const setOpen = (open) => {
-    overlay.hidden = !open;
+    if (open) {
+      overlay.classList.remove('is-closing');
+      overlay.hidden = false;
+    } else if (reducedMotion.matches || overlay.hidden) {
+      overlay.hidden = true;
+    } else {
+      // Animated close: fast whole-panel fade, then actually hide.
+      overlay.classList.add('is-closing');
+      const finish = () => {
+        overlay.hidden = true;
+        overlay.classList.remove('is-closing');
+      };
+      overlay.addEventListener('animationend', finish, { once: true });
+      setTimeout(finish, 400); // fallback if the animation never fires
+    }
     button.setAttribute('aria-expanded', String(open));
     document.body.classList.toggle('menu-open', open);
     background.forEach((el) =>
       open ? el.setAttribute('inert', '') : el.removeAttribute('inert')
     );
-    if (label) label.textContent = open ? 'Close' : 'Menu';
+    // The visual Menu/Close roll is CSS-driven off body.menu-open; keep the
+    // plain-text swap only for labels without the stacked-span markup.
+    if (label && !label.firstElementChild) label.textContent = open ? 'Close' : 'Menu';
     if (open) links[0]?.focus();
   };
 

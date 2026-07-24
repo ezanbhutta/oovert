@@ -83,6 +83,27 @@ export function initManifesto({ reducedMotion } = {}) {
     const travel = section.offsetHeight - vh;
     const p = travel > 0 ? clamp01(-r.top / travel) : 0;
 
+    // Approach bridge: as the band nears, the room dims — the ground mixes
+    // paper -> ink in OKLab (sRGB goes muddy mid-way) while the violet field
+    // fades up with it. The dim completes within the first 38% of approach,
+    // before the copy is on screen, so text never sits on a half-mixed
+    // ground. Scrubbed and reversible, like everything else here.
+    const bg = section.querySelector('.manifesto__bg');
+    if (r.top > 0) {
+      const q = clamp01((vh - r.top) / (vh * 0.38));
+      if (q >= 1) {
+        section.style.backgroundColor = '';
+        if (bg) bg.style.opacity = '';
+      } else {
+        section.style.backgroundColor =
+          `color-mix(in oklab, var(--paper), var(--ink) ${(q * 100).toFixed(1)}%)`;
+        if (bg) bg.style.opacity = q.toFixed(3);
+      }
+    } else if (section.style.backgroundColor) {
+      section.style.backgroundColor = '';
+      if (bg) bg.style.opacity = '';
+    }
+
     // 1) Connective words dissolve top to bottom, fully gone by p ~= 0.46.
     const n = plains.length;
     for (let i = 0; i < n; i++) {

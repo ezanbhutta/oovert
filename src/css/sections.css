@@ -1546,3 +1546,85 @@
   .hero__cta { flex-wrap: wrap; }
   .contact__mail { font-size: clamp(1.15rem, 6.5vw, 1.6rem); }
 }
+
+/* ═══ Craft pass — composition, continuity, texture ══════════════════════
+   Systematic irregularity: same DNA, different expression per chapter.
+   Every deviation below is deliberate and documented; do not normalize. */
+
+/* Grain over the manifesto's violet radials — kills gradient banding and
+   gives the field a print surface. Static tile, never animated. */
+.manifesto__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--grain) repeat;
+  background-size: 240px 240px;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+
+/* Mobile browser chrome: small-viewport units keep the pinned stage fully
+   on screen while the URL bar is visible (100vh overflows there). */
+.manifesto__stage {
+  min-height: 100svh;
+}
+.manifesto--pinned .manifesto__stage {
+  height: 100svh;
+}
+
+/* Bridge: the paper ledger rides up over the ink practice section with a
+   rounded leading edge — an occlusion, not a cut. (The other boundaries keep
+   their own treatments; one bridge per seam, never the same one twice.) */
+.packages {
+  position: relative;
+  z-index: 2;
+  margin-top: -10vh;
+  border-radius: clamp(20px, 4vw, 44px) clamp(20px, 4vw, 44px) 0 0;
+}
+
+/* Whitespace registers (see foundation.css tokens). Pricing and FAQ are the
+   site's candour chapters — they enter tighter, like plain speech; the
+   contact statement is the rhetorical peak and gets the page's one big void. */
+.packages__lead { padding-top: var(--space-section-lite); }
+.faq-section { padding-bottom: var(--space-section-lite); }
+.contact__statement { padding-top: var(--space-section-deep); }
+
+/* Occupation variety (≥821px): two of the seven chapter statements step off
+   the shared left margin — studio to col 3, evidence to col 5. The rest stay
+   flush; the anchors are what make the offsets legible as decisions. */
+@media (min-width: 821px) {
+  .studio__statement { padding-left: calc(2 * var(--colg)); }
+  .evidence__hold { padding-left: calc(4 * var(--colg)); }
+  .evidence__note { margin-left: calc(4 * var(--colg)); }
+}
+
+/* Editorial set matter: first paragraph flush, the rest marked by indents,
+   not gaps — magazine composition, not stacked CMS blocks. */
+.premise__body p + p,
+.faq__a p + p {
+  margin-top: 0;
+  text-indent: 2.2em;
+}
+
+/* The enumeration numerals step half into the margin — one element is
+   allowed to cross the frame; every text spine stays put. */
+@media (min-width: 1081px) {
+  .principles__num,
+  .wwd__num {
+    transform: translateX(calc(-0.45 * var(--margin)));
+  }
+}
+
+/* Wrap discipline: balance unsplit headings, tidy paragraph rags.
+   (Pre-split .line markup is hand-broken — leave it alone.) */
+.faq details summary { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* Meta text is data — it gets aligned figures. */
+.ledger-row__meta,
+.work-plate__meta dd,
+.work-feature__meta dd {
+  font-variant-numeric: tabular-nums;
+}

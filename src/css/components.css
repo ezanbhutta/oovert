@@ -67,6 +67,8 @@
   padding: 0.25rem 0;
 }
 
+/* The underline passes through — draws in from the left, exits out the right
+   (the origin flip), never rewinds. Exit is authoritative, entry settles fast. */
 .site-head__nav a::after {
   content: '';
   position: absolute;
@@ -77,14 +79,43 @@
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform var(--dur-med) var(--ease-out);
+  transition: transform 300ms cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .site-head__nav a:hover::after,
 .site-head__nav a:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
+  transition-timing-function: cubic-bezier(0.4, 1, 0.8, 1);
 }
+
+/* "You are here": a static line, dimmer than hover so hover still reads. */
+.site-head__nav a[aria-current="page"]::after {
+  transform: none;
+  transform-origin: left;
+  opacity: 0.55;
+}
+
+/* Attention is subtraction: hovering one link recedes its siblings.
+   Pointer only — keyboard users keep full contrast. */
+@media (hover: hover) {
+  .site-head__nav a { transition: opacity 360ms var(--ease-hover); }
+  .site-head__nav:hover a:not(:hover) { opacity: 0.45; }
+}
+
+/* Header obeys scroll: hides going down (past the hero), returns the moment
+   you scroll up, and compresses once the page is underway — so headlines
+   never fight the mark for the same pixels. */
+.site-head {
+  transition: transform 400ms var(--ease-out), padding 300ms var(--ease-hover);
+}
+
+.site-head--hidden { transform: translateY(-100%); }
+
+.site-head--scrolled { padding-block: var(--space-2); }
+
+.site-head__mark svg { transition: height 300ms var(--ease-hover); }
+.site-head--scrolled .site-head__mark svg { height: 1.25rem; }
 
 .site-head__menu {
   display: none;
@@ -93,6 +124,24 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 0.5rem 0;
+}
+
+/* Menu ⇄ Close rolls in place — the toggle never moves from under the thumb. */
+.site-head__menu-label {
+  display: inline-flex;
+  flex-direction: column;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.site-head__menu-label > span {
+  transition: transform 400ms var(--ease-inout);
+}
+
+body.menu-open .site-head__menu-label > span {
+  transform: translateY(-100%);
 }
 
 /* ---- Menu overlay (small screens) ------------------------------------- */
@@ -147,14 +196,53 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .menu-overlay:not([hidden]) .menu-overlay__nav a {
-    animation: entrance 700ms var(--ease-out) both;
+  /* The panel is a curtain (clip, not transform — links hold their place);
+     links start rising at ~30% of the curtain's travel; exit is one fast
+     whole-panel fade — nobody watches an exit stagger. */
+  .menu-overlay:not([hidden]) {
+    animation: menu-panel-in 600ms var(--ease-inout) both;
   }
-  .menu-overlay__nav a:nth-child(2) { animation-delay: 50ms; }
-  .menu-overlay__nav a:nth-child(3) { animation-delay: 100ms; }
-  .menu-overlay__nav a:nth-child(4) { animation-delay: 150ms; }
-  .menu-overlay__nav a:nth-child(5) { animation-delay: 200ms; }
-  .menu-overlay__nav a:nth-child(6) { animation-delay: 250ms; }
+
+  .menu-overlay:not([hidden]) .menu-overlay__nav a {
+    animation: menu-link-in 500ms var(--ease-out) both;
+  }
+  .menu-overlay__nav a:nth-child(1) { animation-delay: 180ms; }
+  .menu-overlay__nav a:nth-child(2) { animation-delay: 240ms; }
+  .menu-overlay__nav a:nth-child(3) { animation-delay: 300ms; }
+  .menu-overlay__nav a:nth-child(4) { animation-delay: 360ms; }
+  .menu-overlay__nav a:nth-child(5) { animation-delay: 420ms; }
+  .menu-overlay__nav a:nth-child(6) { animation-delay: 480ms; }
+  .menu-overlay__nav a:nth-child(7) { animation-delay: 540ms; }
+
+  .menu-overlay:not([hidden]) .menu-overlay__meta {
+    animation: menu-link-in 500ms var(--ease-out) 560ms both;
+  }
+
+  .menu-overlay.is-closing {
+    animation: menu-panel-out 300ms var(--ease-hover) both;
+  }
+  .menu-overlay.is-closing .menu-overlay__nav a,
+  .menu-overlay.is-closing .menu-overlay__meta {
+    animation: none;
+  }
+
+  @keyframes menu-panel-in {
+    from { clip-path: inset(0 0 100% 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes menu-link-in {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes menu-panel-out {
+    to { opacity: 0; }
+  }
+}
+
+/* Overlay sibling dimming, pointer devices only. */
+@media (hover: hover) {
+  .menu-overlay__nav a { transition: opacity 300ms var(--ease-hover); }
+  .menu-overlay__nav:hover a:not(:hover) { opacity: 0.4; }
 }
 
 body.menu-open {
@@ -198,11 +286,16 @@ body.menu-open {
 
 /* ---- Buttons & links ---------------------------------------------------- */
 
+/* Paper does not float — it inks. Hover pours deep violet up from the bottom
+   with a curved leading edge; release drains it back down. Press compresses.
+   No lift, no shadow, ever. */
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.875rem;
   padding: 1.1rem 1.9rem;
+  overflow: hidden;
   background: var(--ink);
   color: var(--paper);
   font-size: var(--text-sm);
@@ -210,22 +303,30 @@ body.menu-open {
   letter-spacing: var(--track-nav);
   text-transform: uppercase;
   border-radius: 999px;
-  transition:
-    background-color var(--dur-fast) var(--ease-hover),
-    color var(--dur-fast) var(--ease-hover),
-    transform var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-hover);
 }
 
-.btn:hover {
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: -12% -6%;
   background: var(--accent-deep); /* deep violet keeps paper label at AA */
-  color: var(--paper);
-  transform: translateY(-2px); /* a quiet, tactile lift; the site stays flat otherwise */
-  box-shadow: 0 8px 20px -14px rgba(22, 20, 15, 0.35);
+  border-radius: 50%;
+  transform: translateY(104%) scaleY(0.55);
+  transform-origin: bottom;
+  transition: transform 380ms var(--ease-inout);
 }
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: translateY(0) scaleY(1);
+  transition-duration: 480ms;
+}
+
+.btn > * { position: relative; z-index: 1; }
 
 .btn:active {
-  transform: translateY(0);
+  transform: scale(0.985);
 }
 
 .btn__arrow {
@@ -270,6 +371,12 @@ body.menu-open {
 }
 
 /* ---- Footer -------------------------------------------------------------- */
+
+/* Footer wayfinding dims gently on hover — between the nav's 0.45 and full. */
+@media (hover: hover) {
+  .site-foot__col a { transition: opacity 360ms var(--ease-hover), color var(--dur-fast) var(--ease-hover); }
+  .site-foot__col:hover a:not(:hover) { opacity: 0.55; }
+}
 
 .site-foot {
   position: relative;
