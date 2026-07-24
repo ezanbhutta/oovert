@@ -20,7 +20,6 @@
 const REST = 86; // in cover — condensed but legible, clearly deliberate
 const PEAK = 125; // overt — the axis maximum
 const RADIUS = 2.4; // letters within this many letter-widths of focus surface
-const STEP = 6; // quantize width to kill per-frame re-raster churn
 
 export function initTell({ reducedMotion } = {}) {
   if (reducedMotion) return;
@@ -42,8 +41,7 @@ export function initTell({ reducedMotion } = {}) {
     let focus = -999; // letter index under the pointer (fractional), off by default
     let raf = null;
     const current = letters.map(() => REST);
-
-    const quantize = (v) => Math.round(v / STEP) * STEP;
+    const shown = letters.map(() => REST); // last width written, to skip no-op writes
 
     const frame = () => {
       let moving = false;
@@ -57,13 +55,16 @@ export function initTell({ reducedMotion } = {}) {
         }
         // Ease toward target; the re-hide (target < current) eases slower.
         const rising = target > current[i];
-        const k = rising ? 0.35 : 0.12;
+        const k = rising ? 0.3 : 0.14;
         current[i] += (target - current[i]) * k;
-        const q = quantize(current[i]);
-        if (q !== +letters[i].style.getPropertyValue('--w')) {
-          letters[i].style.setProperty('--w', q);
+        // Smooth to 0.1 precision (not 6-unit steps): the wave glides across the
+        // letters instead of snapping between widths — no vibration.
+        const w = Math.round(current[i] * 10) / 10;
+        if (w !== shown[i]) {
+          letters[i].style.setProperty('--w', w);
+          shown[i] = w;
         }
-        if (Math.abs(current[i] - target) > 0.4) moving = true;
+        if (Math.abs(current[i] - target) > 0.15) moving = true;
       }
       raf = moving || focus > -900 ? requestAnimationFrame(frame) : null;
     };

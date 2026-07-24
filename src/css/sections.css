@@ -140,6 +140,15 @@
   white-space: nowrap;
 }
 
+/* The masked line clips overflow for the reveal; the Instrument Serif italic
+   descender in "prey." is deeper than the default allowance, so give the hero
+   lines more clip room. Padding + equal negative margin cancel — line spacing
+   is unchanged, only the descender clears. */
+.hero__title .line {
+  padding-block-end: 0.32em;
+  margin-block-end: -0.32em;
+}
+
 .hero__title em {
   text-transform: none;
   letter-spacing: -0.01em;
@@ -241,6 +250,9 @@
 }
 .tell--live {
   white-space: nowrap;
+  /* Per-letter inline-blocks don't kern; a touch of even tracking gives the
+     condensed rest word optically consistent spacing (and room to open). */
+  letter-spacing: 0.02em;
 }
 
 .premise__body {
@@ -1642,14 +1654,7 @@
 .faq-section { padding-bottom: var(--space-section-lite); }
 .contact__statement { padding-top: var(--space-section-deep); }
 
-/* Occupation variety (≥821px): two of the seven chapter statements step off
-   the shared left margin — studio to col 3, evidence to col 5. The rest stay
-   flush; the anchors are what make the offsets legible as decisions. */
-@media (min-width: 821px) {
-  .studio__statement { padding-left: calc(2 * var(--colg)); }
-  .evidence__hold { padding-left: calc(4 * var(--colg)); }
-  .evidence__note { margin-left: calc(4 * var(--colg)); }
-}
+/* Every chapter statement sits flush to the shared left margin. */
 
 /* Editorial set matter: first paragraph flush, the rest marked by indents,
    not gaps — magazine composition, not stacked CMS blocks. */

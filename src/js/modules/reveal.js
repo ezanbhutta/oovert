@@ -13,16 +13,22 @@
 export function initReveal() {
   const arrivedAt = performance.now();
 
+  // Replays every pass: reveal when the element enters, reset when it leaves, so
+  // scrolling back up and down animates it again (not a one-time reveal). The
+  // "instant" band still applies only to content already on screen at first
+  // paint (no replayed choreography on an anchor jump).
   const makeObserver = (options) =>
-    new IntersectionObserver((entries, obs) => {
+    new IntersectionObserver((entries) => {
       const early = performance.now() - arrivedAt < 600;
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        if (early && entry.intersectionRatio > 0.5) {
-          entry.target.classList.add('is-instant');
+        if (entry.isIntersecting) {
+          if (early && entry.intersectionRatio > 0.5) {
+            entry.target.classList.add('is-instant');
+          }
+          entry.target.classList.add('is-inview');
+        } else {
+          entry.target.classList.remove('is-inview', 'is-instant');
         }
-        entry.target.classList.add('is-inview');
-        obs.unobserve(entry.target);
       }
     }, options);
 
