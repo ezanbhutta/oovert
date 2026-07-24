@@ -589,3 +589,57 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* ═══ The Eclipse Aperture ═══════════════════════════════════════════════
+   Clicking Next / All work opens the mark itself: two violet circles dilate
+   and counter-rotate to aligned while a camouflage field resolves to overt,
+   then the navigation commits. Fixed, above everything, painted only while
+   armed. Colours can be re-pointed per project via the theme (--accent-deep). */
+.cs-aperture {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: clip;
+  contain: strict;
+}
+.cs-aperture.is-open {
+  visibility: visible;
+}
+/* Solid backing — fades in over the last beat so the corners are never seen
+   between the two circles before the page commits. */
+.cs-aperture__field {
+  position: absolute;
+  inset: 0;
+  background: var(--accent-deep, #6039CE);
+  opacity: 0;
+}
+.cs-aperture__o {
+  position: absolute;
+  width: 46vmax;
+  height: 46vmax;
+  border-radius: 50%;
+  background: var(--accent-deep, #6039CE);
+  transform: scale(0);
+  will-change: transform;
+}
+.cs-aperture__o--l { margin-right: 20vmax; }
+.cs-aperture__o--r { margin-left: 20vmax; }
+/* The camouflage the target is hiding in — a disruptive broken field that
+   dissolves as the aperture fills, so the next hunt emerges from cover rather
+   than fading in. */
+.cs-aperture__o::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(48deg, rgba(22, 20, 15, 0.34) 0 7px, transparent 7px 21px),
+    var(--grain, transparent);
+  background-size: auto, 200px 200px;
+  mix-blend-mode: overlay;
+  opacity: var(--camo, 1); /* GSAP drives --camo 1 -> 0 as the target emerges from cover */
+}
