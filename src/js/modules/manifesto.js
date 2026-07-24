@@ -45,6 +45,11 @@ export function initManifesto({ reducedMotion } = {}) {
   const plains = words.filter((w) => !w.classList.contains('mf-key'));
   if (!words.length || reducedMotion) return;
 
+  // Pin the stage so the paragraph holds still on screen (fully readable) while
+  // scroll drives the transform. The tall-section CSS is gated on this class,
+  // so the no-JS / reduced-motion fallback stays a normal, readable band.
+  section.classList.add('manifesto--pinned');
+
   const smooth = (a, b, t) => {
     t = (t - a) / (b - a);
     t = t < 0 ? 0 : t > 1 ? 1 : t;
@@ -67,22 +72,25 @@ export function initManifesto({ reducedMotion } = {}) {
     targets = rects.map((s, i) => ({ dx: cx - s.cx, dy: cy - total / 2 + i * gap - s.cy }));
   };
 
-  // How far the effect is spread, as a fraction of viewport height. The
-  // paragraph's centre crosses mid-screen (p=0), and the gather completes
-  // after it has travelled up by SPAN viewports. Larger = slower, calmer.
-  const SPAN = 1.0;
+  // Fraction of the pinned scroll spent holding the full, readable paragraph
+  // before anything moves. After the hold, the dissolve + gather runs over the
+  // remaining scroll. Larger = longer read before the effect starts.
+  const HOLD = 0.4;
 
   let ticking = false;
   const update = () => {
     ticking = false;
     const vh = window.innerHeight;
-    // Progress keyed to the paragraph itself: it stays fully intact until its
-    // centre reaches mid-screen (so you can read the whole thing), then the
-    // effect runs as it scrolls up past that point.
-    const rect = el.getBoundingClientRect();
-    const mid = rect.top + rect.height / 2;
-    let p = (vh * 0.5 - mid) / (vh * SPAN);
-    p = p < 0 ? 0 : p > 1 ? 1 : p;
+    // Progress across the pinned section: 0 the moment the stage sticks to the
+    // top of the viewport, 1 as it releases. While pinned the paragraph is
+    // fixed on screen, so the reader gets the whole thing before it transforms.
+    const r = section.getBoundingClientRect();
+    const travel = section.offsetHeight - vh;
+    let raw = travel > 0 ? -r.top / travel : 0;
+    raw = raw < 0 ? 0 : raw > 1 ? 1 : raw;
+    // Hold the paragraph intact through the first HOLD of the scroll, then run
+    // the effect across the remainder.
+    let p = raw <= HOLD ? 0 : (raw - HOLD) / (1 - HOLD);
 
     // Keywords gather to the centered column.
     const move = smooth(0.0, 0.62, p);
