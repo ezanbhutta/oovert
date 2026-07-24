@@ -18,7 +18,9 @@ function decodeEntities(str) {
         const n = code[1] === 'x' || code[1] === 'X'
           ? parseInt(code.slice(2), 16)
           : parseInt(code.slice(1), 10);
-        return Number.isFinite(n) ? String.fromCodePoint(n) : m;
+        // Guard the Unicode range: String.fromCodePoint throws RangeError for
+        // values > 0x10FFFF, which would otherwise abort the whole crawl.
+        return (Number.isInteger(n) && n >= 0 && n <= 0x10FFFF) ? String.fromCodePoint(n) : m;
       }
       const named = {
         amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ',

@@ -41,10 +41,15 @@ function analyzePage(page, ctx) {
   const add = (...args) => findings.push(f(...args, url));
 
   // --- crawl status --------------------------------------------------------
-  if (page.status >= 400) {
-    add('Technical', 'Critical', `Page returned HTTP ${page.status}`,
-      `Crawler received status ${page.status} for ${url}.`,
+  // On an error/unreachable status the body is empty or an error page; run only
+  // this finding and stop, so we don't emit a cluster of spurious on-page
+  // defects (missing title, no H1, …) against a discarded body.
+  if (page.status >= 400 || page.status === 0) {
+    add('Technical', 'Critical',
+      page.status === 0 ? 'Page unreachable' : `Page returned HTTP ${page.status}`,
+      page.status === 0 ? `Crawler could not fetch ${url}.` : `Crawler received status ${page.status} for ${url}.`,
       'Ensure the route builds and resolves to a 200 response.');
+    return { url, status: page.status, title: null, description: null, wordCount: 0, headings: [], jsonldTypes: [], canonical: null, findings };
   }
 
   const metas = H.getMetas(html);
@@ -140,7 +145,8 @@ function analyzePage(page, ctx) {
     add('Technical', 'High', 'Missing viewport meta',
       'No responsive viewport meta tag.', 'Add <meta name="viewport" content="width=device-width, initial-scale=1">.');
   }
-  const hasCharset = metas.some((m) => m.charset || /charset=/i.test(m['http-equiv'] ? m.content || '' : ''));
+  const headerHasCharset = /charset=/i.test(page.contentType || '');
+  const hasCharset = headerHasCharset || metas.some((m) => m.charset || /charset=/i.test(m['http-equiv'] ? m.content || '' : ''));
   if (!hasCharset) {
     add('Technical', 'Low', 'No charset declaration',
       'No <meta charset> found in the head.', 'Add <meta charset="utf-8"> as the first head element.');
@@ -175,8 +181,14 @@ function analyzePage(page, ctx) {
         `Parse error: ${block.error}`, 'Fix the JSON-LD syntax so search engines can read the structured data.');
       continue;
     }
-    const nodes = Array.isArray(block.data) ? block.data
-      : block.data['@graph'] ? block.data['@graph'] : [block.data];
+    // JSON-LD that parses to null or a non-object primitive (e.g. the literal
+    // `null`) is valid JSON but has no schema nodes — treat it as empty rather
+    // than dereferencing it (which would throw and abort the crawl).
+    const data = block.data;
+    const nodes = Array.isArray(data) ? data
+      : (data && typeof data === 'object' && data['@graph']) ? data['@graph']
+      : (data && typeof data === 'object') ? [data]
+      : [];
     for (const node of nodes) {
       const type = node && node['@type'];
       const types = Array.isArray(type) ? type : [type];
@@ -202,8 +214,11 @@ function analyzePage(page, ctx) {
   for (const img of images) {
     if (img.alt === null) missingAlt++;
     if (!img.width || !img.height) missingDims++;
-    const res = ctx.resolveAsset(img.src);
-    if (img.src && res && res.exists === false && !/^data:/.test(img.src) && !/^https?:/i.test(img.src)) {
+    // Resolve the src against THIS page's URL so document-relative sources
+    // (e.g. "stationery-1.jpg" on /work/x/) map correctly; the resolver returns
+    // exists:null for external/data/protocol-relative URLs (not our files).
+    const res = ctx.resolveAsset(img.src, url);
+    if (res && res.exists === false) {
       broken++;
     } else if (res && res.size != null) {
       if (res.size > T.IMG_CRIT) oversizeCrit++;
@@ -288,8 +303,9 @@ function isBotBlocked(groups, bot) {
   const star = groups.find((g) => g.agents.includes('*'));
   const g = own || star;
   if (!g) return false;
-  return g.disallow.some((d) => d === '/' || d === '');
-    // Disallow: /  (block all) — treat exact-root block as "blocked".
+  // Only an explicit "Disallow: /" blocks everything. An empty "Disallow:"
+  // value is the canonical allow-all directive and must NOT count as a block.
+  return g.disallow.some((d) => d === '/');
 }
 
 /* -------------------------------------------------------------------------- */
@@ -342,7 +358,10 @@ function analyzeSite(ctx) {
     for (const loc of ctx.sitemapLocs) {
       const path = ctx.toPath(loc);
       const res = ctx.resolvePage(path);
-      if (!res.exists) {
+      // Only flag a *confirmed* miss (exists === false). In live --url mode the
+      // resolver returns exists: null ("unknown"), which must not be treated as
+      // unreachable — mirrors the broken-link / image guards.
+      if (res.exists === false) {
         add('Technical', 'High', `Sitemap URL is unreachable: ${loc}`,
           'A sitemap entry does not resolve to a page.',
           'Remove dead entries or fix the route so it returns 200.');
