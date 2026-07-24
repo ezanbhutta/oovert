@@ -303,29 +303,10 @@
   display: flex;
   align-items: center;
   min-height: 100vh;
-  padding: clamp(5rem, 3rem + 8vw, 9rem) var(--margin);
+  /* Vertical padding kept modest so the whole paragraph sits on screen when the
+     band is centred — the timed dissolve plays in place, the page scrolls free. */
+  padding: clamp(2.5rem, 5vh, 5.5rem) var(--margin);
   overflow: clip;
-}
-
-/* Pinned scroll-transform. manifesto.js adds .manifesto--pinned only when the
-   effect actually runs (JS on, motion allowed); without it the section stays a
-   normal, fully readable band with no extra scroll. The tall section gives the
-   pinned stage room to first hold the paragraph still (readable) and then melt
-   the connective copy away, leaving only the keywords centred. */
-.manifesto--pinned {
-  height: 260vh;
-}
-.manifesto--pinned .manifesto__stage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  min-height: 0;
-  /* Tighter than the full-band padding so the whole paragraph fits on screen
-     while pinned (the reader must see all of it before it transforms). */
-  padding-block: clamp(2rem, 6vh, 4.5rem);
-}
-.manifesto--pinned .manifesto__text {
-  line-height: 1.16;
 }
 
 .manifesto__bg {
