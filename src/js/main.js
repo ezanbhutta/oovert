@@ -14,6 +14,7 @@ import { initToTop } from './modules/to-top.js';
 import { initDetails } from './modules/details.js';
 import { initTell } from './modules/tell.js';
 import { initBreakCover } from './modules/breakcover.js';
+import { initMagnetic } from './modules/magnetic.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -38,5 +39,8 @@ if (!reducedMotion) {
 
   if (finePointer) {
     initSmoothScroll();
+    // The signature CTA affordance: the button leans toward the pointer and
+    // springs back. Fine pointers only (measured lean makes no sense on touch).
+    initMagnetic();
   }
 }

@@ -92,6 +92,11 @@
     {% for item in site.chapterRail %}<a href="{{ item.href }}" aria-label="{{ item.aria }}"><span>{{ item.num }}</span></a>
     {% endfor %}</nav>
 
+  <a class="cta-ribbon" href="#contact" data-cta-ribbon>
+    <span class="cta-ribbon__label">Start a project</span>
+    <span class="cta-ribbon__arrow" aria-hidden="true">&#8600;</span>
+  </a>
+
   <main id="main">
 
     <!-- ============ HERO ============ -->
@@ -126,7 +131,7 @@
 
       <div class="hero__strip" data-entrance style="--d:1.06s">
         <span class="hero__scroll" aria-hidden="true">{{ site.hero.scrollLabel }}<i></i></span>
-        <span>{{ site.hero.statusLine }}</span>
+        <span class="hero__status"><i class="hero__pulse" aria-hidden="true"></i>{{ site.hero.statusLine }}</span>
       </div>
     </section>
 

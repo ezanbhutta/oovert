@@ -5,6 +5,41 @@ export function initNav() {
   initMenuOverlay();
   initChapterRail();
   initHeaderScroll();
+  initEnquiryRibbon();
+}
+
+/* A quiet, persistent invitation. It fades in only after the hero has scrolled
+   past (so it never competes with the hero CTA), and dissolves the moment the
+   real Contact section arrives — a bookmark ribbon, not a popup. The door stays
+   one tap away through the whole page, then steps aside at the finish line. */
+function initEnquiryRibbon() {
+  const ribbon = document.querySelector('[data-cta-ribbon]');
+  if (!ribbon) return;
+  const contact = document.getElementById('contact');
+  const hero = document.getElementById('top');
+  let contactInView = false;
+
+  const floor = () => (hero ? hero.offsetHeight * 0.85 : 640);
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const past = window.scrollY > floor();
+    const menuOpen = document.body.classList.contains('menu-open');
+    ribbon.classList.toggle('is-visible', past && !contactInView && !menuOpen);
+  };
+  window.addEventListener(
+    'scroll',
+    () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } },
+    { passive: true }
+  );
+
+  if (contact) {
+    new IntersectionObserver(
+      (entries) => { contactInView = entries[0].isIntersecting; update(); },
+      { rootMargin: '0px 0px -15% 0px' }
+    ).observe(contact);
+  }
+  update();
 }
 
 /* Header obeys scroll direction: hides going down (only past the hero floor),

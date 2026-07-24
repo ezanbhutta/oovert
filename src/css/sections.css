@@ -53,6 +53,27 @@
   pointer-events: none;
 }
 
+/* The availability line reads as live: a small violet "now" dot beside it. */
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+}
+.hero__pulse {
+  flex: none;
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__pulse { animation: heroPulse 2.6s var(--ease-out) infinite; }
+  @keyframes heroPulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.78); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+}
+
 /* Optional hero background video (owner-set). A cinematic ground under the
    copy; the gradient scrim keeps the headline legible. The hero flips to light
    text only in this mode (.hero--video), so the default paper/ink hero is
@@ -313,7 +334,10 @@
 }
 
 .premise__pull-note {
-  grid-column: 8 / span 4;
+  /* Shares the body paragraph's column and measure so the two premise
+     paragraphs line up on the same left edge at the same length. */
+  grid-column: 7 / span 5;
+  max-width: var(--measure);
   margin-top: var(--space-4);
   font-size: var(--text-lede);
   line-height: 1.5;
@@ -1314,7 +1338,7 @@
 }
 
 .principles__item p {
-  grid-column: 3 / span 8;
+  grid-column: 2 / span 9;
   font-size: var(--text-lede);
   line-height: 1.5;
   max-width: var(--measure);
@@ -1504,7 +1528,8 @@
    ========================================================================== */
 
 @media (max-width: 1080px) {
-  .premise__body p { grid-column: 5 / span 8; }
+  .premise__body p,
+  .premise__pull-note { grid-column: 5 / span 8; }
   .practice__name { grid-column: 2 / span 10; }
   .practice__desc { grid-column: 3 / span 9; margin-top: var(--space-2); }
   .case__meta dl { grid-column: 1 / span 6; }
