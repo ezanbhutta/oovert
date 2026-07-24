@@ -258,7 +258,59 @@
 
   initVideos(true);
   initLightbox();
+  initAperture();
   window.addEventListener('load', () => ScrollTrigger.refresh());
+
+  // --- The Eclipse Aperture --------------------------------------------------
+  // Advancing to the next hunt opens the mark. A click is the clearest intent
+  // (the visitor chooses to advance — the predator commits), so we drive it on
+  // click rather than hijacking scroll: no scroll-jack, no accidental trigger.
+  // A committed timeline dilates the two circles and counter-rotates them to
+  // aligned while the camouflage field dissolves, then navigates. Same-origin
+  // only; modified clicks (new tab) pass through untouched.
+  function initAperture() {
+    const ap = document.querySelector('.cs-aperture');
+    if (!ap) return;
+    const circles = ap.querySelectorAll('.cs-aperture__o');
+    const field = ap.querySelector('.cs-aperture__field');
+    const links = document.querySelectorAll('.cs-next, .cs-head__next');
+    let firing = false;
+
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        if (firing) return;
+        // Respect new-tab / modified clicks and cross-origin.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        const href = link.getAttribute('href');
+        if (!href || /^https?:\/\//.test(href) && !href.startsWith(location.origin)) return;
+
+        e.preventDefault();
+        firing = true;
+        ap.classList.add('is-open');
+
+        const tl = gsap.timeline({
+          onComplete: () => { window.location.href = href; },
+        });
+        // Beat 1 — the mark surfaces. The two circles rise from nothing to a
+        // legible eclipse "oo" and counter-rotate to aligned; because a circle
+        // is rotationally blank, the rotation reads through the camouflage
+        // stripes on the ::before — the living-mark realign, made of cover.
+        // back.out settles it with the tiny lock-in the header/footer mark uses.
+        tl.fromTo(circles,
+          { scale: 0, rotate: (i) => (i === 0 ? -55 : 55), '--camo': 1 },
+          { scale: 0.58, rotate: 0, duration: 0.52, ease: 'back.out(1.3)' }, 0);
+        // Beat 2 — the aperture opens. The mark dilates past the frame to carry
+        // the visitor to the next hunt, the camouflage it hid in (--camo, read
+        // by the ::before) dissolving as it fills — emerging overt, not fading.
+        tl.to(circles, { scale: 3.0, duration: 0.56, ease: 'power2.in' }, 0.58);
+        tl.to(circles, { '--camo': 0, duration: 0.48, ease: 'power1.in' }, 0.64);
+        // Guarantee an opaque cover before the page commits (no corner gaps).
+        tl.to(field, { opacity: 1, duration: 0.26, ease: 'power2.in' }, 0.94);
+        // A confident hold on full cover, then navigate.
+        tl.to({}, { duration: 0.1 });
+      });
+    });
+  }
 
   // --- helpers ---------------------------------------------------------------
   // Owner-configured video slots. Each <video data-cs-video> carries its
