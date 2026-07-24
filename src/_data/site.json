@@ -81,49 +81,19 @@
   "menu": {
     "links": [
       {
-        "num": "↗",
+        "num": "01",
         "label": "Work",
         "href": "/work/"
       },
       {
-        "num": "↗",
+        "num": "02",
         "label": "Approach",
         "href": "/approach/"
       },
       {
-        "num": "01",
-        "label": "Premise",
-        "href": "#premise"
-      },
-      {
-        "num": "02",
-        "label": "Practice",
-        "href": "#practice"
-      },
-      {
         "num": "03",
-        "label": "Packages",
-        "href": "#packages"
-      },
-      {
-        "num": "04",
-        "label": "Evidence",
-        "href": "#evidence"
-      },
-      {
-        "num": "05",
         "label": "Studio",
-        "href": "#studio"
-      },
-      {
-        "num": "06",
-        "label": "Questions",
-        "href": "#faq"
-      },
-      {
-        "num": "07",
-        "label": "Invitation",
-        "href": "#contact"
+        "href": "/studio/"
       }
     ],
     "meta": "Distributed, six timezones<br>new@oovert.com"
@@ -437,8 +407,20 @@
         "a": "The logo is one part. We name companies, decide what they stand for, and build the whole system the logo lives inside: strategy, voice, colour, type and motion."
       },
       {
+        "q": "Will our brand end up looking like everyone else's?",
+        "a": "No. Everything is built on the one true thing about your company that no competitor can honestly claim, so the result is specific to you by construction. We do not start from templates or trends. Camouflage is the enemy here: a brand that blends in is a brand that gets missed."
+      },
+      {
+        "q": "We already have a brand. Do we start from scratch?",
+        "a": "Rarely. We begin by auditing what you have and finding the equity worth keeping, the recognisable parts you have already paid for in years of recognition. Then we sharpen the positioning and rebuild only what is holding you back. A good rebrand should feel like the company finally looking like itself."
+      },
+      {
         "q": "How long does it take?",
         "a": "Fixed-scope projects ship in two to five working days. A full strategy-led identity runs a few weeks, because the thinking cannot be rushed. You get a real date before we start."
+      },
+      {
+        "q": "What do you need from us to get started?",
+        "a": "A short kickoff, honest access to the people who know the company best, and decisions when we ask for them. We carry the strategy, the making and the detail. Your part is candour and a few well-timed calls, and most of the load stays with us."
       },
       {
         "q": "How do revisions work?",
