@@ -34,8 +34,8 @@
       "alt": "",
       "video": {
         "src": "/assets/uploads/hf_20260722_115006_cfe1be4d-c6f5-4f36-948e-0ca637ff65a1.mp4",
-        "poster": "",
-        "autoplay": true,
+        "poster": "/assets/nowa-reel-poster.jpg",
+        "autoplay": false,
         "loop": true,
         "muted": true,
         "controls": false,

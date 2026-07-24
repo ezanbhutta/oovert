@@ -19,7 +19,7 @@ eleventyComputed:
 {%- macro media(m, cls='', attrs='loading="lazy"', sizes='') -%}
 {%- set v = m.video -%}
 {%- if v and v.src -%}
-<video class="cs-img cs-video{% if cls %} {{ cls }}{% endif %}"{% if v.poster %} poster="{{ v.poster }}"{% endif %}{% if v.controls %} controls{% endif %}{% if v.loop %} loop{% endif %}{% if v.autoplay %} autoplay muted playsinline{% elif v.muted %} muted{% endif %} preload="metadata" data-cs-video{% if v.speed %} data-rate="{{ v.speed }}"{% endif %}{% if v.start %} data-start="{{ v.start }}"{% endif %}{% if v.end %} data-end="{{ v.end }}"{% endif %}{% if m.alt %} aria-label="{{ m.alt }}"{% endif %}><source src="{{ v.src }}"></video>
+<video class="cs-img cs-video{% if cls %} {{ cls }}{% endif %}"{% if v.poster %} poster="{{ v.poster }}"{% endif %}{% if v.controls %} controls{% endif %}{% if v.loop %} loop{% endif %}{% if v.autoplay %} autoplay muted playsinline{% elif v.muted %} muted{% endif %} preload="none" data-cs-video{% if v.speed %} data-rate="{{ v.speed }}"{% endif %}{% if v.start %} data-start="{{ v.start }}"{% endif %}{% if v.end %} data-end="{{ v.end }}"{% endif %}{% if m.alt %} aria-label="{{ m.alt }}"{% endif %}><source src="{{ v.src }}"></video>
 {%- elif m.image or m.src -%}
 <img class="cs-img{% if cls %} {{ cls }}{% endif %}" src="{{ m.image or m.src }}" alt="{{ m.alt | default('', true) }}"{% if sizes %} sizes="{{ sizes }}"{% endif %}{% if attrs %} {{ attrs | safe }}{% endif %}>
 {%- else -%}
