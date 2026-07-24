@@ -1,3 +1,20 @@
+# AI answer-engine crawlers — explicitly allowed (these drive AI citations).
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Everyone else.
 User-agent: *
 Allow: /
 Disallow: /admin/
