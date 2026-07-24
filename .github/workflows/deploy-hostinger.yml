@@ -36,8 +36,18 @@ jobs:
       - name: Build the site
         run: npm run build
 
+      # Hostinger's FTPS control socket is sometimes slow to establish from a
+      # GitHub runner, which surfaces as "Timeout (control socket)" and fails an
+      # otherwise-healthy deploy. The build above is deterministic; only the
+      # upload is flaky. So we give the connection a generous timeout and one
+      # automatic retry — the sync is stateful, so the retry only re-sends what
+      # the first attempt didn't finish. server-dir is the folder that serves
+      # oovert.com: usually /public_html/ for a primary domain, or
+      # /domains/oovert.com/public_html/ for a secondary domain.
       - name: Upload _site to Hostinger (FTPS)
+        id: ftp
         if: ${{ env.HAS_FTP != '' }}
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -45,8 +55,19 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          timeout: 120000
           local-dir: ./_site/
-          # The folder on Hostinger that serves oovert.com. Usually
-          # /public_html/ for a primary domain, or
-          # /domains/oovert.com/public_html/ for a secondary domain.
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+
+      - name: Retry the upload if the first attempt timed out
+        if: ${{ steps.ftp.outcome == 'failure' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          timeout: 120000
+          local-dir: ./_site/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
