@@ -65,7 +65,9 @@ module.exports = function (eleventyConfig) {
   ["css", "js", "vendor", "assets"].forEach((dir) =>
     eleventyConfig.addPassthroughCopy({ [`src/${dir}`]: dir })
   );
-  ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "robots.txt", "sitemap.xml"].forEach((f) =>
+  // sitemap.xml is generated from sitemap.njk (so case studies are included
+  // automatically), not passed through.
+  ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "robots.txt"].forEach((f) =>
     eleventyConfig.addPassthroughCopy({ [`src/${f}`]: f })
   );
 
