@@ -703,7 +703,9 @@
 .wwd__trigger.is-active .wwd__num { color: var(--accent-invert); }
 
 .wwd__name {
-  font-size: var(--text-lg);
+  /* Sized to the column so even the longest discipline stays on ONE line,
+     including when it opens to full width on hover (no wrap, ever). */
+  font-size: clamp(1.4rem, 2.6vw, 3.4rem);
   font-weight: 640;
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -713,7 +715,7 @@
      spin. --wwd-w is registered so it eases. */
   --wwd-w: 90;
   font-variation-settings: 'wdth' var(--wwd-w);
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .wwd__trigger:hover .wwd__name,
@@ -1514,12 +1516,35 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .faq__item[open] .faq__a {
-    animation: faqReveal var(--dur-med) var(--ease-out) both;
+  /* Smooth open AND close: the answer's height eases from 0 to its natural
+     size (via interpolate-size) while it fades, so the row unfolds instead of
+     snapping. Modern Chromium/Chrome get this; browsers without ::details-content
+     fall back to the fade-in below (still no hard snap on open). */
+  @supports (interpolate-size: allow-keywords) {
+    .faq { interpolate-size: allow-keywords; }
+    .faq__item::details-content {
+      height: 0;
+      overflow: clip;
+      opacity: 0;
+      transition:
+        height var(--dur-med) var(--ease-out),
+        opacity var(--dur-med) var(--ease-out),
+        content-visibility var(--dur-med) allow-discrete;
+    }
+    .faq__item[open]::details-content {
+      height: auto;
+      opacity: 1;
+    }
   }
-  @keyframes faqReveal {
-    from { opacity: 0; transform: translateY(-0.4rem); }
-    to { opacity: 1; transform: none; }
+
+  @supports not (interpolate-size: allow-keywords) {
+    .faq__item[open] .faq__a {
+      animation: faqReveal var(--dur-med) var(--ease-out) both;
+    }
+    @keyframes faqReveal {
+      from { opacity: 0; transform: translateY(-0.4rem); }
+      to { opacity: 1; transform: none; }
+    }
   }
 }
 
