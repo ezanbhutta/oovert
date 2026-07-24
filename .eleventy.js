@@ -11,6 +11,7 @@
  * still ship AA-legible small text on both the paper and ink grounds. */
 const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 const path = require("path");
+const fs = require("fs");
 const og = require("./og-images.js");
 
 const PAPER = [243, 240, 233]; // --paper #F3F0E9
@@ -75,11 +76,30 @@ module.exports = function (eleventyConfig) {
     sharpJpegOptions: { quality: 82, mozjpeg: true },
   });
 
-  // Per-page Open Graph cards, generated at build into _site/assets/og/.
+  // Post-build: generate per-page OG cards, then drop the heavy source rasters.
   eleventyConfig.on('eleventy.after', async ({ dir }) => {
-    const out = path.join((dir && dir.output) || '_site', 'assets', 'og');
-    const n = await og.generate(out);
-    console.log(`[og] ${n} per-page OG images written to ${out}`);
+    const root = (dir && dir.output) || '_site';
+
+    // Per-page Open Graph cards into _site/assets/og/.
+    const ogDir = path.join(root, 'assets', 'og');
+    const n = await og.generate(ogDir);
+    console.log(`[og] ${n} per-page OG images written to ${ogDir}`);
+
+    // The uploads/ rasters are eleventy-img SOURCES: the transform reads them
+    // from the output during build, then pages reference only the /img/
+    // derivatives. Drop them from the shipped output (they still live in src/
+    // for the next build); keep the one referenced .mp4.
+    const uploads = path.join(root, 'assets', 'uploads');
+    if (fs.existsSync(uploads)) {
+      let freed = 0, kept = 0;
+      for (const f of fs.readdirSync(uploads)) {
+        const fp = path.join(uploads, f);
+        if (/\.mp4$/i.test(f)) { kept++; continue; }
+        try { freed += fs.statSync(fp).size; } catch (e) {}
+        fs.rmSync(fp, { force: true, recursive: true });
+      }
+      console.log(`[prune] uploads: kept ${kept} .mp4, removed ${Math.round(freed / 1024)}KB of unreferenced source rasters`);
+    }
   });
 
   // Signal colour, darkened just enough to read as small text on paper.
