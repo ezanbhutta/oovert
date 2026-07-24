@@ -44,7 +44,11 @@
       "Brand identity design",
       "Brand guidelines and rollout"
     ],
-    "sameAs": []
+    "sameAs": [
+      "https://www.instagram.com/oovert/",
+      "https://www.linkedin.com/company/oovert-agency/",
+      "https://www.are.na/oovert"
+    ]
   },
   "a11y": {
     "skipLink": "Skip to content"
