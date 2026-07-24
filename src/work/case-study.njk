@@ -111,9 +111,9 @@ eleventyComputed:
 
   <!-- Fixed header (persists over every section) -->
   <header class="cs-head">
-    <a class="cs-head__back" href="../../index.html#evidence"><span aria-hidden="true">&larr;</span> All work</a>
+    <a class="cs-head__back" href="/work/"><span aria-hidden="true">&larr;</span> All work</a>
     <span class="cs-head__title">{{ project.name | safe }} &middot; OOVERT</span>
-    <a class="cs-head__next" href="{{ project.nextUrl | default('../../index.html#evidence', true) }}">Next project <span aria-hidden="true">&rarr;</span></a>
+    <a class="cs-head__next" href="{{ project.nextUrl | default('/work/', true) }}">Next project <span aria-hidden="true">&rarr;</span></a>
     <div class="cs-progress"><div class="cs-progress__fill"></div></div>
   </header>
 
@@ -629,7 +629,7 @@ eleventyComputed:
           </svg>
         </figure>
         <p class="cs-body" style="margin-inline:auto;text-align:center" data-cs-text>{{ project.closing | safe }}</p>
-        <a class="cs-next" href="{{ project.nextUrl | default('../../index.html#evidence', true) }}">Next project <span aria-hidden="true">&rarr;</span></a>
+        <a class="cs-next" href="{{ project.nextUrl | default('/work/', true) }}">Next project <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
 

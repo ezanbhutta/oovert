@@ -67,6 +67,11 @@ export function initManifesto({ reducedMotion } = {}) {
     targets = rects.map((s, i) => ({ dx: cx - s.cx, dy: cy - total / 2 + i * gap - s.cy }));
   };
 
+  // How far the effect is spread, as a fraction of viewport height. The
+  // paragraph's centre crosses mid-screen (p=0), and the gather completes
+  // after it has travelled up by SPAN viewports. Larger = slower, calmer.
+  const SPAN = 1.0;
+
   let ticking = false;
   const update = () => {
     ticking = false;
@@ -76,7 +81,7 @@ export function initManifesto({ reducedMotion } = {}) {
     // effect runs as it scrolls up past that point.
     const rect = el.getBoundingClientRect();
     const mid = rect.top + rect.height / 2;
-    let p = (vh * 0.5 - mid) / (vh * 0.5);
+    let p = (vh * 0.5 - mid) / (vh * SPAN);
     p = p < 0 ? 0 : p > 1 ? 1 : p;
 
     // Keywords gather to the centered column.

@@ -10,12 +10,14 @@ import { initPackages } from './modules/packages.js';
 import { initVideo } from './modules/video.js';
 import { initLivingMark } from './modules/livingmark.js';
 import { initWhatWeDo } from './modules/whatwedo.js';
+import { initToTop } from './modules/to-top.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
 
 initReveal();
 initNav();
+initToTop({ reducedMotion });
 initPackages({ reducedMotion });
 initCounters({ reducedMotion });
 initManifesto({ reducedMotion });
