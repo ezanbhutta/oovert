@@ -1,0 +1,7 @@
+{#- Emits the page's JSON-LD @graph from the shared schema data file.
+    Usage: {% set schemaKey = "home" %}{% include "schema.njk" %} -#}
+{%- if schemaKey and schema[schemaKey] -%}
+  <script type="application/ld+json">
+{{ schema[schemaKey] | dump(2) | safe }}
+  </script>
+{%- endif -%}

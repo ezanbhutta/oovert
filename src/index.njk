@@ -64,42 +64,7 @@
   <link rel="modulepreload" href="js/modules/breakcover.js">
   <link rel="modulepreload" href="js/modules/tell.js">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "additionalType": "https://schema.org/ProfessionalService",
-    "name": {{ site.schema.name | dump | safe }},
-    "legalName": {{ site.schema.legalName | dump | safe }},
-    "url": {{ site.schema.url | dump | safe }},
-    "email": {{ site.schema.email | dump | safe }},
-    "foundingDate": {{ site.schema.foundingDate | dump | safe }},
-    "slogan": {{ site.schema.slogan | dump | safe }},
-    "description": {{ site.schema.description | dump | safe }},
-    "logo": {{ site.schema.logo | dump | safe }},
-    "image": {{ site.schema.image | dump | safe }},
-    "areaServed": {{ site.schema.areaServed | dump | safe }},
-    "knowsAbout": {{ site.schema.knowsAbout | dump | safe }},
-    "makesOffer": [
-{% for offer in site.schema.makesOffer %}      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": {{ offer | dump | safe }} } }{% if not loop.last %},{% endif %}
-{% endfor %}    ]{% if site.schema.sameAs and site.schema.sameAs.length %},
-    "sameAs": {{ site.schema.sameAs | dump | safe }}{% endif %}
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-{% for item in site.faq.items %}      {
-        "@type": "Question",
-        "name": {{ item.q | dump | safe }},
-        "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} }
-      }{% if not loop.last %},{% endif %}
-{% endfor %}    ]
-  }
-  </script>
+  {% set schemaKey = "home" %}{% include "schema.njk" %}
 </head>
 <body>
   <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
