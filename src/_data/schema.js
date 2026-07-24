@@ -41,6 +41,13 @@ const organization = {
   areaServed: s.areaServed,
   knowsAbout: s.knowsAbout,
   sameAs: s.sameAs,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: s.email,
+    contactType: 'new business',
+    areaServed: s.areaServed,
+    availableLanguage: 'en',
+  },
 };
 
 /* ---- Services (name + description only — no Offer, no price) ---------------- */
@@ -89,6 +96,32 @@ const collectionPage = {
   hasPart: [{ '@id': `${CASE_URL}#work` }],
 };
 
+/* ---- Page-type nodes for the process / about pages ------------------------
+ * These pages previously carried only a BreadcrumbList; a WebPage / AboutPage
+ * node sharpens page-type + entity signals (additive, no visible change). */
+const approachPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/approach/#webpage`,
+  name: 'Our Approach to Brand Strategy & Identity — OOVERT',
+  description:
+    'How OOVERT works: a brand built in four moves — Strategy, Positioning, Identity, Rollout.',
+  url: `${BASE}/approach/`,
+  isPartOf: { '@id': ORG_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const studioPage = {
+  '@type': 'AboutPage',
+  '@id': `${BASE}/studio/#webpage`,
+  name: 'A Distributed Brand Identity Studio — OOVERT',
+  description:
+    'OOVERT is a distributed studio of senior people across six timezones. Four disciplines, one question on every project: would we sign it?',
+  url: `${BASE}/studio/`,
+  isPartOf: { '@id': ORG_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -117,9 +150,11 @@ module.exports = {
     ]),
   ]),
   approach: graph([
+    approachPage,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Approach', path: '/approach/' }]),
   ]),
   studio: graph([
+    studioPage,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Studio', path: '/studio/' }]),
   ]),
 };
