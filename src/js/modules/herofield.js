@@ -13,6 +13,7 @@ export function initHeroField({ reducedMotion } = {}) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
+  ctx.imageSmoothingEnabled = true; // idempotent context flag — set once, not per frame
   const hero = canvas.closest('.hero');
 
   const LW = 80;
@@ -22,6 +23,9 @@ export function initHeroField({ reducedMotion } = {}) {
   buf.height = LH;
   const bctx = buf.getContext('2d');
   const img = bctx.createImageData(LW, LH);
+  // Alpha is always opaque and never changes — seed it once instead of writing
+  // it for every pixel on every frame.
+  for (let i = 3; i < img.data.length; i += 4) img.data[i] = 255;
 
   // High-key palette: paper -> pale violet -> warm ivory -> soft violet.
   const stops = [
@@ -66,11 +70,9 @@ export function initHeroField({ reducedMotion } = {}) {
         d[idx] = c[0];
         d[idx + 1] = c[1];
         d[idx + 2] = c[2];
-        d[idx + 3] = 255;
       }
     }
     bctx.putImageData(img, 0, 0);
-    ctx.imageSmoothingEnabled = true;
     ctx.drawImage(buf, 0, 0, canvas.width, canvas.height);
   };
 

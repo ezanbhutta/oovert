@@ -13,6 +13,7 @@ export function initBackdrop({ reducedMotion } = {}) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
+  ctx.imageSmoothingEnabled = true; // idempotent context flag — set once, not per frame
   const section = canvas.closest('.manifesto');
 
   const LW = 96;
@@ -22,6 +23,8 @@ export function initBackdrop({ reducedMotion } = {}) {
   buf.height = LH;
   const bctx = buf.getContext('2d');
   const img = bctx.createImageData(LW, LH);
+  // Alpha is always opaque and never changes — seed it once, not per pixel per frame.
+  for (let i = 3; i < img.data.length; i += 4) img.data[i] = 255;
 
   // ink -> deep violet -> violet -> pale violet
   const stops = [
@@ -70,11 +73,9 @@ export function initBackdrop({ reducedMotion } = {}) {
         d[idx] = c[0] * k;
         d[idx + 1] = c[1] * k;
         d[idx + 2] = c[2] * k;
-        d[idx + 3] = 255;
       }
     }
     bctx.putImageData(img, 0, 0);
-    ctx.imageSmoothingEnabled = true;
     ctx.drawImage(buf, 0, 0, canvas.width, canvas.height);
   };
 

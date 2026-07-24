@@ -16,12 +16,12 @@ eleventyComputed:
   Autoplay implies muted + playsinline (browsers block sound-on autoplay);
   speed / start / end are read by case-study.js as data-rate / start / end.
 -#}
-{%- macro media(m, cls='', attrs='loading="lazy"') -%}
+{%- macro media(m, cls='', attrs='loading="lazy"', sizes='') -%}
 {%- set v = m.video -%}
 {%- if v and v.src -%}
 <video class="cs-img cs-video{% if cls %} {{ cls }}{% endif %}"{% if v.poster %} poster="{{ v.poster }}"{% endif %}{% if v.controls %} controls{% endif %}{% if v.loop %} loop{% endif %}{% if v.autoplay %} autoplay muted playsinline{% elif v.muted %} muted{% endif %} preload="metadata" data-cs-video{% if v.speed %} data-rate="{{ v.speed }}"{% endif %}{% if v.start %} data-start="{{ v.start }}"{% endif %}{% if v.end %} data-end="{{ v.end }}"{% endif %}{% if m.alt %} aria-label="{{ m.alt }}"{% endif %}><source src="{{ v.src }}"></video>
 {%- elif m.image or m.src -%}
-<img class="cs-img{% if cls %} {{ cls }}{% endif %}" src="{{ m.image or m.src }}" alt="{{ m.alt | default('', true) }}"{% if attrs %} {{ attrs | safe }}{% endif %}>
+<img class="cs-img{% if cls %} {{ cls }}{% endif %}" src="{{ m.image or m.src }}" alt="{{ m.alt | default('', true) }}"{% if sizes %} sizes="{{ sizes }}"{% endif %}{% if attrs %} {{ attrs | safe }}{% endif %}>
 {%- else -%}
 {% if caller %}{{ caller() }}{% endif %}
 {%- endif -%}
@@ -210,7 +210,7 @@ eleventyComputed:
           </div>
           <figure class="cs-figure" data-cs-media>
             <!-- SWAP → intro image OR video (project.sections.intro.video) -->
-            {% call media(project.sections.intro) %}
+            {% call media(project.sections.intro, '', 'loading="lazy"', '(max-width: 900px) 94vw, 44vw') %}
             <div class="ph ph--4x5">
               <div class="ph__inner">
                 <span class="ph__kicker">Portrait image or video</span>
@@ -246,7 +246,7 @@ eleventyComputed:
         <h2 class="cs-title" id="cs-logo-h" data-cs-text>{{ project.sections.logo.headline | safe }}</h2>
         <figure class="cs-figure cs-mt" data-cs-media style="max-width:66rem">
           <!-- SWAP → logo image (transparent PNG/SVG) OR an animated logo video -->
-          {% call media(project.sections.logo) %}
+          {% call media(project.sections.logo, '', 'loading="lazy"', '(max-width: 1180px) 94vw, 1056px') %}
           <div class="ph ph--3x2">
             <div class="ph__inner">
               <span class="ph__kicker">Logo &mdash; transparent (or animated)</span>
@@ -271,7 +271,7 @@ eleventyComputed:
         <div class="cs-cols">
           <figure class="cs-figure cs-cols__sticky" data-cs-media>
             <!-- SWAP → construction image OR video (grid build, animation) -->
-            {% call media(project.sections.construction) %}
+            {% call media(project.sections.construction, '', 'loading="lazy"', '(max-width: 900px) 94vw, 44vw') %}
             <div class="ph ph--1x1">
               <div class="ph__inner">
                 <span class="ph__kicker">Construction</span>
@@ -304,7 +304,7 @@ eleventyComputed:
         <h2 class="cs-title" id="cs-concept-h" data-cs-text>{{ project.sections.concept.headline | safe }}</h2>
         <div class="cs-trio cs-mt">
           {% for item in project.sections.concept.images %}
-          <figure class="cs-figure" data-cs-item data-cs-media>{{ media(item) }}</figure>
+          <figure class="cs-figure" data-cs-item data-cs-media>{{ media(item, '', 'loading="lazy"', '(max-width: 900px) 94vw, 32vw') }}</figure>
           {% else %}
           <figure class="cs-figure" data-cs-item data-cs-media>
             <!-- SWAP → <img class="cs-img" src="concept-1.jpg" alt="[Project] — moodboard"> -->
@@ -655,9 +655,11 @@ eleventyComputed:
     <span class="cs-aperture__o cs-aperture__o--r"></span>
   </div>
 
-  <!-- Motion engine (self-hosted GSAP + ScrollTrigger + Lenis). Order matters. -->
-  <script src="../../vendor/gsap.min.js"></script>
-  <script src="../../vendor/ScrollTrigger.min.js"></script>
-  <script src="../../js/case-study.js"></script>
+  <!-- Motion engine (self-hosted GSAP + ScrollTrigger + Lenis). defer keeps the
+       parser unblocked and lets the three files download in parallel; defer
+       preserves document order, so case-study.js still runs after both libs. -->
+  <script defer src="../../vendor/gsap.min.js"></script>
+  <script defer src="../../vendor/ScrollTrigger.min.js"></script>
+  <script defer src="../../js/case-study.js"></script>
 </body>
 </html>

@@ -72,6 +72,9 @@ export function initManifesto({ reducedMotion } = {}) {
     targets = rects.map((s, i) => ({ dx: cx - s.cx, dy: cy - total / 2 + i * gap - s.cy }));
   };
 
+  // Stable for the module's life — resolve once, not on every scroll frame.
+  const bg = section.querySelector('.manifesto__bg');
+
   let ticking = false;
   const update = () => {
     ticking = false;
@@ -88,7 +91,6 @@ export function initManifesto({ reducedMotion } = {}) {
     // fades up with it. The dim completes within the first 38% of approach,
     // before the copy is on screen, so text never sits on a half-mixed
     // ground. Scrubbed and reversible, like everything else here.
-    const bg = section.querySelector('.manifesto__bg');
     if (r.top > 0) {
       const q = clamp01((vh - r.top) / (vh * 0.38));
       if (q >= 1) {

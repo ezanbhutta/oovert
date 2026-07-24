@@ -59,10 +59,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     extensions: "html",
     formats: ["avif", "webp", "auto"],
-    widths: [480, 768, 1200, 1680, 2200],
-    // A source is only ever displayed within a single column; 100vw is the safe
-    // upper bound (never picks a source narrower than the display box, so never
-    // soft). Individual <img> may override with their own sizes attribute.
+    // Up to 2560 so a full-bleed image stays crisp on a Retina Mac (a 1440 CSS
+    // full-bleed needs ~2880 device px at DPR2; 2560 upscales imperceptibly and
+    // matches the original's on-screen sharpness while staying ~90% lighter).
+    widths: [480, 768, 1200, 1680, 2200, 2560],
+    // 100vw is the safe default (never soft); constrained figures pass their own
+    // sizes via the media() macro so a column image never fetches the 2560 tier.
     defaultAttributes: { sizes: "100vw", decoding: "async" },
     svgShortCircuit: true,
     sharpOptions: { animated: false },

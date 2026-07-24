@@ -432,6 +432,19 @@
   font-variation-settings: 'wdth' 108;
 }
 
+/* In the two-up layout (≥821px, before the marker column collapses) the widest
+   name — POSITIONING — outgrows its 4fr marker column and collided into the
+   body column across ~820–1400px. Give the name a column-tuned fluid size there
+   so it shrinks in lockstep with the 4fr track; it lands on the identical
+   --text-lg value (78px) at the 1440 reference and is capped so it never
+   overflows on ultrawide. The single-column layout below 821 keeps --text-lg
+   unchanged, so mobile/tablet portrait are byte-identical. */
+@media (min-width: 821px) {
+  .phase__name {
+    font-size: clamp(2.5rem, -0.1875rem + 5.625vw, 4.875rem);
+  }
+}
+
 .phase__body { padding-top: var(--space-2); }
 
 .phase__summary {

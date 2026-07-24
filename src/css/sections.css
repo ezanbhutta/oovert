@@ -388,15 +388,17 @@
   color: var(--paper);
 }
 
-.manifesto__text .mf-word {
-  will-change: opacity;
-}
-
 .manifesto__text .mf-key {
   display: inline-block;
   color: var(--accent-invert);
-  will-change: transform;
 }
+
+/* will-change only while the scrub is actually live: the JS adds
+   .manifesto--pinned only when words exist and reduced-motion is off, so idle
+   and reduced-motion pages carry no forced compositor layers (and no risk of
+   sub-pixel text blur). During the scrub the promotion is identical to before. */
+.manifesto--pinned .mf-word { will-change: opacity; }
+.manifesto--pinned .mf-key { will-change: transform; }
 
 .manifesto__text em {
   font-family: var(--font-serif);
