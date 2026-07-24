@@ -9,8 +9,8 @@
   <nav class="site-head__nav" aria-label="Primary">
     {% for link in site.nav.links %}<a href="{{ navhref(link.href) }}"{% if link.href == currentPath %} aria-current="page"{% endif %}>{{ link.label }}</a>
     {% endfor %}</nav>
-  <button class="site-head__menu" type="button" aria-expanded="false" aria-controls="menu-overlay">
-    <span class="site-head__menu-label">{{ site.nav.menuButtonLabel }}</span>
+  <button class="site-head__menu" type="button" aria-expanded="false" aria-controls="menu-overlay" aria-label="Menu">
+    <span class="site-head__menu-label" aria-hidden="true"><span>{{ site.nav.menuButtonLabel }}</span><span>Close</span></span>
   </button>
 </header>
 

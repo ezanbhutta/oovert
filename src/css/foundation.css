@@ -93,6 +93,12 @@
   --space-6: 3rem;
   --space-8: 4rem;
   --space-section: clamp(6rem, 4rem + 10vw, 14rem);
+  /* Whitespace registers: candour chapters enter tighter, the one rhetorical
+     peak gets the page's single biggest breath. Uneven on purpose. */
+  --space-section-lite: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  --space-section-deep: clamp(9rem, 6rem + 16vw, 21rem);
+  /* One column-plus-gutter of the 12-col system (full-width sections only). */
+  --colg: calc((100% - 2 * var(--margin) + var(--gutter)) / 12);
 
   /* Layout */
   --margin: clamp(1.25rem, 4vw, 4rem);
@@ -104,12 +110,18 @@
   --track-nav:   0.1em;  /* 14px nav / menu labels */
 
   /* Motion */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);    /* expressive, section + line entrances */
-  --ease-hover: cubic-bezier(0.33, 1, 0.68, 1); /* gentle, hover + micro feedback */
-  --ease-inout: cubic-bezier(0.83, 0, 0.17, 1);
-  --dur-fast: 240ms;   /* hover / micro */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);    /* THE ARRIVAL — masked line + section entrances only */
+  --ease-hover: cubic-bezier(0.33, 1, 0.68, 1); /* THE TOUCH — hover + micro feedback only */
+  --ease-inout: cubic-bezier(0.83, 0, 0.17, 1); /* THE CURTAIN — occlusion moves (menu, wipes) only */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* one overshoot; magnetic release only */
+  --dur-fast: 240ms;   /* hover / micro, enter */
+  --dur-exit: 420ms;   /* hover / micro, release — exits run lazier than entries */
   --dur-med: 500ms;    /* underlines, arrows */
   --dur-slow: 800ms;   /* masked line + block reveals */
+
+  /* Paper tooth: one static SVG noise tile, inlined (no request, never
+     animated). Kills gradient banding and gives flat fields a print grain. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
   /* Z-scale, header sits above the menu overlay so Close stays reachable */
   --z-rail: 40;
@@ -152,6 +164,39 @@ html {
    steady while the page beneath it changes. */
 @view-transition { navigation: auto; }
 .site-head { view-transition-name: site-head; }
+main { view-transition-name: page-main; }
+
+/* Asymmetric shared-axis: the old page departs fast and up, the new one
+   arrives slower, delayed, from below — attention belongs to what's arriving.
+   The root keeps a quick quiet crossfade underneath. */
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 240ms; }
+
+::view-transition-old(page-main) {
+  animation: vt-depart 180ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(page-main) {
+  animation: vt-arrive 420ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+}
+
+/* The difference-blend header can shimmer in flat snapshots; pin it. */
+::view-transition-old(site-head) { display: none; }
+::view-transition-new(site-head) { animation: none; }
+
+@keyframes vt-depart { to   { opacity: 0; transform: translateY(-12px); } }
+@keyframes vt-arrive { from { opacity: 0; transform: translateY(16px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
+html {
+  /* Recolored, never removed: the thumb is ink-soft on paper (7:1). */
+  scrollbar-color: var(--ink-soft) var(--paper);
+}
 
 body {
   background: var(--paper);
@@ -164,6 +209,20 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+}
+
+/* Paper tooth over everything — felt, not seen. Static tile; multiply darkens
+   into the paper so it reads as stock, not dirt. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: var(--grain) repeat;
+  background-size: 300px 300px;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
 }
 
 img, svg, video {
@@ -201,17 +260,45 @@ sup {
   letter-spacing: 0;
 }
 
+/* Selection is part of the palette: deep violet clears AA on paper text
+   (the brand violet alone is only ~3.7:1). Ink-ground chapters flip to the
+   gold counterpoint so selected text stays legible there too. */
 ::selection {
-  background: var(--accent);
+  background: var(--accent-deep);
   color: var(--paper);
+  text-shadow: none;
+}
+
+.manifesto ::selection,
+.practice ::selection,
+.evidence ::selection,
+.contact ::selection,
+.showreel ::selection {
+  background: var(--secondary);
+  color: var(--ink);
+}
+
+img::selection {
+  background: rgba(129, 94, 250, 0.28);
 }
 
 /* ---- Focus & access -------------------------------------------------- */
 
+/* Two-layer ring: a paper gasket between element and ring keeps the ring
+   legible over imagery and busy grounds; ink-ground chapters swap the gasket. */
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-  border-radius: 1px;
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 3px var(--paper);
+}
+
+.manifesto :focus-visible,
+.practice :focus-visible,
+.evidence :focus-visible,
+.contact :focus-visible {
+  outline-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ink);
 }
 
 .skip-link {
@@ -330,6 +417,12 @@ sup {
   margin-block-end: -0.16em;
 }
 
+/* Segment masks: two independently-timed masks sharing one visual row, so a
+   sentence can land on its final word ("is for" ... "prey."). */
+.line--seg {
+  display: inline-block;
+}
+
 .line__inner {
   display: block;
 }
@@ -362,13 +455,22 @@ sup {
   }
 
   /* Measured cascade: items within a list resolve in sequence, not all at
-     once, so each section arrives at a paced, deliberate rhythm. */
+     once. The gaps widen as the list descends (70/160/280) — a cadence,
+     not a metronome. */
   .js .practice__item:nth-child(2).is-inview,
-  .js .principles__item:nth-child(2).is-inview { transition-delay: 90ms; }
+  .js .principles__item:nth-child(2).is-inview { transition-delay: 70ms; }
   .js .practice__item:nth-child(3).is-inview,
-  .js .principles__item:nth-child(3).is-inview { transition-delay: 180ms; }
+  .js .principles__item:nth-child(3).is-inview { transition-delay: 160ms; }
   .js .practice__item:nth-child(4).is-inview,
-  .js .principles__item:nth-child(4).is-inview { transition-delay: 270ms; }
+  .js .principles__item:nth-child(4).is-inview { transition-delay: 280ms; }
+
+  /* Content already in view on arrival appears at once — no replayed
+     choreography after an anchor jump or mid-page load. */
+  .js .is-instant,
+  .js .is-instant * {
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
 
   /* Section opening: one shared gesture at every chapter boundary, so
      scrolling reads as a single orchestrated rhythm. The hairline draws
@@ -400,23 +502,64 @@ sup {
   .js [data-reveal-head].is-inview .chapter-head__num { transition-delay: 140ms; }
   .js [data-reveal-head].is-inview .chapter-head__label { transition-delay: 200ms; }
 
-  /* Entrance choreography (hero), CSS-only, staggered via --d */
+  /* Entrance choreography (hero), CSS-only, staggered via --d.
+     Three treatments, by hierarchy: headlines rise inside masks with the
+     longest travel and settle; the lede rises a little; meta/CTA/strip only
+     fade. Delays are a shaped cadence (a breath after the headline), not a
+     metronome. Gated on .fonts-ready so a masked serif reveal never FOUTs
+     mid-rise; return visits (html.is-return, sessionStorage) compress the
+     whole overture to a stinger. */
   [data-entrance] {
-    animation: entrance 900ms var(--ease-out) both;
-    animation-delay: var(--d, 0s);
+    animation: entrance var(--edur, 600ms) var(--ease-hover) both;
+    animation-delay: calc(var(--d, 0s) * var(--entrance-scale, 1));
   }
+
+  .js:not(.fonts-ready) [data-entrance] {
+    animation-play-state: paused;
+  }
+
+  .is-return { --entrance-scale: 0.3; }
+  .is-return [data-entrance] { --edur: 450ms !important; }
 
   .hero__title [data-entrance] {
+    --edur: 1.05s;
     animation-name: entrance-mask;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
   }
 
+  .hero__lede[data-entrance] {
+    --edur: 750ms;
+    animation-name: entrance-rise;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  /* The one counter-move: the CTA arrow drops down into place, pointing the
+     way the page goes. Everything else rises. */
+  .hero__cta .btn__arrow {
+    animation: entrance-drop 400ms var(--ease-hover) both;
+    animation-delay: calc(1.04s * var(--entrance-scale, 1));
+  }
+
+  /* The looping scroll pulse waits until the entrance has fully settled. */
+  .hero__scroll i { animation-delay: 1.9s; }
+
   @keyframes entrance {
+    from { opacity: 0; transform: translateY(0.6rem); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @keyframes entrance-rise {
     from { opacity: 0; transform: translateY(1.5rem); }
     to   { opacity: 1; transform: none; }
   }
 
   @keyframes entrance-mask {
-    from { transform: translateY(130%); }
+    from { transform: translateY(120%); }
     to   { transform: none; }
+  }
+
+  @keyframes entrance-drop {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: none; }
   }
 }
