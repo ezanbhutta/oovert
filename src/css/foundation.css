@@ -68,6 +68,13 @@
   inherits: false;
   initial-value: 0;
 }
+/* Width of a single "What we do" name on the dial — condensed (in cover) at
+   rest, expanded (overt) at the read line. Registered so it interpolates. */
+@property --wwd-w {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 82;
+}
 
 :root {
   /* Palette, ink on paper, one signal color */
