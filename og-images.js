@@ -16,6 +16,7 @@ const PAGES = [
   { slug: 'work', title: ['Selected', 'work'] },
   { slug: 'approach', title: ['A brand in', 'four moves'] },
   { slug: 'studio', title: ['The studio'] },
+  { slug: 'pricing', title: ['How much does', 'branding cost?'] },
   { slug: 'nowa-brand-identity', title: ['NOWA', 'Brand Identity'] },
 ];
 
