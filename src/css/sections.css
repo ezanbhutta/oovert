@@ -304,9 +304,25 @@
   align-items: center;
   min-height: 100vh;
   /* Vertical padding kept modest so the whole paragraph sits on screen when the
-     band is centred — the timed dissolve plays in place, the page scrolls free. */
+     stage is centred — the scrub happens with everything visible. */
   padding: clamp(2.5rem, 5vh, 5.5rem) var(--margin);
   overflow: clip;
+}
+
+/* Scroll-scrubbed transform. manifesto.js adds .manifesto--pinned only when the
+   effect runs (JS on, motion allowed); without it the section stays a normal,
+   static, fully readable band. The stage pins so the whole paragraph stays on
+   screen while scroll drives the dissolve + gather; the extra section height is
+   the scroll distance the effect is scrubbed across (kept short so it reads as
+   scrubbing, never a long lock). */
+.manifesto--pinned {
+  height: 180vh;
+}
+.manifesto--pinned .manifesto__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 0;
 }
 
 .manifesto__bg {

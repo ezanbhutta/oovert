@@ -1,14 +1,14 @@
 /**
- * Manifesto dissolve + gather.
- * The paragraph reads as a normal, static block. When it scrolls into view it
- * holds for a beat (fully readable), then the connective words dissolve top to
- * bottom while the capability keywords glide into a centred column. This plays
- * as a self-contained, TIMED animation — it is not tied to scroll, so the page
- * never pins or locks; you scroll freely throughout. It re-arms when the band
- * leaves the viewport, so it replays on the next visit.
+ * Manifesto dissolve + gather — scroll-scrubbed.
+ * The stage pins to the viewport so the whole paragraph stays visible, and your
+ * scroll position drives the effect directly: as you scroll, the connective
+ * words dissolve top to bottom and THEN the capability keywords glide into a
+ * centred column. It's sequenced (fade fully, then gather) so no half-faded
+ * word is ever left sitting under the moving keywords. There is no dead "hold":
+ * every bit of scroll moves something, so it reads as scrubbing, not locking.
  *
  * Progressive enhancement: with no JS or reduced motion it stays a plain,
- * legible paragraph — nothing fades or moves.
+ * legible paragraph — nothing pins, fades, or moves.
  */
 export function initManifesto({ reducedMotion } = {}) {
   const section = document.querySelector('.manifesto');
@@ -45,12 +45,16 @@ export function initManifesto({ reducedMotion } = {}) {
   const plains = words.filter((w) => !w.classList.contains('mf-key'));
   if (!words.length || reducedMotion) return;
 
+  // Pin the stage so the whole paragraph stays on screen while scroll scrubs the
+  // effect. The tall-section CSS is gated on this class, so no-JS / reduced
+  // motion stays a normal, static, readable band.
+  section.classList.add('manifesto--pinned');
+
   const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t);
   const smooth = (a, b, t) => {
     t = clamp01((t - a) / (b - a));
     return t * t * (3 - 2 * t);
   };
-  const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
   // Target: an evenly spaced, centered column inside the stage.
   let targets = [];
@@ -68,80 +72,44 @@ export function initManifesto({ reducedMotion } = {}) {
     targets = rects.map((s, i) => ({ dx: cx - s.cx, dy: cy - total / 2 + i * gap - s.cy }));
   };
 
-  // Render the effect at progress p (0 = full paragraph, 1 = keyword column).
-  let lastP = 0;
-  const render = (p) => {
-    lastP = p;
-    const move = smooth(0.0, 0.62, p);
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const vh = window.innerHeight;
+    // Progress scrubbed by scroll: 0 the moment the stage pins to the top of the
+    // viewport, 1 as it releases. No hold — the effect tracks scroll one-to-one,
+    // so scrolling always visibly moves the words (never a locked, dead stretch).
+    const r = section.getBoundingClientRect();
+    const travel = section.offsetHeight - vh;
+    const p = travel > 0 ? clamp01(-r.top / travel) : 0;
+
+    // 1) Connective words dissolve top to bottom, fully gone by p ~= 0.46.
+    const n = plains.length;
+    for (let i = 0; i < n; i++) {
+      const s = (i / n) * 0.28;
+      const f = smooth(s, s + 0.18, p);
+      plains[i].style.opacity = (1 - f).toFixed(3);
+    }
+    // 2) Keywords gather ONLY after the grey has cleared (0.46 -> 0.98), so the
+    //    two phases never overlap — every scrubbed frame is a clean state.
+    const move = smooth(0.46, 0.98, p);
     for (let i = 0; i < keys.length; i++) {
       const t = targets[i];
       keys[i].style.transform = `translate(${(t.dx * move).toFixed(1)}px, ${(t.dy * move).toFixed(1)}px)`;
     }
-    // Connective words dissolve top to bottom, staggered, gone by p ~= 0.5 —
-    // before the keywords finish gathering (0.62) — so the resolved state is
-    // only the clean centered list, never a gathered list over faded leftovers.
-    const n = plains.length;
-    for (let i = 0; i < n; i++) {
-      const s = (i / n) * 0.3;
-      const f = smooth(s, s + 0.2, p);
-      plains[i].style.opacity = (1 - f).toFixed(3);
-    }
   };
-
-  // Timed play, fully decoupled from scroll. HOLD keeps the paragraph readable
-  // before anything moves; then p eases 0 -> 1 over DURATION.
-  const HOLD = 900; // ms the full paragraph holds before it starts
-  const DURATION = 2600; // ms of the dissolve + gather
-  let rafId = null;
-  let start = null;
-  let playing = false;
-  const step = (ts) => {
-    if (start === null) start = ts;
-    const elapsed = ts - start;
-    if (elapsed < HOLD) {
-      rafId = requestAnimationFrame(step);
-      return;
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
     }
-    const t = clamp01((elapsed - HOLD) / DURATION);
-    render(easeInOut(t));
-    if (t < 1) rafId = requestAnimationFrame(step);
-    else {
-      rafId = null;
-      playing = false;
-    }
-  };
-  const play = () => {
-    if (playing || lastP > 0) return; // already running or already resolved
-    playing = true;
-    start = null;
-    rafId = requestAnimationFrame(step);
-  };
-  const reset = () => {
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = null;
-    start = null;
-    playing = false;
-    render(0);
   };
 
   measure();
-  render(0);
-
-  // Play once the band is well into view; re-arm when it fully leaves so it
-  // replays on the next visit. No scroll listener — nothing is scroll-driven.
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting && e.intersectionRatio >= 0.6) play();
-        else if (!e.isIntersecting) reset();
-      }
-    },
-    { threshold: [0, 0.6] }
-  );
-  io.observe(el);
-
-  window.addEventListener('resize', () => { measure(); render(lastP); }, { passive: true });
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => { measure(); render(lastP); });
+    document.fonts.ready.then(() => { measure(); update(); });
   }
 }
