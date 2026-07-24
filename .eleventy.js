@@ -123,7 +123,9 @@ module.exports = function (eleventyConfig) {
   );
   // sitemap.xml is generated from sitemap.njk (so case studies are included
   // automatically), not passed through.
-  ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "robots.txt", ".htaccess"].forEach((f) =>
+  // The IndexNow key file must be served verbatim at the site root so Bing /
+  // Yandex can verify ownership before accepting submissions (see tools/indexnow.js).
+  ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "robots.txt", ".htaccess", "e178b320e5649f51b94360e0b62f290c.txt"].forEach((f) =>
     eleventyConfig.addPassthroughCopy({ [`src/${f}`]: f })
   );
 

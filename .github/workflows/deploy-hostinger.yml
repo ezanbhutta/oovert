@@ -71,3 +71,13 @@ jobs:
           timeout: 120000
           local-dir: ./_site/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+
+      # Ping IndexNow (Bing / Yandex / Seznam) so they re-crawl changed URLs
+      # within minutes. Runs after the upload, so the public key file and the
+      # updated pages are already live when the engines verify. The script never
+      # throws — continue-on-error is belt-and-braces so a hiccup can't fail a
+      # deploy that already succeeded.
+      - name: Notify IndexNow of updated URLs
+        if: ${{ env.HAS_FTP != '' }}
+        continue-on-error: true
+        run: node tools/indexnow.js
