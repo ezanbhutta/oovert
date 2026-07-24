@@ -69,8 +69,8 @@
     "knowsAbout": {{ site.schema.knowsAbout | dump | safe }},
     "makesOffer": [
 {% for offer in site.schema.makesOffer %}      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": {{ offer | dump | safe }} } }{% if not loop.last %},{% endif %}
-{% endfor %}    ],
-    "sameAs": {{ site.schema.sameAs | dump | safe }}
+{% endfor %}    ]{% if site.schema.sameAs and site.schema.sameAs.length %},
+    "sameAs": {{ site.schema.sameAs | dump | safe }}{% endif %}
   }
   </script>
 
