@@ -58,7 +58,39 @@ export function initBreakCover({ reducedMotion } = {}) {
       beatDone = true;
       if (prey) prey.style.opacity = '';
       window.addEventListener('scroll', onScroll, { passive: true });
+      scheduleBreath();
     }
+  };
+
+  // Respire — while the hero sits at the top, the wordmark occasionally almost
+  // surfaces then re-settles (alive, not frozen). One element, bounded ~1.4s per
+  // breath, only at the top (scroll owns --wdth otherwise), paused when the hero
+  // is off-screen or the tab is hidden. Width only, veil untouched.
+  const atTop = () => -title.getBoundingClientRect().top < 6;
+  let breathing = false;
+  const scheduleBreath = () => {
+    setTimeout(() => { if (!breathing) breath(); }, 6000 + Math.random() * 4000);
+  };
+  const breath = () => {
+    if (!atTop() || document.hidden) return scheduleBreath();
+    breathing = true;
+    const DUR = 1400;
+    let t0 = null;
+    const step = (ts) => {
+      if (t0 == null) t0 = ts;
+      const p = (ts - t0) / DUR;
+      if (p >= 1 || !atTop() || document.hidden) {
+        breathing = false;
+        if (atTop()) title.style.setProperty('--wdth', REST);
+        return scheduleBreath();
+      }
+      // Asymmetric: a quick swell toward overt, a slower reluctant re-settle.
+      const e = p < 0.4 ? p / 0.4 : 1 - (p - 0.4) / 0.6;
+      const s = e * e * (3 - 2 * e); // smoothstep
+      title.style.setProperty('--wdth', Math.round(REST + (119 - REST) * s));
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   };
 
   // Exit re-camouflage: hero compresses and quiets back into the paper.

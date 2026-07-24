@@ -2,28 +2,31 @@
  * The Tell — the word gives itself away.
  *
  * One interior chapter word rests condensed (in cover) but fully legible. The
- * letters nearest the reader's attention — the cursor on a fine pointer — widen
- * toward the overt end of Archivo's width axis in a travelling wave, with an
- * asymmetric wake and a slower, reluctant re-camouflage behind it (prey
- * re-freezing once your eye moves on). Reading the word means watching it
- * surface letter by letter. Movement is the tell: the letter you look at is the
- * one that gives itself away.
+ * first time it scrolls into view it surfaces once on its own — a single
+ * travelling width wave, left to right — so every visitor (touch included) sees
+ * the brand's gesture, not just the desktop few who happen to hover it. On fine
+ * pointers it then hands off to the cursor: the letters nearest your attention
+ * widen toward the overt end of Archivo's width axis in a travelling wave, with
+ * an asymmetric wake and a slower, reluctant re-camouflage behind it (prey
+ * re-freezing once your eye moves on).
  *
  * Discipline (perf): a hard influence radius keeps out-of-range letters at a
  * byte-identical width string so the browser skips re-shaping them, and the
- * animated width is quantized to a few steps so only two or three glyphs
- * re-raster per frame. The loop only runs while the pointer is over the word.
+ * animated width is quantized so only two or three glyphs re-raster per frame.
+ * The loop only runs while the word is surfacing or the pointer is over it.
  *
- * Progressive enhancement: no JS, reduced motion, or coarse pointer → the word
- * ships static at its overt rest width, full ink, indistinguishable from prose.
+ * Progressive enhancement: no JS or reduced motion → the word ships static at
+ * its overt rest width, full ink, indistinguishable from prose.
  */
-const REST = 86; // in cover — condensed but legible, clearly deliberate
+const REST_COVER = 86; // fine pointers: in cover — condensed but legible
+const REST_OVERT = 112; // touch: rests at full width (no cursor to re-hide it)
 const PEAK = 125; // overt — the axis maximum
 const RADIUS = 2.4; // letters within this many letter-widths of focus surface
 
 export function initTell({ reducedMotion } = {}) {
   if (reducedMotion) return;
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const REST = fine ? REST_COVER : REST_OVERT;
 
   document.querySelectorAll('[data-tell]').forEach((word) => {
     const text = word.textContent;
@@ -53,12 +56,9 @@ export function initTell({ reducedMotion } = {}) {
           const t = 1 - dist / RADIUS;
           target = REST + (PEAK - REST) * (t * t);
         }
-        // Ease toward target; the re-hide (target < current) eases slower.
         const rising = target > current[i];
         const k = rising ? 0.3 : 0.14;
         current[i] += (target - current[i]) * k;
-        // Smooth to 0.1 precision (not 6-unit steps): the wave glides across the
-        // letters instead of snapping between widths — no vibration.
         const w = Math.round(current[i] * 10) / 10;
         if (w !== shown[i]) {
           letters[i].style.setProperty('--w', w);
@@ -71,15 +71,43 @@ export function initTell({ reducedMotion } = {}) {
 
     const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
 
-    word.addEventListener('pointermove', (e) => {
-      const r = word.getBoundingClientRect();
-      // Map pointer x to fractional letter index across the word.
-      focus = ((e.clientX - r.left) / r.width) * letters.length - 0.5;
-      kick();
-    });
-    word.addEventListener('pointerleave', () => {
-      focus = -999; // everything reluctantly returns to cover
-      kick();
-    });
+    // Auto-surface: drive `focus` left-to-right across the word once, then
+    // release it. The wave travels through the letters and re-settles behind
+    // itself — the camouflaged word gives itself away, then re-freezes.
+    const autoSurface = () => {
+      const dur = 1150;
+      const span = letters.length + RADIUS * 2;
+      let t0 = null;
+      const sweep = (ts) => {
+        if (t0 == null) t0 = ts;
+        const p = Math.min(1, (ts - t0) / dur);
+        focus = -RADIUS + p * span;
+        kick();
+        if (p < 1) requestAnimationFrame(sweep);
+        else { focus = -999; kick(); } // let the wake ease back to rest
+      };
+      requestAnimationFrame(sweep);
+    };
+
+    // Fire the surface once, the first time the word enters view.
+    const io = new IntersectionObserver((entries, obs) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { obs.disconnect(); autoSurface(); }
+      }
+    }, { threshold: 0.55 });
+    io.observe(word);
+
+    // Fine pointers: the cursor drives the wave directly.
+    if (fine) {
+      word.addEventListener('pointermove', (e) => {
+        const r = word.getBoundingClientRect();
+        focus = ((e.clientX - r.left) / r.width) * letters.length - 0.5;
+        kick();
+      });
+      word.addEventListener('pointerleave', () => {
+        focus = -999; // everything reluctantly returns to cover
+        kick();
+      });
+    }
   });
 }
