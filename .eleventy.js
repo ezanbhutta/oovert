@@ -10,6 +10,8 @@
  * Accents are derived at build time so a project can pick one brand colour and
  * still ship AA-legible small text on both the paper and ink grounds. */
 const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
+const path = require("path");
+const og = require("./og-images.js");
 
 const PAPER = [243, 240, 233]; // --paper #F3F0E9
 const INK = [22, 20, 15]; // --ink #16140F
@@ -71,6 +73,13 @@ module.exports = function (eleventyConfig) {
     sharpWebpOptions: { quality: 80 },
     sharpAvifOptions: { quality: 62 },
     sharpJpegOptions: { quality: 82, mozjpeg: true },
+  });
+
+  // Per-page Open Graph cards, generated at build into _site/assets/og/.
+  eleventyConfig.on('eleventy.after', async ({ dir }) => {
+    const out = path.join((dir && dir.output) || '_site', 'assets', 'og');
+    const n = await og.generate(out);
+    console.log(`[og] ${n} per-page OG images written to ${out}`);
   });
 
   // Signal colour, darkened just enough to read as small text on paper.
