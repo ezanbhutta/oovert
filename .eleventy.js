@@ -67,7 +67,7 @@ module.exports = function (eleventyConfig) {
   );
   // sitemap.xml is generated from sitemap.njk (so case studies are included
   // automatically), not passed through.
-  ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "robots.txt"].forEach((f) =>
+  ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "robots.txt", ".htaccess"].forEach((f) =>
     eleventyConfig.addPassthroughCopy({ [`src/${f}`]: f })
   );
 
