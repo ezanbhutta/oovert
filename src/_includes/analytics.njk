@@ -1,0 +1,16 @@
+{#- Google Analytics 4 (Measurement ID G-EQ12BRX5SX). Loaded only on the live
+    oovert.com domain, so local builds, branch previews and any staging copy
+    never send hits — the stats stay clean. -#}
+<script>
+  (function () {
+    if (!location.hostname.endsWith('oovert.com')) return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-EQ12BRX5SX';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-EQ12BRX5SX');
+  })();
+</script>
