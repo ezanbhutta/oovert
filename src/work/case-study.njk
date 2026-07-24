@@ -37,9 +37,17 @@ eleventyComputed:
   {% include "analytics.njk" %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title | safe }}</title>
-  <meta name="description" content="OOVERT case study template. A cinematic, editorial scroll experience built to present a brand identity project.">
+  <meta name="description" content="{{ project.name }} — a {{ project.scope | lower }} case study by OOVERT. {{ project.intro.headline }}">
   <meta name="theme-color" content="#16140F">
-  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://oovert.com/work/{{ project.slug | slugify }}/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="{{ project.name }} — OOVERT">
+  <meta property="og:description" content="{{ project.intro.headline }}">
+  <meta property="og:url" content="https://oovert.com/work/{{ project.slug | slugify }}/">
+  <meta property="og:image" content="https://oovert.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../../favicon.ico" sizes="32x32">
