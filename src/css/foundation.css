@@ -92,10 +92,15 @@
   --font-sans: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Instrument Serif', 'Instrument Serif Fallback', Georgia, serif;
 
-  /* Fluid type scale, editorial jumps, not timid steps */
-  --text-xs:   0.75rem;                            /* 12, labels     */
-  --text-sm:   0.875rem;                           /* 14, meta       */
-  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  /* Fluid type scale, editorial jumps, not timid steps.
+     xs/sm hold 12/14px pinned for every width up to the 1440 reference (the vw
+     ramp meets the floor exactly at 1440), then grow gently so micro-labels and
+     meta don't shrink against the display type on 1920/2560. text-base is
+     re-sloped to keep climbing through the mid band and land on 18px at 1440
+     (it used to saturate at ~1120, drifting the body:display ratio). */
+  --text-xs:   clamp(0.75rem, 0.6rem + 0.167vw, 0.84rem);   /* 12 ≤1440 */
+  --text-sm:   clamp(0.875rem, 0.7rem + 0.194vw, 0.98rem);  /* 14 ≤1440 */
+  --text-base: clamp(1rem, 0.958rem + 0.185vw, 1.125rem);   /* 18 at 1440 */
   --text-lede: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
   --text-md:   clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
   --text-lg:   clamp(2.25rem, 1.5rem + 3.75vw, 5rem);
@@ -109,7 +114,10 @@
   --space-4: 2rem;
   --space-5: 2.5rem;
   --space-6: 3rem;
-  --space-8: 4rem;
+  /* The one macro step given gentle ultrawide growth (64px pinned through 1440,
+     up to 72px by 2560) so big block gaps keep pace with saturated display type
+     on wide screens. --space-1..6 stay fixed to the 8px component rhythm. */
+  --space-8: clamp(4rem, 3.5rem + 0.556vw, 4.5rem);
   --space-section: clamp(6rem, 4rem + 10vw, 14rem);
   /* Whitespace registers: candour chapters enter tighter, the one rhetorical
      peak gets the page's single biggest breath. Uneven on purpose. */
@@ -118,9 +126,12 @@
   /* One column-plus-gutter of the 12-col system (full-width sections only). */
   --colg: calc((100% - 2 * var(--margin) + var(--gutter)) / 12);
 
-  /* Layout */
-  --margin: clamp(1.25rem, 4vw, 4rem);
-  --gutter: clamp(1rem, 2vw, 2rem);
+  /* Layout. The 4vw/2vw ramps are unchanged (identical margin/gutter at every
+     width ≤1600); only the caps are raised so margins/gutters keep growing past
+     1600 instead of freezing at 64/32px — that reins the 12-col grid back in on
+     1920/2560 so columns stop stretching edge-to-edge on ultrawide. */
+  --margin: clamp(1.25rem, 4vw, 8rem);
+  --gutter: clamp(1rem, 2vw, 2.75rem);
   --measure: 34em;
 
   /* Typographic tracking, one value per role */
@@ -248,6 +259,12 @@ img, svg, video {
   max-width: 100%;
   height: auto;
 }
+
+/* Responsive <img> are wrapped in <picture> by the build-time image pipeline.
+   Make that wrapper layout-transparent so every rule authored for the inner
+   <img> (height:100%, object-fit stretch, grid/flex sizing) resolves against the
+   img's real parent exactly as it did before the wrapper existed. */
+picture { display: contents; }
 
 a {
   color: inherit;
