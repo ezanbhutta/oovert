@@ -155,6 +155,16 @@
   color: color-mix(in oklab, var(--ink), var(--paper) calc(var(--veil, 0) * 1%));
 }
 
+/* Smooth the scroll re-camouflage: the JS writes --wdth/--veil once per frame,
+   and these short interpolations glide between those steps so the width and the
+   quieting read fluid rather than stepped. Registered <number> props, so they
+   animate. Motion-safe only. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__title {
+    transition: --wdth 0.22s var(--ease-out), --veil 0.22s var(--ease-out);
+  }
+}
+
 /* Width only ever narrows from rest, and never rewraps — zero layout shift. */
 .hero__title .line__inner {
   white-space: nowrap;
