@@ -99,8 +99,10 @@
 /* Attention is subtraction: hovering one link recedes its siblings.
    Pointer only — keyboard users keep full contrast. */
 @media (hover: hover) {
-  .site-head__nav a { transition: opacity 360ms var(--ease-hover); }
-  .site-head__nav:hover a:not(:hover) { opacity: 0.45; }
+  .site-head__nav a { opacity: 0.55; transition: opacity 360ms var(--ease-hover); }
+  .site-head__nav a:hover,
+  .site-head__nav a:focus-visible,
+  .site-head__nav a[aria-current] { opacity: 1; }
 }
 
 /* Header obeys scroll: hides going down (past the hero), returns the moment
@@ -241,8 +243,9 @@ body.menu-open .site-head__menu-label > span {
 
 /* Overlay sibling dimming, pointer devices only. */
 @media (hover: hover) {
-  .menu-overlay__nav a { transition: opacity 300ms var(--ease-hover); }
-  .menu-overlay__nav:hover a:not(:hover) { opacity: 0.4; }
+  .menu-overlay__nav a { opacity: 0.5; transition: opacity 300ms var(--ease-hover); }
+  .menu-overlay__nav a:hover,
+  .menu-overlay__nav a:focus-visible { opacity: 1; }
 }
 
 body.menu-open {
@@ -475,10 +478,11 @@ body.menu-open {
 
 /* ---- Footer -------------------------------------------------------------- */
 
-/* Footer wayfinding dims gently on hover — between the nav's 0.45 and full. */
+/* Footer wayfinding rests dull and lights up the link you point at. */
 @media (hover: hover) {
-  .site-foot__col a { transition: opacity 360ms var(--ease-hover), color var(--dur-fast) var(--ease-hover); }
-  .site-foot__col:hover a:not(:hover) { opacity: 0.55; }
+  .site-foot__col a { opacity: 0.55; transition: opacity 360ms var(--ease-hover), color var(--dur-fast) var(--ease-hover); }
+  .site-foot__col a:hover,
+  .site-foot__col a:focus-visible { opacity: 1; }
 }
 
 .site-foot {

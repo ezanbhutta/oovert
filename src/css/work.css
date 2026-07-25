@@ -320,6 +320,8 @@
 .work-more {
   padding: clamp(5rem, 10vw, 9rem) var(--margin) 0;
 }
+/* The closing section needs air before the dark footer so the CTA never touches it. */
+.work-more:last-child { padding-bottom: clamp(4rem, 8vw, 7rem); }
 
 .work-more__line {
   font-size: var(--text-xl);
