@@ -4,8 +4,8 @@
   <div class="site-foot__grid">
     <nav class="site-foot__col" aria-label="Footer">
       <h2 class="site-foot__label">{{ site.footer.indexLabel }}</h2>
-      {% for link in site.footer.indexLinks %}<a href="{{ navhref(link.href) }}">{{ link.label }}</a>
-      {% endfor %}</nav>
+      {% for link in site.footer.indexLinks %}{% if link.href != currentPath %}<a href="{{ navhref(link.href) }}">{{ link.label }}</a>
+      {% endif %}{% endfor %}</nav>
     <div class="site-foot__col">
       <h2 class="site-foot__label">{{ site.footer.elsewhereLabel }}</h2>
       {% for link in site.footer.socialLinks %}<a href="{{ link.url }}" rel="noopener">{{ link.label }}</a>
