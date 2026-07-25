@@ -13,25 +13,24 @@
 export function initReveal() {
   const arrivedAt = performance.now();
 
-  // Reveal once, then stop watching. A reveal that replays every time you scroll
-  // back past it reads as automated choreography, not confidence — so each
-  // element fires a single time and is released. The "instant" band still applies
-  // only to content already on screen at first paint (no choreography on an
-  // anchor jump).
-  const makeObserver = (options) => {
-    const obs = new IntersectionObserver((entries) => {
+  // Replays every pass: reveal when the element enters, reset when it leaves, so
+  // scrolling back up and down animates it again. The "instant" band still
+  // applies only to content already on screen at first paint (no replayed
+  // choreography on an anchor jump).
+  const makeObserver = (options) =>
+    new IntersectionObserver((entries) => {
       const early = performance.now() - arrivedAt < 600;
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        if (early && entry.intersectionRatio > 0.5) {
-          entry.target.classList.add('is-instant');
+        if (entry.isIntersecting) {
+          if (early && entry.intersectionRatio > 0.5) {
+            entry.target.classList.add('is-instant');
+          }
+          entry.target.classList.add('is-inview');
+        } else {
+          entry.target.classList.remove('is-inview', 'is-instant');
         }
-        entry.target.classList.add('is-inview');
-        obs.unobserve(entry.target);
       }
     }, options);
-    return obs;
-  };
 
   // Headlines and chapter heads: fire early — type leads.
   const heads = document.querySelectorAll('[data-reveal-head], [data-reveal-lines]');
