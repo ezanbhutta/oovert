@@ -12,6 +12,7 @@
 const site = require('./site.json');
 const project = require('./projects/case-study.json');
 const pricing = require('./pricing.json');
+const brandIdentity = require('./brandIdentity.json');
 
 const BASE = 'https://oovert.com';
 const ORG_ID = `${BASE}/#organization`;
@@ -147,6 +148,40 @@ const pricingFaq = {
   })),
 };
 
+/* ---- Brand identity service page: WebPage + Service + FAQPage --------------
+ * A Service node (no Offer/price) targets the "brand identity design" term; the
+ * FAQPage is text-only, consistent with the rest of the site. */
+const brandIdentityPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/brand-identity/#webpage`,
+  name: 'Brand Identity Design, Strategy-First — OOVERT',
+  description:
+    'Brand identity design done strategy-first — the system a company is recognised by: name, mark, type, colour, voice, motion and guidelines.',
+  url: `${BASE}/brand-identity/`,
+  isPartOf: { '@id': ORG_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const brandIdentityService = {
+  '@type': 'Service',
+  '@id': `${BASE}/brand-identity/#service`,
+  name: 'Brand identity design',
+  serviceType: 'Brand identity design',
+  description:
+    'Strategy-first brand identity design: name, logo and mark, typography, colour, voice, motion and guidelines, built into one coherent system.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const brandIdentityFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/brand-identity/#faq`,
+  mainEntity: brandIdentity.faq.map((q) => ({
+    '@type': 'Question',
+    name: q.q,
+    acceptedAnswer: { '@type': 'Answer', text: q.a },
+  })),
+};
+
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -186,5 +221,11 @@ module.exports = {
     pricingPage,
     pricingFaq,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing/' }]),
+  ]),
+  'brand-identity': graph([
+    brandIdentityPage,
+    brandIdentityService,
+    brandIdentityFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Brand identity', path: '/brand-identity/' }]),
   ]),
 };
