@@ -1,74 +1,29 @@
 /**
- * Break Cover — the hero refuses to hide.
+ * Hero re-camouflage on scroll.
  *
- * The wordmark paints instantly at its overt rest width (LCP-safe, no reveal to
- * wait through). Then ONE choreographed beat at peak attention: it re-condenses
- * and veils toward the paper (taking cover) and un-flattens back to overt —
- * slower than any load reflex, so it can never read as a font-swap flash — the
- * serif "prey." surfacing LAST, the sentence's own subject the last to give
- * itself away. Thereafter it lives: as you scroll the hero out of frame the
- * wordmark compresses and quiets back into the paper (re-taking cover behind
- * you), reversible on scroll-up.
- *
- * One rAF owns --wdth/--veil the whole time (no WAAPI/inline cascade fight):
- * a time-based beat first, then scroll-driven exit. Reduced motion ships static
- * at rest width, full ink — also the fastest possible hero.
+ * The wordmark simply IS at its overt rest on load — no entrance beat, because a
+ * reload should not perform. The only life is the exit: as the hero scrolls out
+ * of frame the wordmark re-condenses and quiets toward the paper (taking cover
+ * behind you), fully reversible on scroll up. One rAF owns --wdth/--veil, and
+ * only writes when the quantized value changes (the width axis repaints the
+ * largest text on the page). Reduced motion ships the static overt rest.
  */
 export function initBreakCover({ reducedMotion } = {}) {
   const title = document.querySelector('.hero__title');
   if (!title || reducedMotion) return;
 
-  const prey = title.querySelector('em');
-  const isReturn = document.documentElement.classList.contains('is-return');
-  const BEAT = isReturn ? 900 : 1650;
   const REST = 112;
-  const COVER = 70;
   const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t);
-  const expo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
-  // Animating the width axis repaints the largest text on the page, so only
-  // touch the DOM when the quantized value actually changes. During the
-  // scroll-exit that turns ~every frame into ~40 writes over the whole travel.
   let lastW = null;
   let lastV = null;
-  const apply = (wdth, veil, preyO) => {
+  const apply = (wdth, veil) => {
     const w = Math.round(wdth);
     const v = veil.toFixed(1);
     if (w !== lastW) { title.style.setProperty('--wdth', w); lastW = w; }
     if (v !== lastV) { title.style.setProperty('--veil', v); lastV = v; }
-    if (prey && preyO != null) prey.style.opacity = preyO.toFixed(3);
   };
 
-  let beatStart = null;
-  let beatDone = false;
-
-  const beatFrame = (ts) => {
-    if (beatStart == null) beatStart = ts;
-    const t = clamp01((ts - beatStart) / BEAT);
-    let wdth;
-    let veil;
-    if (t < 0.32) {
-      const u = expo(t / 0.32); // take cover
-      wdth = REST - u * (REST - COVER);
-      veil = u * 55;
-    } else {
-      const u = expo((t - 0.32) / 0.68); // break cover
-      wdth = COVER + u * (REST - COVER);
-      veil = 55 - u * 55;
-    }
-    // "prey." (serif, no width axis) holds veiled, then surfaces last.
-    const preyO = prey ? (t < 0.5 ? 0.16 : clamp01((t - 0.5) / 0.5)) : null;
-    apply(wdth, veil, preyO);
-    if (t < 1) {
-      requestAnimationFrame(beatFrame);
-    } else {
-      beatDone = true;
-      if (prey) prey.style.opacity = '';
-      window.addEventListener('scroll', onScroll, { passive: true });
-    }
-  };
-
-  // Exit re-camouflage: hero compresses and quiets back into the paper.
   let ticking = false;
   const liveFrame = () => {
     ticking = false;
@@ -77,14 +32,12 @@ export function initBreakCover({ reducedMotion } = {}) {
     apply(REST - p * (REST - 68), p * 46);
   };
   const onScroll = () => {
-    if (!ticking && beatDone) {
+    if (!ticking) {
       ticking = true;
       requestAnimationFrame(liveFrame);
     }
   };
 
-  const start = () => requestAnimationFrame(beatFrame);
-  if (document.documentElement.classList.contains('fonts-ready')) start();
-  else if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
-  else setTimeout(start, 300);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  liveFrame();
 }

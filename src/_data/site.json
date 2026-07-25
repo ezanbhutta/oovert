@@ -223,7 +223,7 @@
   "packages": {
     "chapterLabel": "The packages",
     "chapterNote": "Professional branding in the US averages about $7,500. Ours start at $280.",
-    "lead": "<span class=\"line\"><span class=\"line__inner\">A brand that refuses to hide,</span></span>\n        <span class=\"line\"><span class=\"line__inner\">at <em>a fraction of the cost.</em></span></span>",
+    "lead": "<span class=\"line\"><span class=\"line__inner\">World-class branding,</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>a fraction of the cost.</em></span></span>",
     "onetime": {
       "note": "Fixed scope, fixed price, delivered fast. One brief, one invoice, one launch.",
       "cards": [
@@ -499,32 +499,8 @@
         "href": "/pricing/"
       },
       {
-        "label": "Premise",
-        "href": "#premise"
-      },
-      {
-        "label": "Practice",
-        "href": "#practice"
-      },
-      {
-        "label": "Packages",
-        "href": "#packages"
-      },
-      {
-        "label": "Evidence",
-        "href": "#evidence"
-      },
-      {
         "label": "Studio",
-        "href": "#studio"
-      },
-      {
-        "label": "Questions",
-        "href": "#faq"
-      },
-      {
-        "label": "Invitation",
-        "href": "#contact"
+        "href": "/studio/"
       }
     ],
     "elsewhereLabel": "Elsewhere",

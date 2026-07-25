@@ -111,7 +111,7 @@
   --text-lede: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
   --text-md:   clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
   --text-lg:   clamp(2.25rem, 1.5rem + 3.75vw, 5rem);
-  --text-xl:   clamp(3rem, 1.8rem + 6vw, 7.5rem);
+  --text-xl:   clamp(2.35rem, 1.5rem + 4.35vw, 5.75rem);
   --text-2xl:  clamp(3.4rem, 1.5rem + 9.5vw, 11.5rem);
 
   /* Space, 8px rhythm, fluid at section scale */
@@ -454,9 +454,11 @@ img::selection {
 .line {
   display: block;
   overflow: clip;
-  /* Give italic descenders room inside the mask, then reclaim the space. */
-  padding-block-end: 0.16em;
-  margin-block-end: -0.16em;
+  /* Room inside the mask for the tall Instrument Serif italic ascenders (top)
+     and its deep descenders (bottom), reclaimed by equal negative margins so the
+     reveal slide and the line spacing are both unchanged. */
+  padding-block: 0.3em 0.22em;
+  margin-block: -0.3em -0.22em;
 }
 
 /* Segment masks: two independently-timed masks sharing one visual row, so a
