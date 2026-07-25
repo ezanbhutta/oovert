@@ -20,12 +20,34 @@ function initEnquiryRibbon() {
   let contactInView = false;
 
   const floor = () => (hero ? hero.offsetHeight * 0.85 : 640);
+
+  // Read the ground directly beneath the ribbon and flip it to the paper variant
+  // over dark sections, so it stays legible as it rides down the page. Walks the
+  // stack under its own centre, skips itself and any see-through layer, and
+  // decides by luminance — no per-section tagging needed.
+  const senseGround = () => {
+    const r = ribbon.getBoundingClientRect();
+    const stack = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    for (const el of stack) {
+      if (ribbon.contains(el)) continue;
+      const m = getComputedStyle(el).backgroundColor.match(/[\d.]+/g);
+      if (!m) continue;
+      const alpha = m[3] === undefined ? 1 : parseFloat(m[3]);
+      if (alpha < 0.5) continue; // see-through — keep looking behind it
+      const lum = (0.2126 * +m[0] + 0.7152 * +m[1] + 0.0722 * +m[2]) / 255;
+      ribbon.classList.toggle('cta-ribbon--on-dark', lum < 0.5);
+      return;
+    }
+  };
+
   let ticking = false;
   const update = () => {
     ticking = false;
     const past = window.scrollY > floor();
     const menuOpen = document.body.classList.contains('menu-open');
-    ribbon.classList.toggle('is-visible', past && !contactInView && !menuOpen);
+    const visible = past && !contactInView && !menuOpen;
+    ribbon.classList.toggle('is-visible', visible);
+    if (visible) senseGround();
   };
   window.addEventListener(
     'scroll',
