@@ -757,6 +757,16 @@
   line-height: 1.25;
 }
 
+/* The shared ledger carries a homepage-only "bridge": a negative top margin
+   (-10vh) and rounded leading edge so it rides up over the ink practice section.
+   On pricing the ledger follows the paper cost-range instead, so that pull drags
+   it up over the big market-average line and slices the last row. Neutralise the
+   bridge here — pricing needs a plain section boundary, not the occlusion. */
+.page-pricing .packages {
+  margin-top: 0;
+  border-radius: 0;
+}
+
 /* ============================================================================
    Brand identity page — reuses the sub-page hero / cost-why / faq / work-more
    components; only the "what it's made of" definition list needs its own type.
