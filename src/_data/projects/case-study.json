@@ -46,14 +46,14 @@
     },
     "intro": {
       "image": "/assets/uploads/649103984 (1).jpg",
-      "alt": "",
+      "alt": "A model in a red-and-gold patterned hijab holds open a cream-lined abaya on a dress form, a tailor's tape measure draped at her side.",
       "video": null
     },
     "logo": {
       "eyebrow": "The mark",
       "headline": "We swapped the O for a moon and left the rest alone.",
       "image": "/assets/uploads/nowa materials-27.jpg",
-      "alt": ""
+      "alt": "The NOWA wordmark in gold, its O drawn as a crescent moon."
     },
     "construction": {
       "eyebrow": "Construction",
@@ -64,7 +64,7 @@
         "Gold foil, twelve millimetres, stitched into the neck of an abaya. If it holds up there it holds up anywhere."
       ],
       "image": "/assets/uploads/Mark Construction.jpg",
-      "alt": ""
+      "alt": "The NOWA crescent-moon mark on its geometric construction grid of circles and guides."
     },
     "concept": {
       "eyebrow": "Exploration",
@@ -72,17 +72,17 @@
       "images": [
         {
           "src": "/assets/uploads/Facing The Moon _ Hijabi Aesthetic Silhouette (1) (1).jpeg",
-          "alt": "",
+          "alt": "A woman in a hijab and abaya, seen from behind, silhouetted against a large glowing moon.",
           "video": null
         },
         {
           "src": "/assets/uploads/nowa materials-28 (1).jpg",
-          "alt": "",
+          "alt": "A sketchbook of hand-drawn NOWA logo studies — wordmarks, monograms and crescent-moon ideas in pencil.",
           "video": null
         },
         {
           "src": "/assets/uploads/nowa materials-26.jpg",
-          "alt": "",
+          "alt": "The NOWA wordmark set on a layout grid, a study in spacing and margins.",
           "video": null
         }
       ]
