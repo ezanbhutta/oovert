@@ -92,8 +92,33 @@
       },
       {
         "num": "03",
+        "label": "Brand identity",
+        "href": "/brand-identity/"
+      },
+      {
+        "num": "04",
+        "label": "Brand naming",
+        "href": "/brand-naming/"
+      },
+      {
+        "num": "05",
+        "label": "Rebranding",
+        "href": "/rebranding/"
+      },
+      {
+        "num": "06",
+        "label": "Pricing",
+        "href": "/pricing/"
+      },
+      {
+        "num": "07",
         "label": "Studio",
         "href": "/studio/"
+      },
+      {
+        "num": "08",
+        "label": "Contact",
+        "href": "#contact"
       }
     ],
     "meta": "Distributed, six timezones<br>new@oovert.com"
