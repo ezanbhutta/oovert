@@ -50,7 +50,7 @@ permalink: "/studio/index.html"
     <header class="work-hero" id="top">
       <p class="work-hero__eyebrow" data-reveal>{{ studio.eyebrow }}</p>
       <h1 class="work-hero__title" data-reveal-lines>
-        <span class="line"><span class="line__inner">Senior hands</span></span>
+        <span class="line"><span class="line__inner">Senior <span class="ink-mark">hands</span></span></span>
         <span class="line"><span class="line__inner"><em>only.</em></span></span>
       </h1>
       <p class="work-hero__lede" data-reveal>{{ studio.lede }}</p>
@@ -63,7 +63,15 @@ permalink: "/studio/index.html"
       <p class="studio-thesis__body" data-reveal>{{ studio.thesis.body }}</p>
     </section>
 
-    <section class="disc-wrap" aria-label="Disciplines">
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        {% for n in [1, 2] %}<div class="ticker__group">
+          {% for word in studio.ticker %}<span class="ticker__word">{{ word }}</span><span class="ticker__dot"></span>{% endfor %}
+        </div>{% endfor %}
+      </div>
+    </div>
+
+    <section class="disc-wrap blueprint" aria-label="Disciplines">
       <p class="section-eyebrow" data-reveal>Four disciplines</p>
       <ol class="disc">
         {% for d in studio.disciplines %}

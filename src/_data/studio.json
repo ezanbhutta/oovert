@@ -53,6 +53,16 @@
       "tz": "Asia/Tokyo"
     }
   ],
+  "ticker": [
+    "Brand strategy",
+    "Positioning",
+    "Visual identity",
+    "Brand naming",
+    "Rebranding",
+    "Logo design",
+    "Brand voice",
+    "Design systems"
+  ],
   "where": "Distributed across six timezones. We work wherever the project takes us, senior people start to finish.",
   "closing": {
     "line": "Would we <em>sign it?</em>",

@@ -808,3 +808,138 @@
 .page-rebranding { background: var(--paper); }
 .brand-naming,
 .rebranding { padding-bottom: var(--space-section); }
+
+/* ============================================================================
+   Sub-page signature motion.
+   Effects shared across the interior pages: the process spine that draws itself,
+   the discipline ticker, and the blueprint/marker accents. All are gated on
+   reduced motion and degrade to a clean static state without JS.
+   ========================================================================== */
+
+/* ---- Approach: the process spine draws itself -----------------------------
+   A hairline in the left gutter runs the full height of the four phases; an
+   accent stroke fills it as you scroll (JS writes --spine 0→1), so the four
+   moves read as one continuous line. Each phase number ignites from pale to
+   full violet as it enters — the draw-head lighting each move in turn. */
+.approach-spine { position: relative; }
+
+@media (min-width: 641px) {
+  .approach-spine::before,
+  .js .approach-spine::after {
+    content: '';
+    position: absolute;
+    top: var(--space-8);
+    bottom: 0;
+    left: clamp(0.85rem, calc(var(--margin) * 0.46), 3.25rem);
+    width: 2px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  /* Faint track — the un-drawn line, always present. */
+  .approach-spine::before { background: var(--line); }
+  /* Accent fill — scroll-linked. No CSS transition: the JS rAF loop owns the
+     motion so it tracks the wheel exactly. Reduced motion pins it fully drawn. */
+  .js .approach-spine::after {
+    z-index: 1;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 100%);
+    transform: scaleY(var(--spine, 0));
+    transform-origin: top center;
+  }
+}
+
+/* The draw-head node — a small violet dot riding the tip of the fill. */
+.approach-spine__node {
+  display: none;
+}
+@media (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  .js .approach-spine__node {
+    display: block;
+    position: absolute;
+    /* JS writes --spine-y (px, from the top of the rail) each frame. */
+    top: calc(var(--space-8) + var(--spine-y, 0px));
+    left: clamp(0.85rem, calc(var(--margin) * 0.46), 3.25rem);
+    z-index: 2;
+    width: 9px;
+    height: 9px;
+    margin-left: -3.5px;
+    margin-top: -4.5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 22%, transparent),
+                0 0 14px color-mix(in oklab, var(--accent) 60%, transparent);
+    opacity: var(--spine-lit, 0);
+    pointer-events: none;
+  }
+}
+
+.phase__num { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+  /* Ignition: pale violet at rest, full violet the moment the phase lands. */
+  .js .phase__num {
+    color: color-mix(in oklab, var(--accent) 40%, var(--paper));
+    transition: color 640ms var(--ease-out);
+  }
+  .js .phase.is-inview .phase__num { color: var(--accent); }
+}
+
+@media (max-width: 640px) {
+  .approach-spine__node { display: none; }
+}
+
+/* ---- Studio: the capability ticker ----------------------------------------
+   A slow horizontal marquee of what the studio does — editorial motion, edge
+   faded so it bleeds into the paper. Pauses on hover and under reduced motion.
+   Seeded with two identical tracks so the loop is seamless. */
+.ticker {
+  margin-top: var(--space-section);
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.ticker__track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  will-change: transform;
+}
+
+.ticker__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding-right: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.ticker__word {
+  font-size: clamp(1.5rem, 1rem + 2.4vw, 3rem);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 108;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.ticker__dot {
+  flex-shrink: 0;
+  width: 0.42em;
+  height: 0.42em;
+  border-radius: 50%;
+  background: var(--accent);
+  font-size: clamp(1.5rem, 1rem + 2.4vw, 3rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ticker__track { animation: ticker-run 34s linear infinite; }
+  .ticker:hover .ticker__track { animation-play-state: paused; }
+}
+
+@keyframes ticker-run {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
