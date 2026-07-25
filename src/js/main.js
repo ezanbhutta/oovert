@@ -15,6 +15,7 @@ import { initDetails } from './modules/details.js';
 import { initTell } from './modules/tell.js';
 import { initBreakCover } from './modules/breakcover.js';
 import { initMagnetic } from './modules/magnetic.js';
+import { initHeroParallax } from './modules/heroparallax.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -42,5 +43,7 @@ if (!reducedMotion) {
     // The signature CTA affordance: the button leans toward the pointer and
     // springs back. Fine pointers only (measured lean makes no sense on touch).
     initMagnetic();
+    // Hero depth: the paper ground and column grid drift under the pointer.
+    initHeroParallax({ reducedMotion });
   }
 }

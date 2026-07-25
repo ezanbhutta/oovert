@@ -18,7 +18,8 @@
   overflow: clip; /* contain the scaled-up hero field */
 }
 
-/* Swiss column hairlines, quiet structure behind the type */
+/* Swiss column hairlines, quiet structure behind the type. The mid plane of the
+   cursor-parallax: drifts a few px with the pointer (see heroparallax.js). */
 .hero::before {
   content: '';
   position: absolute;
@@ -32,6 +33,8 @@
   );
   opacity: 0.5;
   pointer-events: none;
+  transform: translate3d(var(--px-grid, 0px), var(--py-grid, 0px), 0);
+  will-change: transform;
 }
 
 .hero > * {
@@ -47,17 +50,19 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-  filter: blur(48px) saturate(1.08);
-  transform: scale(1.16);
-  opacity: 0.5;
+  filter: blur(42px) saturate(1.14);
+  transform: scale(1.16) translate3d(var(--px-bg, 0px), var(--py-bg, 0px), 0);
+  opacity: 0.58;
   pointer-events: none;
+  will-change: transform;
 }
 
-/* The availability line reads as live: a small violet "now" dot beside it. */
+/* The availability line reads as live: a small violet "now" dot with a soft,
+   steady halo — presence without a pulse (rhythmic motion reads as nagging). */
 .hero__status {
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
+  gap: 0.6em;
 }
 .hero__pulse {
   flex: none;
@@ -65,13 +70,7 @@
   height: 0.4em;
   border-radius: 50%;
   background: var(--accent);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__pulse { animation: heroPulse 2.6s var(--ease-out) infinite; }
-  @keyframes heroPulse {
-    0%, 100% { opacity: 0.35; transform: scale(0.78); }
-    50% { opacity: 1; transform: scale(1); }
-  }
+  box-shadow: 0 0 0 0.28em color-mix(in oklab, var(--accent) 20%, transparent);
 }
 
 /* Optional hero background video (owner-set). A cinematic ground under the
