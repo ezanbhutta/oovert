@@ -371,8 +371,33 @@
   "evidence": {
     "chapterLabel": "The evidence",
     "hold": "<span class=\"line\"><span class=\"line__inner\">Proof, on</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>request.</em></span></span>",
-    "note": "We are putting the current results together for this page. Ask, and we will show you the numbers that matter in your category, with clients you can call.",
-    "linkLabel": "See the work",
+    "note": "The numbers that matter in your category are on request, with clients you can call. The craft is not.",
+    "featured": {
+      "eyebrow": "One we can show",
+      "meta": "NOWA · Brand identity · 2023",
+      "line": "New label. Doesn't look new.",
+      "cta": "Read the full case",
+      "href": "/work/nowa-brand-identity/",
+      "shots": [
+        {
+          "src": "/assets/uploads/nowa materials-27.jpg",
+          "alt": "The finished NOWA wordmark, its O redrawn as a crescent moon, in gold.",
+          "lead": true,
+          "sizes": "(max-width: 820px) 92vw, 88vw"
+        },
+        {
+          "src": "/assets/uploads/Mark Construction.jpg",
+          "alt": "The NOWA moon-mark on its construction grid.",
+          "sizes": "(max-width: 820px) 45vw, 44vw"
+        },
+        {
+          "src": "/assets/uploads/nowa typo.jpg",
+          "alt": "NOWA's type system: Luxerie for display, DM Sans for text.",
+          "sizes": "(max-width: 820px) 45vw, 44vw"
+        }
+      ]
+    },
+    "linkLabel": "See all the work",
     "linkUrl": "/work/"
   },
   "studio": {

@@ -341,7 +341,25 @@
       <p class="evidence__note" data-reveal>
         {{ site.evidence.note }}
       </p>
-      <a class="evidence__link" href="/work/" data-reveal>
+
+      {% set f = site.evidence.featured %}
+      <a class="evidence__case" href="{{ f.href }}" aria-label="{{ f.meta }}, {{ f.cta | lower }}" data-reveal>
+        <span class="evidence__case-head">
+          <span class="evidence__eyebrow">{{ f.eyebrow }}</span>
+          <span class="evidence__case-meta">{{ f.meta }}</span>
+        </span>
+        <span class="evidence__gallery">
+          {% for shot in f.shots %}<span class="evidence__shot{% if shot.lead %} evidence__shot--lead{% endif %}">
+            <img src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy" decoding="async" sizes="{{ shot.sizes }}">
+          </span>
+          {% endfor %}</span>
+        <span class="evidence__case-foot">
+          <span class="evidence__case-line"><em>{{ f.line }}</em></span>
+          <span class="evidence__case-cta">{{ f.cta }} <span aria-hidden="true">&rarr;</span></span>
+        </span>
+      </a>
+
+      <a class="evidence__link" href="{{ site.evidence.linkUrl }}" data-reveal>
         {{ site.evidence.linkLabel }} <span aria-hidden="true">&rarr;</span>
       </a>
     </section>
