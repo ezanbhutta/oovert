@@ -277,6 +277,13 @@
    on fine pointers) drops each letter to its condensed rest and lets the wave
    drive per-letter width. Nowrap + a reserved advance keep it from rewrapping
    as letters widen (zero layout shift). */
+/* Read at rest, for everyone: the hiding word sits visibly condensed (in cover)
+   even with no JS, on touch, or under reduced motion — so the width thesis is
+   legible in a still frame, not only under a hovering cursor. Fine pointers then
+   drop it a touch further and let the cursor surface it (tell.js). */
+.tell {
+  font-variation-settings: 'wdth' 92;
+}
 .tell__l {
   display: inline-block;
   font-variation-settings: 'wdth' var(--w, 112);
