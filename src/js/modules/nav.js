@@ -8,20 +8,17 @@ export function initNav() {
   initEnquiryRibbon();
 }
 
-/* A quiet, persistent invitation. It fades in only after the hero has scrolled
-   past (so it never competes with the hero CTA), and dissolves the moment the
-   real Contact section arrives — a bookmark ribbon, not a popup. The door stays
-   one tap away through the whole page, then steps aside at the finish line. */
+/* The persistent invitation — the site's one Start-a-project button. It rides
+   down the page from the hero, staying one tap away, and dissolves the moment
+   the real Contact section arrives (a bookmark, not a popup). It reads the
+   ground it floats over and flips colour to stay legible. */
 function initEnquiryRibbon() {
   const ribbon = document.querySelector('[data-cta-ribbon]');
   if (!ribbon) return;
   const contact = document.getElementById('contact');
-  const hero = document.getElementById('top');
   let contactInView = false;
 
-  const floor = () => (hero ? hero.offsetHeight * 0.85 : 640);
-
-  // Read the ground directly beneath the ribbon and flip it to the paper variant
+  // Read the ground directly beneath the button and flip it to the paper variant
   // over dark sections, so it stays legible as it rides down the page. Walks the
   // stack under its own centre, skips itself and any see-through layer, and
   // decides by luminance — no per-section tagging needed.
@@ -43,9 +40,8 @@ function initEnquiryRibbon() {
   let ticking = false;
   const update = () => {
     ticking = false;
-    const past = window.scrollY > floor();
     const menuOpen = document.body.classList.contains('menu-open');
-    const visible = past && !contactInView && !menuOpen;
+    const visible = !contactInView && !menuOpen;
     ribbon.classList.toggle('is-visible', visible);
     if (visible) senseGround();
   };
