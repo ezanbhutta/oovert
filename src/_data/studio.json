@@ -28,14 +28,32 @@
     }
   ],
   "timezones": [
-    { "label": "Pacific", "tz": "America/Los_Angeles" },
-    { "label": "Eastern", "tz": "America/New_York" },
-    { "label": "London", "tz": "Europe/London" },
-    { "label": "Central Europe", "tz": "Europe/Berlin" },
-    { "label": "South Asia", "tz": "Asia/Karachi" },
-    { "label": "Tokyo", "tz": "Asia/Tokyo" }
+    {
+      "label": "Pacific",
+      "tz": "America/Los_Angeles"
+    },
+    {
+      "label": "Eastern",
+      "tz": "America/New_York"
+    },
+    {
+      "label": "London",
+      "tz": "Europe/London"
+    },
+    {
+      "label": "Central Europe",
+      "tz": "Europe/Berlin"
+    },
+    {
+      "label": "South Asia",
+      "tz": "Asia/Karachi"
+    },
+    {
+      "label": "Tokyo",
+      "tz": "Asia/Tokyo"
+    }
   ],
-  "where": "Distributed across six timezones. We work wherever the project takes us, on senior people start to finish.",
+  "where": "Distributed across six timezones. We work wherever the project takes us, senior people start to finish.",
   "closing": {
     "line": "Would we <em>sign it?</em>",
     "note": "That is the only test that matters here. If the work would not carry our own name, it does not ship. Tell us what you are building.",
