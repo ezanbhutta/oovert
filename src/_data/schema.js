@@ -13,6 +13,8 @@ const site = require('./site.json');
 const project = require('./projects/case-study.json');
 const pricing = require('./pricing.json');
 const brandIdentity = require('./brandIdentity.json');
+const brandNaming = require('./brandNaming.json');
+const rebranding = require('./rebranding.json');
 
 const BASE = 'https://oovert.com';
 const ORG_ID = `${BASE}/#organization`;
@@ -182,6 +184,63 @@ const brandIdentityFaq = {
   })),
 };
 
+/* ---- Naming & rebranding service pages (WebPage + Service + FAQPage) ------- */
+const faqNodes = (items) => items.map((q) => ({
+  '@type': 'Question',
+  name: q.q,
+  acceptedAnswer: { '@type': 'Answer', text: q.a },
+}));
+
+const brandNamingPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/brand-naming/#webpage`,
+  name: 'Brand Naming Agency — Company & Product Names — OOVERT',
+  description: 'A brand naming agency for company and product names — memorable, ownable and strategy-first.',
+  url: `${BASE}/brand-naming/`,
+  isPartOf: { '@id': ORG_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const brandNamingService = {
+  '@type': 'Service',
+  '@id': `${BASE}/brand-naming/#service`,
+  name: 'Brand naming',
+  serviceType: 'Brand naming',
+  description: 'Naming for companies, products and features — strategy, candidates, availability checks and narrative.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const brandNamingFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/brand-naming/#faq`,
+  mainEntity: faqNodes(brandNaming.faq),
+};
+
+const rebrandingPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/rebranding/#webpage`,
+  name: 'Rebranding Agency — Strategy-Led Rebrands — OOVERT',
+  description: 'A rebranding agency for strategy-led rebrands: strategy, positioning, identity and rollout, without losing brand equity.',
+  url: `${BASE}/rebranding/`,
+  isPartOf: { '@id': ORG_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const rebrandingService = {
+  '@type': 'Service',
+  '@id': `${BASE}/rebranding/#service`,
+  name: 'Rebranding',
+  serviceType: 'Rebranding',
+  description: 'Strategy-led rebranding: refreshed strategy, positioning and identity, rolled out everywhere without losing equity.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const rebrandingFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/rebranding/#faq`,
+  mainEntity: faqNodes(rebranding.faq),
+};
+
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -227,5 +286,17 @@ module.exports = {
     brandIdentityService,
     brandIdentityFaq,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Brand identity', path: '/brand-identity/' }]),
+  ]),
+  'brand-naming': graph([
+    brandNamingPage,
+    brandNamingService,
+    brandNamingFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Brand naming', path: '/brand-naming/' }]),
+  ]),
+  rebranding: graph([
+    rebrandingPage,
+    rebrandingService,
+    rebrandingFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Rebranding', path: '/rebranding/' }]),
   ]),
 };
