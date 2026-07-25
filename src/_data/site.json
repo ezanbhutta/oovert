@@ -166,7 +166,7 @@
       "Since 2020"
     ],
     "title": "<span class=\"line\"><span class=\"line__inner\">Camouflage</span></span>\n        <span class=\"line line--seg\"><span class=\"line__inner\">is for&nbsp;</span></span><span class=\"line line--seg\"><span class=\"line__inner\"><em>prey.</em></span></span>",
-    "lede": "OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. If your company looks and sounds like its competitors, that is the problem we solve.",
+    "lede": "If your company looks and sounds like its competitors, that is the problem we solve. OOVERT is a brand strategy and identity studio: we name companies, decide what they stand for, and design the brand that carries it.",
     "ctaPrimary": {
       "label": "Start a project",
       "url": "#contact"
@@ -223,7 +223,7 @@
   "packages": {
     "chapterLabel": "The packages",
     "chapterNote": "Professional branding in the US averages about $7,500. Ours start at $280.",
-    "lead": "<span class=\"line\"><span class=\"line__inner\">World-class branding,</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>a fraction of the cost.</em></span></span>",
+    "lead": "<span class=\"line\"><span class=\"line__inner\">A brand that refuses to hide,</span></span>\n        <span class=\"line\"><span class=\"line__inner\">at <em>a fraction of the cost.</em></span></span>",
     "onetime": {
       "note": "Fixed scope, fixed price, delivered fast. One brief, one invoice, one launch.",
       "cards": [
@@ -231,7 +231,7 @@
           "name": "Basic",
           "price": "$280",
           "desc": "To get a real brand off the ground.",
-          "ctaLabel": "Order now",
+          "ctaLabel": "Start a project",
           "ctaUrl": "#contact",
           "features": [
             "1 logo concept",
@@ -244,15 +244,15 @@
         },
         {
           "featured": true,
-          "badge": "Most popular",
+          "badge": "Recommended",
           "name": "Premium Branding",
           "price": "$480",
           "desc": "Everything you need to launch and grow.",
-          "ctaLabel": "Order now",
+          "ctaLabel": "Start a project",
           "ctaUrl": "#contact",
           "more": "Everything in Basic, plus",
           "features": [
-            "3 logo concepts",
+            "One considered direction",
             "Complete brand guidelines",
             "Competitive analysis",
             "Colour palette &amp; typography",
@@ -268,7 +268,7 @@
           "name": "The Brand Ecosystem",
           "price": "$987",
           "desc": "To scale and market online.",
-          "ctaLabel": "Order now",
+          "ctaLabel": "Start a project",
           "ctaUrl": "#contact",
           "more": "Everything in Premium, plus",
           "features": [
@@ -306,7 +306,7 @@
         },
         {
           "featured": true,
-          "badge": "Most popular",
+          "badge": "Recommended",
           "name": "Studio",
           "price": "$7,999",
           "per": "/mo",
@@ -359,7 +359,7 @@
         },
         {
           "featured": true,
-          "badge": "Most popular",
+          "badge": "Recommended",
           "name": "Design Pod",
           "price": "$8,900",
           "per": "/mo",
@@ -391,12 +391,12 @@
         }
       ]
     },
-    "guarantee": "<strong>Money-back guarantee.</strong> If you are not thrilled with the work, we keep going until you are, or refund you."
+    "guarantee": "<strong>Money-back guarantee.</strong> If the work is not right, we keep going until it is, or we refund you."
   },
   "evidence": {
     "chapterLabel": "The evidence",
     "hold": "<span class=\"line\"><span class=\"line__inner\">Proof, on</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>request.</em></span></span>",
-    "note": "We are putting the current results together for this page. Ask, and we will show you the numbers that matter in your category, with clients you can call.",
+    "note": "We do not publish a client wall. The numbers that matter in your category, and clients you can call, are yours on request.",
     "linkLabel": "See the work",
     "linkUrl": "/work/"
   },

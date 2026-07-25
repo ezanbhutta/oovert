@@ -14,7 +14,6 @@ import { initToTop } from './modules/to-top.js';
 import { initDetails } from './modules/details.js';
 import { initTell } from './modules/tell.js';
 import { initBreakCover } from './modules/breakcover.js';
-import { initMagnetic } from './modules/magnetic.js';
 import { initHeroParallax } from './modules/heroparallax.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -29,8 +28,11 @@ initBreakCover({ reducedMotion });
 initPackages({ reducedMotion });
 initCounters({ reducedMotion });
 initManifesto({ reducedMotion });
-initBackdrop({ reducedMotion });
-initHeroField({ reducedMotion });
+// The two ambient canvas fields now paint a single still frame for everyone:
+// their idle drift competed with the width "tell" for attention, and silence is
+// what lets the signature read. (reducedMotion:true selects their static path.)
+initBackdrop({ reducedMotion: true });
+initHeroField({ reducedMotion: true });
 initVideo({ reducedMotion });
 initLivingMark({ reducedMotion });
 initWhatWeDo();
@@ -40,9 +42,6 @@ if (!reducedMotion) {
 
   if (finePointer) {
     initSmoothScroll();
-    // The signature CTA affordance: the button leans toward the pointer and
-    // springs back. Fine pointers only (measured lean makes no sense on touch).
-    initMagnetic();
     // Hero depth: the paper ground and column grid drift under the pointer.
     initHeroParallax({ reducedMotion });
   }

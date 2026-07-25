@@ -26,9 +26,16 @@ export function initBreakCover({ reducedMotion } = {}) {
   const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t);
   const expo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
+  // Animating the width axis repaints the largest text on the page, so only
+  // touch the DOM when the quantized value actually changes. During the
+  // scroll-exit that turns ~every frame into ~40 writes over the whole travel.
+  let lastW = null;
+  let lastV = null;
   const apply = (wdth, veil, preyO) => {
-    title.style.setProperty('--wdth', Math.round(wdth));
-    title.style.setProperty('--veil', veil.toFixed(1));
+    const w = Math.round(wdth);
+    const v = veil.toFixed(1);
+    if (w !== lastW) { title.style.setProperty('--wdth', w); lastW = w; }
+    if (v !== lastV) { title.style.setProperty('--veil', v); lastV = v; }
     if (prey && preyO != null) prey.style.opacity = preyO.toFixed(3);
   };
 

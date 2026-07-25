@@ -1459,6 +1459,24 @@
   font-variation-settings: 'wdth' 100;
 }
 
+/* Ration the borrowed serif accent. Only the recurring "prey." / "out loud."
+   bookends keep the Instrument Serif italic (hero, manifesto, contact). Every
+   other display punchline gives itself away the brand's OWN way: upright
+   Archivo pushed wide (overt) — the tell doing the emphasis a season's-uniform
+   serif flourish used to. Placed after the per-section rules so the width wins. */
+.premise__counter em,
+.premise__pull-line em,
+.practice__intro em,
+.packages__lead em,
+.evidence__hold em,
+.studio__statement em,
+.faq-statement em {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 720;
+  font-variation-settings: 'wdth' 122;
+}
+
 .faq {
   margin: 0 var(--margin);
   max-width: 52rem;
