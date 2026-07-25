@@ -50,13 +50,13 @@ permalink: "/brand-naming/index.html"
     <header class="work-hero" id="top">
       <p class="work-hero__eyebrow" data-reveal>{{ brandNaming.eyebrow }}</p>
       <h1 class="work-hero__title" data-reveal-lines>
-        <span class="line"><span class="line__inner">A name that</span></span>
+        <span class="line"><span class="line__inner">A <span class="ink-mark">name</span> that</span></span>
         <span class="line"><span class="line__inner"><em>travels.</em></span></span>
       </h1>
       <p class="work-hero__lede" data-reveal>{{ brandNaming.lede }}</p>
     </header>
 
-    <section class="bi-parts" aria-label="What our naming covers">
+    <section class="bi-parts blueprint" aria-label="What our naming covers">
       <h2 class="bi-parts__intro" data-reveal>{{ brandNaming.parts.intro }}</h2>
       <dl class="bi-parts__list">
         {% for part in brandNaming.parts.items %}<div class="bi-parts__row" data-reveal>
