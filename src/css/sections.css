@@ -255,6 +255,20 @@
   letter-spacing: -0.025em;
   text-transform: uppercase;
   font-variation-settings: 'wdth' 112;
+  /* The sentence proves itself: "Most branding is camouflage" arrives veiled
+     into the paper (the default 0 keeps it full ink for no-JS / reduced motion),
+     then resolves to ink as you reach it. See the --veil reveal below. */
+  color: color-mix(in oklab, var(--ink), var(--paper) calc(var(--veil, 0) * 1%));
+}
+
+/* Veil reveal: only when JS can release it and motion is welcome. The word sits
+   camouflaged in the paper, then the veil lifts to full ink as it enters view —
+   the one section where the palette itself argues the thesis. Gated so it never
+   traps the copy faded (no .js / reduced motion → the color-mix above stays 0). */
+@media (prefers-reduced-motion: no-preference) {
+  .js .premise__statement { transition: --veil 1400ms var(--ease-out); }
+  .js .premise__statement:not(.is-inview) { --veil: 60; }
+  .js .premise__statement.is-inview { --veil: 0; }
 }
 
 /* The Tell — the word "camouflage" holds still in cover, then surfaces
