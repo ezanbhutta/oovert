@@ -18,6 +18,7 @@ const rebranding = require('./rebranding.json');
 
 const BASE = 'https://oovert.com';
 const ORG_ID = `${BASE}/#organization`;
+const WEBSITE_ID = `${BASE}/#website`;
 const s = site.schema;
 
 const slugify = (str) =>
@@ -52,6 +53,31 @@ const organization = {
     areaServed: s.areaServed,
     availableLanguage: 'en',
   },
+};
+
+/* ---- WebSite (site-wide entity; anchors the site name in search) -----------
+ * No potentialAction/SearchAction: the site has no internal search endpoint, so
+ * a sitelinks-searchbox action would be invalid. name + publisher only. */
+const website = {
+  '@type': 'WebSite',
+  '@id': WEBSITE_ID,
+  url: `${BASE}/`,
+  name: s.name,
+  publisher: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+
+/* ---- Home WebPage (page-type parity with the sub-pages) -------------------- */
+const homePage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/#webpage`,
+  url: `${BASE}/`,
+  name: site.meta.pageTitle,
+  description: site.meta.description,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': ORG_ID },
+  primaryImageOfPage: site.meta.og.image,
+  inLanguage: 'en',
 };
 
 /* ---- Services (name + description only — no Offer, no price) ---------------- */
@@ -96,6 +122,7 @@ const collectionPage = {
   name: 'Work — OOVERT',
   description: 'Selected brand strategy, naming and identity work by OOVERT.',
   url: WORK_URL,
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   hasPart: [{ '@id': `${CASE_URL}#work` }],
 };
@@ -110,7 +137,7 @@ const approachPage = {
   description:
     'How OOVERT works: a brand built in four moves — Strategy, Positioning, Identity, Rollout.',
   url: `${BASE}/approach/`,
-  isPartOf: { '@id': ORG_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -121,7 +148,7 @@ const studioPage = {
   description:
     'OOVERT is a distributed studio of senior people across six timezones. Four disciplines, one question on every project: would we sign it?',
   url: `${BASE}/studio/`,
-  isPartOf: { '@id': ORG_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -136,7 +163,7 @@ const pricingPage = {
   description:
     'What branding costs across the market, and OOVERT’s transparent, strategy-led pricing.',
   url: `${BASE}/pricing/`,
-  isPartOf: { '@id': ORG_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -160,7 +187,7 @@ const brandIdentityPage = {
   description:
     'Brand identity design done strategy-first — the system a company is recognised by: name, mark, type, colour, voice, motion and guidelines.',
   url: `${BASE}/brand-identity/`,
-  isPartOf: { '@id': ORG_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -197,7 +224,7 @@ const brandNamingPage = {
   name: 'Brand Naming Agency — Company & Product Names — OOVERT',
   description: 'A brand naming agency for company and product names — memorable, ownable and strategy-first.',
   url: `${BASE}/brand-naming/`,
-  isPartOf: { '@id': ORG_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -222,7 +249,7 @@ const rebrandingPage = {
   name: 'Rebranding Agency — Strategy-Led Rebrands — OOVERT',
   description: 'A rebranding agency for strategy-led rebrands: strategy, positioning, identity and rollout, without losing brand equity.',
   url: `${BASE}/rebranding/`,
-  isPartOf: { '@id': ORG_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
   inLanguage: 'en',
 };
@@ -255,7 +282,7 @@ const crumbs = (items) => ({
 const graph = (nodes) => ({ '@context': 'https://schema.org', '@graph': nodes });
 
 module.exports = {
-  home: graph([organization, ...services, faqPage]),
+  home: graph([website, organization, homePage, ...services, faqPage]),
   work: graph([
     collectionPage,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Work', path: '/work/' }]),
