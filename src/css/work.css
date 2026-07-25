@@ -27,8 +27,66 @@
 
 /* ---- Hero ---- */
 .work-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   padding: clamp(7rem, 6rem + 8vw, 11rem) var(--margin) var(--space-8);
 }
+
+/* The identity glowing up through the paper: a soft violet core with a gold
+   halo, sitting behind the headline. Drifts slowly (transform only, compositor
+   safe) and holds a single still frame under reduced motion. */
+.work-hero::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -18%;
+  right: -8%;
+  width: clamp(20rem, 46vw, 48rem);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 50% 45%, color-mix(in oklab, var(--accent) 24%, transparent) 0, transparent 55%),
+    radial-gradient(circle at 50% 45%, transparent 58%, color-mix(in oklab, var(--secondary) 20%, transparent) 76%, transparent 90%);
+  filter: blur(30px) saturate(1.1);
+  opacity: 0.75;
+  pointer-events: none;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .work-hero::before { animation: aura-drift 24s var(--ease-inout) infinite alternate; }
+}
+@keyframes aura-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-7%, 5%, 0) scale(1.09); }
+}
+
+/* Blueprint / surveillance grid — a faint dot lattice on paper, zero images.
+   Add to any sub-page section that wants "we see what's hidden" texture. */
+.blueprint { position: relative; isolation: isolate; }
+.blueprint::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 9%, transparent) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 0, #000 40%, transparent 78%);
+          mask-image: radial-gradient(120% 120% at 50% 0, #000 40%, transparent 78%);
+  pointer-events: none;
+}
+
+/* Marker-swipe: a felt band paints in behind a word as it enters view. Banded
+   to the x-height so it reads hand-drawn. Set on an inline element; the reveal
+   engine's .is-inview (or .ink-mark--lit) triggers the swipe. */
+.ink-mark {
+  background-image: linear-gradient(180deg, transparent 46%, color-mix(in srgb, var(--accent) 22%, transparent) 0, color-mix(in srgb, var(--accent) 22%, transparent) 90%, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 700ms var(--ease-quart) 120ms;
+  padding: 0 0.04em;
+}
+.is-inview .ink-mark,
+.ink-mark--lit { background-size: 100% 100%; }
 
 .work-hero__eyebrow {
   margin-bottom: var(--space-4);
