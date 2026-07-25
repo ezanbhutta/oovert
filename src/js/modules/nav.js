@@ -6,6 +6,58 @@ export function initNav() {
   initChapterRail();
   initHeaderScroll();
   initEnquiryRibbon();
+  initProximityGlow();
+}
+
+/* Proximity glow — the dull wayfinding lists (footer index/elsewhere and the
+   header nav) brighten as the cursor approaches, not only when it lands on a
+   link. Each link gets a --lit (0→1) from its distance to the pointer; CSS maps
+   that to opacity and colour. Fine pointers only; touch and keyboard fall back
+   to the :hover / :focus-visible rules, and no-JS leaves the list at its rest
+   opacity. */
+function initProximityGlow() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const zones = [
+    { root: document.querySelector('.site-foot'), sel: '.site-foot__col a:not(.ai-chip)', range: 150 },
+    { root: document.querySelector('.site-head__nav'), sel: 'a', range: 110 },
+  ];
+
+  for (const { root, sel, range } of zones) {
+    if (!root) continue;
+    const links = Array.from(root.querySelectorAll(sel));
+    if (!links.length) continue;
+
+    let rects = [];
+    let px = 0;
+    let py = 0;
+    let ticking = false;
+
+    const paint = () => {
+      ticking = false;
+      rects = links.map((l) => l.getBoundingClientRect());
+      for (let i = 0; i < links.length; i++) {
+        const r = rects[i];
+        // Distance from the pointer to the nearest point of the link's box.
+        const dx = px < r.left ? r.left - px : px > r.right ? px - r.right : 0;
+        const dy = py < r.top ? r.top - py : py > r.bottom ? py - r.bottom : 0;
+        const lit = Math.max(0, 1 - Math.hypot(dx, dy) / range);
+        links[i].style.setProperty('--lit', lit.toFixed(3));
+      }
+    };
+
+    root.addEventListener('pointermove', (e) => {
+      px = e.clientX;
+      py = e.clientY;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(paint);
+      }
+    });
+    root.addEventListener('pointerleave', () => {
+      links.forEach((l) => l.style.setProperty('--lit', '0'));
+    });
+  }
 }
 
 /* The persistent invitation — the site's one Start-a-project button. It rides

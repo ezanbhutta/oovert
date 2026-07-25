@@ -89,10 +89,17 @@ export function initTell({ reducedMotion } = {}) {
       requestAnimationFrame(sweep);
     };
 
-    // Fire the surface once, the first time the word enters view.
-    const io = new IntersectionObserver((entries, obs) => {
+    // Fire the surface each time the word scrolls into view. Armed while the
+    // word is out of view, fires once on entry, then disarms until it leaves
+    // and returns — so the tell replays on every pass, never just the first.
+    let armed = true;
+    const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
-        if (e.isIntersecting) { obs.disconnect(); autoSurface(); }
+        if (e.isIntersecting) {
+          if (armed) { armed = false; autoSurface(); }
+        } else {
+          armed = true;
+        }
       }
     }, { threshold: 0.55 });
     io.observe(word);

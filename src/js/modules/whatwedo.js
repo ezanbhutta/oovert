@@ -192,15 +192,20 @@ export function initWhatWeDo() {
   // the reader (touch included) rather than off-screen at load.
   setActiveState(0);
   if (waves) {
-    let entered = false;
-    const io = new IntersectionObserver((entries, obs) => {
+    // Replay the break-cover wave on every scroll pass: armed off-screen, fires
+    // on entry, re-arms when the section leaves view.
+    let armed = true;
+    const io = new IntersectionObserver((entries) => {
       for (const en of entries) {
-        if (en.isIntersecting && !entered) {
-          entered = true;
-          obs.disconnect();
-          moveMarker(0);
-          waves[0].wave.setBase(overts[0]);
-          waves[0].wave.sweep(620);
+        if (en.isIntersecting) {
+          if (armed) {
+            armed = false;
+            moveMarker(0);
+            waves[0].wave.setBase(overts[0]);
+            waves[0].wave.sweep(620);
+          }
+        } else {
+          armed = true;
         }
       }
     }, { threshold: 0.35 });

@@ -69,13 +69,21 @@ export function initPackages({ reducedMotion } = {}) {
   const active = tabs.find((t) => t.classList.contains('is-active')) || tabs[0];
   activate(active, { animate: false });
 
-  // Rise the default panel in the first time the section reaches the viewport.
+  // Rise the active panel in every time the section reaches the viewport. Armed
+  // off-screen, fires on entry, re-arms when it leaves, so the entrance replays
+  // on every scroll pass rather than only the first.
   if (!reducedMotion && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries, obs) => {
+    let armed = true;
+    const io = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          animateIn(panels[tabs.indexOf(active)]);
-          obs.disconnect();
+          if (armed) {
+            armed = false;
+            const current = tabs.find((t) => t.classList.contains('is-active')) || active;
+            animateIn(panels[tabs.indexOf(current)]);
+          }
+        } else {
+          armed = true;
         }
       }
     }, { threshold: 0.15 });
