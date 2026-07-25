@@ -4,7 +4,9 @@
  * The public site stays exactly what it was: hand-authored HTML, self-hosted
  * fonts and vendored scripts, zero external requests. Eleventy's only job is to
  * render the templates from editable data files and passthrough-copy the craft
- * (CSS / JS / vendor / assets) byte-for-byte to the same output paths.
+ * (CSS / JS / vendor / assets) to the same output paths. The site's own CSS/JS
+ * is minified in place after the build (see the eleventy.after hook) — output
+ * only; the src/ files stay hand-authored and readable. vendor/ is left as-is.
  */
 /* --- Colour math for per-project theming (the contrast guardrail) ----------
  * Accents are derived at build time so a project can pick one brand colour and
@@ -12,6 +14,7 @@
 const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 const path = require("path");
 const fs = require("fs");
+const esbuild = require("esbuild");
 const og = require("./og-images.js");
 
 const PAPER = [243, 240, 233]; // --paper #F3F0E9
@@ -100,6 +103,31 @@ module.exports = function (eleventyConfig) {
       }
       console.log(`[prune] uploads: kept ${kept} .mp4, removed ${Math.round(freed / 1024)}KB of unreferenced source rasters`);
     }
+
+    // Minify the site's OWN css/ and js/ in place. esbuild is a real parser, so
+    // the output is behaviourally identical — same cascade, same transitions,
+    // same animations — just smaller and faster to parse. ES-module structure
+    // (import/export) is preserved, so the modulepreload graph still resolves.
+    // vendor/ (GSAP, Lenis) is left untouched: already minified and licence-bearing.
+    const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
+      const p = path.join(d, e.name);
+      return e.isDirectory() ? walk(p) : [p];
+    });
+    const minifyDir = async (sub, loader) => {
+      const base = path.join(root, sub);
+      if (!fs.existsSync(base)) return 0;
+      let saved = 0;
+      for (const f of walk(base)) {
+        if (!f.endsWith(`.${loader}`)) continue;
+        const src = fs.readFileSync(f, 'utf8');
+        const out = (await esbuild.transform(src, { loader, minify: true, legalComments: 'none' })).code;
+        saved += Buffer.byteLength(src) - Buffer.byteLength(out);
+        fs.writeFileSync(f, out);
+      }
+      return saved;
+    };
+    const saved = (await minifyDir('css', 'css')) + (await minifyDir('js', 'js'));
+    console.log(`[minify] css + js: -${Math.round(saved / 1024)}KB raw (behaviour unchanged; vendor/ untouched)`);
   });
 
   // Signal colour, darkened just enough to read as small text on paper.
