@@ -42,6 +42,12 @@
   const motion = parseFloat(getComputedStyle(document.body).getPropertyValue('--motion')) || 1;
   if (motion !== 1) gsap.globalTimeline.timeScale(1 / motion);
 
+  // Non-scrubbed entrance tweens replay on every pass, both directions: play in
+  // on enter, reverse out on leave, restart on re-enter — the GSAP twin of the
+  // reveal engine's add/remove elsewhere on the site. (Scrubbed tweens are
+  // already scroll-linked, so they replay inherently and keep scrub: true.)
+  const TOGGLE = 'restart reverse restart reverse';
+
   const q = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   // The element a transition acts on: a real <img>, else the placeholder box.
   const mediaOf = (sec) => sec.querySelector('[data-cs-media]') || sec;
@@ -55,7 +61,7 @@
       autoAlpha: 0,
       duration: 0.9,
       ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 88%' },
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: TOGGLE },
     });
   });
 
@@ -65,7 +71,8 @@
     hero(sec) {
       const m = inner(mediaOf(sec));
       gsap.fromTo(m, { scale: 1.12, autoAlpha: 0.35 },
-        { scale: 1, autoAlpha: 1, duration: 1.8, ease: 'power3.out' });
+        { scale: 1, autoAlpha: 1, duration: 1.8, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 60%', toggleActions: TOGGLE } });
       gsap.to(m, {
         yPercent: -8, ease: 'none',
         scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom top', scrub: true },
@@ -95,7 +102,7 @@
       const m = inner(mediaOf(sec));
       gsap.fromTo(m, { scale: 0.78, rotate: -6, autoAlpha: 0 },
         { scale: 1, rotate: 0, autoAlpha: 1, duration: 1.2, ease: 'power3.out',
-          scrollTrigger: { trigger: sec, start: 'top 68%' } });
+          scrollTrigger: { trigger: sec, start: 'top 68%', toggleActions: TOGGLE } });
     },
 
     // 05 Construction — image pins (CSS sticky) while notes scroll; subtle scale.
@@ -110,7 +117,7 @@
     sequence(sec) {
       const items = q('[data-cs-item]', sec);
       gsap.from(items, { yPercent: 16, autoAlpha: 0, duration: 1, ease: 'power3.out',
-        stagger: 0.16, scrollTrigger: { trigger: sec, start: 'top 68%' } });
+        stagger: 0.16, scrollTrigger: { trigger: sec, start: 'top 68%', toggleActions: TOGGLE } });
     },
 
     // 07 Typography — artwork unmasks bottom→top (a different axis than 02).
@@ -136,7 +143,7 @@
       const m = inner(mediaOf(sec));
       gsap.fromTo(m, { scale: 0.9, rotate: 4, autoAlpha: 0 },
         { scale: 1, rotate: 0, autoAlpha: 1, duration: 1.1, ease: 'power3.out',
-          scrollTrigger: { trigger: sec, start: 'top 70%' } });
+          scrollTrigger: { trigger: sec, start: 'top 70%', toggleActions: TOGGLE } });
     },
 
     // 10 Business card — slides in from the left as it enters.
@@ -152,7 +159,7 @@
       const items = q('[data-cs-item]', sec);
       gsap.from(items, { scale: 0.85, autoAlpha: 0, duration: 0.9, ease: 'power3.out',
         stagger: { each: 0.1, from: 'center' },
-        scrollTrigger: { trigger: sec, start: 'top 70%' } });
+        scrollTrigger: { trigger: sec, start: 'top 70%', toggleActions: TOGGLE } });
     },
 
     // 12 Packaging — full-bleed slow push in (Ken Burns).
@@ -169,7 +176,7 @@
       items.forEach((it, i) => {
         gsap.from(it, { yPercent: 30 + i * 8, rotate: (i - 1) * 3, autoAlpha: 0,
           duration: 1, ease: 'power3.out', delay: i * 0.06,
-          scrollTrigger: { trigger: sec, start: 'top 70%' } });
+          scrollTrigger: { trigger: sec, start: 'top 70%', toggleActions: TOGGLE } });
       });
     },
 
@@ -211,12 +218,21 @@
           scrollTrigger: { trigger: sec, start: 'top bottom', end: 'center 45%', scrub: 1.2 } });
     },
 
-    // 17 Gallery — masonry items rise in as each row enters.
+    // 17 Gallery — masonry items rise in as each row enters, and settle back out
+    // as it leaves, so the cascade replays on every pass in either direction.
     masonry(sec) {
-      ScrollTrigger.batch(q('[data-cs-item]', sec), {
+      const items = q('[data-cs-item]', sec);
+      gsap.set(items, { yPercent: 12, autoAlpha: 0 });
+      const rise = (els) => gsap.to(els, { yPercent: 0, autoAlpha: 1, duration: 0.8,
+        ease: 'power3.out', stagger: 0.08, overwrite: true });
+      const drop = (els) => gsap.to(els, { yPercent: 12, autoAlpha: 0, duration: 0.4,
+        ease: 'power2.in', overwrite: true });
+      ScrollTrigger.batch(items, {
         start: 'top 90%',
-        onEnter: (els) => gsap.from(els, { yPercent: 12, autoAlpha: 0, duration: 0.8,
-          ease: 'power3.out', stagger: 0.08, overwrite: true }),
+        onEnter: rise,
+        onEnterBack: rise,
+        onLeave: drop,
+        onLeaveBack: drop,
       });
     },
 
@@ -224,7 +240,7 @@
     rise(sec) {
       const m = inner(mediaOf(sec));
       gsap.from(m, { yPercent: 14, autoAlpha: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: sec, start: 'top 80%' } });
+        scrollTrigger: { trigger: sec, start: 'top 80%', toggleActions: TOGGLE } });
     },
 
     // Freeform blocks — a soft opacity + scale settle.
@@ -232,14 +248,14 @@
       const m = inner(mediaOf(sec));
       gsap.fromTo(m, { autoAlpha: 0, scale: 1.03 },
         { autoAlpha: 1, scale: 1, duration: 1.1, ease: 'power2.out',
-          scrollTrigger: { trigger: sec, start: 'top 82%' } });
+          scrollTrigger: { trigger: sec, start: 'top 82%', toggleActions: TOGGLE } });
     },
 
     // 18 Closing — wordmark fades up; the page exhales.
     closing(sec) {
       const m = inner(mediaOf(sec));
       gsap.from(m, { scale: 0.9, autoAlpha: 0, duration: 1.2, ease: 'power3.out',
-        scrollTrigger: { trigger: sec, start: 'top 70%' } });
+        scrollTrigger: { trigger: sec, start: 'top 70%', toggleActions: TOGGLE } });
     },
   };
 
