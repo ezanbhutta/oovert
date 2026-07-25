@@ -19,7 +19,7 @@
  * its overt rest width, full ink, indistinguishable from prose.
  */
 const REST_COVER = 86; // fine pointers: in cover — condensed but legible
-const REST_OVERT = 112; // touch: rests at full width (no cursor to re-hide it)
+const REST_OVERT = 92; // touch: in cover too, but a touch wider (no cursor to re-surface it)
 const PEAK = 125; // overt — the axis maximum
 const RADIUS = 2.4; // letters within this many letter-widths of focus surface
 
