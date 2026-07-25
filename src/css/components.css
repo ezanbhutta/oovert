@@ -99,7 +99,12 @@
 /* Attention is subtraction: hovering one link recedes its siblings.
    Pointer only — keyboard users keep full contrast. */
 @media (hover: hover) {
-  .site-head__nav a { opacity: 0.55; transition: opacity 360ms var(--ease-hover); }
+  /* Rests dull; brightens as the cursor approaches (JS writes --lit 0→1 from
+     pointer distance), reaching full on the link itself. */
+  .site-head__nav a {
+    opacity: calc(0.55 + 0.45 * var(--lit, 0));
+    transition: opacity 200ms var(--ease-hover);
+  }
   .site-head__nav a:hover,
   .site-head__nav a:focus-visible,
   .site-head__nav a[aria-current] { opacity: 1; }
@@ -478,9 +483,15 @@ body.menu-open {
 
 /* ---- Footer -------------------------------------------------------------- */
 
-/* Footer wayfinding rests dull and lights up the link you point at. */
+/* Footer wayfinding rests dull and lights up as the cursor nears — not only on
+   the link it lands on. JS writes --lit (0→1) from pointer distance; opacity and
+   colour ramp with it, reaching full violet on the link itself. */
 @media (hover: hover) {
-  .site-foot__col a { opacity: 0.55; transition: opacity 360ms var(--ease-hover), color var(--dur-fast) var(--ease-hover); }
+  .site-foot__col a:not(.ai-chip) {
+    opacity: calc(0.5 + 0.5 * var(--lit, 0));
+    color: color-mix(in oklab, var(--paper), var(--accent-invert) calc(var(--lit, 0) * 100%));
+    transition: opacity 200ms var(--ease-hover), color 200ms var(--ease-hover);
+  }
   .site-foot__col a:hover,
   .site-foot__col a:focus-visible { opacity: 1; }
 }

@@ -13,6 +13,7 @@ export function initCounters({ reducedMotion }) {
   const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
   const animate = (el) => {
+    if (el._countRaf) cancelAnimationFrame(el._countRaf);
     const target = parseFloat(el.dataset.countTo);
     const decimals = parseInt(el.dataset.countDecimals ?? '0', 10);
     let start = null;
@@ -21,18 +22,24 @@ export function initCounters({ reducedMotion }) {
       start ??= now;
       const progress = Math.min((now - start) / DURATION, 1);
       el.textContent = (target * easeOutExpo(progress)).toFixed(decimals);
-      if (progress < 1) requestAnimationFrame(tick);
+      el._countRaf = progress < 1 ? requestAnimationFrame(tick) : null;
     };
 
-    requestAnimationFrame(tick);
+    el._countRaf = requestAnimationFrame(tick);
   };
 
+  // Re-count on every pass: armed while off-screen, fires on entry, re-arms when
+  // it leaves — so scrolling back up and down runs the count-up again, not once.
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          animate(entry.target);
-          observer.unobserve(entry.target);
+          if (entry.target._armed !== false) {
+            entry.target._armed = false;
+            animate(entry.target);
+          }
+        } else {
+          entry.target._armed = true;
         }
       }
     },
