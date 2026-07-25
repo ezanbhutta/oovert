@@ -406,6 +406,27 @@ body.menu-open {
   transform: translateY(0.2em);
 }
 
+/* Outline variant — a lighter, editorial CTA: paper ground, a fine ink hairline,
+   a violet diagonal arrow. Fills solid violet on hover like the primary, so the
+   hover is corner-to-corner (the ::before rides the same border-radius). */
+.btn--outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+}
+.btn--outline .btn__arrow { color: var(--accent); }
+.btn--outline:hover,
+.btn--outline:focus-visible {
+  color: var(--paper);
+  border-color: var(--accent-deep);
+}
+.btn--outline:hover .btn__arrow,
+.btn--outline:focus-visible .btn__arrow {
+  color: var(--paper);
+  transform: translate(0.18em, 0.18em);
+}
+
 .link-quiet {
   position: relative;
   font-size: var(--text-sm);
