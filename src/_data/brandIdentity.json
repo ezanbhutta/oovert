@@ -1,0 +1,54 @@
+{
+  "eyebrow": "Brand identity design",
+  "lede": "Brand identity design is the system a company is recognised by — name, mark, type, colour, voice and motion, built into one thing people know before they finish reading. We design it strategy-first, so it means something and holds up everywhere.",
+  "parts": {
+    "intro": "What a brand identity is made of",
+    "items": [
+      { "name": "The name", "desc": "What you are called, and whether it can travel." },
+      { "name": "Logo & mark", "desc": "The signature people recognise at a glance." },
+      { "name": "Typography", "desc": "The voice of the words, before they are read." },
+      { "name": "Colour", "desc": "The fastest signal you own." },
+      { "name": "Voice & messaging", "desc": "How the brand sounds in every sentence." },
+      { "name": "Motion", "desc": "How it moves, and how it behaves." },
+      { "name": "Guidelines", "desc": "The system that keeps it sharp long after we hand it over." }
+    ]
+  },
+  "strategy": {
+    "line": "A brand identity without strategy is <em>decoration.</em>",
+    "note": "We start with the one true thing no competitor can copy, then design the system that carries it — so the identity means something, not just looks like something. <a href=\"/pricing/\">See what it costs &rarr;</a>"
+  },
+  "proof": {
+    "line": "See one in <em>full.</em>",
+    "note": "A brand identity reads best whole. Look at how a complete system comes together, end to end.",
+    "ctaLabel": "See the work",
+    "ctaUrl": "/work/"
+  },
+  "faq": [
+    {
+      "q": "What is brand identity design?",
+      "a": "Brand identity design is creating the system a company is recognised by: name, logo, type, colour, voice and motion, plus the guidelines that keep them consistent. Done well, people know you before they finish reading."
+    },
+    {
+      "q": "What is the difference between a brand identity and a logo?",
+      "a": "A logo is one mark. A brand identity is the whole system the logo lives inside — type, colour, voice, motion, and the rules that hold them together. The logo is the signature; the identity is the handwriting."
+    },
+    {
+      "q": "What is included in a brand identity from OOVERT?",
+      "a": "Depending on the tier: strategy and positioning, naming, logo and mark, typography, colour, voice, motion, and full guidelines with every source file. It is listed in full before you buy, and it is yours on final payment."
+    },
+    {
+      "q": "How long does brand identity design take?",
+      "a": "Fixed-scope work ships in two to five working days. A full strategy-led identity runs a few weeks, because the thinking cannot be rushed. You get a real date before we start."
+    },
+    {
+      "q": "How much does a brand identity cost?",
+      "a": "Ours start at $280, against a US average of about $7,500. There are one-time, monthly and embedded options — the full pricing lays them out."
+    }
+  ],
+  "closing": {
+    "line": "Ready to be <em>recognised?</em>",
+    "note": "Tell us about the company and what you want it to stand for. We design the identity that makes it impossible to miss.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}
