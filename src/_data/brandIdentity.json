@@ -4,13 +4,34 @@
   "parts": {
     "intro": "What a brand identity is made of",
     "items": [
-      { "name": "The name", "desc": "What you are called, and whether it can travel." },
-      { "name": "Logo & mark", "desc": "The signature people recognise at a glance." },
-      { "name": "Typography", "desc": "The voice of the words, before they are read." },
-      { "name": "Colour", "desc": "The fastest signal you own." },
-      { "name": "Voice & messaging", "desc": "How the brand sounds in every sentence." },
-      { "name": "Motion", "desc": "How it moves, and how it behaves." },
-      { "name": "Guidelines", "desc": "The system that keeps it sharp long after we hand it over." }
+      {
+        "name": "The name",
+        "desc": "What you are called, and whether it can travel."
+      },
+      {
+        "name": "Logo & mark",
+        "desc": "The signature people recognise at a glance."
+      },
+      {
+        "name": "Typography",
+        "desc": "The voice of the words, before they are read."
+      },
+      {
+        "name": "Colour",
+        "desc": "The fastest signal you own."
+      },
+      {
+        "name": "Voice & messaging",
+        "desc": "How the brand sounds in every sentence."
+      },
+      {
+        "name": "Motion",
+        "desc": "How the brand behaves in motion."
+      },
+      {
+        "name": "Guidelines",
+        "desc": "The system that keeps it sharp long after we hand it over."
+      }
     ]
   },
   "strategy": {
@@ -46,7 +67,7 @@
     }
   ],
   "closing": {
-    "line": "Ready to be <em>recognised?</em>",
+    "line": "Recognition, <em>by design.</em>",
     "note": "Tell us about the company and what you want it to stand for. We design the identity that makes it impossible to miss.",
     "ctaLabel": "Start a project",
     "ctaUrl": "/#contact"
