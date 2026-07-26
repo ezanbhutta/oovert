@@ -15,6 +15,7 @@ import { initDetails } from './modules/details.js';
 import { initTell } from './modules/tell.js';
 import { initBreakCover } from './modules/breakcover.js';
 import { initHeroParallax } from './modules/heroparallax.js';
+import { initVelocity } from './modules/velocity.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -35,6 +36,7 @@ initHeroField({ reducedMotion: true });
 initVideo({ reducedMotion });
 initLivingMark({ reducedMotion });
 initWhatWeDo();
+initVelocity({ reducedMotion });
 
 if (!reducedMotion) {
   initParallax();

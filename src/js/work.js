@@ -11,6 +11,7 @@ import { initVideo } from './modules/video.js';
 import { initToTop } from './modules/to-top.js';
 import { initDetails } from './modules/details.js';
 import { initSpine } from './modules/spine.js';
+import { initVelocity } from './modules/velocity.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -22,6 +23,7 @@ initDetails();
 initLivingMark({ reducedMotion });
 initVideo({ reducedMotion });
 initSpine({ reducedMotion });
+initVelocity({ reducedMotion });
 
 if (!reducedMotion && finePointer) {
   initSmoothScroll();

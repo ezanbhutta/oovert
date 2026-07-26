@@ -97,6 +97,44 @@
   color: var(--accent-deep);
 }
 
+/* ---- The overture -------------------------------------------------------
+   Interior pages open with a staged arrival instead of an instant pop: the
+   eyebrow ticks in, the title lines rise through their masks a breath apart,
+   the lede resolves while the type is still settling, and the aura blooms
+   last. Keyframes (not transitions) so the choreography runs exactly once per
+   arrival, over the top of the reveal engine's instant-state. Timed to play
+   through the tail of the aperture page-iris. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .work-hero__eyebrow {
+    animation: hero-tick 480ms var(--ease-out) 120ms both;
+  }
+  .js .work-hero__title .line__inner {
+    animation: hero-rise 760ms var(--ease-quart) both;
+  }
+  .js .work-hero__title .line:nth-child(1) .line__inner { animation-delay: 200ms; }
+  .js .work-hero__title .line:nth-child(2) .line__inner { animation-delay: 320ms; }
+  .js .work-hero__title .line:nth-child(3) .line__inner { animation-delay: 430ms; }
+  .js .work-hero__lede {
+    animation: hero-tick 560ms var(--ease-out) 520ms both;
+  }
+  .js .work-hero::before {
+    animation: hero-bloom 1100ms var(--ease-out) 260ms both;
+  }
+}
+
+@keyframes hero-rise {
+  from { transform: translateY(112%); }
+  to   { transform: translateY(0); }
+}
+@keyframes hero-tick {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-bloom {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 0.75; transform: scale(1); }
+}
+
 .work-hero__title {
   font-size: var(--text-xl);
   font-weight: 640;
