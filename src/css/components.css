@@ -663,3 +663,26 @@ body.menu-open {
   width: 100%;
   height: auto;
 }
+
+/* ---- Letter-roll CTA labels ----------------------------------------------
+   Dual copy per letter; hover rolls the second copy up through a clipped line
+   box. JS builds this on fine pointers only; everyone else keeps the plain
+   label. Entry rolls left-to-right and quick; the release collapses from the
+   tail back, slower — the tell's asymmetry on the Y axis. */
+.roll { display: inline-flex; overflow: clip; line-height: 1.25; }
+.roll__sp { white-space: pre; }
+.roll__l { position: relative; display: inline-block; }
+.roll__c { display: block; }
+.roll__c--b { position: absolute; top: 100%; left: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .roll__l {
+    transition: transform 440ms var(--ease-out);
+    transition-delay: calc(var(--ri) * 14ms);
+  }
+  .has-roll:hover .roll__l,
+  .has-roll:focus-visible .roll__l {
+    transform: translateY(-100%);
+    transition-duration: 320ms;
+    transition-delay: calc(var(--i) * 22ms);
+  }
+}

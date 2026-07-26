@@ -723,6 +723,8 @@
   pointer-events: none;
 }
 .wwd__marker.is-on { opacity: 1; }
+/* Setup state for the manifesto hand-off drop: position without transition. */
+.wwd__marker--drop { transition: none; }
 
 .wwd__trigger {
   display: flex;
