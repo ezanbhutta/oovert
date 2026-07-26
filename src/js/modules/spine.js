@@ -27,6 +27,20 @@ export function initSpine({ reducedMotion } = {}) {
 
   let ticking = false;
 
+  // Causality: the draw-head IGNITES each phase as it passes it. Phase offsets
+  // are cached (measured on init and resize, never per frame) and each phase
+  // gets .is-struck the moment the head crosses its marker — so the number
+  // lighting up is visibly caused by the line reaching it, not a coincidence
+  // of separate scroll observers. Struck state re-arms when the head retreats,
+  // matching the site-wide replay-every-pass rule.
+  const phases = Array.from(spine.querySelectorAll('.phase'));
+  let phaseTops = [];
+  const struck = phases.map(() => false);
+  const measure = () => {
+    phaseTops = phases.map((ph) => ph.offsetTop + 24); // strike just below the top rule
+  };
+  measure();
+
   const update = () => {
     ticking = false;
     const rect = spine.getBoundingClientRect();
@@ -47,9 +61,18 @@ export function initSpine({ reducedMotion } = {}) {
     p = Math.max(0, Math.min(1, p));
 
     spine.style.setProperty('--spine', p.toFixed(4));
-    spine.style.setProperty('--spine-y', (p * railHeight).toFixed(1) + 'px');
+    const headY = p * railHeight;
+    spine.style.setProperty('--spine-y', headY.toFixed(1) + 'px');
     // Head visible only while actively drawing between the ends.
     spine.style.setProperty('--spine-lit', p > 0.002 && p < 0.998 ? '1' : '0');
+
+    for (let i = 0; i < phases.length; i++) {
+      const hit = headY >= phaseTops[i];
+      if (hit !== struck[i]) {
+        struck[i] = hit;
+        phases[i].classList.toggle('is-struck', hit);
+      }
+    }
   };
 
   const onScroll = () => {
@@ -60,6 +83,13 @@ export function initSpine({ reducedMotion } = {}) {
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener(
+    'resize',
+    () => {
+      measure();
+      onScroll();
+    },
+    { passive: true }
+  );
   update();
 }
