@@ -111,8 +111,12 @@
   --text-lede: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
   --text-md:   clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
   --text-lg:   clamp(2.25rem, 1.5rem + 3.75vw, 5rem);
-  --text-xl:   clamp(2.35rem, 1.5rem + 4.35vw, 5.75rem);
-  --text-2xl:  clamp(3.4rem, 1.5rem + 9.5vw, 11.5rem);
+  /* Display sizes keep scaling to ~1900 (not freezing at ~1680) and land a touch
+     smaller at the top, so large screens read as sized-to-the-screen rather than
+     one frozen oversized layout. --text-lg and below are unchanged (many tuned
+     component overrides land on their 1440 values). */
+  --text-xl:   clamp(2.35rem, 1.7rem + 2.8vw, 5rem);      /* 37 → 80 @≈1930 */
+  --text-2xl:  clamp(3.4rem, 1.5rem + 7vw, 9.75rem);      /* 54 → 156 @≈1900 */
 
   /* Space, 8px rhythm, fluid at section scale */
   --space-1: 0.5rem;
