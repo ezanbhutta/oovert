@@ -102,31 +102,21 @@
       },
       {
         "num": "05",
-        "label": "Brand naming",
-        "href": "/brand-naming/"
-      },
-      {
-        "num": "06",
-        "label": "Rebranding",
-        "href": "/rebranding/"
-      },
-      {
-        "num": "07",
         "label": "Brand guidelines",
         "href": "/brand-guidelines/"
       },
       {
-        "num": "08",
+        "num": "06",
         "label": "Pricing",
         "href": "/pricing/"
       },
       {
-        "num": "09",
+        "num": "07",
         "label": "Studio",
         "href": "/studio/"
       },
       {
-        "num": "10",
+        "num": "08",
         "label": "Contact",
         "href": "#contact"
       }
@@ -197,7 +187,7 @@
     "pullNote": "It shortens your sales cycle, protects your pricing when the market gets nervous, and gives customers a reason to choose you before they have even spoken to you."
   },
   "manifesto": {
-    "text": "Visibility is economics. It starts with <a class=\"mf-key\" href=\"/approach/\">Strategy</a>, the one true thing no competitor can copy, sharpened by <a class=\"mf-key\" href=\"/approach/\">Positioning</a> until the market cannot look away. Then the <a class=\"mf-key\" href=\"/brand-identity/\">Identity</a> that carries it: a name, a mark, a voice recognised before it is read. <a class=\"mf-key\" href=\"/brand-naming/\">Naming</a> makes it travel. <a class=\"mf-key\" href=\"/rebranding/\">Rebranding</a> wakes the companies the world stopped seeing. Camouflage is for <em>prey.</em> We build brands that refuse to hide."
+    "text": "Visibility is economics. It starts with <a class=\"mf-key\" href=\"/approach/\">Strategy</a>, the one true thing no competitor can copy, sharpened by <a class=\"mf-key\" href=\"/approach/\">Positioning</a> until the market cannot look away. Then the <a class=\"mf-key\" href=\"/logo-design/\">Logo</a> that seals it, a mark recognised before it is read. The <a class=\"mf-key\" href=\"/brand-identity/\">Identity</a> that carries it everywhere: type, colour, voice, one system. <a class=\"mf-key\" href=\"/brand-guidelines/\">Guidelines</a> keep it sharp in every hand that touches it. Camouflage is for <em>prey.</em> We build brands that refuse to hide."
   },
   "practice": {
     "chapterLabel": "The practice",
@@ -211,19 +201,19 @@
       },
       {
         "num": "02",
-        "name": "Positioning",
-        "overt": 122,
-        "desc": "One clear sentence about who you are for and why you are the obvious choice. If your nearest competitor could say the same line, you do not have a position yet."
+        "name": "Logo design",
+        "overt": 118,
+        "desc": "One mark that compresses the whole company: simple enough to remember, sharp enough to own, drawn on a grid so it holds from favicon to facade. Delivered in every format your team will ever ask for."
       },
       {
         "num": "03",
         "name": "Brand identity",
         "overt": 116,
-        "desc": "Name, logo, type, colour, voice and motion, built into one system people recognise before they finish reading it."
+        "desc": "Logo, type, colour, voice and motion, built into one system people recognise before they finish reading it."
       },
       {
         "num": "04",
-        "name": "Guidelines and rollout",
+        "name": "Brand guidelines",
         "overt": 100,
         "desc": "The guidelines, templates and everyday tools your team needs to keep the brand sharp long after we hand it over."
       }
@@ -233,7 +223,7 @@
   "packages": {
     "chapterLabel": "The packages",
     "chapterNote": "Professional branding in the US averages about $7,500. Ours start at $280.",
-    "lead": "<span class=\"line\"><span class=\"line__inner\">World-class branding,</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>a fraction of the cost.</em></span></span>",
+    "lead": "<span class=\"line\"><span class=\"line__inner\">Agency-grade branding,</span></span>\n        <span class=\"line\"><span class=\"line__inner\"><em>a fraction of the cost.</em></span></span>",
     "onetime": {
       "note": "Fixed scope, fixed price, delivered fast. One brief, one invoice, one launch.",
       "cards": [
@@ -501,14 +491,6 @@
         "href": "/logo-design/"
       },
       {
-        "label": "Brand naming",
-        "href": "/brand-naming/"
-      },
-      {
-        "label": "Rebranding",
-        "href": "/rebranding/"
-      },
-      {
         "label": "Brand guidelines",
         "href": "/brand-guidelines/"
       },
@@ -541,5 +523,5 @@
     "askAiLabel": "Ask AI about OOVERT",
     "askAiPrompt": "Give me a concise summary of OOVERT, the brand strategy and identity studio at https://oovert.com. What do they do, who is it for, and what makes them different?"
   },
-  "llmsTxt": "# OOVERT\n\n> OOVERT is a brand strategy and identity studio. We name companies, decide what they stand for, and design the brand that carries it. If a company looks and sounds like its competitors, that is the problem we solve.\n\nOOVERT is a distributed studio working across six timezones, founded in 2020. It pairs brand strategy with identity design and staffs projects with senior people only. Tagline: \"Camouflage is for prey.\" World-class branding at a fraction of the usual cost. Professional branding in the US averages about $7,500; OOVERT starts at $280.\n\n## What we do\n- Brand strategy: a few weeks of interviews, audits and honest questions to find the one true thing about a company that no competitor can copy.\n- Positioning: one clear sentence about who a company is for and why it is the obvious choice.\n- Naming, visual identity design, and rebranding.\n- Design systems, brand guidelines, and rollout.\n\n## Pricing\n- One-time projects: Basic ($280), Premium Branding ($480), The Brand Ecosystem ($987).\n- Monthly retainer (design on tap; pause or cancel anytime): Solo ($4,999/mo), Studio ($7,999/mo), Scale (custom).\n- Staff augmentation (senior people embedded in your team): Dedicated Designer ($3,900/mo), Design Pod ($8,900/mo), Embedded Team (from $18k/mo).\n- Every engagement carries a money-back guarantee.\n\n## The studio\nSenior hands only, four disciplines. OOVERT shows one considered direction rather than three, says what is not working in the room rather than in a wrap-up email, and treats good taste as the reason to hire a studio like this one. Distributed across six timezones.\n\n## Links\n- Website: https://oovert.com/\n- Pricing: https://oovert.com/#packages\n- Studio: https://oovert.com/#studio\n- Contact: https://oovert.com/#contact\n\n## Elsewhere\n- Instagram: https://www.instagram.com/oovert/\n- LinkedIn: https://www.linkedin.com/company/oovert-agency/\n- Are.na: https://www.are.na/oovert\n\n## Contact\nNew projects: email new@oovert.com with the project and roughly what you plan to invest.\n"
+  "llmsTxt": "# OOVERT\n\n> OOVERT is a brand strategy and identity studio. We design logos, build brand identities, and write the brand guidelines that keep them sharp. If a company looks and sounds like its competitors, that is the problem we solve.\n\nOOVERT is a distributed studio working across six timezones, founded in 2020. It pairs brand strategy with identity design and staffs projects with senior people only. Tagline: \"Camouflage is for prey.\" Agency-grade branding at a fraction of the usual cost. Professional branding in the US averages about $7,500; OOVERT starts at $280.\n\n## What we do\n- Brand strategy: a few weeks of interviews, audits and honest questions to find the one true thing about a company that no competitor can copy.\n- Logo design: one mark that compresses the whole company, drawn on a grid so it holds from favicon to facade, delivered in every format.\n- Brand identity: logo, type, colour, voice and motion, built into one system people recognise before they finish reading the name.\n- Brand guidelines: the rules that keep the identity sharp after handover, written for the people who use them every day.\n\n## Pricing\n- One-time projects: Basic ($280), Premium Branding ($480), The Brand Ecosystem ($987).\n- Monthly retainer (design on tap; pause or cancel anytime): Solo ($4,999/mo), Studio ($7,999/mo), Scale (custom).\n- Staff augmentation (senior people embedded in your team): Dedicated Designer ($3,900/mo), Design Pod ($8,900/mo), Embedded Team (from $18k/mo).\n- Every engagement carries a money-back guarantee.\n\n## The studio\nSenior hands only, four disciplines. OOVERT shows one considered direction rather than three, says what is not working in the room rather than in a wrap-up email, and treats good taste as the reason to hire a studio like this one. Distributed across six timezones.\n\n## Links\n- Website: https://oovert.com/\n- Logo design: https://oovert.com/logo-design/\n- Brand identity: https://oovert.com/brand-identity/\n- Brand guidelines: https://oovert.com/brand-guidelines/\n- Pricing: https://oovert.com/pricing/\n- Studio: https://oovert.com/studio/\n- Contact: https://oovert.com/#contact\n\n## Elsewhere\n- Instagram: https://www.instagram.com/oovert/\n- LinkedIn: https://www.linkedin.com/company/oovert-agency/\n- Are.na: https://www.are.na/oovert\n\n## Contact\nNew projects: email new@oovert.com with the project and roughly what you plan to invest.\n"
 }

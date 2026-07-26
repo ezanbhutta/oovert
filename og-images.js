@@ -18,8 +18,6 @@ const PAGES = [
   { slug: 'studio', title: ['The studio'] },
   { slug: 'pricing', title: ['How much does', 'branding cost?'] },
   { slug: 'brand-identity', title: ['Brand identity', 'design'] },
-  { slug: 'brand-naming', title: ['Brand', 'naming'] },
-  { slug: 'rebranding', title: ['Rebranding'] },
   { slug: 'logo-design', title: ['Logo', 'design'] },
   { slug: 'brand-guidelines', title: ['Brand', 'guidelines'] },
   { slug: 'nowa-brand-identity', title: ['NOWA', 'Brand Identity'] },
