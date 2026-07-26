@@ -208,26 +208,35 @@ html {
 .site-head { view-transition-name: site-head; }
 main { view-transition-name: page-main; }
 
-/* Asymmetric shared-axis: the old page departs fast and up, the new one
-   arrives slower, delayed, from below — attention belongs to what's arriving.
-   The root keeps a quick quiet crossfade underneath. */
+/* THE APERTURE — navigation through the eclipse. The old page holds and
+   quiets; the new page irises open through an expanding circle, the "o" of
+   the mark used as a scene transition (the same gesture as the case-study
+   aperture exit, made site-wide). Symmetric in/out curve — an occlusion move,
+   THE CURTAIN — and fast enough to never make a nav feel gated. */
 ::view-transition-old(root),
 ::view-transition-new(root) { animation-duration: 240ms; }
 
 ::view-transition-old(page-main) {
-  animation: vt-depart 180ms cubic-bezier(0.4, 0, 1, 1) both;
+  /* The departing page does not flee — it dims in place beneath the iris,
+     like ground falling out of focus. */
+  animation: vt-quiet 560ms cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 
 ::view-transition-new(page-main) {
-  animation: vt-arrive 420ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+  animation: vt-iris 560ms cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
 /* The difference-blend header can shimmer in flat snapshots; pin it. */
 ::view-transition-old(site-head) { display: none; }
 ::view-transition-new(site-head) { animation: none; }
 
-@keyframes vt-depart { to   { opacity: 0; transform: translateY(-12px); } }
-@keyframes vt-arrive { from { opacity: 0; transform: translateY(16px); } }
+@keyframes vt-quiet {
+  to { opacity: 0.35; transform: scale(0.985); }
+}
+@keyframes vt-iris {
+  from { clip-path: circle(0% at 50% 42%); }
+  to   { clip-path: circle(135% at 50% 42%); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
