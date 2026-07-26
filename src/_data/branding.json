@@ -4,6 +4,7 @@
   "parts": {
     "intro": "What branding covers",
     "items": [
+<<<<<<< HEAD
       {
         "name": "Strategy",
         "desc": "The one true thing about you no competitor can copy."
@@ -28,11 +29,23 @@
         "name": "Rollout",
         "desc": "Changed everywhere at once, nothing left stale."
       }
+=======
+      { "name": "Strategy", "desc": "The one true thing about you no competitor can copy." },
+      { "name": "Positioning", "desc": "One clear line about who you are for and why you win." },
+      { "name": "Name", "desc": "What you are called, and whether it can travel." },
+      { "name": "Identity", "desc": "Logo, type, colour, voice and motion, built into one system." },
+      { "name": "Guidelines", "desc": "The rules that keep it consistent everywhere." },
+      { "name": "Rollout", "desc": "Changed everywhere at once, nothing left stale." }
+>>>>>>> origin/main
     ]
   },
   "strategy": {
     "line": "Branding is not decoration. It is how you get <em>chosen.</em>",
+<<<<<<< HEAD
     "note": "We start from strategy, then build the brand that carries it: the <a href=\"/logo-design/\">logo</a>, the <a href=\"/brand-identity/\">identity</a>, and the <a href=\"/brand-guidelines/\">guidelines</a> that keep it right, whether you are starting fresh or waking up a brand the world stopped seeing. <a href=\"/pricing/\">See what it costs &rarr;</a>"
+=======
+    "note": "We start from strategy, then build the brand that carries it: the <a href=\"/brand-naming/\">name</a>, the <a href=\"/logo-design/\">logo</a> and <a href=\"/brand-identity/\">identity</a>, and the <a href=\"/brand-guidelines/\">guidelines</a> that keep it right. Already have a brand? We <a href=\"/rebranding/\">rebrand</a> it. <a href=\"/pricing/\">See what it costs &rarr;</a>"
+>>>>>>> origin/main
   },
   "proof": {
     "line": "See a brand in <em>full.</em>",

@@ -220,6 +220,60 @@ const faqNodes = (items) => items.map((q) => ({
   acceptedAnswer: { '@type': 'Answer', text: q.a },
 }));
 
+<<<<<<< HEAD
+=======
+const brandNamingPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/brand-naming/#webpage`,
+  name: 'Brand Naming Agency · Company & Product Names · OOVERT',
+  description: 'A brand naming agency for company and product names, memorable, ownable and strategy-first.',
+  url: `${BASE}/brand-naming/`,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const brandNamingService = {
+  '@type': 'Service',
+  '@id': `${BASE}/brand-naming/#service`,
+  name: 'Brand naming',
+  serviceType: 'Brand naming',
+  description: 'Naming for companies, products and features: strategy, candidates, availability checks and narrative.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const brandNamingFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/brand-naming/#faq`,
+  mainEntity: faqNodes(brandNaming.faq),
+};
+
+const rebrandingPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/rebranding/#webpage`,
+  name: 'Rebranding Agency · Strategy-Led Rebrands · OOVERT',
+  description: 'A rebranding agency for strategy-led rebrands: strategy, positioning, identity and rollout, without losing brand equity.',
+  url: `${BASE}/rebranding/`,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const rebrandingService = {
+  '@type': 'Service',
+  '@id': `${BASE}/rebranding/#service`,
+  name: 'Rebranding',
+  serviceType: 'Rebranding',
+  description: 'Strategy-led rebranding: refreshed strategy, positioning and identity, rolled out everywhere without losing equity.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const rebrandingFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/rebranding/#faq`,
+  mainEntity: faqNodes(rebranding.faq),
+};
+
+/* ---- Logo design service page (WebPage + Service + FAQPage) ---------------- */
+>>>>>>> origin/main
 const logoDesignPage = {
   '@type': 'WebPage',
   '@id': `${BASE}/logo-design/#webpage`,
@@ -297,6 +351,7 @@ const brandingFaq = {
   mainEntity: faqNodes(branding.faq),
 };
 
+<<<<<<< HEAD
 
 /* ---- Journal: Blog hub + per-post BlogPosting stubs ------------------------ */
 const journalBlog = {
@@ -316,6 +371,8 @@ const journalBlog = {
   })),
 };
 
+=======
+>>>>>>> origin/main
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
