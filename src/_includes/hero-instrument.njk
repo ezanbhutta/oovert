@@ -1,11 +1,71 @@
+{#- One plate language, seven drawings. Every variant shares the same skeleton:
+    hi__axis draws first, hi__ring--l second, hi__ring--r third, then the
+    hi__tick / hi__core / hi__note accents fade up. Pick with instKind:
+    eclipse (default) · mark · moves · meridian · ledger · construction · grid -#}
 <figure class="hero-instrument{% if instClass %} {{ instClass }}{% endif %}"{% if instReveal %} data-reveal{% endif %} aria-hidden="true">
   <svg viewBox="0 0 640 440" fill="none">
+  {%- if instKind == "moves" -%}
+    {#- Approach: one direction, four moves. A road rising left to right,
+        a tick per move, the destination circled. -#}
+    <line class="hi__axis" x1="8" y1="302" x2="632" y2="302" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <path class="hi__ring hi__ring--l" d="M60 302 C 170 296 250 258 340 220 C 420 186 480 164 540 150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__ring hi__ring--r" cx="540" cy="150" r="26" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="180" y1="294" x2="180" y2="310" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="300" y1="294" x2="300" y2="310" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="420" y1="294" x2="420" y2="310" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__core" cx="540" cy="150" r="3.5" fill="currentColor" stroke="none"/>
+  {%- elif instKind == "meridian" -%}
+    {#- Studio: six timezones. A globe wireframe, equator and meridian. -#}
+    <line class="hi__axis" x1="8" y1="220" x2="632" y2="220" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__ring hi__ring--l" cx="320" cy="220" r="150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <ellipse class="hi__ring hi__ring--r" cx="320" cy="220" rx="58" ry="150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="170" y1="212" x2="170" y2="228" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="470" y1="212" x2="470" y2="228" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__core" cx="320" cy="220" r="3.5" fill="currentColor" stroke="none"/>
+  {%- elif instKind == "ledger" -%}
+    {#- Pricing: one invoice. A plate with its rules, and the total drawn last. -#}
+    <line class="hi__axis" x1="8" y1="220" x2="632" y2="220" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <rect class="hi__ring hi__ring--l" x="200" y="80" width="240" height="280" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__ring hi__ring--r" x1="232" y1="300" x2="408" y2="300" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="232" y1="148" x2="408" y2="148" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="232" y1="184" x2="408" y2="184" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="232" y1="220" x2="356" y2="220" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__core" cx="408" cy="300" r="3.5" fill="currentColor" stroke="none"/>
+  {%- elif instKind == "mark" -%}
+    {#- Brand identity: the mark under construction. The eclipse with its
+        centreline, a plate from an identity manual. -#}
+    <line class="hi__axis" x1="8" y1="220" x2="632" y2="220" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__ring hi__ring--l" cx="250" cy="220" r="150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__ring hi__ring--r" cx="390" cy="220" r="150" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="320" y1="58" x2="320" y2="110" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="320" y1="330" x2="320" y2="382" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__core" cx="320" cy="220" r="3.5" fill="currentColor" stroke="none"/>
+  {%- elif instKind == "construction" -%}
+    {#- Logo design: construction circles. The master circle, its satellite,
+        and the diagonal that relates them. -#}
+    <line class="hi__axis" x1="8" y1="240" x2="632" y2="240" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__ring hi__ring--l" cx="300" cy="240" r="140" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__ring hi__ring--r" cx="404" cy="136" r="52" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="300" y1="240" x2="404" y2="136" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="300" y1="72" x2="300" y2="104" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__core" cx="404" cy="136" r="3.5" fill="currentColor" stroke="none"/>
+  {%- elif instKind == "grid" -%}
+    {#- Brand guidelines: the layout spread. Trim, margins, baselines. -#}
+    <line class="hi__axis" x1="8" y1="220" x2="632" y2="220" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <rect class="hi__ring hi__ring--l" x="170" y="90" width="300" height="260" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <rect class="hi__ring hi__ring--r" x="198" y="118" width="244" height="204" pathLength="1" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="198" y1="170" x2="442" y2="170" vector-effect="non-scaling-stroke"/>
+    <line class="hi__tick" x1="198" y1="262" x2="442" y2="262" vector-effect="non-scaling-stroke"/>
+    <circle class="hi__core" cx="442" cy="322" r="3.5" fill="currentColor" stroke="none"/>
+  {%- else -%}
+    {#- The origin figure: the double-o eclipse on its axis. -#}
     <line class="hi__axis" x1="8" y1="220" x2="632" y2="220" pathLength="1" vector-effect="non-scaling-stroke"/>
     <circle class="hi__ring hi__ring--l" cx="250" cy="220" r="150" pathLength="1" vector-effect="non-scaling-stroke"/>
     <circle class="hi__ring hi__ring--r" cx="390" cy="220" r="150" pathLength="1" vector-effect="non-scaling-stroke"/>
     <line class="hi__tick" x1="100" y1="212" x2="100" y2="228" vector-effect="non-scaling-stroke"/>
     <line class="hi__tick" x1="540" y1="212" x2="540" y2="228" vector-effect="non-scaling-stroke"/>
     <circle class="hi__core" cx="320" cy="220" r="3.5" fill="currentColor" stroke="none"/>
+  {%- endif -%}
   </svg>
   <span class="hi__note hi__note--fig">Fig. {{ instFig }}</span>
   <span class="hi__note hi__note--label">{{ instNote }}</span>

@@ -1,0 +1,91 @@
+---
+permalink: "/journal/index.html"
+---
+{%- set currentPath = "/journal/" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  {% include "analytics.njk" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Journal · Brand Teardowns &amp; Rebrand Lessons · OOVERT</title>
+  <meta name="description" content="Brand teardowns in plain English: the Gap logo redesign, Tropicana's packaging disaster, the Twitter to X rebrand and more, and what each teaches about brand identity.">
+  <link rel="canonical" href="https://oovert.com/journal/">
+  <meta name="theme-color" content="#F3F0E9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="The Journal, brand teardowns by OOVERT">
+  <meta property="og:description" content="Famous rebrands, torn down in plain English: what worked, what got reverted, and what it teaches about brand identity.">
+  <meta property="og:url" content="https://oovert.com/journal/">
+  <meta property="og:image" content="https://oovert.com/assets/og/journal.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico?v={{ assets.icon }}" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/css/foundation.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/components.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/sections.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/work.css?v={{ assets.css }}">
+
+  <link rel="modulepreload" href="/js/modules/reveal.js">
+  <link rel="modulepreload" href="/js/modules/nav.js">
+  {% set schemaKey = "journal" %}{% include "schema.njk" %}
+</head>
+<body class="page-journal">
+  <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
+
+  {% include "site-header.njk" %}
+
+  <main id="main" class="journal">
+    <header class="work-hero" id="top">
+      <p class="work-hero__eyebrow" data-reveal>{{ journal.eyebrow }}</p>
+      <h1 class="work-hero__title" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ journal.titleA }}</span></span>
+        <span class="line"><span class="line__inner"><em>{{ journal.titleB }}</em></span></span>
+      </h1>
+      <p class="work-hero__lede" data-reveal>{{ journal.lede }}</p>
+      {% set instFig = "08" %}{% set instNote = "Field notes · from the wild" %}{% include "hero-instrument.njk" %}
+    </header>
+
+    <section class="jr blueprint" aria-label="Brand teardowns">
+      <ol class="jr__list">
+        {% for post in journal.posts %}
+        <li class="jr__item" data-reveal>
+          <a class="jr__link" href="/journal/{{ post.slug }}/">
+            <span class="jr__num" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+            <span class="jr__body">
+              <span class="jr__brand">{{ post.brand }}</span>
+              <span class="jr__title">{{ post.title }}</span>
+              <span class="jr__dek">{{ post.dek }}</span>
+            </span>
+            <span class="jr__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="jr__note" data-reveal>{{ journal.note }}</p>
+    </section>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">Rather be <em>the good example?</em></span></span>
+      </p>
+      <p class="work-more__note" data-reveal>Every teardown above ends the same way: strategy first, then the mark, then the rules that keep it sharp. That is exactly how we build brands.</p>
+      <a class="work-more__cta" href="/branding/" data-reveal>See how we work <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  {% include "site-footer.njk" %}
+
+  <script type="module" src="/js/work.js"></script>
+</body>
+</html>

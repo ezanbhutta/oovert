@@ -4,10 +4,22 @@
   "range": {
     "intro": "Branding is priced all over the map. Here is the honest spread:",
     "tiers": [
-      { "label": "Freelancer or template shop", "price": "$250 – $5,000" },
-      { "label": "Boutique agency", "price": "$5,000 – $20,000" },
-      { "label": "Full brand-identity package", "price": "$2,500 – $50,000" },
-      { "label": "Network agency, enterprise scale", "price": "$70,000 – $100,000+" }
+      {
+        "label": "Freelancer or template shop",
+        "price": "$250 – $5,000"
+      },
+      {
+        "label": "Boutique agency",
+        "price": "$5,000 – $20,000"
+      },
+      {
+        "label": "Full brand-identity package",
+        "price": "$2,500 – $50,000"
+      },
+      {
+        "label": "Network agency, enterprise scale",
+        "price": "$70,000 – $100,000+"
+      }
     ],
     "average": "The average US company spends about <em>$7,500</em> on branding. Most of that pays for overhead, account managers and juniors billed as experts, not the thinking.",
     "why": "What moves the number is simple: how much strategy the work needs, how many deliverables you want, and who actually does the work. A logo is cheap. A brand that shortens your sales cycle is a different purchase."
@@ -24,7 +36,7 @@
     },
     {
       "q": "What is included in the price?",
-      "a": "Every package lists its scope in full before you buy. Depending on the tier: strategy, positioning, naming, logo, type, colour, voice, guidelines and every source file. No surprise line items, no licensing games. The brand and its files are yours on final payment."
+      "a": "Every package lists its scope in full before you buy. Depending on the tier: strategy, positioning, logo, type, colour, voice, guidelines and every source file. No surprise line items, no licensing games. The brand and its files are yours on final payment."
     },
     {
       "q": "Do you offer monthly or payment options?",

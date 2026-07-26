@@ -865,14 +865,14 @@
   .bi-parts__row { grid-template-columns: 1fr; gap: 0.35rem; }
 }
 
-/* Naming, rebranding, logo & guidelines service pages reuse the brand-identity structure. */
-.page-brand-naming,
-.page-rebranding,
+/* Branding, logo-design & brand-guidelines service pages reuse the
+   brand-identity structure. */
+.page-branding,
 .page-logo-design,
-.page-brand-guidelines,
-.page-branding { background: var(--paper); }
-.brand-naming,
-.rebranding { padding-bottom: var(--space-section); }
+.page-brand-guidelines { background: var(--paper); }
+.branding,
+.logo-design,
+.brand-guidelines { padding-bottom: var(--space-section); }
 
 /* ============================================================================
    Sub-page signature motion.
@@ -1039,31 +1039,141 @@
 /* BN · the name travels: the four letters of "name" arrive from along the
    road — strung out rightward — converging into the set word just after the
    masked line lands. The ink-mark swipe still sweeps beneath them. */
-.page-brand-naming .nt,
-.page-brand-naming .nt__l { display: inline-block; }
 @media (prefers-reduced-motion: no-preference) {
-  .js .page-brand-naming .work-hero__title .nt__l {
-    transition: transform 700ms var(--ease-out), opacity 420ms var(--ease-hover);
-    transition-delay: calc(120ms + var(--i) * 70ms);
-  }
-  .js .page-brand-naming .work-hero__title:not(.is-inview) .nt__l {
-    transform: translateX(calc(0.5em + var(--i) * 0.22em));
-    opacity: 0;
-  }
-  .js .page-brand-naming .work-hero__title.is-instant .nt__l { transition: none; }
 }
 
 /* RB · seen again: the strategy line scrubs from cover (condensed, veiled
    toward the paper) to overt as it crosses the reading band — the exact
    inverse of the homepage hero taking cover on exit. unveil.js writes
    --wdth/--veil; these short interpolations glide between its rAF steps. */
-.page-rebranding .cost-why__text .line__inner {
-  display: inline-block;
-  font-variation-settings: 'wdth' var(--wdth, 112);
-  color: color-mix(in oklab, var(--ink), var(--paper) calc(var(--veil, 0) * 1%));
-}
 @media (prefers-reduced-motion: no-preference) {
-  .js .page-rebranding .cost-why__text .line__inner {
-    transition: --wdth 0.22s var(--ease-out), --veil 0.22s var(--ease-out);
-  }
+}
+
+/* ============================================================================
+   The Journal — brand teardowns.
+   Hub: a ledger of entries (number, brand tag, title, dek, arrow). Posts:
+   plain readable prose on the site's type system — the content is the design.
+   ========================================================================== */
+
+.page-journal { background: var(--paper); }
+.journal { padding-bottom: var(--space-section); }
+
+.jr { padding: 0 var(--margin) var(--space-6); }
+.jr__list { margin: 0; list-style: none; padding: 0; }
+
+.jr__link {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  gap: var(--gutter);
+  align-items: baseline;
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+.jr__item:last-of-type .jr__link { border-bottom: 1px solid var(--line); }
+
+.jr__num {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  color: var(--accent-deep);
+}
+
+.jr__body { display: block; max-width: 62ch; }
+
+.jr__brand {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.jr__title {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+.jr__link:hover .jr__title { color: var(--accent-deep); }
+
+.jr__dek {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.jr__arrow {
+  font-size: var(--text-md);
+  color: var(--accent-deep);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.jr__link:hover .jr__arrow { transform: translateX(0.3em); }
+
+.jr__note {
+  margin-top: var(--space-6);
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- Post pages ---- */
+/* Long titles: the huge condensed-caps hero scale would set them at billboard
+   size, so posts step down to a sentence-case display line. */
+.post__title {
+  max-width: 24ch;
+  font-size: var(--text-lg);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.post__back { color: inherit; }
+.post__back:hover { color: var(--accent); }
+
+.post__body { padding: var(--space-4) var(--margin) 0; }
+
+.post__section { margin-bottom: var(--space-8); }
+
+.post__h {
+  margin-bottom: var(--space-4);
+  max-width: 30ch;
+  font-size: var(--text-md);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.post__p {
+  margin-bottom: var(--space-4);
+  max-width: var(--measure);
+  font-size: var(--text-lede);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.post__p:last-child { margin-bottom: 0; }
+
+.post__p a {
+  color: var(--accent-deep);
+  box-shadow: inset 0 -1px 0 0 color-mix(in srgb, var(--accent) 45%, transparent);
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+.post__p a:hover { color: var(--ink); }
+
+.post__foot { padding: var(--space-2) var(--margin) var(--space-6); }
+
+@media (max-width: 720px) {
+  .jr__link { grid-template-columns: 2.2rem 1fr; }
+  .jr__arrow { display: none; }
 }
