@@ -372,7 +372,6 @@ eleventyComputed:
       </figure>
     </section>
 
-    {% if project.sections.colour.image or project.sections.colour.src or (project.sections.colour.video and project.sections.colour.video.src) %}
     <!-- ================= 08 · COLOUR STORY ================= -->
     <!-- Purpose: the palette as a feeling. Fade + layered parallax. -->
     <section class="cs-section cs-section--ink" data-cs="parallax" aria-labelledby="cs-colour-h">
@@ -398,9 +397,7 @@ eleventyComputed:
         {% endcall %}
       </figure>
     </section>
-    {% endif %}
 
-    {% if project.sections.graphic.image or project.sections.graphic.src or (project.sections.graphic.video and project.sections.graphic.video.src) %}
     <!-- ================= 09 · GRAPHIC LANGUAGE ================= -->
     <!-- Purpose: the system beyond the logo. Scale + slight rotate. -->
     <section class="cs-section cs-section--paper" data-cs="rotate" aria-labelledby="cs-graphic-h">
@@ -426,9 +423,7 @@ eleventyComputed:
         </figure>
       </div>
     </section>
-    {% endif %}
 
-    {% if project.sections.card.image or project.sections.card.src or (project.sections.card.video and project.sections.card.video.src) %}
     <!-- ================= 10 · BUSINESS CARD ================= -->
     <!-- Purpose: the identity in the hand. Slides in from the left. -->
     <section class="cs-section cs-section--ink" data-cs="slide-x" aria-labelledby="cs-card-h">
@@ -454,10 +449,7 @@ eleventyComputed:
         {% endcall %}
       </figure>
     </section>
-    {% endif %}
 
-    {%- set fill_stationery -%}{% for it in project.sections.stationery.images %}{% if it.src or it.image or (it.video and it.video.src) %}x{% endif %}{% endfor %}{%- endset -%}
-    {% if fill_stationery %}
     <!-- ================= 11 · STATIONERY ================= -->
     <!-- Purpose: the system applied. Grid cascades from centre. -->
     <section class="cs-section cs-section--paper" data-cs="cascade" aria-labelledby="cs-stat-h">
@@ -484,9 +476,7 @@ eleventyComputed:
         </div>
       </div>
     </section>
-    {% endif %}
 
-    {% if project.sections.packaging.image or project.sections.packaging.src or (project.sections.packaging.video and project.sections.packaging.video.src) %}
     <!-- ================= 12 · PACKAGING ================= -->
     <!-- Purpose: a full-bleed hero moment. Slow zoom in. -->
     <section class="cs-section cs-section--ink cs-section--flush" data-cs="zoom" aria-label="Packaging">
@@ -508,10 +498,7 @@ eleventyComputed:
         {% endcall %}
       </figure>
     </section>
-    {% endif %}
 
-    {%- set fill_social -%}{% for it in project.sections.social.images %}{% if it.src or it.image or (it.video and it.video.src) %}x{% endif %}{% endfor %}{%- endset -%}
-    {% if fill_social %}
     <!-- ================= 13 · SOCIAL MEDIA ================= -->
     <!-- Purpose: the brand at phone scale. Frames rise into a fanned stack. -->
     <section class="cs-section cs-section--paper" data-cs="stack" aria-labelledby="cs-social-h">
@@ -538,9 +525,7 @@ eleventyComputed:
         </div>
       </div>
     </section>
-    {% endif %}
 
-    {% if project.sections.website.image or project.sections.website.src or (project.sections.website.video and project.sections.website.video.src) %}
     <!-- ================= 14 · WEBSITE ================= -->
     <!-- Purpose: the digital home. Section pins; the long shot scrubs up. -->
     <section class="cs-section cs-section--ink" data-cs="pin-scrub" aria-labelledby="cs-web-h">
@@ -569,9 +554,7 @@ eleventyComputed:
         <p class="cs-cap">Tip: also supply a mobile screenshot (9:19) &mdash; drop it beside the frame if you want the responsive story too.</p>
       </div>
     </section>
-    {% endif %}
 
-    {% if project.sections.environment.image or project.sections.environment.src or (project.sections.environment.video and project.sections.environment.video.src) %}
     <!-- ================= 15 · ENVIRONMENTAL GRAPHICS ================= -->
     <!-- Purpose: the brand at scale, outside. Layers move at different speeds. -->
     <section class="cs-section cs-section--paper" data-cs="layer" aria-labelledby="cs-env-h">
@@ -594,9 +577,7 @@ eleventyComputed:
         </div>
       </div>
     </section>
-    {% endif %}
 
-    {% if project.sections.context.image or project.sections.context.src or (project.sections.context.video and project.sections.context.video.src) %}
     <!-- ================= 16 · BRAND IN CONTEXT ================= -->
     <!-- Purpose: the brand lived-in. A long, slow cinematic fade. -->
     <section class="cs-section cs-section--ink cs-section--flush" data-cs="cinematic" aria-label="Brand in context">
@@ -618,10 +599,7 @@ eleventyComputed:
         {% endcall %}
       </figure>
     </section>
-    {% endif %}
 
-    {%- set fill_gallery -%}{% for it in project.sections.gallery.images %}{% if it.src or it.image or (it.video and it.video.src) %}x{% endif %}{% endfor %}{%- endset -%}
-    {% if fill_gallery %}
     <!-- ================= 17 · GALLERY ================= -->
     <!-- Purpose: everything else, at a glance. Masonry, rises in, lightbox. -->
     <section class="cs-section cs-section--paper" data-cs="masonry" aria-labelledby="cs-gallery-h">
@@ -643,7 +621,6 @@ eleventyComputed:
         <p class="cs-cap">Supply 6&ndash;10 images. Real images open in a lightbox on click.</p>
       </div>
     </section>
-    {% endif %}
     {% endif %}{# /showTemplate #}
 
     <!-- ================= 18 · CLOSING ================= -->
