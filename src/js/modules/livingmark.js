@@ -14,6 +14,7 @@ export function initLivingMark({ reducedMotion } = {}) {
   if (!left || !right) return;
 
   const RANGE = 42; // max degrees of counter-rotation across the viewport pass
+  const RESOLVE = 0.14; // half-width of the centre band where the mark holds true
   let raf = null;
   let near = false;
 
@@ -23,7 +24,14 @@ export function initLivingMark({ reducedMotion } = {}) {
     const vh = window.innerHeight || document.documentElement.clientHeight;
     // 0 as the mark enters from the bottom, 1 as it leaves past the top.
     const p = 1 - (rect.top + rect.height / 2) / (vh + rect.height);
-    const deg = (Math.max(0, Math.min(1, p)) - 0.5) * 2 * RANGE;
+    // The eclipse RESOLVES: rotated while entering, it settles to aligned as it
+    // reaches the middle of the viewport, holds true through a centre band (the
+    // lock-in — same beat as the case-study aperture), then breaks apart again
+    // on the way out. The soft power ramp lands it gently instead of ticking
+    // through zero.
+    const c = Math.max(0, Math.min(1, p)) - 0.5;
+    const out = Math.max(0, Math.abs(c) - RESOLVE) / (0.5 - RESOLVE);
+    const deg = Math.sign(c) * Math.pow(out, 1.6) * RANGE;
     left.style.transform = `rotate(${(-deg).toFixed(2)}deg)`;
     right.style.transform = `rotate(${deg.toFixed(2)}deg)`;
   };

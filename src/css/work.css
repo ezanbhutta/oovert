@@ -327,8 +327,14 @@
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  font-variation-settings: 'wdth' 108;
-  transition: color var(--dur-fast) var(--ease-hover);
+  /* The width verb, at portfolio scale: names rest a step into cover and break
+     overt when pointed at — quick to surface, reluctant to re-camouflage (the
+     base transition is the slow exit; :hover overrides with the fast entry). */
+  --wdth: 100;
+  font-variation-settings: 'wdth' var(--wdth);
+  transition:
+    color var(--dur-exit) var(--ease-hover),
+    --wdth 700ms var(--ease-out);
 }
 
 .work-plate__go {
@@ -341,7 +347,15 @@
     opacity var(--dur-fast) var(--ease-hover);
 }
 
-.work-plate:hover .work-plate__name { color: var(--plate-accent, var(--accent-deep)); }
+@media (hover: hover) {
+  .work-plate:hover .work-plate__name {
+    color: var(--plate-accent, var(--accent-deep));
+    --wdth: 118;
+    transition:
+      color var(--dur-fast) var(--ease-hover),
+      --wdth 340ms var(--ease-out);
+  }
+}
 .work-plate:hover .work-plate__go { opacity: 1; transform: translateX(0.1em); }
 
 .work-plate__line {
