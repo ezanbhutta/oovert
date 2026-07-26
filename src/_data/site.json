@@ -122,21 +122,11 @@
       },
       {
         "num": "09",
-<<<<<<< HEAD
         "label": "Journal",
         "href": "/journal/"
-=======
-        "label": "Brand naming",
-        "href": "/brand-naming/"
->>>>>>> origin/main
       },
       {
         "num": "10",
-        "label": "Rebranding",
-        "href": "/rebranding/"
-      },
-      {
-        "num": "11",
         "label": "Contact",
         "href": "#contact"
       }
@@ -507,25 +497,6 @@
       {
         "label": "Pricing",
         "href": "/pricing/"
-<<<<<<< HEAD
-=======
-      },
-      {
-        "label": "Brand identity",
-        "href": "/brand-identity/"
-      },
-      {
-        "label": "Brand naming",
-        "href": "/brand-naming/"
-      },
-      {
-        "label": "Rebranding",
-        "href": "/rebranding/"
-      },
-      {
-        "label": "Approach",
-        "href": "/approach/"
->>>>>>> origin/main
       },
       {
         "label": "Brand identity",
