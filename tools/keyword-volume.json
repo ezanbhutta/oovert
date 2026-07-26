@@ -1,5 +1,305 @@
 [
   {
+    "keyword": "logo",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "LOW",
+    "competition_index": 17,
+    "search_volume": 368000,
+    "low_top_of_page_bid": 1.11,
+    "high_top_of_page_bid": 4.69,
+    "cpc": 2.65,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 201000
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 368000
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 368000
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 368000
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 450000
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 450000
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 450000
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 450000
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 450000
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 450000
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 301000
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 201000
+      }
+    ]
+  },
+  {
+    "keyword": "brand identity",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "LOW",
+    "competition_index": 10,
+    "search_volume": 301000,
+    "low_top_of_page_bid": 2.11,
+    "high_top_of_page_bid": 7.98,
+    "cpc": 7.16,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 3600
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 4400
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 5400
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 6600
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 6600
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 5400
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 4400
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 5400
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 12100
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 90500
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 1830000
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 1500000
+      }
+    ]
+  },
+  {
+    "keyword": "logo design",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "HIGH",
+    "competition_index": 74,
+    "search_volume": 40500,
+    "low_top_of_page_bid": 1.59,
+    "high_top_of_page_bid": 10.83,
+    "cpc": 8.17,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 22200
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 33100
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 40500
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 40500
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 33100
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 40500
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 33100
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 40500
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 49500
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 49500
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 49500
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 40500
+      }
+    ]
+  },
+  {
+    "keyword": "branding",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "LOW",
+    "competition_index": 6,
+    "search_volume": 27100,
+    "low_top_of_page_bid": 2.07,
+    "high_top_of_page_bid": 10.91,
+    "cpc": 6.38,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 27100
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 33100
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 27100
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 33100
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 27100
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 33100
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 33100
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 27100
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 27100
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 33100
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 22200
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 22200
+      }
+    ]
+  },
+  {
     "keyword": "brand identity design",
     "spell": null,
     "location_code": 2840,
@@ -71,6 +371,81 @@
         "year": 2025,
         "month": 7,
         "search_volume": 2900
+      }
+    ]
+  },
+  {
+    "keyword": "logo designer",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "MEDIUM",
+    "competition_index": 65,
+    "search_volume": 12100,
+    "low_top_of_page_bid": 2.02,
+    "high_top_of_page_bid": 13,
+    "cpc": 10.36,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 8100
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 9900
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 12100
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 12100
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 12100
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 12100
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 12100
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 12100
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 14800
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 14800
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 14800
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 12100
       }
     ]
   },
@@ -150,137 +525,287 @@
     ]
   },
   {
-    "keyword": "branding studio",
+    "keyword": "brand guidelines",
     "spell": null,
     "location_code": 2840,
     "language_code": "en",
     "search_partners": false,
     "competition": "LOW",
-    "competition_index": 22,
-    "search_volume": 880,
-    "low_top_of_page_bid": 2.33,
-    "high_top_of_page_bid": 10.24,
-    "cpc": 10.18,
+    "competition_index": 12,
+    "search_volume": 8100,
+    "low_top_of_page_bid": 1.56,
+    "high_top_of_page_bid": 7.16,
+    "cpc": 6.43,
     "monthly_searches": [
       {
         "year": 2026,
         "month": 6,
-        "search_volume": 880
+        "search_volume": 8100
       },
       {
         "year": 2026,
         "month": 5,
-        "search_volume": 880
+        "search_volume": 8100
       },
       {
         "year": 2026,
         "month": 4,
-        "search_volume": 880
+        "search_volume": 9900
       },
       {
         "year": 2026,
         "month": 3,
-        "search_volume": 880
+        "search_volume": 9900
       },
       {
         "year": 2026,
         "month": 2,
-        "search_volume": 720
+        "search_volume": 8100
       },
       {
         "year": 2026,
         "month": 1,
-        "search_volume": 880
+        "search_volume": 8100
       },
       {
         "year": 2025,
         "month": 12,
-        "search_volume": 590
+        "search_volume": 6600
       },
       {
         "year": 2025,
         "month": 11,
-        "search_volume": 590
+        "search_volume": 8100
       },
       {
         "year": 2025,
         "month": 10,
-        "search_volume": 880
+        "search_volume": 9900
       },
       {
         "year": 2025,
         "month": 9,
-        "search_volume": 1000
+        "search_volume": 9900
       },
       {
         "year": 2025,
         "month": 8,
-        "search_volume": 880
+        "search_volume": 8100
       },
       {
         "year": 2025,
         "month": 7,
-        "search_volume": 720
+        "search_volume": 8100
       }
     ]
   },
   {
-    "keyword": "brand strategy agency",
+    "keyword": "custom logo design",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "HIGH",
+    "competition_index": 91,
+    "search_volume": 2900,
+    "low_top_of_page_bid": 1.73,
+    "high_top_of_page_bid": 10.1,
+    "cpc": 8.62,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 1900
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 2400
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 2400
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 2900
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 2400
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 2900
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 2900
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 2900
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 2900
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 3600
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 5400
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 4400
+      }
+    ]
+  },
+  {
+    "keyword": "brand guidelines template",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "HIGH",
+    "competition_index": 96,
+    "search_volume": 2900,
+    "low_top_of_page_bid": 1.36,
+    "high_top_of_page_bid": 5.5,
+    "cpc": 3.1,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 2400
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 2400
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 2900
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 2900
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 2400
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 2400
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 2400
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 2400
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 2900
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 4400
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 2900
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 2900
+      }
+    ]
+  },
+  {
+    "keyword": "brand style guide",
     "spell": null,
     "location_code": 2840,
     "language_code": "en",
     "search_partners": false,
     "competition": "LOW",
-    "competition_index": 22,
-    "search_volume": 880,
-    "low_top_of_page_bid": 10.45,
-    "high_top_of_page_bid": 46.98,
-    "cpc": 18.82,
+    "competition_index": 18,
+    "search_volume": 2400,
+    "low_top_of_page_bid": 1.78,
+    "high_top_of_page_bid": 6.75,
+    "cpc": 7.35,
     "monthly_searches": [
       {
         "year": 2026,
         "month": 6,
-        "search_volume": 390
+        "search_volume": 2400
       },
       {
         "year": 2026,
         "month": 5,
-        "search_volume": 590
+        "search_volume": 2400
       },
       {
         "year": 2026,
         "month": 4,
-        "search_volume": 590
+        "search_volume": 2400
       },
       {
         "year": 2026,
         "month": 3,
-        "search_volume": 1000
+        "search_volume": 2400
       },
       {
         "year": 2026,
         "month": 2,
-        "search_volume": 590
+        "search_volume": 2900
       },
       {
         "year": 2026,
         "month": 1,
-        "search_volume": 590
+        "search_volume": 2400
       },
       {
         "year": 2025,
         "month": 12,
-        "search_volume": 320
+        "search_volume": 1600
       },
       {
         "year": 2025,
         "month": 11,
-        "search_volume": 590
+        "search_volume": 1900
       },
       {
         "year": 2025,
         "month": 10,
-        "search_volume": 1000
+        "search_volume": 2400
       },
       {
         "year": 2025,
@@ -290,102 +815,102 @@
       {
         "year": 2025,
         "month": 8,
-        "search_volume": 590
+        "search_volume": 1900
       },
       {
         "year": 2025,
         "month": 7,
-        "search_volume": 720
+        "search_volume": 1900
       }
     ]
   },
   {
-    "keyword": "brand naming agency",
+    "keyword": "branding services",
     "spell": null,
     "location_code": 2840,
     "language_code": "en",
     "search_partners": false,
     "competition": "LOW",
-    "competition_index": 21,
-    "search_volume": 590,
-    "low_top_of_page_bid": 5.04,
-    "high_top_of_page_bid": 24.83,
-    "cpc": 17.37,
+    "competition_index": 12,
+    "search_volume": 1900,
+    "low_top_of_page_bid": 4.55,
+    "high_top_of_page_bid": 17,
+    "cpc": 16.13,
     "monthly_searches": [
       {
         "year": 2026,
         "month": 6,
-        "search_volume": 90
+        "search_volume": 720
       },
       {
         "year": 2026,
         "month": 5,
-        "search_volume": 140
+        "search_volume": 1000
       },
       {
         "year": 2026,
         "month": 4,
-        "search_volume": 110
+        "search_volume": 1000
       },
       {
         "year": 2026,
         "month": 3,
-        "search_volume": 140
+        "search_volume": 1900
       },
       {
         "year": 2026,
         "month": 2,
-        "search_volume": 50
+        "search_volume": 880
       },
       {
         "year": 2026,
         "month": 1,
-        "search_volume": 170
+        "search_volume": 1300
       },
       {
         "year": 2025,
         "month": 12,
-        "search_volume": 4400
+        "search_volume": 1900
       },
       {
         "year": 2025,
         "month": 11,
-        "search_volume": 320
+        "search_volume": 1900
       },
       {
         "year": 2025,
         "month": 10,
-        "search_volume": 720
+        "search_volume": 1900
       },
       {
         "year": 2025,
         "month": 9,
-        "search_volume": 590
+        "search_volume": 6600
       },
       {
         "year": 2025,
         "month": 8,
-        "search_volume": 110
+        "search_volume": 1900
       },
       {
         "year": 2025,
         "month": 7,
-        "search_volume": 90
+        "search_volume": 1300
       }
     ]
   },
   {
-    "keyword": "rebranding agency",
+    "keyword": "logo design agency",
     "spell": null,
     "location_code": 2840,
     "language_code": "en",
     "search_partners": false,
     "competition": "LOW",
-    "competition_index": 18,
-    "search_volume": 390,
-    "low_top_of_page_bid": 7.65,
-    "high_top_of_page_bid": 17.82,
-    "cpc": 12.91,
+    "competition_index": 31,
+    "search_volume": 720,
+    "low_top_of_page_bid": 4.37,
+    "high_top_of_page_bid": 18.21,
+    "cpc": 13.37,
     "monthly_searches": [
       {
         "year": 2026,
@@ -395,12 +920,87 @@
       {
         "year": 2026,
         "month": 5,
-        "search_volume": 210
+        "search_volume": 590
       },
       {
         "year": 2026,
         "month": 4,
-        "search_volume": 260
+        "search_volume": 590
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 590
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 480
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 480
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 390
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 590
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 590
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 1600
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 1300
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 880
+      }
+    ]
+  },
+  {
+    "keyword": "brand style guide template",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "HIGH",
+    "competition_index": 87,
+    "search_volume": 590,
+    "low_top_of_page_bid": 1.04,
+    "high_top_of_page_bid": 4.16,
+    "cpc": 2.77,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 390
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 480
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 590
       },
       {
         "year": 2026,
@@ -410,17 +1010,17 @@
       {
         "year": 2026,
         "month": 2,
-        "search_volume": 140
+        "search_volume": 590
       },
       {
         "year": 2026,
         "month": 1,
-        "search_volume": 210
+        "search_volume": 480
       },
       {
         "year": 2025,
         "month": 12,
-        "search_volume": 320
+        "search_volume": 480
       },
       {
         "year": 2025,
@@ -440,12 +1040,87 @@
       {
         "year": 2025,
         "month": 8,
-        "search_volume": 170
+        "search_volume": 720
       },
       {
         "year": 2025,
         "month": 7,
-        "search_volume": 170
+        "search_volume": 720
+      }
+    ]
+  },
+  {
+    "keyword": "what are brand guidelines",
+    "spell": null,
+    "location_code": 2840,
+    "language_code": "en",
+    "search_partners": false,
+    "competition": "LOW",
+    "competition_index": 3,
+    "search_volume": 320,
+    "low_top_of_page_bid": 0.56,
+    "high_top_of_page_bid": 4.29,
+    "cpc": null,
+    "monthly_searches": [
+      {
+        "year": 2026,
+        "month": 6,
+        "search_volume": 260
+      },
+      {
+        "year": 2026,
+        "month": 5,
+        "search_volume": 260
+      },
+      {
+        "year": 2026,
+        "month": 4,
+        "search_volume": 320
+      },
+      {
+        "year": 2026,
+        "month": 3,
+        "search_volume": 390
+      },
+      {
+        "year": 2026,
+        "month": 2,
+        "search_volume": 320
+      },
+      {
+        "year": 2026,
+        "month": 1,
+        "search_volume": 320
+      },
+      {
+        "year": 2025,
+        "month": 12,
+        "search_volume": 210
+      },
+      {
+        "year": 2025,
+        "month": 11,
+        "search_volume": 210
+      },
+      {
+        "year": 2025,
+        "month": 10,
+        "search_volume": 320
+      },
+      {
+        "year": 2025,
+        "month": 9,
+        "search_volume": 390
+      },
+      {
+        "year": 2025,
+        "month": 8,
+        "search_volume": 260
+      },
+      {
+        "year": 2025,
+        "month": 7,
+        "search_volume": 320
       }
     ]
   },
@@ -525,1367 +1200,78 @@
     ]
   },
   {
-    "keyword": "branding for startups",
+    "keyword": "logo and brand identity",
     "spell": null,
     "location_code": 2840,
     "language_code": "en",
     "search_partners": false,
     "competition": "LOW",
-    "competition_index": 12,
-    "search_volume": 260,
-    "low_top_of_page_bid": 4.08,
-    "high_top_of_page_bid": 14.76,
-    "cpc": 18.76,
+    "competition_index": 20,
+    "search_volume": 90,
+    "low_top_of_page_bid": 2.43,
+    "high_top_of_page_bid": 9.09,
+    "cpc": 1.8,
     "monthly_searches": [
       {
         "year": 2026,
         "month": 6,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 590
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 720
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 210
-      }
-    ]
-  },
-  {
-    "keyword": "brand identity package",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "HIGH",
-    "competition_index": 69,
-    "search_volume": 210,
-    "low_top_of_page_bid": 2.08,
-    "high_top_of_page_bid": 9.55,
-    "cpc": 11.67,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 320
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 210
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 320
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 260
-      }
-    ]
-  },
-  {
-    "keyword": "how to name a company",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "MEDIUM",
-    "competition_index": 54,
-    "search_volume": 210,
-    "low_top_of_page_bid": 0.76,
-    "high_top_of_page_bid": 4.46,
-    "cpc": 8.17,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 260
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 210
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 210
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 260
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 320
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 210
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 320
-      }
-    ]
-  },
-  {
-    "keyword": "naming agency",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "MEDIUM",
-    "competition_index": 36,
-    "search_volume": 140,
-    "low_top_of_page_bid": 5.39,
-    "high_top_of_page_bid": 12.54,
-    "cpc": 13.55,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 50
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 90
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 210
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 320
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 260
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 90
-      }
-    ]
-  },
-  {
-    "keyword": "company naming service",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 22,
-    "search_volume": 140,
-    "low_top_of_page_bid": 1.35,
-    "high_top_of_page_bid": 14.53,
-    "cpc": 12.93,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 50
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 90
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 70
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 70
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 590
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 90
-      }
-    ]
-  },
-  {
-    "keyword": "rebranding services",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 5,
-    "search_volume": 140,
-    "low_top_of_page_bid": 15.9,
-    "high_top_of_page_bid": 29.99,
-    "cpc": null,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 260
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 90
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 50
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 390
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 110
-      }
-    ]
-  },
-  {
-    "keyword": "brand positioning agency",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 6,
-    "search_volume": 140,
-    "low_top_of_page_bid": 4.04,
-    "high_top_of_page_bid": 25,
-    "cpc": 44.05,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 30
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 50
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 50
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 320
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 590
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 140
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 70
-      }
-    ]
-  },
-  {
-    "keyword": "branding cost",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 7,
-    "search_volume": 140,
-    "low_top_of_page_bid": 3.25,
-    "high_top_of_page_bid": 12.54,
-    "cpc": 0.88,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 170
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 390
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 90
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 70
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 90
-      }
-    ]
-  },
-  {
-    "keyword": "design subscription",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "MEDIUM",
-    "competition_index": 49,
-    "search_volume": 140,
-    "low_top_of_page_bid": 6.68,
-    "high_top_of_page_bid": 22.91,
-    "cpc": 20.84,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 90
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 260
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 140
-      }
-    ]
-  },
-  {
-    "keyword": "how much does branding cost",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 13,
-    "search_volume": 110,
-    "low_top_of_page_bid": 1.39,
-    "high_top_of_page_bid": 7,
-    "cpc": 1.64,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 110
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 140
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 210
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 90
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 70
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 90
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 70
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 110
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 70
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 70
-      }
-    ]
-  },
-  {
-    "keyword": "brand strategy for startups",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 6,
-    "search_volume": 70,
-    "low_top_of_page_bid": 7.71,
-    "high_top_of_page_bid": 16.29,
-    "cpc": null,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 50
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 4,
         "search_volume": 40
       },
       {
         "year": 2026,
-        "month": 3,
-        "search_volume": 260
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 50
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 40
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 40
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 210
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 50
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 40
-      }
-    ]
-  },
-  {
-    "keyword": "branding package price",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "MEDIUM",
-    "competition_index": 46,
-    "search_volume": 50,
-    "low_top_of_page_bid": 1.62,
-    "high_top_of_page_bid": 5.47,
-    "cpc": 2.36,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
         "month": 5,
         "search_volume": 50
       },
       {
         "year": 2026,
         "month": 4,
-        "search_volume": 30
+        "search_volume": 110
       },
       {
         "year": 2026,
         "month": 3,
-        "search_volume": 70
-      },
-      {
-        "year": 2026,
-        "month": 2,
         "search_volume": 90
       },
       {
         "year": 2026,
+        "month": 2,
+        "search_volume": 110
+      },
+      {
+        "year": 2026,
         "month": 1,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 30
-      },
-      {
-        "year": 2025,
-        "month": 9,
         "search_volume": 110
       },
       {
         "year": 2025,
-        "month": 8,
-        "search_volume": 30
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 40
-      }
-    ]
-  },
-  {
-    "keyword": "affordable branding agency",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": null,
-    "competition_index": null,
-    "search_volume": 20,
-    "low_top_of_page_bid": null,
-    "high_top_of_page_bid": null,
-    "cpc": null,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 0
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
         "month": 12,
-        "search_volume": 10
+        "search_volume": 50
       },
       {
         "year": 2025,
         "month": 11,
-        "search_volume": 10
+        "search_volume": 90
       },
       {
         "year": 2025,
         "month": 10,
-        "search_volume": 30
+        "search_volume": 110
       },
       {
         "year": 2025,
         "month": 9,
-        "search_volume": 40
+        "search_volume": 140
       },
       {
         "year": 2025,
         "month": 8,
-        "search_volume": 40
+        "search_volume": 140
       },
       {
         "year": 2025,
         "month": 7,
-        "search_volume": 30
+        "search_volume": 70
       }
     ]
-  },
-  {
-    "keyword": "brand identity pricing",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "MEDIUM",
-    "competition_index": 51,
-    "search_volume": 20,
-    "low_top_of_page_bid": 2.31,
-    "high_top_of_page_bid": 5,
-    "cpc": 3.29,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 170
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 10
-      }
-    ]
-  },
-  {
-    "keyword": "brand strategy vs brand identity",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 0,
-    "search_volume": 20,
-    "low_top_of_page_bid": null,
-    "high_top_of_page_bid": null,
-    "cpc": null,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 20
-      }
-    ]
-  },
-  {
-    "keyword": "brand identity studio",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 25,
-    "search_volume": 10,
-    "low_top_of_page_bid": null,
-    "high_top_of_page_bid": null,
-    "cpc": null,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 30
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 20
-      }
-    ]
-  },
-  {
-    "keyword": "when to rebrand",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "LOW",
-    "competition_index": 0,
-    "search_volume": 10,
-    "low_top_of_page_bid": null,
-    "high_top_of_page_bid": null,
-    "cpc": null,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 30
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 20
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 10
-      }
-    ]
-  },
-  {
-    "keyword": "boutique branding studio",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": "MEDIUM",
-    "competition_index": 40,
-    "search_volume": 10,
-    "low_top_of_page_bid": 3.72,
-    "high_top_of_page_bid": 8.49,
-    "cpc": 8.96,
-    "monthly_searches": [
-      {
-        "year": 2026,
-        "month": 6,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 5,
-        "search_volume": 10
-      },
-      {
-        "year": 2026,
-        "month": 4,
-        "search_volume": 0
-      },
-      {
-        "year": 2026,
-        "month": 3,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 2,
-        "search_volume": 20
-      },
-      {
-        "year": 2026,
-        "month": 1,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 12,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 11,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 10,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 9,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 8,
-        "search_volume": 10
-      },
-      {
-        "year": 2025,
-        "month": 7,
-        "search_volume": 10
-      }
-    ]
-  },
-  {
-    "keyword": "branding retainer",
-    "spell": null,
-    "location_code": 2840,
-    "language_code": "en",
-    "search_partners": false,
-    "competition": null,
-    "competition_index": null,
-    "search_volume": null,
-    "low_top_of_page_bid": null,
-    "high_top_of_page_bid": null,
-    "cpc": null,
-    "monthly_searches": null
   }
 ]

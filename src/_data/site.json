@@ -97,26 +97,36 @@
       },
       {
         "num": "04",
+        "label": "Logo design",
+        "href": "/logo-design/"
+      },
+      {
+        "num": "05",
         "label": "Brand naming",
         "href": "/brand-naming/"
       },
       {
-        "num": "05",
+        "num": "06",
         "label": "Rebranding",
         "href": "/rebranding/"
       },
       {
-        "num": "06",
+        "num": "07",
+        "label": "Brand guidelines",
+        "href": "/brand-guidelines/"
+      },
+      {
+        "num": "08",
         "label": "Pricing",
         "href": "/pricing/"
       },
       {
-        "num": "07",
+        "num": "09",
         "label": "Studio",
         "href": "/studio/"
       },
       {
-        "num": "08",
+        "num": "10",
         "label": "Contact",
         "href": "#contact"
       }
@@ -487,12 +497,20 @@
         "href": "/brand-identity/"
       },
       {
+        "label": "Logo design",
+        "href": "/logo-design/"
+      },
+      {
         "label": "Brand naming",
         "href": "/brand-naming/"
       },
       {
         "label": "Rebranding",
         "href": "/rebranding/"
+      },
+      {
+        "label": "Brand guidelines",
+        "href": "/brand-guidelines/"
       },
       {
         "label": "Pricing",

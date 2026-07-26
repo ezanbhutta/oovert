@@ -865,9 +865,11 @@
   .bi-parts__row { grid-template-columns: 1fr; gap: 0.35rem; }
 }
 
-/* Naming & rebranding service pages reuse the brand-identity structure. */
+/* Naming, rebranding, logo & guidelines service pages reuse the brand-identity structure. */
 .page-brand-naming,
-.page-rebranding { background: var(--paper); }
+.page-rebranding,
+.page-logo-design,
+.page-brand-guidelines { background: var(--paper); }
 .brand-naming,
 .rebranding { padding-bottom: var(--space-section); }
 

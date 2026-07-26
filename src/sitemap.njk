@@ -44,6 +44,16 @@ eleventyExcludeFromCollections: true
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://oovert.com/logo-design/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oovert.com/brand-guidelines/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 {%- for p in projectList %}{% if p.status == 'published' %}
   <url>
     <loc>https://oovert.com/work/{{ p.slug | slugify }}/</loc>

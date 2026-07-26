@@ -1,0 +1,112 @@
+---
+permalink: "/logo-design/index.html"
+---
+{%- set currentPath = "/logo-design/" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  {% include "analytics.njk" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Design Agency · Custom Logos, Strategy-First · OOVERT</title>
+  <meta name="description" content="Logo design agency for custom, strategy-first logos. A mark built on a real idea and a system behind it, with every file and usage rule. From $280.">
+  <link rel="canonical" href="https://oovert.com/logo-design/">
+  <meta name="theme-color" content="#F3F0E9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="Logo Design · OOVERT">
+  <meta property="og:description" content="Custom, strategy-first logo design. A mark built on a real idea, with the system and files to use it everywhere.">
+  <meta property="og:url" content="https://oovert.com/logo-design/">
+  <meta property="og:image" content="https://oovert.com/assets/og/logo-design.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/sections.css">
+  <link rel="stylesheet" href="/css/work.css">
+
+  <link rel="modulepreload" href="/js/modules/reveal.js">
+  <link rel="modulepreload" href="/js/modules/nav.js">
+  {% set schemaKey = "logo-design" %}{% include "schema.njk" %}
+</head>
+<body class="page-logo-design">
+  <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
+
+  {% include "site-header.njk" %}
+
+  <main id="main" class="logo-design">
+    <header class="work-hero" id="top">
+      <p class="work-hero__eyebrow" data-reveal>{{ logoDesign.eyebrow }}</p>
+      <h1 class="work-hero__title" data-reveal-lines>
+        <span class="line"><span class="line__inner">A mark they</span></span>
+        <span class="line"><span class="line__inner"><em>can't unsee.</em></span></span>
+      </h1>
+      <p class="work-hero__lede" data-reveal>{{ logoDesign.lede }}</p>
+    </header>
+
+    <section class="bi-parts" aria-label="What goes into a logo">
+      <h2 class="bi-parts__intro" data-reveal>{{ logoDesign.parts.intro }}</h2>
+      <dl class="bi-parts__list">
+        {% for part in logoDesign.parts.items %}<div class="bi-parts__row" data-reveal>
+          <dt class="bi-parts__name">{{ part.name }}</dt>
+          <dd class="bi-parts__desc">{{ part.desc }}</dd>
+        </div>
+        {% endfor %}</dl>
+    </section>
+
+    <section class="cost-why" aria-label="Logo design, done right">
+      <p class="cost-why__text" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ logoDesign.strategy.line | safe }}</span></span>
+      </p>
+      <p class="bi-note" data-reveal>{{ logoDesign.strategy.note | safe }}</p>
+    </section>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ logoDesign.proof.line | safe }}</span></span>
+      </p>
+      <p class="work-more__note" data-reveal>{{ logoDesign.proof.note }}</p>
+      <a class="work-more__cta" href="{{ logoDesign.proof.ctaUrl }}" data-reveal>{{ logoDesign.proof.ctaLabel }} <span aria-hidden="true">&rarr;</span></a>
+    </section>
+
+    <section class="faq-section" id="faq" aria-labelledby="ld-faq-title">
+      <header class="chapter-head" data-reveal-head>
+        <h2 class="chapter-head__label" id="ld-faq-title">Logo design, answered.</h2>
+      </header>
+      <div class="faq">
+        {% for item in logoDesign.faq %}<details class="faq__item"{% if loop.first %} open{% endif %}>
+          <summary class="faq__q">
+            <span class="faq__q-text">{{ item.q }}</span>
+            <span class="faq__marker" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a"><p>{{ item.a | safe }}</p></div>
+        </details>
+        {% endfor %}</div>
+    </section>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ logoDesign.closing.line | safe }}</span></span>
+      </p>
+      <p class="work-more__note" data-reveal>{{ logoDesign.closing.note }}</p>
+      <a class="work-more__cta" href="{{ logoDesign.closing.ctaUrl }}" data-reveal>{{ logoDesign.closing.ctaLabel }} <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  {% include "site-footer.njk" %}
+
+  <script type="module" src="/js/work.js"></script>
+</body>
+</html>
