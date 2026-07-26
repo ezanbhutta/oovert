@@ -442,6 +442,10 @@
   pointer-events: none;
 }
 
+/* Sentence case, not caps: seventy words of expanded heavy uppercase read as
+   a wall (caps erase word shapes at paragraph length). Case, width and leading
+   carry the fix; the scrub, dissolve and gather are untouched. The violet
+   keywords keep their capital initials, so they still stand proud of the line. */
 .manifesto__text {
   position: relative;
   z-index: 1;
@@ -449,11 +453,10 @@
   max-width: 32ch;
   margin: 0 auto;
   font-size: clamp(1.4rem, 0.9rem + 2.1vw, 2.6rem);
-  line-height: 1.2;
+  line-height: 1.26;
   font-weight: 640;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  font-variation-settings: 'wdth' 108;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'wdth' 104;
   color: var(--paper);
 }
 
@@ -793,18 +796,6 @@
   min-height: 14rem;
   padding-top: var(--space-3);
 }
-
-.wwd__eclipse {
-  display: block;
-  width: clamp(4rem, 8vw, 6.5rem);
-  margin-bottom: var(--space-5);
-  color: var(--accent-invert);
-  opacity: 0.55;
-  transform: rotate(calc(var(--wwd-turn, 0) * 14deg));
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-
-.wwd__eclipse svg { display: block; width: 100%; height: auto; }
 
 .wwd__panel[hidden] { display: none; }
 
@@ -1236,9 +1227,58 @@
 /* ---- Evidence ------------------------------------------------------------------ */
 
 .evidence {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   background: var(--ink);
   color: var(--paper);
   padding-bottom: var(--space-section);
+}
+
+/* The instrument in exhibit lighting: same figure as the sub-page heroes,
+   restruck in paper hairlines on ink so the chapter's dead right half reads
+   as a drawn plate instead of a void. Draws when scrolled into view (the
+   reveal engine flags .is-inview; the generic data-reveal fade is switched
+   off for the figure since it draws rather than slides). Replays each pass,
+   like every reveal on this site. */
+.js figure.hero-instrument[data-reveal] {
+  opacity: 1;
+  transform: translateY(-50%);
+  transition: none;
+}
+
+.evidence .hero-instrument { color: var(--paper); }
+.evidence .hi__axis { stroke: color-mix(in srgb, var(--paper) 15%, transparent); }
+.evidence .hi__tick { stroke: color-mix(in srgb, var(--paper) 30%, transparent); }
+.evidence .hi__ring--l { stroke: color-mix(in srgb, var(--paper) 25%, transparent); }
+.evidence .hi__ring--r { stroke: color-mix(in srgb, var(--accent-invert) 60%, transparent); }
+.evidence .hi__core { color: var(--accent-invert); }
+.evidence .hi__note { color: color-mix(in srgb, var(--paper) 55%, transparent); }
+.evidence .hi__note--fig { color: var(--accent-invert); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Idle until seen: the load-time draw from the base styles would finish
+     long before anyone scrolls here, so this instance re-keys the draw to
+     the reveal engine instead. */
+  .js .evidence .hi__axis,
+  .js .evidence .hi__ring--l,
+  .js .evidence .hi__ring--r {
+    animation: none;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .js .evidence .hi__tick,
+  .js .evidence .hi__core,
+  .js .evidence .hi__note {
+    animation: none;
+    opacity: 0;
+  }
+  .js .evidence .hero-instrument.is-inview .hi__axis { animation: hi-draw 900ms var(--ease-quart-inout) 200ms forwards; }
+  .js .evidence .hero-instrument.is-inview .hi__ring--l { animation: hi-draw 1250ms var(--ease-quart-inout) 420ms forwards; }
+  .js .evidence .hero-instrument.is-inview .hi__ring--r { animation: hi-draw 1250ms var(--ease-quart-inout) 600ms forwards; }
+  .js .evidence .hero-instrument.is-inview .hi__tick,
+  .js .evidence .hero-instrument.is-inview .hi__core,
+  .js .evidence .hero-instrument.is-inview .hi__note { animation: hi-in 600ms var(--ease-quart) 1350ms forwards; }
 }
 
 .evidence .chapter-head__num {
@@ -1417,6 +1457,26 @@
   color: var(--ink-soft);
   text-wrap: pretty;
 }
+
+/* The chapter closes with a door, not a whisper: same ledger-link gesture as
+   the evidence chapter, pointed at the studio dossier. */
+.studio__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: var(--space-6) var(--margin) 0;
+  font-size: var(--text-md);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 0 var(--accent);
+  padding-bottom: 0.12em;
+  transition: color var(--dur-fast) var(--ease-hover);
+}
+
+.studio__link span { transition: transform var(--dur-med) var(--ease-out); }
+.studio__link:hover { color: var(--accent-deep); }
+.studio__link:hover span { transform: translateX(0.3em); }
 
 /* ---- Contact ------------------------------------------------------------------------ */
 
