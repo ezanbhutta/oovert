@@ -1029,6 +1029,10 @@
   font-variation-settings: 'wdth' 104;
 }
 
+/* Solid fill, not a pale outline: the recommended tier earns real weight, and
+   paper-on-accent-deep clears AA contrast (6.2:1) where the old tint (violet
+   text on a 5% violet wash) landed at 2.97:1 — under the 4.5:1 floor for
+   small text. */
 .ledger-row__tag {
   display: inline-flex;
   align-items: center;
@@ -1038,8 +1042,8 @@
   font-weight: 640;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
-  color: var(--accent-deep);
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  color: var(--paper);
+  background: var(--accent-deep);
   border-radius: 999px;
   white-space: nowrap;
 }

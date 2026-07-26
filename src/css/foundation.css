@@ -163,7 +163,7 @@
 
   /* Paper tooth: one static SVG noise tile, inlined (no request, never
      animated). Kills gradient banding and gives flat fields a print grain. */
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
   /* Z-scale, header sits above the menu overlay so Close stays reachable */
   --z-rail: 40;
@@ -262,8 +262,11 @@ body {
   overflow-x: clip;
 }
 
-/* Paper tooth over everything — felt, not seen. Static tile; multiply darkens
-   into the paper so it reads as stock, not dirt. */
+/* Paper tooth over everything — a real stock, not a flat vector fill. Static
+   tile (zero runtime cost); multiply blend means it darkens the light paper
+   sections into genuine tooth while all but disappearing over ink (multiplying
+   a mid-gray tile against near-black stays near-black), so dark chapters stay
+   clean and text contrast is untouched everywhere. */
 body::after {
   content: "";
   position: fixed;
@@ -271,8 +274,8 @@ body::after {
   z-index: 3;
   pointer-events: none;
   background: var(--grain) repeat;
-  background-size: 300px 300px;
-  opacity: 0.04;
+  background-size: 260px 260px;
+  opacity: 0.15;
   mix-blend-mode: multiply;
 }
 
