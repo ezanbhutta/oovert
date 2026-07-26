@@ -869,7 +869,8 @@
 .page-brand-naming,
 .page-rebranding,
 .page-logo-design,
-.page-brand-guidelines { background: var(--paper); }
+.page-brand-guidelines,
+.page-branding { background: var(--paper); }
 .brand-naming,
 .rebranding { padding-bottom: var(--space-section); }
 

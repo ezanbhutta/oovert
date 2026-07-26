@@ -22,6 +22,7 @@ const PAGES = [
   { slug: 'rebranding', title: ['Rebranding'] },
   { slug: 'logo-design', title: ['Logo', 'design'] },
   { slug: 'brand-guidelines', title: ['Brand', 'guidelines'] },
+  { slug: 'branding', title: ['Branding'] },
   { slug: 'nowa-brand-identity', title: ['NOWA', 'Brand Identity'] },
 ];
 

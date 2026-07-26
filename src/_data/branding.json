@@ -1,0 +1,53 @@
+{
+  "eyebrow": "Branding",
+  "lede": "Branding is everything that makes a company recognised and chosen: the strategy underneath, the name, the logo and identity, and the rules that keep it consistent. We build the whole brand strategy-first, so it means something and holds up everywhere.",
+  "parts": {
+    "intro": "What branding covers",
+    "items": [
+      { "name": "Strategy", "desc": "The one true thing about you no competitor can copy." },
+      { "name": "Positioning", "desc": "One clear line about who you are for and why you win." },
+      { "name": "Name", "desc": "What you are called, and whether it can travel." },
+      { "name": "Identity", "desc": "Logo, type, colour, voice and motion, built into one system." },
+      { "name": "Guidelines", "desc": "The rules that keep it consistent everywhere." },
+      { "name": "Rollout", "desc": "Changed everywhere at once, nothing left stale." }
+    ]
+  },
+  "strategy": {
+    "line": "Branding is not decoration. It is how you get <em>chosen.</em>",
+    "note": "We start from strategy, then build the brand that carries it: the <a href=\"/brand-naming/\">name</a>, the <a href=\"/logo-design/\">logo</a> and <a href=\"/brand-identity/\">identity</a>, and the <a href=\"/brand-guidelines/\">guidelines</a> that keep it right. Already have a brand? We <a href=\"/rebranding/\">rebrand</a> it. <a href=\"/pricing/\">See what it costs &rarr;</a>"
+  },
+  "proof": {
+    "line": "See a brand in <em>full.</em>",
+    "note": "A brand reads best whole. Look at how a complete one comes together, end to end.",
+    "ctaLabel": "See the work",
+    "ctaUrl": "/work/"
+  },
+  "faq": [
+    {
+      "q": "What does a branding agency do?",
+      "a": "A branding agency builds the things that make a company recognised and chosen: strategy, positioning, name, logo and identity, and the guidelines that keep them consistent. We do all of it strategy-first, and hand over every source file."
+    },
+    {
+      "q": "What is the difference between branding and a logo?",
+      "a": "A logo is one mark. Branding is the whole system it lives inside: the strategy, the name, the type, colour and voice, and the rules that hold them together. The logo is the signature; the brand is the whole company, recognised."
+    },
+    {
+      "q": "How much does branding cost?",
+      "a": "Ours start at $280, against a US average of about $7,500. There are one-time, monthly and embedded options, and the full pricing lays them out."
+    },
+    {
+      "q": "How long does branding take?",
+      "a": "Fixed-scope work ships in two to five working days. A full strategy-led brand runs a few weeks, because the thinking cannot be rushed. You get a real date before we start."
+    },
+    {
+      "q": "Do you do branding for startups?",
+      "a": "Yes. A lot of our work is building brands from zero, for founders who want to look established before anyone reads a price. We scope it to where you are."
+    }
+  ],
+  "closing": {
+    "line": "Ready to be <em>chosen?</em>",
+    "note": "Tell us about the company and what you want it to stand for. We will build the brand that makes it the obvious choice.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}
