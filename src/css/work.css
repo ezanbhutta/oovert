@@ -865,9 +865,12 @@
   .bi-parts__row { grid-template-columns: 1fr; gap: 0.35rem; }
 }
 
-/* Logo-design & brand-guidelines service pages reuse the brand-identity structure. */
+/* Branding, logo-design & brand-guidelines service pages reuse the
+   brand-identity structure. */
+.page-branding,
 .page-logo-design,
 .page-brand-guidelines { background: var(--paper); }
+.branding,
 .logo-design,
 .brand-guidelines { padding-bottom: var(--space-section); }
 

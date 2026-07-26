@@ -1,0 +1,113 @@
+---
+permalink: "/branding/index.html"
+---
+{%- set currentPath = "/branding/" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  {% include "analytics.njk" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branding Agency · Strategy-First Brand Building · OOVERT</title>
+  <meta name="description" content="Branding agency that builds the whole brand strategy-first: strategy, name, logo, identity and the guidelines that keep it consistent. From $280.">
+  <link rel="canonical" href="https://oovert.com/branding/">
+  <meta name="theme-color" content="#F3F0E9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="Branding · OOVERT">
+  <meta property="og:description" content="A branding agency that builds the whole brand strategy-first: strategy, name, logo, identity and guidelines.">
+  <meta property="og:url" content="https://oovert.com/branding/">
+  <meta property="og:image" content="https://oovert.com/assets/og/branding.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/css/foundation.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/components.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/sections.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/work.css?v={{ assets.css }}">
+
+  <link rel="modulepreload" href="/js/modules/reveal.js">
+  <link rel="modulepreload" href="/js/modules/nav.js">
+  {% set schemaKey = "branding" %}{% include "schema.njk" %}
+</head>
+<body class="page-branding">
+  <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
+
+  {% include "site-header.njk" %}
+
+  <main id="main" class="branding">
+    <header class="work-hero" id="top">
+      <p class="work-hero__eyebrow" data-reveal>{{ branding.eyebrow }}</p>
+      <h1 class="work-hero__title" data-reveal-lines>
+        <span class="line"><span class="line__inner">Get chosen,</span></span>
+        <span class="line"><span class="line__inner">not just <em>seen.</em></span></span>
+      </h1>
+      <p class="work-hero__lede" data-reveal>{{ branding.lede }}</p>
+      {% set instFig = "07" %}{% set instNote = "Strategy · mark · system" %}{% include "hero-instrument.njk" %}
+    </header>
+
+    <section class="bi-parts" aria-label="What branding covers">
+      <h2 class="bi-parts__intro" data-reveal>{{ branding.parts.intro }}</h2>
+      <dl class="bi-parts__list">
+        {% for part in branding.parts.items %}<div class="bi-parts__row" data-reveal>
+          <dt class="bi-parts__name">{{ part.name }}</dt>
+          <dd class="bi-parts__desc">{{ part.desc }}</dd>
+        </div>
+        {% endfor %}</dl>
+    </section>
+
+    <section class="cost-why" aria-label="Branding, done right">
+      <p class="cost-why__text" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ branding.strategy.line | safe }}</span></span>
+      </p>
+      <p class="bi-note" data-reveal>{{ branding.strategy.note | safe }}</p>
+    </section>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ branding.proof.line | safe }}</span></span>
+      </p>
+      <p class="work-more__note" data-reveal>{{ branding.proof.note }}</p>
+      <a class="work-more__cta" href="{{ branding.proof.ctaUrl }}" data-reveal>{{ branding.proof.ctaLabel }} <span aria-hidden="true">&rarr;</span></a>
+    </section>
+
+    <section class="faq-section" id="faq" aria-labelledby="br-faq-title">
+      <header class="chapter-head" data-reveal-head>
+        <h2 class="chapter-head__label" id="br-faq-title">Branding, answered.</h2>
+      </header>
+      <div class="faq">
+        {% for item in branding.faq %}<details class="faq__item"{% if loop.first %} open{% endif %}>
+          <summary class="faq__q">
+            <span class="faq__q-text">{{ item.q }}</span>
+            <span class="faq__marker" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a"><p>{{ item.a | safe }}</p></div>
+        </details>
+        {% endfor %}</div>
+    </section>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">{{ branding.closing.line | safe }}</span></span>
+      </p>
+      <p class="work-more__note" data-reveal>{{ branding.closing.note }}</p>
+      <a class="work-more__cta" href="{{ branding.closing.ctaUrl }}" data-reveal>{{ branding.closing.ctaLabel }} <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  {% include "site-footer.njk" %}
+
+  <script type="module" src="/js/work.js"></script>
+</body>
+</html>

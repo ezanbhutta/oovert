@@ -15,6 +15,7 @@ const pricing = require('./pricing.json');
 const brandIdentity = require('./brandIdentity.json');
 const logoDesign = require('./logoDesign.json');
 const brandGuidelines = require('./brandGuidelines.json');
+const branding = require('./branding.json');
 
 const BASE = 'https://oovert.com';
 const ORG_ID = `${BASE}/#organization`;
@@ -211,14 +212,13 @@ const brandIdentityFaq = {
   })),
 };
 
-/* ---- Additional service pages (WebPage + Service + FAQPage) ---------------- */
+/* ---- Naming & rebranding service pages (WebPage + Service + FAQPage) ------- */
 const faqNodes = (items) => items.map((q) => ({
   '@type': 'Question',
   name: q.q,
   acceptedAnswer: { '@type': 'Answer', text: q.a },
 }));
 
-/* ---- Logo design service page (WebPage + Service + FAQPage) ---------------- */
 const logoDesignPage = {
   '@type': 'WebPage',
   '@id': `${BASE}/logo-design/#webpage`,
@@ -268,6 +268,32 @@ const brandGuidelinesFaq = {
   '@type': 'FAQPage',
   '@id': `${BASE}/brand-guidelines/#faq`,
   mainEntity: faqNodes(brandGuidelines.faq),
+};
+
+/* ---- Branding flagship service page (WebPage + Service + FAQPage) ---------- */
+const brandingPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/branding/#webpage`,
+  name: 'Branding Agency · Strategy-First Brand Building · OOVERT',
+  description: 'Branding agency that builds the whole brand strategy-first: strategy, name, logo, identity and the guidelines that keep it consistent.',
+  url: `${BASE}/branding/`,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const brandingService = {
+  '@type': 'Service',
+  '@id': `${BASE}/branding/#service`,
+  name: 'Branding',
+  serviceType: 'Branding',
+  description: 'Full strategy-first branding: strategy, positioning, name, logo and identity, guidelines and rollout, built into one coherent brand.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const brandingFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/branding/#faq`,
+  mainEntity: faqNodes(branding.faq),
 };
 
 /* ---- BreadcrumbList builder ------------------------------------------------ */
@@ -327,5 +353,11 @@ module.exports = {
     brandGuidelinesService,
     brandGuidelinesFaq,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Brand guidelines', path: '/brand-guidelines/' }]),
+  ]),
+  branding: graph([
+    brandingPage,
+    brandingService,
+    brandingFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Branding', path: '/branding/' }]),
   ]),
 };
