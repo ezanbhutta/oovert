@@ -18,6 +18,18 @@
   overflow: clip; /* contain the scaled-up hero field */
 }
 
+/* Short viewports (most laptops): the full-height, bottom-anchored hero leaves a
+   dead band up top and pushes the lede below the fold. Let it size to its content
+   with calm top space so the whole hero reads on one screen. Tall screens (the
+   studio Macs) keep the dramatic full-bleed hero. */
+@media (max-height: 860px) {
+  .hero {
+    min-height: auto;
+    padding-block: calc(var(--space-8) + var(--space-3)) var(--space-8);
+  }
+  .hero__title { margin-top: 0; }
+}
+
 /* Swiss column hairlines, quiet structure behind the type. The mid plane of the
    cursor-parallax: drifts a few px with the pointer (see heroparallax.js). */
 .hero::before {
