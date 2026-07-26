@@ -1,7 +1,7 @@
 import { initReveal } from './modules/reveal.js';
 import { initNav } from './modules/nav.js';
 import { initParallax } from './modules/parallax.js';
-import { initCounters } from './modules/counters.js';
+import { initMagnetic } from './modules/magnetic.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initManifesto } from './modules/manifesto.js';
 import { initBackdrop } from './modules/backdrop.js';
@@ -26,7 +26,6 @@ initDetails();
 initTell({ reducedMotion });
 initBreakCover({ reducedMotion });
 initPackages({ reducedMotion });
-initCounters({ reducedMotion });
 initManifesto({ reducedMotion });
 // The two ambient canvas fields now paint a single still frame for everyone:
 // their idle drift competed with the width "tell" for attention, and silence is
@@ -44,5 +43,8 @@ if (!reducedMotion) {
     initSmoothScroll();
     // Hero depth: the paper ground and column grid drift under the pointer.
     initHeroParallax({ reducedMotion });
+    // The contact email leans toward the pointer and springs back — the one
+    // "reach toward you" gesture on the page, reserved for the ask itself.
+    initMagnetic();
   }
 }
