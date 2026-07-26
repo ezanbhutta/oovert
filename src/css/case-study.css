@@ -483,21 +483,38 @@
   gap: var(--cs-gap);
 }
 
-/* Closing (18). */
+/* Closing (18). The sign-off: the studio mark, the project's last word, and
+   the way onward. The section's own gap never reached these three — they all
+   sit inside a single .cs-inner child — so the rhythm is set on that column.
+   The closing line is the payoff of the whole case study, so it carries title
+   scale rather than body scale; the mark steps back to give it the room. */
 .cs-closing {
   text-align: center;
   min-height: 88svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: var(--space-6);
+}
+.cs-closing .cs-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2.25rem, 5vh, 4rem);
 }
 .cs-closing__mark {
-  width: min(46rem, 72vw);
+  width: min(32rem, 56vw);
   margin-inline: auto;
   color: var(--paper);
 }
 .cs-closing__mark svg { width: 100%; height: auto; display: block; }
+.cs-closing .cs-body {
+  max-width: 16em;
+  font-size: var(--text-md);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  text-wrap: balance;
+}
 .cs-next {
   display: inline-flex;
   align-items: center;
