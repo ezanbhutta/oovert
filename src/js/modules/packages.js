@@ -22,15 +22,22 @@ export function initPackages({ reducedMotion } = {}) {
   if (!tabs.length) return;
   const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
 
+  // The ledger writes itself: each row wipes in left-to-right — the hairline
+  // rules across, then the entry is simply there, like a line being entered in
+  // a book. Delays widen as the list descends (a cadence, not a metronome) and
+  // the wipe runs a beat slower than the settle, so rows arrive with mass
+  // rather than popping. Replaces the old fade-up stagger.
+  const CADENCE = [0, 90, 200, 330, 480, 650];
   const animateIn = (panel) => {
     if (reducedMotion || !panel) return;
     panel.querySelectorAll('.ledger-row').forEach((row, i) => {
+      const delay = CADENCE[i] ?? CADENCE[CADENCE.length - 1] + (i - CADENCE.length + 1) * 180;
       row.animate(
         [
-          { opacity: 0, transform: 'translateY(16px)' },
-          { opacity: 1, transform: 'none' },
+          { clipPath: 'inset(0 100% 0 0)', opacity: 0.4, transform: 'translateY(6px)' },
+          { clipPath: 'inset(0 0% 0 0)', opacity: 1, transform: 'none' },
         ],
-        { duration: 520, delay: i * 70, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'both' }
+        { duration: 680, delay, easing: 'cubic-bezier(0.25, 1, 0.5, 1)', fill: 'both' }
       );
     });
   };
