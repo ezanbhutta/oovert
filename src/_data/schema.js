@@ -107,7 +107,7 @@ const faqPage = {
 const creativeWork = {
   '@type': 'CreativeWork',
   '@id': `${CASE_URL}#work`,
-  name: `${project.name} — ${project.scope}`,
+  name: `${project.name} · ${project.scope}`,
   headline: project.intro && project.intro.headline,
   about: project.sector,
   keywords: [project.scope, project.sector].filter(Boolean).join(', '),
@@ -121,7 +121,7 @@ const creativeWork = {
 const collectionPage = {
   '@type': 'CollectionPage',
   '@id': `${WORK_URL}#collection`,
-  name: 'Work — OOVERT',
+  name: 'Work · OOVERT',
   description: 'Selected brand strategy, naming and identity work by OOVERT.',
   url: WORK_URL,
   isPartOf: { '@id': WEBSITE_ID },
@@ -135,9 +135,9 @@ const collectionPage = {
 const approachPage = {
   '@type': 'WebPage',
   '@id': `${BASE}/approach/#webpage`,
-  name: 'Our Approach to Brand Strategy & Identity — OOVERT',
+  name: 'Our Approach to Brand Strategy & Identity · OOVERT',
   description:
-    'How OOVERT works: a brand built in four moves — Strategy, Positioning, Identity, Rollout.',
+    'How OOVERT works: a brand built in four moves. Strategy, positioning, identity, rollout.',
   url: `${BASE}/approach/`,
   isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
@@ -146,7 +146,7 @@ const approachPage = {
 const studioPage = {
   '@type': 'AboutPage',
   '@id': `${BASE}/studio/#webpage`,
-  name: 'A Distributed Brand Identity Studio — OOVERT',
+  name: 'A Distributed Brand Identity Studio · OOVERT',
   description:
     'OOVERT is a distributed studio of senior people across six timezones. Four disciplines, one question on every project: would we sign it?',
   url: `${BASE}/studio/`,
@@ -161,7 +161,7 @@ const studioPage = {
 const pricingPage = {
   '@type': 'WebPage',
   '@id': `${BASE}/pricing/#webpage`,
-  name: 'How Much Does Branding Cost? — OOVERT Pricing',
+  name: 'How Much Does Branding Cost? · OOVERT Pricing',
   description:
     'What branding costs across the market, and OOVERT’s transparent, strategy-led pricing.',
   url: `${BASE}/pricing/`,
@@ -185,9 +185,9 @@ const pricingFaq = {
 const brandIdentityPage = {
   '@type': 'WebPage',
   '@id': `${BASE}/brand-identity/#webpage`,
-  name: 'Brand Identity Design, Strategy-First — OOVERT',
+  name: 'Brand Identity Design, Strategy-First · OOVERT',
   description:
-    'Brand identity design done strategy-first — the system a company is recognised by: name, mark, type, colour, voice, motion and guidelines.',
+    'Brand identity design done strategy-first: the system a company is recognised by, from name and mark to type, colour, voice, motion and guidelines.',
   url: `${BASE}/brand-identity/`,
   isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORG_ID },
@@ -213,7 +213,7 @@ const brandIdentityFaq = {
   })),
 };
 
-/* ---- Naming & rebranding service pages (WebPage + Service + FAQPage) ------- */
+/* ---- Additional service pages (WebPage + Service + FAQPage) ---------------- */
 const faqNodes = (items) => items.map((q) => ({
   '@type': 'Question',
   name: q.q,
@@ -340,7 +340,7 @@ module.exports = {
     crumbs([
       { name: 'Home', path: '/' },
       { name: 'Work', path: '/work/' },
-      { name: `${project.name} — ${project.scope}`, path: `/work/${caseSlug}/` },
+      { name: `${project.name} · ${project.scope}`, path: `/work/${caseSlug}/` },
     ]),
   ]),
   approach: graph([
