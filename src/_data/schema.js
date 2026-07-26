@@ -15,6 +15,8 @@ const pricing = require('./pricing.json');
 const brandIdentity = require('./brandIdentity.json');
 const brandNaming = require('./brandNaming.json');
 const rebranding = require('./rebranding.json');
+const logoDesign = require('./logoDesign.json');
+const brandGuidelines = require('./brandGuidelines.json');
 
 const BASE = 'https://oovert.com';
 const ORG_ID = `${BASE}/#organization`;
@@ -268,6 +270,58 @@ const rebrandingFaq = {
   mainEntity: faqNodes(rebranding.faq),
 };
 
+/* ---- Logo design service page (WebPage + Service + FAQPage) ---------------- */
+const logoDesignPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/logo-design/#webpage`,
+  name: 'Logo Design Agency · Custom Logos, Strategy-First · OOVERT',
+  description: 'Custom, strategy-first logo design. A mark built on a real idea and a system behind it, with every file and usage rule.',
+  url: `${BASE}/logo-design/`,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const logoDesignService = {
+  '@type': 'Service',
+  '@id': `${BASE}/logo-design/#service`,
+  name: 'Logo design',
+  serviceType: 'Logo design',
+  description: 'Strategy-first custom logo design: the idea, the mark, construction, type, colour and every file and usage rule, built to hold at any size.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const logoDesignFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/logo-design/#faq`,
+  mainEntity: faqNodes(logoDesign.faq),
+};
+
+/* ---- Brand guidelines service page (WebPage + Service + FAQPage) ----------- */
+const brandGuidelinesPage = {
+  '@type': 'WebPage',
+  '@id': `${BASE}/brand-guidelines/#webpage`,
+  name: 'Brand Guidelines & Brand Style Guides · OOVERT',
+  description: 'Brand guidelines and brand style guides your whole team can follow: logo, colour, type, voice and motion rules that keep a brand consistent everywhere.',
+  url: `${BASE}/brand-guidelines/`,
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': ORG_ID },
+  inLanguage: 'en',
+};
+const brandGuidelinesService = {
+  '@type': 'Service',
+  '@id': `${BASE}/brand-guidelines/#service`,
+  name: 'Brand guidelines',
+  serviceType: 'Brand guidelines and style guide',
+  description: 'Brand guidelines and style guides: logo usage, colour, typography, voice, imagery and motion rules that keep a brand consistent everywhere.',
+  provider: { '@id': ORG_ID },
+  areaServed: s.areaServed,
+};
+const brandGuidelinesFaq = {
+  '@type': 'FAQPage',
+  '@id': `${BASE}/brand-guidelines/#faq`,
+  mainEntity: faqNodes(brandGuidelines.faq),
+};
+
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -325,5 +379,17 @@ module.exports = {
     rebrandingService,
     rebrandingFaq,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Rebranding', path: '/rebranding/' }]),
+  ]),
+  'logo-design': graph([
+    logoDesignPage,
+    logoDesignService,
+    logoDesignFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Logo design', path: '/logo-design/' }]),
+  ]),
+  'brand-guidelines': graph([
+    brandGuidelinesPage,
+    brandGuidelinesService,
+    brandGuidelinesFaq,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Brand guidelines', path: '/brand-guidelines/' }]),
   ]),
 };

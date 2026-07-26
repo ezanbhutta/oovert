@@ -1,0 +1,54 @@
+{
+  "eyebrow": "Logo design",
+  "lede": "Logo design is the mark a company is known by at a glance. But a logo only works when there is a real idea and a system behind it. We design custom logos strategy-first, so the mark means something and holds up everywhere, from an app icon to a four-metre wall.",
+  "parts": {
+    "intro": "What goes into a logo that lasts",
+    "items": [
+      { "name": "The idea", "desc": "One clear thought the mark is built to carry." },
+      { "name": "The mark", "desc": "The signature people recognise before they read it." },
+      { "name": "Construction", "desc": "Drawn on a grid, so it holds at any size." },
+      { "name": "Type & lockups", "desc": "The wordmark, the variations, and how they lock together." },
+      { "name": "Colour", "desc": "The palette the mark owns, on light and on dark." },
+      { "name": "Files & formats", "desc": "Every size and format, vector and raster, ready to use." },
+      { "name": "Usage rules", "desc": "Where it goes, the room it needs, and what never to do to it." }
+    ]
+  },
+  "strategy": {
+    "line": "A logo without a strategy is just a <em>drawing.</em>",
+    "note": "We start from the one true thing about your company, then draw the mark that carries it, so it means something, not just looks nice. A logo is sharpest inside a whole <a href=\"/brand-identity/\">brand identity</a>, with <a href=\"/brand-guidelines/\">guidelines</a> to keep it right. <a href=\"/pricing/\">See what it costs &rarr;</a>"
+  },
+  "proof": {
+    "line": "See a mark in <em>use.</em>",
+    "note": "A logo earns its keep across a whole system. Look at how one comes together, end to end.",
+    "ctaLabel": "See the work",
+    "ctaUrl": "/work/"
+  },
+  "faq": [
+    {
+      "q": "What does a logo design agency do?",
+      "a": "A logo design agency creates the mark a company is known by: the idea, the drawing, the construction, the colour, and every file and rule you need to use it. We do it strategy-first, so the logo means something and holds up everywhere it appears."
+    },
+    {
+      "q": "How much does custom logo design cost?",
+      "a": "Ours start at $280, well under a typical agency logo. There are one-time and monthly options, and a logo built as part of a full identity costs less per piece. The full pricing lays it out."
+    },
+    {
+      "q": "What makes a good logo?",
+      "a": "It is simple, it works in one colour, it holds at any size from a favicon to a billboard, and it means something true about you. A good logo is recognised before it is read."
+    },
+    {
+      "q": "Do I get the source files?",
+      "a": "Yes. You get vector and raster in every format and size, plus the usage rules. All of it is yours on final payment."
+    },
+    {
+      "q": "What is the difference between logo design and brand identity?",
+      "a": "A logo is one mark. A brand identity is the whole system it lives inside: type, colour, voice and the rules that hold them together. We design both, and the logo is stronger when it is drawn as part of the identity."
+    }
+  ],
+  "closing": {
+    "line": "Ready for a mark that <em>sticks?</em>",
+    "note": "Tell us about the company and what it should stand for. We will draw the mark that makes it impossible to miss.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "eyebrow": "Brand guidelines",
+  "lede": "Brand guidelines, or the brand style guide, are the rulebook that keeps a brand consistent everywhere: logo, colour, type, voice and how they all behave. We write guidelines your whole team can actually follow, so the brand stays sharp long after we hand it over.",
+  "parts": {
+    "intro": "What a brand style guide covers",
+    "items": [
+      { "name": "Logo & usage", "desc": "Every version of the mark, the space it needs, and what never to do to it." },
+      { "name": "Colour", "desc": "The palette in every format, with exact values and where each one goes." },
+      { "name": "Typography", "desc": "The type system, the scale, and how it is set." },
+      { "name": "Voice & tone", "desc": "How the brand sounds, with real examples." },
+      { "name": "Imagery & graphics", "desc": "The look of photography, illustration and the supporting graphics." },
+      { "name": "Motion", "desc": "How it moves and behaves, wherever motion applies." },
+      { "name": "Do & don't", "desc": "The rules made obvious, so anyone can keep it right." }
+    ]
+  },
+  "strategy": {
+    "line": "A brand is only as consistent as its <em>rules.</em>",
+    "note": "Guidelines are what keep a brand from drifting the moment more than one person touches it. We build them clear enough that a new hire, a freelancer and a printer all get it right. They come with every <a href=\"/brand-identity/\">brand identity</a> we design. <a href=\"/pricing/\">See what it costs &rarr;</a>"
+  },
+  "proof": {
+    "line": "Guidelines, in <em>practice.</em>",
+    "note": "A style guide only matters when the brand lives by it. See a full system, applied end to end.",
+    "ctaLabel": "See the work",
+    "ctaUrl": "/work/"
+  },
+  "faq": [
+    {
+      "q": "What are brand guidelines?",
+      "a": "Brand guidelines, also called a brand style guide, are the rules that keep a brand consistent: how to use the logo, colour, type, voice, imagery and motion, with clear do's and don'ts. They let anyone represent the brand correctly without having to ask."
+    },
+    {
+      "q": "What is the difference between brand guidelines and a brand style guide?",
+      "a": "They are two names for the same thing. 'Brand style guide' tends to emphasise the visual rules; 'brand guidelines' often adds voice and behaviour too. We build the full version either way."
+    },
+    {
+      "q": "What should brand guidelines include?",
+      "a": "At minimum: logo usage, colour, typography, and do's and don'ts. A complete set also covers voice and tone, imagery, graphics and motion, with real examples of the brand applied. Yours are scoped to what your team actually needs."
+    },
+    {
+      "q": "Do I need brand guidelines?",
+      "a": "The moment more than one person makes anything with your brand, the answer is yes. A designer, a freelancer, a printer, a new hire: guidelines are what stop a brand drifting into inconsistency and losing recognition."
+    },
+    {
+      "q": "How much do brand guidelines cost?",
+      "a": "Guidelines come with every identity we design, and our brand work starts at $280. A standalone guide for an existing brand is quoted to scope. See the full pricing."
+    }
+  ],
+  "closing": {
+    "line": "Ready to keep it <em>consistent?</em>",
+    "note": "Tell us about the brand and who needs to use it. We will write the guidelines that keep it unmistakable.",
+    "ctaLabel": "Start a project",
+    "ctaUrl": "/#contact"
+  }
+}
