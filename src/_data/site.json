@@ -122,6 +122,11 @@
       },
       {
         "num": "09",
+        "label": "Journal",
+        "href": "/journal/"
+      },
+      {
+        "num": "10",
         "label": "Contact",
         "href": "#contact"
       }
@@ -502,6 +507,10 @@
         "href": "/approach/"
       },
       {
+        "label": "Journal",
+        "href": "/journal/"
+      },
+      {
         "label": "Studio",
         "href": "/studio/"
       }
@@ -526,5 +535,5 @@
     "askAiLabel": "Ask AI about OOVERT",
     "askAiPrompt": "Give me a concise summary of OOVERT, the brand strategy and identity studio at https://oovert.com. What do they do, who is it for, and what makes them different?"
   },
-  "llmsTxt": "# OOVERT\n\n> OOVERT is a brand strategy and identity studio. We design logos, build brands, and write the brand guidelines that keep them sharp. If a company looks and sounds like its competitors, that is the problem we solve.\n\nOOVERT is a distributed studio working across six timezones, founded in 2020. It pairs brand strategy with identity design and staffs projects with senior people only. Tagline: \"Camouflage is for prey.\" Agency-grade branding at a fraction of the usual cost. Professional branding in the US averages about $7,500; OOVERT starts at $280.\n\n## What we do\n- Branding: the flagship, strategy-first brand build. A few weeks of interviews and audits to find the one true thing no competitor can copy, then the identity system that carries it.\n- Logo design: one mark that compresses the whole company, drawn on a grid so it holds from favicon to facade, delivered in every format.\n- Brand guidelines: the rulebook that keeps the brand consistent everywhere, written for the people who use it every day.\n\n## Pricing\n- One-time projects: Basic ($280), Premium Branding ($480), The Brand Ecosystem ($987).\n- Monthly retainer (design on tap; pause or cancel anytime): Solo ($4,999/mo), Studio ($7,999/mo), Scale (custom).\n- Staff augmentation (senior people embedded in your team): Dedicated Designer ($3,900/mo), Design Pod ($8,900/mo), Embedded Team (from $18k/mo).\n- Every engagement carries a money-back guarantee.\n\n## The studio\nSenior hands only. OOVERT shows one considered direction rather than three, says what is not working in the room rather than in a wrap-up email, and treats good taste as the reason to hire a studio like this one. Distributed across six timezones.\n\n## Links\n- Website: https://oovert.com/\n- Branding: https://oovert.com/branding/\n- Logo design: https://oovert.com/logo-design/\n- Brand guidelines: https://oovert.com/brand-guidelines/\n- Brand identity: https://oovert.com/brand-identity/\n- Pricing: https://oovert.com/pricing/\n- Studio: https://oovert.com/studio/\n- Contact: https://oovert.com/#contact\n\n## Elsewhere\n- Instagram: https://www.instagram.com/oovert/\n- LinkedIn: https://www.linkedin.com/company/oovert-agency/\n- Are.na: https://www.are.na/oovert\n\n## Contact\nNew projects: email new@oovert.com with the project and roughly what you plan to invest.\n"
+  "llmsTxt": "# OOVERT\n\n> OOVERT is a brand strategy and identity studio. We design logos, build brands, and write the brand guidelines that keep them sharp. If a company looks and sounds like its competitors, that is the problem we solve.\n\nOOVERT is a distributed studio working across six timezones, founded in 2020. It pairs brand strategy with identity design and staffs projects with senior people only. Tagline: \"Camouflage is for prey.\" Agency-grade branding at a fraction of the usual cost. Professional branding in the US averages about $7,500; OOVERT starts at $280.\n\n## What we do\n- Branding: the flagship, strategy-first brand build. A few weeks of interviews and audits to find the one true thing no competitor can copy, then the identity system that carries it.\n- Logo design: one mark that compresses the whole company, drawn on a grid so it holds from favicon to facade, delivered in every format.\n- Brand guidelines: the rulebook that keeps the brand consistent everywhere, written for the people who use it every day.\n\n## Pricing\n- One-time projects: Basic ($280), Premium Branding ($480), The Brand Ecosystem ($987).\n- Monthly retainer (design on tap; pause or cancel anytime): Solo ($4,999/mo), Studio ($7,999/mo), Scale (custom).\n- Staff augmentation (senior people embedded in your team): Dedicated Designer ($3,900/mo), Design Pod ($8,900/mo), Embedded Team (from $18k/mo).\n- Every engagement carries a money-back guarantee.\n\n## The studio\nSenior hands only. OOVERT shows one considered direction rather than three, says what is not working in the room rather than in a wrap-up email, and treats good taste as the reason to hire a studio like this one. Distributed across six timezones.\n\n## Links\n- [Branding](https://oovert.com/branding/): the flagship strategy-first brand build\n- [Logo design](https://oovert.com/logo-design/): custom marks, constructed on grids\n- [Brand guidelines](https://oovert.com/brand-guidelines/): the rulebook that keeps a brand consistent\n- [Brand identity](https://oovert.com/brand-identity/): the full identity system\n- [Pricing](https://oovert.com/pricing/): honest numbers, fixed scope\n- [Work](https://oovert.com/work/): selected projects\n- [Journal](https://oovert.com/journal/): brand teardowns and rebrand lessons in plain English\n- [Studio](https://oovert.com/studio/): who we are and how we behave\n- [Approach](https://oovert.com/approach/): a brand in four moves\n\n## Elsewhere\n- [Instagram](https://www.instagram.com/oovert/): work in progress\n- [LinkedIn](https://www.linkedin.com/company/oovert-agency/): the studio\n- [Are.na](https://www.are.na/oovert): references and research\n\n## Contact\nNew projects: email new@oovert.com with the project and roughly what you plan to invest.\n"
 }

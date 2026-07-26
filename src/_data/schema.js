@@ -13,6 +13,7 @@ const site = require('./site.json');
 const project = require('./projects/case-study.json');
 const pricing = require('./pricing.json');
 const brandIdentity = require('./brandIdentity.json');
+const journal = require('./journal.json');
 const logoDesign = require('./logoDesign.json');
 const brandGuidelines = require('./brandGuidelines.json');
 const branding = require('./branding.json');
@@ -296,6 +297,25 @@ const brandingFaq = {
   mainEntity: faqNodes(branding.faq),
 };
 
+
+/* ---- Journal: Blog hub + per-post BlogPosting stubs ------------------------ */
+const journalBlog = {
+  '@type': 'Blog',
+  '@id': `${BASE}/journal/#blog`,
+  name: 'The OOVERT Journal',
+  description: 'Brand teardowns and rebrand lessons in plain English.',
+  url: `${BASE}/journal/`,
+  publisher: { '@id': ORG_ID },
+  inLanguage: 'en',
+  blogPost: journal.posts.map((p) => ({
+    '@type': 'BlogPosting',
+    '@id': `${BASE}/journal/${p.slug}/#post`,
+    headline: p.title,
+    url: `${BASE}/journal/${p.slug}/`,
+    datePublished: p.date,
+  })),
+};
+
 /* ---- BreadcrumbList builder ------------------------------------------------ */
 const crumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -341,6 +361,10 @@ module.exports = {
     brandIdentityService,
     brandIdentityFaq,
     crumbs([{ name: 'Home', path: '/' }, { name: 'Brand identity', path: '/brand-identity/' }]),
+  ]),
+  journal: graph([
+    journalBlog,
+    crumbs([{ name: 'Home', path: '/' }, { name: 'Journal', path: '/journal/' }]),
   ]),
   'logo-design': graph([
     logoDesignPage,

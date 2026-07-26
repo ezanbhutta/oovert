@@ -1,0 +1,113 @@
+---
+pagination:
+  data: journal.posts
+  size: 1
+  alias: post
+permalink: "/journal/{{ post.slug }}/index.html"
+---
+{%- set currentPath = "/journal/" -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  {% include "analytics.njk" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ post.title }} · OOVERT Journal</title>
+  <meta name="description" content="{{ post.dek }}">
+  <link rel="canonical" href="https://oovert.com/journal/{{ post.slug }}/">
+  <meta name="theme-color" content="#F3F0E9">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OOVERT">
+  <meta property="og:title" content="{{ post.title }}">
+  <meta property="og:description" content="{{ post.dek }}">
+  <meta property="og:url" content="https://oovert.com/journal/{{ post.slug }}/">
+  <meta property="og:image" content="https://oovert.com/assets/og/journal.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico?v={{ assets.icon }}" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+  <link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/css/foundation.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/components.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/sections.css?v={{ assets.css }}">
+  <link rel="stylesheet" href="/css/work.css?v={{ assets.css }}">
+
+  <link rel="modulepreload" href="/js/modules/reveal.js">
+  <link rel="modulepreload" href="/js/modules/nav.js">
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://oovert.com/journal/" + post.slug + "/#post",
+        "headline": post.title,
+        "description": post.dek,
+        "datePublished": post.date,
+        "dateModified": post.date,
+        "author": { "@id": "https://oovert.com/#organization" },
+        "publisher": { "@id": "https://oovert.com/#organization" },
+        "mainEntityOfPage": "https://oovert.com/journal/" + post.slug + "/",
+        "isPartOf": { "@id": "https://oovert.com/journal/#blog" },
+        "about": post.brand,
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://oovert.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://oovert.com/journal/" },
+          { "@type": "ListItem", "position": 3, "name": post.brand, "item": "https://oovert.com/journal/" + post.slug + "/" }
+        ]
+      }
+    ]
+  } | dump | safe }}</script>
+</head>
+<body class="page-journal">
+  <a class="skip-link" href="#main">{{ site.a11y.skipLink }}</a>
+
+  {% include "site-header.njk" %}
+
+  <main id="main" class="journal">
+    <article class="post">
+      <header class="work-hero work-hero--post" id="top">
+        <p class="work-hero__eyebrow" data-reveal><a class="post__back" href="/journal/">The journal</a> · {{ post.brand }}</p>
+        <h1 class="post__title" data-reveal>{{ post.title }}</h1>
+        <p class="work-hero__lede" data-reveal>{{ post.dek }}</p>
+      </header>
+
+      <div class="post__body">
+        {% for sec in post.sections %}
+        <section class="post__section" data-reveal>
+          <h2 class="post__h">{{ sec.h }}</h2>
+          {% for para in sec.p %}<p class="post__p">{{ para | safe }}</p>{% endfor %}
+        </section>
+        {% endfor %}
+      </div>
+
+      <footer class="post__foot">
+        <a class="work-more__cta" href="/journal/" data-reveal>&larr; All teardowns</a>
+      </footer>
+    </article>
+
+    <section class="work-more">
+      <p class="work-more__line" data-reveal-lines>
+        <span class="line"><span class="line__inner">Your brand deserves <em>better notes.</em></span></span>
+      </p>
+      <p class="work-more__note" data-reveal>Strategy first, then the mark, then the rules. Tell us where your brand is stuck and we will tell you, honestly, what we would do about it.</p>
+      <a class="work-more__cta" href="/#contact" data-reveal>Start a project <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  {% include "site-footer.njk" %}
+
+  <script type="module" src="/js/work.js"></script>
+</body>
+</html>
