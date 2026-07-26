@@ -52,9 +52,9 @@
   pointer-events: none;
   will-change: transform;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .work-hero::before { animation: aura-drift 24s var(--ease-inout) infinite alternate; }
-}
+/* The aura holds a single still frame. It used to drift continuously, but
+   animating a 30px-blurred layer is a steady GPU cost that stutters weaker
+   laptops for a motion almost no one notices — so it rests static now. */
 @keyframes aura-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
   to   { transform: translate3d(-7%, 5%, 0) scale(1.09); }
