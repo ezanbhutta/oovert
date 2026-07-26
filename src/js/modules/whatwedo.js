@@ -122,6 +122,31 @@ export function initWhatWeDo() {
     marker.classList.add('is-on');
   };
 
+  // The violet arrives from the manifesto. On first downward entry the marker
+  // does not fade in at row 01 — it FALLS in from far above (the direction of
+  // the manifesto's gathered violet column), stretched while travelling, and
+  // only on landing does the first break-cover fire. The scarce violet reads
+  // as one continuous actor: keywords gather, the violet descends, it strikes
+  // the first discipline, which surfaces. Same causality staging as the
+  // approach spine.
+  const arrive = (done) => {
+    if (!marker || !namesWrap) { done(); return; }
+    const r = tabs[0].getBoundingClientRect();
+    const y = r.top - namesWrap.getBoundingClientRect().top + r.height / 2;
+    marker.classList.add('wwd__marker--drop'); // transitions off for the setup
+    marker.style.transform =
+      `translateY(${y - Math.min(window.innerHeight * 0.55, 520)}px) scaleY(2.6)`;
+    marker.classList.add('is-on');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      marker.classList.remove('wwd__marker--drop');
+      marker.style.transform = `translateY(${y}px)`; // the existing eased glide
+      let fired = false;
+      const go = () => { if (!fired) { fired = true; done(); } };
+      marker.addEventListener('transitionend', go, { once: true });
+      setTimeout(go, 700); // safety net if transitionend never fires
+    }));
+  };
+
   const setActiveState = (i, { focus = false } = {}) => {
     active = i;
     tabs.forEach((t, k) => {
@@ -200,9 +225,16 @@ export function initWhatWeDo() {
         if (en.isIntersecting) {
           if (armed) {
             armed = false;
-            moveMarker(0);
-            waves[0].wave.setBase(overts[0]);
-            waves[0].wave.sweep(620);
+            // Entering downward (from the manifesto): the violet descends and
+            // strikes; the first discipline breaks cover on the strike.
+            // Entering from below: land plainly, no theatre.
+            if (en.boundingClientRect.top > 0) {
+              arrive(() => { waves[0].wave.setBase(overts[0]); waves[0].wave.sweep(620); });
+            } else {
+              moveMarker(0);
+              waves[0].wave.setBase(overts[0]);
+              waves[0].wave.sweep(620);
+            }
           }
         } else {
           armed = true;

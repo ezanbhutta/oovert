@@ -2,6 +2,7 @@ import { initReveal } from './modules/reveal.js';
 import { initNav } from './modules/nav.js';
 import { initParallax } from './modules/parallax.js';
 import { initMagnetic } from './modules/magnetic.js';
+import { initLetterRoll } from './modules/letterroll.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initManifesto } from './modules/manifesto.js';
 import { initBackdrop } from './modules/backdrop.js';
@@ -37,6 +38,7 @@ initVideo({ reducedMotion });
 initLivingMark({ reducedMotion });
 initWhatWeDo();
 initVelocity({ reducedMotion });
+initLetterRoll({ reducedMotion });
 
 if (!reducedMotion) {
   initParallax();
