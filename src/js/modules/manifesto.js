@@ -34,7 +34,8 @@ export function initManifesto({ reducedMotion } = {}) {
     } else if (node.nodeType === Node.ELEMENT_NODE) {
       node.classList.add('mf-word');
       frag.appendChild(node);
-      frag.appendChild(document.createTextNode(' '));
+      // No injected space: the neighbouring text nodes carry their own
+      // whitespace, and a forced one orphans punctuation ("Strategy , the").
     }
   }
   el.textContent = '';

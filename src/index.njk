@@ -187,12 +187,6 @@
           </li>
           {% endfor %}<span class="wwd__marker" aria-hidden="true"></span></ul>
         <div class="wwd__stage">
-          <span class="wwd__eclipse" aria-hidden="true">
-            <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.25">
-              <circle cx="52" cy="60" r="40"/>
-              <circle cx="68" cy="60" r="40"/>
-            </svg>
-          </span>
           {% for item in site.practice.items %}<div class="wwd__panel{% if loop.first %} is-active{% endif %}" role="tabpanel" id="wwd-panel-{{ loop.index0 }}" aria-labelledby="wwd-tab-{{ loop.index0 }}"{% if not loop.first %} hidden{% endif %}>
             <p class="wwd__desc">{{ item.desc }}</p>
           </div>
@@ -339,6 +333,7 @@
       <a class="evidence__link" href="{{ site.evidence.linkUrl }}" data-reveal>
         {{ site.evidence.linkLabel }} <span aria-hidden="true">&rarr;</span>
       </a>
+      {% set instFig = "00" %}{% set instNote = "One case public · rest on request" %}{% set instReveal = true %}{% include "hero-instrument.njk" %}{% set instReveal = false %}
     </section>
 
     <!-- ============ 05 STUDIO ============ -->
@@ -362,6 +357,10 @@
       <p class="studio__where" data-reveal>
         {{ site.studio.where }}
       </p>
+
+      <a class="studio__link" href="/studio/" data-reveal>
+        Meet the studio <span aria-hidden="true">&rarr;</span>
+      </a>
     </section>
 
     <!-- ============ 06 QUESTIONS (FAQ) ============ -->

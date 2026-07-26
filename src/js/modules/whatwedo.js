@@ -80,7 +80,6 @@ export function initWhatWeDo() {
   if (!tabs.length) return;
   const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
   const names = tabs.map((t) => t.querySelector('.wwd__name'));
-  const eclipse = wrap.querySelector('.wwd__eclipse');
   const marker = wrap.querySelector('.wwd__marker');
   const namesWrap = wrap.querySelector('.wwd__names');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -157,7 +156,6 @@ export function initWhatWeDo() {
       const p = panels[k];
       if (p) { p.hidden = !on; p.classList.toggle('is-active', on); }
     });
-    if (eclipse) eclipse.style.setProperty('--wwd-turn', i);
     moveMarker(i);
     if (focus) tabs[i].focus();
   };

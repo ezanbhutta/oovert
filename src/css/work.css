@@ -48,7 +48,7 @@
     radial-gradient(circle at 50% 45%, color-mix(in oklab, var(--accent) 24%, transparent) 0, transparent 55%),
     radial-gradient(circle at 50% 45%, transparent 58%, color-mix(in oklab, var(--secondary) 20%, transparent) 76%, transparent 90%);
   filter: blur(30px) saturate(1.1);
-  opacity: 0.75;
+  opacity: 0.6; /* dialed back so the instrument's strokes lead; glow becomes ground */
   pointer-events: none;
   will-change: transform;
 }
