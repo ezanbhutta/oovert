@@ -32,7 +32,23 @@ function hashTree(dir, extensions) {
   return hash.digest("hex").slice(0, 8);
 }
 
+function hashFiles(files) {
+  const hash = crypto.createHash("md5");
+  for (const f of files) {
+    try {
+      hash.update(fs.readFileSync(f));
+    } catch {
+      /* missing file — skip */
+    }
+  }
+  return hash.digest("hex").slice(0, 8);
+}
+
 module.exports = {
   css: hashTree(path.join(__dirname, "..", "css"), [".css"]),
   js: hashTree(path.join(__dirname, "..", "js"), [".js"]),
+  icon: hashFiles([
+    path.join(__dirname, "..", "favicon.ico"),
+    path.join(__dirname, "..", "apple-touch-icon.png"),
+  ]),
 };
