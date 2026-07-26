@@ -53,16 +53,17 @@
   const mediaOf = (sec) => sec.querySelector('[data-cs-media]') || sec;
   const inner = (fig) => fig.querySelector('img, video, .ph') || fig;
 
-  // Copy blocks rise and fade in as they arrive, independent of the section's
-  // own media transition. Skipped inside split sections (they scrub words).
+  // Copy blocks rise into being behind a mask edge — the editorial proscenium —
+  // rather than fading up in place. Two asymmetric tracks on one trigger: the
+  // ink resolves quickly (0.45s) while the mask and settle run longer (0.9s);
+  // the offset between them is what reads as mass. Skipped inside split
+  // sections (they scrub words).
   q('[data-cs-text]').forEach((el) => {
-    gsap.from(el, {
-      y: 26,
-      autoAlpha: 0,
-      duration: 0.9,
-      ease: 'power3.out',
+    const tl = gsap.timeline({
       scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: TOGGLE },
     });
+    tl.from(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 18, duration: 0.9, ease: 'power3.out' }, 0)
+      .from(el, { autoAlpha: 0, duration: 0.45, ease: 'power2.out' }, 0);
   });
 
   // --- Per-section transitions ----------------------------------------------

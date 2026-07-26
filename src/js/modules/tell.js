@@ -74,6 +74,10 @@ export function initTell({ reducedMotion } = {}) {
     // Auto-surface: drive `focus` left-to-right across the word once, then
     // release it. The wave travels through the letters and re-settles behind
     // itself — the camouflaged word gives itself away, then re-freezes.
+    // The 420ms hold before the sweep is the anticipation beat: the sentence
+    // resolves out of the paper first, THEN the word betrays itself — two
+    // moves in sequence instead of two effects firing at once.
+    const SURFACE_DELAY = 420;
     const autoSurface = () => {
       const dur = 1150;
       const span = letters.length + RADIUS * 2;
@@ -86,7 +90,7 @@ export function initTell({ reducedMotion } = {}) {
         if (p < 1) requestAnimationFrame(sweep);
         else { focus = -999; kick(); } // let the wake ease back to rest
       };
-      requestAnimationFrame(sweep);
+      setTimeout(() => requestAnimationFrame(sweep), SURFACE_DELAY);
     };
 
     // Fire the surface each time the word scrolls into view. Armed while the

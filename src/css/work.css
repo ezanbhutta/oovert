@@ -898,12 +898,15 @@
 
 .phase__num { color: var(--accent); }
 @media (prefers-reduced-motion: no-preference) {
-  /* Ignition: pale violet at rest, full violet the moment the phase lands. */
+  /* Ignition is CAUSAL: pale violet at rest, full violet the moment the
+     spine's draw-head reaches this phase (spine.js sets .is-struck as the
+     line crosses each marker) — the number lights because the line arrived,
+     not because a separate observer happened to fire. */
   .js .phase__num {
     color: color-mix(in oklab, var(--accent) 40%, var(--paper));
     transition: color 640ms var(--ease-out);
   }
-  .js .phase.is-inview .phase__num { color: var(--accent); }
+  .js .phase.is-struck .phase__num { color: var(--accent); }
 }
 
 @media (max-width: 640px) {
