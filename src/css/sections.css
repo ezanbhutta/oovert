@@ -51,7 +51,7 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-  filter: blur(42px) saturate(1.14);
+  filter: blur(42px);
   transform: scale(1.16) translate3d(var(--px-bg, 0px), var(--py-bg, 0px), 0);
   opacity: 0.58;
   pointer-events: none;
@@ -1809,6 +1809,22 @@
     --text-xl: clamp(1.8rem, 8vw, 3rem);
     --text-lg: clamp(1.6rem, 6.5vw, 2.4rem);
   }
+}
+
+/* Narrow OR portrait: a 768x1024 tablet is wide enough to miss a width query
+   and still tall enough to open the same void, so the real condition is the
+   shape of the viewport, not its width. */
+@media (max-width: 700px), (max-aspect-ratio: 4/5) {
+  /* The desktop hero is bottom-anchored: .hero__title takes margin-top:auto, so
+     every pixel of slack piles up above the headline. That is the composition
+     on a wide screen. On a phone the hero is far taller than its content and
+     the same rule opens a ~420px void under the eyebrow, which reads as a
+     broken layout rather than as negative space. Split the slack instead: the
+     eyebrow/headline/lede block centres optically and the scroll strip stays
+     pinned to the floor. */
+  .hero__meta { margin-top: auto; }
+  .hero__title { margin-top: var(--space-5); }
+  .hero__strip { margin-top: auto; }
 }
 
 @media (max-width: 480px) {

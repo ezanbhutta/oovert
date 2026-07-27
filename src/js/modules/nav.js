@@ -68,7 +68,9 @@ function initEnquiryRibbon() {
   const ribbon = document.querySelector('[data-cta-ribbon]');
   if (!ribbon) return;
   const contact = document.getElementById('contact');
+  const hero = document.querySelector('.hero');
   let contactInView = false;
+  let heroInView = true;
 
   // Read the ground directly beneath the button and flip it to the paper variant
   // over dark sections, so it stays legible as it rides down the page. Walks the
@@ -93,7 +95,10 @@ function initEnquiryRibbon() {
   const update = () => {
     ticking = false;
     const menuOpen = document.body.classList.contains('menu-open');
-    const visible = !contactInView && !menuOpen;
+    // Hold it back until the hero is genuinely leaving. It is a fixed element,
+    // and on a phone the hero fills the viewport all the way to the bottom
+    // margin, so showing it at rest lands it on top of the lede's last line.
+    const visible = !heroInView && !contactInView && !menuOpen;
     ribbon.classList.toggle('is-visible', visible);
     if (visible) senseGround();
   };
@@ -108,6 +113,17 @@ function initEnquiryRibbon() {
       (entries) => { contactInView = entries[0].isIntersecting; update(); },
       { rootMargin: '0px 0px -15% 0px' }
     ).observe(contact);
+  }
+  if (hero) {
+    // -70% bottom margin: "in view" ends once the hero has scrolled up far
+    // enough that only its top third is left, which is where the ribbon can
+    // appear without landing on hero copy at any width.
+    new IntersectionObserver(
+      (entries) => { heroInView = entries[0].isIntersecting; update(); },
+      { rootMargin: '0px 0px -70% 0px' }
+    ).observe(hero);
+  } else {
+    heroInView = false;
   }
   update();
 }

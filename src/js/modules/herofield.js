@@ -27,12 +27,17 @@ export function initHeroField({ reducedMotion } = {}) {
   // it for every pixel on every frame.
   for (let i = 3; i < img.data.length; i += 4) img.data[i] = 255;
 
-  // High-key palette: paper -> pale violet -> warm ivory -> soft violet.
+  // High-key palette: paper -> cool paper -> warm paper -> cool paper.
+  // Every stop stays within a few points of --paper on purpose. Violet is this
+  // brand's accent, not its ground, and stops far from paper composite (at 0.58
+  // over the body) into a full-bleed lilac wash rather than the whisper of
+  // drifting luminance this field is supposed to be. That wash is invisible on
+  // desktop only because other layers cover it; on a phone it is the hero.
   const stops = [
     [243, 240, 233],
-    [224, 214, 241],
-    [241, 232, 214],
-    [208, 192, 238],
+    [235, 231, 240],
+    [246, 242, 232],
+    [230, 226, 239],
   ];
   const palette = (v) => {
     v = v < 0 ? 0 : v > 0.999 ? 0.999 : v;
