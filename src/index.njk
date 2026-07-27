@@ -124,14 +124,6 @@
         <p class="hero__lede" data-entrance style="--d:.76s">
           {{ site.hero.lede }}
         </p>
-        {#- The fold's own ask. The enquiry ribbon deliberately holds back until
-            the hero is leaving (nav.js), so without this the first screen has
-            no call to action at all. .90s is the slot the cadence above
-            reserves between the lede and the strip. -#}
-        <div class="hero__cta" data-entrance style="--d:.90s">
-          <a class="btn" href="{{ site.hero.ctaPrimary.url }}"><span class="btn__label">{{ site.hero.ctaPrimary.label }}</span><span class="btn__arrow" aria-hidden="true">&darr;</span></a>
-          <a class="btn btn--outline" href="{{ site.hero.ctaSecondary.url }}"><span class="btn__label">{{ site.hero.ctaSecondary.label }}</span><span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
-        </div>
       </div>
 
       <div class="hero__strip" data-entrance style="--d:1.06s">

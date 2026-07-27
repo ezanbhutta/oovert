@@ -218,6 +218,17 @@
   text-wrap: pretty;
 }
 
+/* Yield the enquiry ribbon's column. On a landscape screen the ribbon rides at
+   bottom-right in the same band as the lede's last lines, and on a short wide
+   one (1024x768 is the case that bites) the measure reaches far enough right to
+   run under it. The min() only engages where the row is actually too tight, so
+   1280 and up are untouched. Narrow and portrait screens are excluded: there
+   the ribbon sits below the copy, not beside it, and they reserve vertical
+   clearance instead, where this cap would crush the lede to a few characters. */
+@media (min-width: 701px) and (min-aspect-ratio: 4/5) {
+  .hero__lede { max-width: min(var(--measure), calc(100% - 18rem)); }
+}
+
 .hero__cta {
   display: flex;
   align-items: center;
@@ -1825,6 +1836,12 @@
   .hero__meta { margin-top: auto; }
   .hero__title { margin-top: var(--space-5); }
   .hero__strip { margin-top: auto; }
+
+  /* Clearance for the enquiry ribbon. It is position:fixed and rides the whole
+     page, so on a screen this narrow it would otherwise come to rest on top of
+     the hero's own copy. Reserve its footprint (its bottom offset plus its
+     height) instead of hiding it: the ask stays one tap away throughout. */
+  .hero { padding-bottom: calc(clamp(2rem, 8vh, 4.5rem) + 4.5rem); }
 }
 
 @media (max-width: 480px) {
