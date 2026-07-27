@@ -669,7 +669,12 @@ body.menu-open {
    box. JS builds this on fine pointers only; everyone else keeps the plain
    label. Entry rolls left-to-right and quick; the release collapses from the
    tail back, slower — the tell's asymmetry on the Y axis. */
-.roll { display: inline-flex; overflow: clip; line-height: 1.25; }
+/* Clip on Y only. The roll needs a clipped line box vertically (that is what
+   hides the second copy until it rolls up), but clipping X as well sliced the
+   final letter: these labels carry negative letter-spacing, so the flex box
+   ends up narrower than the glyphs actually paint. `visible` is the one value
+   that legally pairs with `clip` on the other axis. */
+.roll { display: inline-flex; overflow-x: visible; overflow-y: clip; line-height: 1.25; }
 .roll__sp { white-space: pre; }
 .roll__l { position: relative; display: inline-block; }
 .roll__c { display: block; }

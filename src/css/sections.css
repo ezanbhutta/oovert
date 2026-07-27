@@ -450,14 +450,31 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 32ch;
+  /* A 32ch measure was leaving three- and four-word lines, which read as a
+     ragged column rather than a paragraph. Wider measure plus a slightly
+     smaller size puts 6 to 9 words on every line. */
+  max-width: 46ch;
   margin: 0 auto;
-  font-size: clamp(1.4rem, 0.9rem + 2.1vw, 2.6rem);
-  line-height: 1.26;
+  font-size: clamp(1.25rem, 0.85rem + 1.7vw, 2.15rem);
+  line-height: 1.34;
   font-weight: 640;
   letter-spacing: -0.01em;
   font-variation-settings: 'wdth' 104;
   color: var(--paper);
+  /* Justified, with hyphenation doing the work that would otherwise show up as
+     rivers of white space between words. The last line stays flush left. */
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+/* Phones cannot hold a justified measure without gaping word spaces: too few
+   words per line to distribute. They keep the ragged-right setting. */
+@media (max-width: 620px) {
+  .manifesto__text {
+    text-align: left;
+    hyphens: manual;
+  }
 }
 
 .manifesto__text .mf-key {

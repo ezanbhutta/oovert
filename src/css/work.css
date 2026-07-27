@@ -473,9 +473,13 @@
     box-shadow var(--dur-fast) var(--ease-hover);
 }
 
-.work-more__cta span { transition: transform var(--dur-med) var(--ease-out); }
+/* The nudge belongs to the arrow alone. Unscoped, `span` also matched the
+   letter-roll spans that letterroll.js builds inside this label, so hovering
+   pushed the whole word 0.3em right inside its clipped line box and sheared
+   the last letter off. Excluding .roll keeps the roll where it belongs. */
+.work-more__cta > span:not(.roll) { transition: transform var(--dur-med) var(--ease-out); }
 .work-more__cta:hover { color: var(--accent-deep); box-shadow: inset 0 -2px 0 0 var(--accent-deep); }
-.work-more__cta:hover span { transform: translateX(0.3em); }
+.work-more__cta:hover > span:not(.roll) { transform: translateX(0.3em); }
 
 @media (max-width: 820px) {
   .work-plate__foot {
