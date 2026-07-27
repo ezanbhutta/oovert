@@ -58,6 +58,19 @@
   will-change: transform;
 }
 
+/* The construction field. Sits above the blurred light field but below every
+   piece of type, unblurred (these are hairlines; blurring them would just be
+   fog) and unfiltered, so the geometry stays crisp. pointer-events stay off:
+   the module listens on the hero itself, so links and buttons keep working. */
+.hero__marks {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 /* The availability line reads as live: a small violet "now" dot with a soft,
    steady halo — presence without a pulse (rhythmic motion reads as nagging). */
 .hero__status {
