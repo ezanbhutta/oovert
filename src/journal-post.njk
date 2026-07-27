@@ -97,6 +97,28 @@ permalink: "/journal/{{ post.slug }}/index.html"
       </footer>
     </article>
 
+    <section class="post__related" aria-labelledby="related-title" data-reveal>
+      <h2 class="post__related-label" id="related-title">More teardowns</h2>
+      <ol class="jr__list">
+        {%- set total = journal.posts.length -%}
+        {%- for i in range(0, 3) -%}
+        {%- set raw = pagination.pageNumber + 1 + i -%}
+        {%- set idx = raw - total if raw >= total else raw -%}
+        {%- set rp = journal.posts[idx] -%}
+        <li class="jr__item">
+          <a class="jr__link" href="/journal/{{ rp.slug }}/">
+            <span class="jr__num" aria-hidden="true">0{{ i + 1 }}</span>
+            <span class="jr__body">
+              <span class="jr__brand">{{ rp.brand }}</span>
+              <span class="jr__title">{{ rp.title }}</span>
+            </span>
+            <span class="jr__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        {%- endfor -%}
+      </ol>
+    </section>
+
     <section class="work-more">
       <p class="work-more__line" data-reveal-lines>
         <span class="line"><span class="line__inner">Your brand deserves <em>better notes.</em></span></span>
