@@ -7,7 +7,7 @@ import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initManifesto } from './modules/manifesto.js';
 import { initBackdrop } from './modules/backdrop.js';
 import { initHeroField } from './modules/herofield.js';
-import { initHeroMarks } from './modules/heromarks.js';
+import { initHeroGlass } from './modules/heroglass.js';
 import { initPackages } from './modules/packages.js';
 import { initVideo } from './modules/video.js';
 import { initLivingMark } from './modules/livingmark.js';
@@ -35,11 +35,9 @@ initManifesto({ reducedMotion });
 // what lets the signature read. (reducedMotion:true selects their static path.)
 initBackdrop({ reducedMotion: true });
 initHeroField({ reducedMotion: true });
-// The construction field is the exception to the silence above, and for the
-// reason that rule exists: it never drifts on its own. It is still until the
-// pointer enters the hero, responds only to where that pointer is, and stops
-// its loop the moment everything has settled. Nothing competes with the tell.
-initHeroMarks({ reducedMotion });
+// The one moving thing in the hero, and it moves only for the pointer: a
+// raymarched solid of the mark, still until you reach for it.
+initHeroGlass({ reducedMotion });
 initVideo({ reducedMotion });
 initLivingMark({ reducedMotion });
 initWhatWeDo();

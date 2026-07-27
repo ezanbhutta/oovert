@@ -1890,3 +1890,17 @@ p { text-wrap: pretty; }
 .work-feature__meta dd {
   font-variant-numeric: tabular-nums;
 }
+
+/* The raymarched mark. Sits in the hero's empty right half, above the blurred
+   light field and below every piece of type. Transparent canvas, so the paper
+   and its grain read straight through the object's edges. */
+.hero__glass {
+  position: absolute;
+  z-index: 0;
+  top: 6%;
+  right: 2%;
+  width: clamp(22rem, 40vw, 40rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+@media (max-width: 860px) { .hero__glass { display: none; } }
