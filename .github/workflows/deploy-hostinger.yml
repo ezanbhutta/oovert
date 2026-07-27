@@ -30,6 +30,15 @@ jobs:
           node-version: 22
           cache: npm
 
+      # The Open Graph cards are rasterised from SVG at build time, and the
+      # rasteriser resolves fonts through the host, not the site's webfonts.
+      # A runner image without these renders every glyph as a tofu box, which
+      # is exactly how a full set of broken cards once reached social. The
+      # build also self-checks (see og-images.js) and fails rather than
+      # shipping boxes.
+      - name: Install the fonts the OG cards are drawn with
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-liberation fontconfig
+
       - name: Install dependencies
         run: npm ci
 
