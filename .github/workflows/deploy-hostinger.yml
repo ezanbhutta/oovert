@@ -45,12 +45,15 @@ jobs:
       - name: Build the site
         run: npm run build
 
-      # Hostinger's FTPS control socket is sometimes slow to establish from a
+      # Hostinger's FTPS control socket is often slow to establish from a
       # GitHub runner, which surfaces as "Timeout (control socket)" and fails an
       # otherwise-healthy deploy. The build above is deterministic; only the
-      # upload is flaky. So we give the connection a generous timeout and one
-      # automatic retry — the sync is stateful, so the retry only re-sends what
-      # the first attempt didn't finish. server-dir is the folder that serves
+      # upload is flaky. Two attempts at a 2-minute timeout were not enough:
+      # both hit the ceiling on the same deploy and left the site a version
+      # behind. The timeout is now 10 minutes (the sync is stateful, so a slow
+      # run resumes rather than restarts) and there are three attempts, the
+      # last of which is allowed to fail the job so a stuck deploy is visible
+      # instead of silently leaving stale files live. server-dir is the folder that serves
       # oovert.com: usually /public_html/ for a primary domain, or
       # /domains/oovert.com/public_html/ for a secondary domain.
       - name: Upload _site to Hostinger (FTPS)
@@ -64,12 +67,14 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          timeout: 120000
+          timeout: 600000
           local-dir: ./_site/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
 
       - name: Retry the upload if the first attempt timed out
+        id: ftp2
         if: ${{ steps.ftp.outcome == 'failure' }}
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -77,7 +82,22 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          timeout: 120000
+          timeout: 600000
+          local-dir: ./_site/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+
+      # Last attempt, and deliberately not continue-on-error: if this one fails
+      # the deploy really is broken and the run should go red.
+      - name: Final upload attempt
+        if: ${{ steps.ftp.outcome == 'failure' && steps.ftp2.outcome == 'failure' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          timeout: 600000
           local-dir: ./_site/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
 
