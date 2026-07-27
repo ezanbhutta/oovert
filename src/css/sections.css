@@ -1276,51 +1276,6 @@
   padding-bottom: var(--space-section);
 }
 
-/* The instrument in exhibit lighting: same figure as the sub-page heroes,
-   restruck in paper hairlines on ink so the chapter's dead right half reads
-   as a drawn plate instead of a void. Draws when scrolled into view (the
-   reveal engine flags .is-inview; the generic data-reveal fade is switched
-   off for the figure since it draws rather than slides). Replays each pass,
-   like every reveal on this site. */
-.js figure.hero-instrument[data-reveal] {
-  opacity: 1;
-  transform: translateY(-50%);
-  transition: none;
-}
-
-.evidence .hero-instrument { color: var(--paper); }
-.evidence .hi__axis { stroke: color-mix(in srgb, var(--paper) 15%, transparent); }
-.evidence .hi__tick { stroke: color-mix(in srgb, var(--paper) 30%, transparent); }
-.evidence .hi__ring--l { stroke: color-mix(in srgb, var(--paper) 25%, transparent); }
-.evidence .hi__ring--r { stroke: color-mix(in srgb, var(--accent-invert) 60%, transparent); }
-.evidence .hi__core { color: var(--accent-invert); }
-.evidence .hi__note { color: color-mix(in srgb, var(--paper) 55%, transparent); }
-.evidence .hi__note--fig { color: var(--accent-invert); }
-
-@media (prefers-reduced-motion: no-preference) {
-  /* Idle until seen: the load-time draw from the base styles would finish
-     long before anyone scrolls here, so this instance re-keys the draw to
-     the reveal engine instead. */
-  .js .evidence .hi__axis,
-  .js .evidence .hi__ring--l,
-  .js .evidence .hi__ring--r {
-    animation: none;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-  }
-  .js .evidence .hi__tick,
-  .js .evidence .hi__core,
-  .js .evidence .hi__note {
-    animation: none;
-    opacity: 0;
-  }
-  .js .evidence .hero-instrument.is-inview .hi__axis { animation: hi-draw 900ms var(--ease-quart-inout) 200ms forwards; }
-  .js .evidence .hero-instrument.is-inview .hi__ring--l { animation: hi-draw 1250ms var(--ease-quart-inout) 420ms forwards; }
-  .js .evidence .hero-instrument.is-inview .hi__ring--r { animation: hi-draw 1250ms var(--ease-quart-inout) 600ms forwards; }
-  .js .evidence .hero-instrument.is-inview .hi__tick,
-  .js .evidence .hero-instrument.is-inview .hi__core,
-  .js .evidence .hero-instrument.is-inview .hi__note { animation: hi-in 600ms var(--ease-quart) 1350ms forwards; }
-}
 
 .evidence .chapter-head__num {
   color: var(--accent-invert);

@@ -13,7 +13,6 @@ import { initDetails } from './modules/details.js';
 import { initSpine } from './modules/spine.js';
 import { initVelocity } from './modules/velocity.js';
 import { initLetterRoll } from './modules/letterroll.js';
-import { initMarkMotion } from './modules/markmotion.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -27,7 +26,6 @@ initVideo({ reducedMotion });
 initSpine({ reducedMotion });
 initVelocity({ reducedMotion });
 initLetterRoll({ reducedMotion });
-initMarkMotion({ reducedMotion });
 
 if (!reducedMotion && finePointer) {
   initSmoothScroll();
