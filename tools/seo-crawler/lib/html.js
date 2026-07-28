@@ -141,11 +141,15 @@ function pictureSpans(html) {
   return spans;
 }
 
-/** Images with the attributes SEO checks look at, plus responsive/format flags. */
+/** Images with the attributes SEO checks look at, plus responsive/format flags.
+ *  Commented-out markup is stripped first: browsers never render an <img> inside
+ *  an HTML comment, so authoring hints like `<!-- SWAP -> <img ...> -->` must not
+ *  count as real (or broken, or alt-less) images. */
 function getImages(html) {
-  const spans = pictureSpans(html);
-  const hasSource = /<source\b[^>]*srcset=/i.test(html);
-  return scanTags(html, 'img').map((t) => {
+  const clean = String(html || '').replace(/<!--[\s\S]*?-->/g, ' ');
+  const spans = pictureSpans(clean);
+  const hasSource = /<source\b[^>]*srcset=/i.test(clean);
+  return scanTags(clean, 'img').map((t) => {
     const a = t.attrs;
     const inPicture = spans.some(([s, e]) => t.index >= s && t.index <= e);
     return {
