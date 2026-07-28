@@ -311,6 +311,8 @@ const journalBlog = {
     '@type': 'BlogPosting',
     '@id': `${BASE}/journal/${p.slug}/#post`,
     headline: p.title,
+    description: p.dek,
+    about: p.brand,
     url: `${BASE}/journal/${p.slug}/`,
     datePublished: p.date,
   })),
