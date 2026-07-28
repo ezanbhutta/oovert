@@ -1,4 +1,4 @@
-# AI answer-engine crawlers — explicitly allowed (these drive AI citations).
+# AI answer-engine crawlers, explicitly allowed (these drive AI citations).
 # Same policy as everyone else: the whole site, except the CMS admin. Each bot
 # needs its own Disallow, because a crawler obeys ONLY its most-specific
 # user-agent group and does not inherit the rules under "*".
@@ -19,6 +19,26 @@ Allow: /
 Disallow: /admin/
 
 User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /admin/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin/
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bytespider
 Allow: /
 Disallow: /admin/
 
