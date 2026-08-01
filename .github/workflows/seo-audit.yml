@@ -1,0 +1,60 @@
+name: SEO audit
+
+# Regression guard for the SEO / GEO / AEO work. On every pull request (and on
+# demand), build the site and run the in-repo crawler against the built output.
+#
+# The check fails ONLY on a High-severity finding: a broken/missing canonical, a
+# missing or duplicated title, invalid JSON-LD, a blocked crawl, a real
+# alt-less or unreachable image, and the like. Lower-severity notes (descriptive
+# journal titles, FAQPage rich-result deprecation) are reported but never block.
+#
+# It runs on the review path, not the deploy path. Shipping stays on
+# deploy-hostinger.yml (push to main); this workflow can surface a problem but
+# can never strand the live site. The full HTML + JSON report is uploaded as an
+# artifact on every run, pass or fail.
+
+on:
+  pull_request:
+  workflow_dispatch: {}
+
+concurrency:
+  group: seo-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # og-images.js rasterises the OG cards from SVG and fails the build if a
+      # glyph renders as tofu, so the audit build needs the same fonts the
+      # deploy build installs. Without them the build dies before the crawl.
+      - name: Install the fonts the OG cards are drawn with
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-liberation fontconfig
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the site
+        run: npm run build
+
+      # --site-url lets the crawler match canonicals and sitemap entries against
+      # the production origin while auditing the freshly built _site locally.
+      - name: Crawl and audit
+        run: node tools/seo-crawler/crawl.js --dir _site --site-url https://oovert.com --fail-on high
+
+      - name: Upload the SEO report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-report
+          path: seo-report/
+          if-no-files-found: warn
